@@ -4,8 +4,7 @@
           <div class="col-lg-12">
               <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
                   <h2>
-                      See What Our Company <em>Offers</em> &amp; What We
-                      <span>Provide</span>
+                      {{ $title }}
                   </h2>
               </div>
           </div>
