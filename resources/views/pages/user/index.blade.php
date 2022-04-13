@@ -5,15 +5,45 @@
 @endsection
 
 @section('content')
-    <x-organisms.carousel></x-organisms.carousel>
+    <x-carousel></x-carousel>
 
-    <x-organisms.banner></x-organisms.banner>
+    {{-- <x-banner></x-banner>
 
-    <x-organisms.about></x-organisms.about>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <x-about></x-about>
 
-    <x-organisms.service></x-organisms.service>
+    <x-service></x-service>
 
-    <x-organisms.portofolio></x-organisms.portofolio>
+    <x-portofolio></x-portofolio>
 
-    <x-organisms.contact></x-organisms.contact>
+    <x-contact></x-contact> --}}
+=======
+    <x-organisms.about />
+
+    <x-organisms.service />
+
+    <x-organisms.portofolio />
+
+    <x-organisms.contact />
+>>>>>>> f1b4444d8154efec51fb879a392f93507921c9ec
+=======
+    <x-organisms.about />
+
+    <x-organisms.service />
+
+    <x-organisms.portofolio />
+
+    <x-organisms.contact />
+>>>>>>> f1b4444d8154efec51fb879a392f93507921c9ec
+=======
+    <x-organisms.about />
+
+    <x-organisms.service />
+
+    <x-organisms.portofolio />
+
+    <x-organisms.contact />
+>>>>>>> f1b4444d8154efec51fb879a392f93507921c9ec
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\organisms;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
@@ -23,6 +23,6 @@ class carousel extends Component
      */
     public function render()
     {
-        return view('components.organisms.carousel');
+        return view('components.carousel');
     }
 }
