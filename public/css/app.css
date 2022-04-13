@@ -1705,5 +1705,13 @@ responsive
 }
 
 .main-carousel {
-  padding: 110px 0px 0px 0px;
+  padding: 105px 0px 0px 0px;
+}
+
+.card-custom {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
