@@ -1689,3 +1689,21 @@ responsive
     margin-left: 0px;
   }
 }
+
+/* Custom */
+.red-line {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fe3f40;
+  font-weight: 500;
+  line-height: 30px;
+  font-size: 15px;
+  padding: 0 7.75rem;
+  width: 100%;
+  margin: 0 auto;
+  color: #FFFFFF;
+}
+
+.main-carousel {
+  padding: 110px 0px 0px 0px;
+}

@@ -36,5 +36,9 @@
             </div>
         </div>
     </div>
+    <div class="red-line">
+        <span>Rabu, 13 April 2022 | 08:40 WIB</span>
+        <span>Selamat Datang di Legal Service Access</span>
+    </div>
 </header>
 <!-- ***** Header Area End ***** -->

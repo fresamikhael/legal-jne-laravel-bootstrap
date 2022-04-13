@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    <x-organisms.carousel></x-organisms.carousel>
+
     <x-organisms.banner></x-organisms.banner>
 
     <x-organisms.about></x-organisms.about>
