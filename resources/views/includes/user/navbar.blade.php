@@ -20,7 +20,7 @@
                         </li>
                         <li class="scroll-to-section"><a href="#blog">Database</a></li>
                         <li class="scroll-to-section">
-                            <a href="#contact">Hubungi Kami</a>
+                            <a href="{{ route('contact-us') }}">Hubungi Kami</a>
                         </li>
                         <li class="scroll-to-section">
                             <div class="main-red-button">

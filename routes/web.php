@@ -74,3 +74,10 @@ Route::prefix('regulation')->name('regulation.')->group(function() {
 Route::get('/statistic', function () {
     return view('pages.user.statistic');
 })->name('statistic');
+
+
+
+
+Route::get('/contact-us', function () {
+    return view('pages.user.contact_us');
+})->name('contact-us');
