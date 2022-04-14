@@ -6,12 +6,9 @@
 
 @section('content')
   <x-base>
-    @slot('message')
-      test
-    @endslot
-    
-    @slot('section')
-      <x-input type="text" name="name" placeholder="Masukkan nama anda" disabled="false" required="true"></x-input>
-    @endslot
+    {{-- @slot('alert')
+      <x-alert message="test" type="danger"></x-alert>
+    @endslot --}}
+    <x-input label="Nama"></x-input>
   </x-base>
 @endsection

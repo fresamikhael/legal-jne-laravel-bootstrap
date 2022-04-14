@@ -1,8 +1,10 @@
 <div id="base" class="base section">
-  <div class="container" style="margin-bottom: 20px;">
-    {{ $message }}
-  </div>
-  <div class="container">
-    {{ $section }}
-  </div>
+    @if ($alert)
+        <div class="container" style="margin-bottom: 20px;">
+            {{ $alert }}
+        </div>
+    @endif
+    <div class="container">
+        {{ $slot }}
+    </div>
 </div>

@@ -4,16 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class alert extends Component
+class Base extends Component
 {
+    public $alert;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($alert = null)
     {
-        //
+        $this->alert = $alert;
     }
 
     /**
@@ -23,6 +24,6 @@ class alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return view('components.base');
     }
 }

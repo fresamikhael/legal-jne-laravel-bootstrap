@@ -4,16 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class carousel extends Component
+class Carousel extends Component
 {
+    public $photo;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($photo = null)
     {
-        //
+        $this->photo = $photo;
     }
 
     /**
