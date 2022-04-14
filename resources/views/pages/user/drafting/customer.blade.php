@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Customer Dispute
+    Customer
 @endsection
 
 @section('content')
@@ -12,25 +12,25 @@
     @endslot --}}
         <div class="row mt-3">
             <div class="col-sm-6">
-                <x-input label="Nama Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
             </div>
             <div class="col-sm-6">
-                <x-input label="Nama Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-select label="Alamat Pihak" />
-                <x-input label="Draft Perjanjian" />
-                <x-input label="Jenis" />
-                <x-input label="Discount" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak (Optional)" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Perjanjian" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" />
             </div>
         </div>
 
@@ -86,7 +86,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <x-button type="submit" name="Submit" buttonClass="btn-primary" />
+            <x-button type="submit" name="Submit" buttonClass="btn-danger" />
         </div>
     </x-base>
 @endsection
