@@ -11,9 +11,9 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#about">Regulasi</a></li>
+                        <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Regulasi</a></li>
                         <li class="scroll-to-section">
-                            <a href="#services">Statistik Pekerjaan</a>
+                            <a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
                         </li>
                         <li class="scroll-to-section">
                             <a href="#portfolio">Informasi</a>

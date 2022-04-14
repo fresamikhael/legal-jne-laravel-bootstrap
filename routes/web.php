@@ -4,6 +4,8 @@ use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Litigation\FraudController;
 use App\Http\Controllers\Litigation\OtherController;
 use App\Http\Controllers\Litigation\OutstandingController;
+use App\Http\Controllers\Regulation\InternalController;
+use App\Http\Controllers\Regulation\NormativeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +33,25 @@ Route::prefix('litigation')->name('litigation.')->group(function() {
 Route::get('/', function () {
     return view('pages.user.index');
 })->name('home');
+
+
+
+
+
+
+Route::prefix('regulation')->name('regulation.')->group(function() {
+    Route::get('/', function () {
+        return View('pages.user.regulation.index');
+    })->name('index');
+
+    Route::get('internal', [InternalController::class, 'index'])->name('internal');
+    Route::get('normative', [NormativeController::class, 'index'])->name('normative');
+
+    Route::get('internal-create', [InternalController::class, 'create'])->name('internal-create');
+    Route::get('normative-create', [NormativeController::class, 'create'])->name('normative-create');
+
+});
+
+Route::get('/statistic', function () {
+    return view('pages.user.statistic');
+})->name('statistic');
