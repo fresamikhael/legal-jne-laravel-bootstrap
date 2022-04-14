@@ -5,8 +5,13 @@
 @endsection
 
 @section('content')
-
-  <div style="margin-top: 5rem;">
-    test
-  </div>
+  <x-base>
+    @slot('message')
+      test
+    @endslot
+    
+    @slot('section')
+      <x-input type="text" name="name" placeholder="Masukkan nama anda" disabled="false" required="true"></x-input>
+    @endslot
+  </x-base>
 @endsection
