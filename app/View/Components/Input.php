@@ -15,6 +15,7 @@ class Input extends Component
     public $placeholder;
     public $disabled;
     public $required;
+    public $prefix;
 
     /**
      * Create a new component instance.
@@ -30,7 +31,8 @@ class Input extends Component
         $name = null, 
         $placeholder = null, 
         $disabled = null, 
-        $required = null
+        $required = null,
+        $prefix = null
     )
     {
         $this->inputClass = $inputClass;
@@ -42,6 +44,7 @@ class Input extends Component
         $this->placeholder = $placeholder;
         $this->disabled = $disabled;
         $this->required = $required;
+        $this->prefix = $prefix;
     }
 
     // public function labelClass()

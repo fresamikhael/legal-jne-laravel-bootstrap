@@ -2,7 +2,15 @@
     <label for="{{ $name }}"
         class="{{ $labelClass ? $labelClass : 'col-sm-3' }} col-form-label">{{ $label }}</label>
     <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
-        <input type="{{ $name }}" class="form-control" id="{{ $name }}"
-            {{ $disabled ? 'disabled' : '' }} {{ $required ? 'required' : '' }}>
+        @if ($prefix)
+            <div class="input-group">
+                <span class="input-group-text">{{ $prefix }}</span>
+                <input type="{{ $type ? $type : "text" }}" class="form-control" id="{{ $name }}" 
+                    placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }} {{ $required ? 'required' : '' }}>
+            </div>
+        @else
+            <input type="{{ $type ? $type : "text" }}" class="form-control" id="{{ $name }}"
+                placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }} {{ $required ? 'required' : '' }}>
+        @endif
     </div>
 </div>
