@@ -6,7 +6,7 @@
     <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
         <select name="{{ $name }}" class="form-select" aria-label="Default select example">
             <option class="d-none">-- Pilih --</option>
-            <option value="{{ $value }}">{{ $option }}</option>
+            {{ $slot }}
         </select>
     </div>
 </div>

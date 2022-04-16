@@ -29,7 +29,9 @@
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" name="id"/>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name"/>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pengirim"/>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pengirim">
+                    <option value="test">test</option>
+                </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" name="case_type"/>
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab" name="causative_factor"/>
