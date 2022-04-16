@@ -18,7 +18,6 @@
     @stack('prepend-style')
     @include('includes.user.style')
     @stack('addon-style')
-
 </head>
 
 <body>
