@@ -14,6 +14,7 @@ class Textarea extends Component
     public $placeholder;
     public $disabled;
     public $required;
+    public $hidden;
     /**
      * Create a new component instance.
      *
@@ -28,6 +29,7 @@ class Textarea extends Component
         $disabled = null,
         $required = null,
         $fieldClass = null,
+        $hidden = null,
     )
     {
         $this->label = $label;
@@ -38,6 +40,7 @@ class Textarea extends Component
         $this->disabled = $disabled;
         $this->required = $required;
         $this->fieldClass = $fieldClass;
+        $this->hidden = $hidden;
     }
 
     /**

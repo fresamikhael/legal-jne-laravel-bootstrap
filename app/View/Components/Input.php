@@ -16,6 +16,7 @@ class Input extends Component
     public $disabled;
     public $required;
     public $prefix;
+    public $hidden;
 
     /**
      * Create a new component instance.
@@ -32,7 +33,8 @@ class Input extends Component
         $placeholder = null, 
         $disabled = null, 
         $required = null,
-        $prefix = null
+        $prefix = null,
+        $hidden = null,
     )
     {
         $this->inputClass = $inputClass;
@@ -45,61 +47,8 @@ class Input extends Component
         $this->disabled = $disabled;
         $this->required = $required;
         $this->prefix = $prefix;
+        $this->hidden = $hidden;
     }
-
-    // public function labelClass()
-    // {
-    //     if ($this->label) {
-    //         return $this->label;
-    //     }
-
-    //     return '';
-    // }
-
-    // public function typeClass()
-    // {
-    //     if ($this->type) {
-    //         return $this->type;
-    //     }
-
-    //     return 'text';
-    // }
-
-    // public function nameClass()
-    // {
-    //     if ($this->name) {
-    //         return $this->name;
-    //     }
-
-    //     return '';
-    // }
-
-    // public function placeholderClass()
-    // {
-    //     if ($this->placeholder) {
-    //         return $this->placeholder;
-    //     }
-
-    //     return '';
-    // }
-
-    // public function disabledClass()
-    // {
-    //     if ($this->disabled) {
-    //         return 'disabled';
-    //     }
-
-    //     return '';
-    // }
-
-    // public function requiredClass()
-    // {
-    //     if ($this->required) {
-    //         return 'required';
-    //     }
-
-    //     return '';
-    // }
 
     /**
      * Get the view / contents that represent the component.

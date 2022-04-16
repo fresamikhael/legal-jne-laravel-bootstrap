@@ -4,7 +4,7 @@
         class="{{ $labelClass ? $labelClass : 'col-sm-3' }} col-form-label">{{ $label }}</label>        
     @endif
     <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
-        <select name="{{ $name }}" class="form-select" aria-label="Default select example">
+        <select name="{{ $name }}" id="{{ $name }}" class="form-select" aria-label="Default select example">
             <option class="d-none">-- Pilih --</option>
             {{ $slot }}
         </select>

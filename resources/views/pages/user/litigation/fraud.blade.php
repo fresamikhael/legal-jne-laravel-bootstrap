@@ -14,11 +14,31 @@
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal" type="date" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" >
+                    <option value="Penggelapan">Penggelapan</option>    
+                    <option value="Pencurian">Pencurian</option>    
+                    <option value="Pemalsuan">Pemalsuan</option>    
+                    <option value="Penipuan">Penipuan</option>    
+                    <option value="Perusakan Barang">Perusakan Barang</option>    
+                    <option value="Penganiayaan">Penganiayaan</option>    
+                    <option value="Konflik Kepentingan">Konflik Kepentingan</option>    
+                    <option value="Pemberian Ilegal">Pemberian Ilegal</option>    
+                    <option value="Cyber Crime">Cyber Crime</option>    
+                    <option value="Lain-Lain">Lain-Lain</option>    
+                </x-select>   
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab">
+                    <option value="Keserakahan">Keserakahan</option>
+                    <option value="Kesempatan">Kesempatan</option>
+                    <option value="Kebutuhan">Kebutuhan</option>
+                    <option value="Tekanan">Tekanan</option>
+                    <option value="Pembenaran">Pembenaran</option>
+                </x-select>
             </div>
             <div class="col-sm-6">
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Pelaku" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Pelaku" >
+                    <option value="Internal">Internal</option>
+                    <option value="External">External</option>
+                </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit/Departemen/Divisi" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Kerugian" prefix="Rp"/>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Kejadian" type="date"/>
@@ -38,7 +58,11 @@
                 <h5>Klasifikasi Fraud :</h5>
             </div>
             <div class="col-sm-9">
-                <x-select fieldClass="col-sm-12"/>
+                <x-select fieldClass="col-sm-12">
+                    <option value="Kecurangan Laporan Keuangan">Kecurangan Laporan Keuangan</option>
+                    <option value="Penyalahgunaan Aset">Penyalahgunaan Aset</option>
+                    <option value="Kecurangan Berkaitan Dengan Komputer">Kecurangan Berkaitan Dengan Komputer</option>
+                </x-select>
             </div>
         </div>
 
