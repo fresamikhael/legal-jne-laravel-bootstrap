@@ -53,7 +53,9 @@ Route::get('/', function () {
     return view('pages.user.index');
 })->name('home');
 
-
+Route::get('/login', function () {
+    return view('pages.auth.index');
+})->name('login');
 
 
 

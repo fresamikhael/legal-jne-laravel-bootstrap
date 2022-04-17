@@ -6,7 +6,22 @@
 
 @section('content')
     <x-base>
-        <h2>Customer</h2>
+        {{-- <h2>Customer</h2> --}}
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Customer</h2>
+            <x-modal-history>
+                @slot('data')
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="" class="btn btn-primary">Lihat</a>
+                        </td>
+                    </tr>
+                @endslot
+            </x-modal-history>
+        </div>
         {{-- @slot('alert')
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}

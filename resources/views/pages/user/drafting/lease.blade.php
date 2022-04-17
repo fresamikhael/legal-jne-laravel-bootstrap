@@ -6,10 +6,21 @@
 
 @section('content')
     <x-base>
-        <h2>Lease</h2>
-        {{-- @slot('alert')
-      <x-alert message="test" type="danger"></x-alert>
-    @endslot --}}
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Lease</h2>
+            <x-modal-history>
+                @slot('data')
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="" class="btn btn-primary">Lihat</a>
+                        </td>
+                    </tr>
+                @endslot
+            </x-modal-history>
+        </div>
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
