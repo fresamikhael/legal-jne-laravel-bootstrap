@@ -6,7 +6,6 @@
 
 @section('content')
     <x-base>
-        {{-- <h2>Customer</h2> --}}
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer</h2>
             <x-modal-history>
@@ -22,9 +21,7 @@
                 @endslot
             </x-modal-history>
         </div>
-        {{-- @slot('alert')
-      <x-alert message="test" type="danger"></x-alert>
-    @endslot --}}
+
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
@@ -45,7 +42,7 @@
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Perjanjian" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" prefix="Rp" />
             </div>
         </div>
 

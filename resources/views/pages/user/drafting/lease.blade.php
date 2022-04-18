@@ -21,6 +21,7 @@
                 @endslot
             </x-modal-history>
         </div>
+
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />

@@ -24,7 +24,7 @@
                         </li>
                         <li class="scroll-to-section">
                             <div class="main-red-button">
-                                <a href="/login.html">Login</a>
+                                <a href="{{ route('login') }}">Login</a>
                             </div>
                         </li>
                     </ul>
