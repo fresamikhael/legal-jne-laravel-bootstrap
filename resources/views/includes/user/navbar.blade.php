@@ -18,7 +18,7 @@
                         <li class="scroll-to-section">
                             <a href="{{ route('information.index') }}">Informasi</a>
                         </li>
-                        <li class="scroll-to-section"><a href="#blog">Database</a></li>
+                        <li class="scroll-to-section"><a href="{{ route('database') }}">Database</a></li>
                         <li class="scroll-to-section">
                             <a href="{{ route('contact-us') }}">Hubungi Kami</a>
                         </li>

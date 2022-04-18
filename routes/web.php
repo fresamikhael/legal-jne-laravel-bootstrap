@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\database\DatabaseController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\LeaseController;
 use App\Http\Controllers\Drafting\VendorController;
@@ -7,6 +8,8 @@ use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Litigation\FraudController;
 use App\Http\Controllers\Litigation\OtherController;
 use App\Http\Controllers\Litigation\OutstandingController;
+use App\Http\Controllers\permit\NewPermitController;
+use App\Http\Controllers\permit\ProlongationController;
 use App\Http\Controllers\Regulation\InternalController;
 use App\Http\Controllers\Regulation\NormativeController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('drafting')->name('drafting.')->group(function() {
+Route::prefix('drafting')->name('drafting.')->group(function () {
     Route::get('/', function () {
         return View('pages.user.drafting.index');
     })->name('index');
@@ -32,7 +35,7 @@ Route::prefix('drafting')->name('drafting.')->group(function() {
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
 });
 
-Route::prefix('litigation')->name('litigation.')->group(function() {
+Route::prefix('litigation')->name('litigation.')->group(function () {
     Route::get('/', function () {
         return View('pages.user.litigation.index');
     })->name('index');
@@ -43,11 +46,24 @@ Route::prefix('litigation')->name('litigation.')->group(function() {
     Route::get('other', [OtherController::class, 'index'])->name('other');
 });
 
-Route::prefix('information')->name('information.')->group(function() {
+Route::prefix('information')->name('information.')->group(function () {
     Route::get('/', function () {
         return View('pages.user.information.index');
     })->name('index');
 });
+
+Route::prefix('permit')->name('permit.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.user.permit.index');
+    })->name('index');
+
+    Route::get('perizinan-baru', [NewPermitController::class, 'index'])->name('newpermit');
+    Route::get('perpanjangan', [ProlongationController::class, 'index'])->name('prolongation');
+    // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
+    // Route::get('other', [OtherController::class, 'index'])->name('other');
+});
+
+Route::get('/database', [DatabaseController::class, 'index'])->name('database');
 
 Route::get('/', function () {
     return view('pages.user.index');
@@ -60,7 +76,7 @@ Route::get('/login', function () {
 
 
 
-Route::prefix('regulation')->name('regulation.')->group(function() {
+Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('/', function () {
         return View('pages.user.regulation.index');
     })->name('index');
@@ -70,7 +86,6 @@ Route::prefix('regulation')->name('regulation.')->group(function() {
 
     Route::get('internal-create', [InternalController::class, 'create'])->name('internal-create');
     Route::get('normative-create', [NormativeController::class, 'create'])->name('normative-create');
-
 });
 
 Route::get('/statistic', function () {

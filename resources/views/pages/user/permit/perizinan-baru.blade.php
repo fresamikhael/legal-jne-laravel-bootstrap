@@ -28,9 +28,9 @@
             </div>
 
         </div>
-        <x-input label="Lokasi"></x-input>
-        <x-input label="Spesifikasi"></x-input>
-        <x-input label="Alasan Permohonan"></x-input>
+        <x-input label="Lokasi" labelClass="col-sm-2" fieldClass="col-sm-8"></x-input>
+        <x-input label="Spesifikasi" labelClass="col-sm-2" fieldClass="col-sm-8"></x-input>
+        <x-input label="Alasan Permohonan" labelClass="col-sm-2" fieldClass="col-sm-8"></x-input>
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Tipe Perizinan</label>
             <div class="col-sm-10">
