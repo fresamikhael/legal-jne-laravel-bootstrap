@@ -41,8 +41,28 @@
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Perjanjian" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" prefix="Rp" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="addendum">
+                    <option value="Baru">Baru</option>
+                    <option value="Perpanjangan">Perpanjangan</option>
+                    <option value="Addendum">Addendum</option>
+                    <option value="Pembaharuan">Pembaharuan</option>
+                </x-select>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Addendum Ke" name="addendum_to" hidden />
+                <script>
+                    document.getElementById("addendum").addEventListener("change", handleChange);
+
+                    function handleChange() {
+                        var x = document.getElementById("addendum");
+                        if (x.value === "Addendum") {
+                            document.getElementById("addendum_to1").style.display = "flex";
+                            document.getElementById("addendum_to").required = true;
+                        } else {
+                            document.getElementById("addendum_to1").style.display = "none";
+                            document.getElementById("addendum_to").required = false;
+                        }
+                    }
+                </script>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" prefix="%" />
             </div>
         </div>
 
@@ -66,7 +86,7 @@
 
         <div class="row mt-3">
             <div class="col-sm-3">
-                <h5>Koresponden :</h5>
+                <h5>Korespondensi :</h5>
             </div>
             <div class="col-sm-9">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama PIC" />
@@ -86,13 +106,15 @@
                 <h5>Entitas :</h5>
             </div>
             <div class="col-sm-9">
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan" />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan" name="deed_of_company"
+                    option />
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*" />
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)*" />
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha" />
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS" />
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi" />
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa*" />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha" name="business_permit" option />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS" name="location_permission"
+                    option />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi" name="director_id" option />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="procuration" option />
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" />
             </div>
         </div>

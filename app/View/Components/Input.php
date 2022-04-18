@@ -16,6 +16,7 @@ class Input extends Component
     public $disabled;
     public $required;
     public $prefix;
+    public $postfix;
     public $hidden;
 
     /**
@@ -24,16 +25,17 @@ class Input extends Component
      * @return void
      */
     public function __construct(
-        $inputClass = null, 
-        $labelClass = null, 
-        $fieldClass = null, 
-        $label = null, 
-        $type = null, 
-        $name = null, 
-        $placeholder = null, 
-        $disabled = null, 
+        $inputClass = null,
+        $labelClass = null,
+        $fieldClass = null,
+        $label = null,
+        $type = null,
+        $name = null,
+        $placeholder = null,
+        $disabled = null,
         $required = null,
         $prefix = null,
+        $postfix = null,
         $hidden = null,
     )
     {
@@ -47,6 +49,7 @@ class Input extends Component
         $this->disabled = $disabled;
         $this->required = $required;
         $this->prefix = $prefix;
+        $this->postfix = $postfix;
         $this->hidden = $hidden;
     }
 
