@@ -11,16 +11,16 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#about">Regulasi</a></li>
+                        <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Regulasi</a></li>
                         <li class="scroll-to-section">
-                            <a href="#services">Statistik Pekerjaan</a>
+                            <a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
                         </li>
                         <li class="scroll-to-section">
-                            <a href="#portfolio">Informasi</a>
+                            <a href="{{ route('information.index') }}">Informasi</a>
                         </li>
                         <li class="scroll-to-section"><a href="#blog">Database</a></li>
                         <li class="scroll-to-section">
-                            <a href="#contact">Hubungi Kami</a>
+                            <a href="{{ route('contact-us') }}">Hubungi Kami</a>
                         </li>
                         <li class="scroll-to-section">
                             <div class="main-red-button">

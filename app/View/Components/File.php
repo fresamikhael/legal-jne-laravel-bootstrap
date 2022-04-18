@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Input extends Component
+class File extends Component
 {
     public $labelClass;
     public $inputClass;
@@ -12,29 +12,22 @@ class Input extends Component
     public $label;
     public $type;
     public $name;
-    public $placeholder;
-    public $disabled;
     public $required;
-    public $prefix;
-    public $hidden;
-
+    public $option;
     /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct(
-        $inputClass = null, 
-        $labelClass = null, 
-        $fieldClass = null, 
-        $label = null, 
-        $type = null, 
-        $name = null, 
-        $placeholder = null, 
-        $disabled = null, 
+        $inputClass = null,
+        $labelClass = null,
+        $fieldClass = null,
+        $label = null,
+        $type = null,
+        $name = null,
         $required = null,
-        $prefix = null,
-        $hidden = null,
+        $option = null,
     )
     {
         $this->inputClass = $inputClass;
@@ -43,11 +36,8 @@ class Input extends Component
         $this->label = $label;
         $this->type = $type;
         $this->name = $name;
-        $this->placeholder = $placeholder;
-        $this->disabled = $disabled;
         $this->required = $required;
-        $this->prefix = $prefix;
-        $this->hidden = $hidden;
+        $this->option = $option;
     }
 
     /**
@@ -57,6 +47,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.input');
+        return view('components.file');
     }
 }
