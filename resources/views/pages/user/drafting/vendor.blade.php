@@ -21,9 +21,7 @@
                 @endslot
             </x-modal-history>
         </div>
-        {{-- @slot('alert')
-      <x-alert message="test" type="danger"></x-alert>
-    @endslot --}}
+
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Pihak Pertama" />
@@ -31,7 +29,7 @@
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Perjanjian" />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Perjanjian" prefix="Rp" />
             </div>
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)" />
