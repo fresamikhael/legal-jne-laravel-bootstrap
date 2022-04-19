@@ -26,11 +26,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('drafting')->name('drafting.')->group(function () {
-    Route::get('/', function () {
+    Route::get('/index', function () {
         return View('pages.user.drafting.index');
     })->name('index');
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    Route::post('customer/post', [CustomerController::class, 'store'])->name('customer-post');
+
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
 });
