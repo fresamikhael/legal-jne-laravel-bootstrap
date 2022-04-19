@@ -7,6 +7,7 @@
             <div class="input-group">
                 <span class="input-group-text">{{ $prefix }}</span>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
                     placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
                     {{ $required ? 'required' : '' }} value="{{ $value }}">
@@ -23,6 +24,8 @@
                 placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
                 {{ $required ? 'required' : '' }} value="{{ $value }}">
 =======
+=======
+>>>>>>> 2eaee15c758532a6bbe3e472d4a9e282003b16b2
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
                     placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }} name="{{ $name }}"
                     {{ $required ? 'required' : '' }}>
