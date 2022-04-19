@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\database\DatabaseController;
+use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\LeaseController;
 use App\Http\Controllers\Drafting\VendorController;
@@ -26,12 +26,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('drafting')->name('drafting.')->group(function () {
-    Route::get('/', function () {
+    Route::get('/index', function () {
         return View('pages.user.drafting.index');
     })->name('index');
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    Route::post('customer/post', [CustomerController::class, 'store'])->name('customer-post');
+
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
+    Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
+
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
 });
 
@@ -58,12 +62,20 @@ Route::prefix('permit')->name('permit.')->group(function () {
     })->name('index');
 
     Route::get('perizinan-baru', [NewPermitController::class, 'index'])->name('newpermit');
+    Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('newpermit-post');
+    // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan', [ProlongationController::class, 'index'])->name('prolongation');
+
     // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
     // Route::get('other', [OtherController::class, 'index'])->name('other');
 });
 
-Route::get('/database', [DatabaseController::class, 'index'])->name('database');
+Route::prefix('database')->name('database.')->group(function () {
+    Route::get('/index', [DatabaseController::class, 'index'])->name('index');
+    Route::get('tambah', [DatabaseController::class, 'add'])->name('add');
+    Route::post('tambah', [DatabaseController::class, 'store'])->name('store');
+    Route::get('detail/{id}', [DatabaseController::class, 'show'])->name('show');
+});
 
 Route::get('/', function () {
     return view('pages.user.index');

@@ -12,12 +12,14 @@ class Input extends Component
     public $label;
     public $type;
     public $name;
+    public $id;
     public $placeholder;
     public $disabled;
     public $required;
     public $prefix;
     public $postfix;
     public $hidden;
+    public $value;
 
     /**
      * Create a new component instance.
@@ -31,26 +33,31 @@ class Input extends Component
         $label = null,
         $type = null,
         $name = null,
+        $id = null,
         $placeholder = null,
         $disabled = null,
         $required = null,
         $prefix = null,
         $postfix = null,
         $hidden = null,
+        $value = null,
     )
     {
+    ) {
         $this->inputClass = $inputClass;
         $this->labelClass = $labelClass;
         $this->fieldClass = $fieldClass;
         $this->label = $label;
         $this->type = $type;
         $this->name = $name;
+        $this->id = $id;
         $this->placeholder = $placeholder;
         $this->disabled = $disabled;
         $this->required = $required;
         $this->prefix = $prefix;
         $this->postfix = $postfix;
         $this->hidden = $hidden;
+        $this->value = $value;
     }
 
     /**
