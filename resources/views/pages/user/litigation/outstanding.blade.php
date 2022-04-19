@@ -6,15 +6,33 @@
 
 @section('content')
     <x-base>
-        <h2>Outstanding</h2>
-        {{-- @slot('alert')
-    <x-alert message="test" type="danger"></x-alert>
-    @endslot --}}
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Outstanding</h2>
+            <x-modal-history>
+                @slot('data')
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="" class="btn btn-primary">Lihat</a>
+                        </td>
+                    </tr>
+                @endslot
+            </x-modal-history>
+        </div>
+        
+        @if (Session::get('message_success'))
+            @slot('alert')
+                <x-alert message="{{ Session::get('message_success') }}" type="success"/>
+            @endslot
+        @endif
+
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-address label="Pihak" name="party"/>                
             </div>
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit/Departemen/Divisi" />

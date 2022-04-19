@@ -33,7 +33,7 @@
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" name="id"/>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name"/>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pengirim"/>
+                <x-address label="Pengirim" name="seender"/>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" name="case_type">
                     <option value="Terlambat">Terlambat</option>
@@ -68,7 +68,7 @@
             </div>
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima" name="receiver_name"/>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Penerima"/>
+                <x-address label="Penerima" name="receiver"/>                
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Penerima" name="receiver_phone_number"/>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Kerugian/Klaim" prefix="Rp" name="total_loss"/>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Barang" prefix="Rp" name="item_nominal"/>
