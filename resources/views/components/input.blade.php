@@ -21,10 +21,6 @@
             <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
                 placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
                 {{ $required ? 'required' : '' }} value="{{ $value }}">
-                <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                    placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }} name="{{ $name }}"
-                    {{ $required ? 'required' : '' }} value="{{ $value }}">
-            </div>
         @endif
     </div>
 </div>
