@@ -58,7 +58,10 @@ Route::prefix('permit')->name('permit.')->group(function () {
     })->name('index');
 
     Route::get('perizinan-baru', [NewPermitController::class, 'index'])->name('newpermit');
+    Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('newpermit-post');
+    // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan', [ProlongationController::class, 'index'])->name('prolongation');
+
     // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
     // Route::get('other', [OtherController::class, 'index'])->name('other');
 });
