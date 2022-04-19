@@ -32,10 +32,7 @@ class Input extends Component
         $label = null,
         $type = null,
         $name = null,
-<<<<<<< HEAD
         $id = null,
-=======
->>>>>>> a441ae0cb4a22bd7946605a847a69b51e6378993
         $placeholder = null,
         $disabled = null,
         $required = null,
