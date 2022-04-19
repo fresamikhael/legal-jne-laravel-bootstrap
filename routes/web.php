@@ -34,6 +34,8 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
     Route::post('customer/post', [CustomerController::class, 'store'])->name('customer-post');
 
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
+    Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
+
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
 });
 
