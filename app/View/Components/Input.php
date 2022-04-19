@@ -40,13 +40,9 @@ class Input extends Component
         $prefix = null,
         $postfix = null,
         $hidden = null,
-<<<<<<< HEAD
         $value = null,
     )
     {
-=======
->>>>>>> 2eaee15c758532a6bbe3e472d4a9e282003b16b2
-    ) {
         $this->inputClass = $inputClass;
         $this->labelClass = $labelClass;
         $this->fieldClass = $fieldClass;
