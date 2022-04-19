@@ -6,20 +6,13 @@
         @if ($prefix)
             <div class="input-group">
                 <span class="input-group-text">{{ $prefix }}</span>
-                <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                    placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
+                <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $id }}"
+                    name={{ $name }} placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
                     {{ $required ? 'required' : '' }}>
-            </div>
-        @elseif ($postfix)
-            <div class="input-group">
-                <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                    placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }}>
-                <span class="input-group-text">{{ $postfix }}</span>
             </div>
         @else
             <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
+                name={{ $name }} placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
                 {{ $required ? 'required' : '' }}>
         @endif
     </div>
