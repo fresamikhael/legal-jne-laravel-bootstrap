@@ -23,19 +23,8 @@
                 {{ $required ? 'required' : '' }} value="{{ $value }}">
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
                     placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }} name="{{ $name }}"
-                    {{ $required ? 'required' : '' }}>
+                    {{ $required ? 'required' : '' }} value="{{ $value }}">
             </div>
-        @elseif ($postfix)
-            <div class="input-group">
-                <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                    placeholder="{{ $placeholder }}" name="{{ $name }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }}>
-                <span class="input-group-text">{{ $postfix }}</span>
-            </div>
-        @else
-            <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                {{ $required ? 'required' : '' }}>
         @endif
     </div>
 </div>
