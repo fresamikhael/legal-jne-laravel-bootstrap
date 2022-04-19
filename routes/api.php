@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\District;
+use App\Models\Regency;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/regencies/{province_id}', function ($province_id) {
+    $regency = Regency::where('province_id', $province_id)
+        ->orderBy('name', 'ASC')
+        ->get();
+
+    return response()->json([
+        "meta" => [
+            "code" => 200,
+            "message" => "Regency by Province ID",
+        ],
+        "data" => $regency
+    ]);
+});
+Route::get('/districts/{regency_id}', function ($regency_id) {
+    $district = District::where('regency_id', $regency_id)
+        ->orderBy('name', 'ASC')
+        ->get();
+
+    return response()->json([
+        "meta" => [
+            "code" => 200,
+            "message" => "District by District ID",
+        ],
+        "data" => $district
+    ]);
+});
+Route::get('/villages/{district_id}', function ($district_id) {
+    $village = Village::where('district_id', $district_id)
+        ->orderBy('name', 'ASC')
+        ->get();
+
+    return response()->json([
+        "meta" => [
+            "code" => 200,
+            "message" => "Regency by Province ID",
+        ],
+        "data" => $village
+    ]);
 });

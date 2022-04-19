@@ -18,6 +18,11 @@
     @stack('prepend-style')
     @include('includes.user.style')
     @stack('addon-style')
+    
+    {{-- React --}}
+    @stack('prepend-react')
+    @include('includes.user.react')
+    @stack('addon-react')
 </head>
 
 <body>
