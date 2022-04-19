@@ -25,21 +25,11 @@
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-address label="Pihak" name="party" />
             </div>
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak (Optional)" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" />
+                <x-address label="Pihak (Optional)" name="optional_party" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Perjanjian" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="addendum">
                     <option value="Baru">Baru</option>
@@ -78,8 +68,10 @@
                 <h5>Dokumen :</h5>
             </div>
             <div class="col-sm-9">
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak" />
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word" />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
+                    name="mom" option />
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
+                    name="agreement_draft" option />
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Form Pengajuan PKS*" />
             </div>
         </div>
@@ -90,12 +82,7 @@
             </div>
             <div class="col-sm-9">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama PIC" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat PIC" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat PIC" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat PIC" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat PIC" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat PIC" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat PIC" />
+                <x-address label="PIC" name="correspondence" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon PIC" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC" />
             </div>
