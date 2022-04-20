@@ -13,6 +13,7 @@ class Select extends Component
     public $inputClass;
     public $fieldClass;
     public $required;
+    public $disabled;
     public $value;
     /**
      * Create a new component instance.
@@ -26,6 +27,7 @@ class Select extends Component
         $inputClass = null,
         $fieldClass = null,
         $required = null,
+        $disabled = null,
         $option = null,
         $value = null,
     )
@@ -36,6 +38,7 @@ class Select extends Component
         $this->inputClass = $inputClass;
         $this->fieldClass = $fieldClass;
         $this->required = $required;
+        $this->disabled = $disabled;
         $this->option = $option;
         $this->value = $value;
     }
