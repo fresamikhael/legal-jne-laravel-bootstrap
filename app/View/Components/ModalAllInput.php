@@ -4,23 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class ModalHistory extends Component
+class ModalAllInput extends Component
 {
-    public $id;
-
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(
-
-        $id = null,
-
-    ) {
-
-        $this->id = $id;
+    public function __construct()
+    {
+        //
     }
 
     /**
@@ -30,6 +23,6 @@ class ModalHistory extends Component
      */
     public function render()
     {
-        return view('components.modal-history');
+        return view('components.modal-all-input');
     }
 }
