@@ -27,7 +27,7 @@
             <div class="row mt-3">
                 <div class="col-sm-6">
                     <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
-                        value={{ $data->party_name }} />
+                        value='{{ $data->party_name }}' readonly />
                     <x-address label="Pihak" name="party" />
                 </div>
                 <div class="col-sm-6">

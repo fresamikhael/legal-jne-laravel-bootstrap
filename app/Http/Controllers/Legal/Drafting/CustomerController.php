@@ -171,6 +171,6 @@ class CustomerController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('pages.user.regulation.internal.index');
+        return view('pages.legal.drafting.customer.index');
     }
 }
