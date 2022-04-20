@@ -27,44 +27,28 @@
             <div class="row mt-3">
                 <div class="col-sm-6">
                     <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
-                        value='{{ $data->party_name }}' readonly />
+                        value="{{ $data->party_name }}" readonly />
                     <x-address label="Pihak" name="party" />
                 </div>
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)"
-                        name="optional_party_name" />
+                    <x-input value="{{ $data->optional_party_name }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" />
                     <x-address label="Pihak (Optional)" name="optional_party" />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
-                        <option value="Baru">Baru</option>
-                        <option value="Perpanjangan">Perpanjangan</option>
-                        <option value="Addendum">Addendum</option>
-                        <option value="Pembaharuan">Pembaharuan</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Addendum Ke" name="addendum_to" hidden />
-                    <script>
-                        document.getElementById("type").addEventListener("change", handleChange);
-
-                        function handleChange() {
-                            var x = document.getElementById("type");
-                            if (x.value === "Addendum") {
-                                document.getElementById("addendum_to1").classList.remove('d-none');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
-                                document.getElementById("addendum_to").required = true;
-                            } else {
-                                document.getElementById("addendum_to1").classList.remove('d-flex');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
-                                document.getElementById("addendum_to").required = false;
-                            }
-                        }
-                    </script>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" name="discount" prefix="%" />
+                    <x-input value="{{ $data->type }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis"
+                        name="type" />
+                    <x-input value="{{ $data->addendum_to }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Addendum Ke" name="addendum_to" />
+                    <x-input value="{{ $data->discount }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount"
+                        name="discount" postfix="%" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
                     <x-textarea name="other_point"
-                        label="Poin-Poin Khusus Lainnya Yang Dicantumkan Dalam Perjanjian Sesuai Kesepakatan Para Pihak:" />
+                        label="Poin-Poin Khusus Lainnya Yang Dicantumkan Dalam Perjanjian Sesuai Kesepakatan Para Pihak:">
+                        {!! $data->other_point !!}
+                    </x-textarea>
                 </div>
             </div>
 

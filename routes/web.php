@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Database\DatabaseController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\LeaseController;
 use App\Http\Controllers\Drafting\VendorController;
@@ -122,6 +123,11 @@ Route::get('/legal', function () {
 Route::get('/login', function () {
     return view('pages.auth.index');
 })->name('login');
+
+Route::get('/downloadPermit/{path}', [DownloadController::class, 'downloadPermit'])->name('download');
+Route::get('/downloadLitigation/{path}', [DownloadController::class, 'downloadLitigation'])->name('download-litigation');
+Route::get('/downloadDrafting/{path}', [DownloadController::class, 'downloadDrafting'])->name('download-Drafting');
+Route::get('/downloadRegulation/{path}', [DownloadController::class, 'downloadRegulation'])->name('download-Regulation');
 
 Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('/index', function () {
