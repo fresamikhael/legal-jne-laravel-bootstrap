@@ -7,11 +7,26 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RegulationType;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class NormativeController extends Controller
 {
     public function index()
     {
+        if (request()->ajax())
+        {
+            $data = Regulation::query()->where('rule_type', 'Normatif');
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action',function($row){
+                    return '
+                        <a href="'.route('regulation.normative-detail',[$row->name,$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
+                    ';
+            })
+
+            ->rawColumns(['action'])
+            ->make(true);
+        }
         return view('pages.user.regulation.normative.index');
     }
 
@@ -40,5 +55,10 @@ class NormativeController extends Controller
         Regulation::create($data);
 
         return redirect()->route('regulation.normative-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+    }
+
+    public function show()
+    {
+        return view('pages.user.regulation.normative.index');
     }
 }
