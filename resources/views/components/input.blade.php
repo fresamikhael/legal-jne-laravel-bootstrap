@@ -7,19 +7,19 @@
                 <span class="input-group-text">{{ $prefix }}</span>
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
                     placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }} value="{{ $value }}" {{ $readOnly ? 'readonly' : '' }}/>
+                    {{ $required ? 'required' : '' }} {{ $value ? "value='$value'" : "" }} {{ $readOnly ? 'readonly' : '' }}/>
             </div>
         @elseif ($postfix)
             <div class="input-group">
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
                     placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }} value="{{ $value }}" {{ $readOnly ? 'readonly' : '' }}/>
+                    {{ $required ? 'required' : '' }} {{ $value ? "value='$value'" : "" }} {{ $readOnly ? 'readonly' : '' }}/>
                 <span class="input-group-text">{{ $postfix }}</span>
             </div>
         @else
             <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}" name="{{ $name }}"
                 placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                {{ $required ? 'required' : '' }} value="{{ $value }}" {{ $readOnly ? 'readonly' : '' }}/>
+                {{ $required ? 'required' : '' }} {{ $value ? "value='$value'" : "" }} {{ $readOnly ? 'readonly' : '' }}/>
         @endif
     </div>
 </div>
