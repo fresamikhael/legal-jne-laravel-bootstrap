@@ -25,12 +25,7 @@
         <div class="row mt-3">
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
+                <x-address label="Landlord" name="landlord" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
                     <option value="Baru">Baru</option>
                     <option value="Perpanjangan">Perpanjangan</option>
@@ -64,21 +59,11 @@
                     <option value="Sulampapua">Sulampapua</option>
                 </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Objek Sewa" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Objek Sewa" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Objek Sewa" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Objek Sewa" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Objek Sewa" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Objek Sewa" />
+                <x-address label="Objek Sewa" name="rental_object" />
             </div>
             <div class="col-sm-6">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord (Optional)" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord" />
+                <x-address label="Landlord (Optional)" name="optional_landlord" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Hari" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Jaminan" prefix="Rp" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" />
@@ -101,7 +86,7 @@
             </div>
         </div>
 
-        <div class="row mt-3" id="individual" hidden>
+        <div class="row mt-3" id="individual">
             <div class="col-sm-3">
                 <h5>Dokumen :</h5>
             </div>
@@ -132,7 +117,7 @@
             </div>
         </div>
 
-        <div class="row mt-3" id="legal_entity" hidden>
+        <div class="row mt-3" id="legal_entity">
             <div class="col-sm-3">
                 <h5>Dokumen :</h5>
             </div>
