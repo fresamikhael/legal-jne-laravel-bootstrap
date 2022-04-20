@@ -32,7 +32,7 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" name="id" required/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" name="id" value="{{ $id }}" required disabled/>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" required/>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name" required/>
                     <x-address label="Pengirim" name="seender"/>
