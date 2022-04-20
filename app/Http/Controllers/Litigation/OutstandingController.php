@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Litigation;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cs;
 use App\Models\Outstanding;
 use Illuminate\Http\Request;
 
@@ -71,10 +70,6 @@ class OutstandingController extends Controller
         }
 
         $outstanding = Outstanding::create($data);
-        Cs::create([
-            'form_id' => $outstanding->id,
-            'user_id' => auth()->user()->id,
-        ]);
 
         return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }

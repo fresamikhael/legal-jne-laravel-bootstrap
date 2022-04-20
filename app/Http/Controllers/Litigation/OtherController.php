@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Litigation;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cs;
 use App\Models\OtherLitigation;
 use Illuminate\Http\Request;
 
@@ -37,10 +36,6 @@ class OtherController extends Controller
         }
 
         $other = OtherLitigation::create($data);
-        Cs::create([
-            'form_id' => $other->id,
-            'user_id' => auth()->user()->id,
-        ]);
 
         return to_route('litigation.other.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }

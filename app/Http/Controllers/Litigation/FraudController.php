@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Litigation;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cs;
 use App\Models\Fraud;
 use Illuminate\Http\Request;
 
@@ -70,12 +69,8 @@ class FraudController extends Controller
             $file->move('Litigation', $filename);
         }
 
-        $fraud = Fraud::create($data);
-        Cs::create([
-            'form_id' => $fraud->id,
-            'user_id' => auth()->user()->id,
-        ]);
-
+        Fraud::create($data);
+        
         return to_route('litigation.fraud.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 }
