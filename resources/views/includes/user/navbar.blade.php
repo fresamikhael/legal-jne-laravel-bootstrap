@@ -13,9 +13,6 @@
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Regulasi</a></li>
                         <li class="scroll-to-section">
-                            <a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
-                        </li>
-                        <li class="scroll-to-section">
                             <a href="{{ route('information.index') }}">Informasi</a>
                         </li>
                         <li class="scroll-to-section"><a href="{{ route('database.index') }}">Database</a></li>
