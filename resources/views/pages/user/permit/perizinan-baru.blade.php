@@ -28,7 +28,7 @@
                 </x-modal-history>
             </div>
             <div class="row mt-3">
-                <input type="hidden" name="id" value="{{ $no_kasus }}">
+                {{-- <input type="hidden" name="id"> --}}
                 <input type="hidden" name="user_id" value="USR002">
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Tipe Perizinan</label>
@@ -62,13 +62,14 @@
                 <div class="mt-4 mb-3 row">
                     <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
                 </div>
-                <x-input label="Disposisi" name="file_disposition" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
+                <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
+                    fieldClass="col-sm-8">
                 </x-input>
-                <x-input label="Dokumen 1" name="file_document1" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
+                <x-input label="2. Dokumen 1" name="file_document1" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
                 </x-input>
-                <x-input label="Dokumen 2" name="file_document2" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
+                <x-input label="3. Dokumen 2" name="file_document2" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
                 </x-input>
-                <x-input label="Dokumen 3" name="file_document3" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
+                <x-input label="4. Dokumen 3" name="file_document3" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
                 </x-input>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">

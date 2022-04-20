@@ -12,30 +12,9 @@ class NewPermitController extends Controller
 {
     public function index()
     {
-        $datenow = date('d-M-Y', strtotime(Carbon::now()));
-        $dateNow = date('Y-m-d') . ' 00:00:00';
-        $check_user = Permit::select('*')
-            ->whereDate('created_at', '>=', $dateNow)
-            ->count();
 
-        if ($check_user === 0) {
-            $no_kasus = 'PRM' . date('dmy') . '0001';
-        } else {
-            $item = $check_user + 1;
-            if ($item < 10) {
-                $no_kasus = 'PRM' . date('dmy') . '000' . $item;
-            } elseif ($item >= 10 && $item <= 99) {
-                $no_kasus = 'PRM' . date('dmy') . '00' . $item;
-            } elseif ($item >= 100 && $item <= 999) {
-                $no_kasus = 'PRM' . date('dmy') . '0' . $item;
-            } elseif ($item >= 1000 && $item <= 9999) {
-                $no_kasus = 'PRM' . date('dmy') . $item;
-            }
-        }
-        return view('pages.user.permit.perizinan-baru', [
-            'no_kasus' => $no_kasus,
-            'datenow' => $datenow
-        ]);
+
+        return view('pages.user.permit.perizinan-baru');
     }
 
     public function store(Request $request)
@@ -54,7 +33,7 @@ class NewPermitController extends Controller
         // ]);
         $data = $request->all();
         var_dump($data);
-        $id_permit = $data['id'];
+        // $id_permit = $data['id'];
 
         $name1 = time() . '-' . $request->file('file_disposition')->getClientOriginalName();
         $name2 = time() . '-' . $request->file('file_document1')->getClientOriginalName();

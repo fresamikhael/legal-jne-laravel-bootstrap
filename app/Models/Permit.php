@@ -16,12 +16,11 @@ class Permit extends Model
 
     public $incrementing = false;
 
-    // public static function boot()
-    // {
-    //     parent::boot();
-    //     self::creating(function ($model) {
-    //         $model->id = IdGenerator::generate(['table' => 'permits', 'length' => 6, 'prefix' => 'PRM', 'reset_on_prefix_change'=>true]);
-    //     });
-    // }
-
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'permits', 'length' => 6, 'prefix' => 'PRM', 'reset_on_prefix_change' => true]);
+        });
+    }
 }
