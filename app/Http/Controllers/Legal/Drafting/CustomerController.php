@@ -6,6 +6,7 @@ use App\Models\Customer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class CustomerController extends Controller
 {
@@ -142,5 +143,34 @@ class CustomerController extends Controller
         Customer::create($data);
 
         return redirect()->route('drafting.customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function check($id)
+    {
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.customer.check', [
+            'data' => $data
+        ]);
+    }
+
+    public function historyTable()
+    {
+        if (request()->ajax())
+        {
+            $query = Customer::all();
+            return DataTables::of($query)
+            ->addIndexColumn()
+                ->addColumn('action',function($customer){
+                    return '
+                        <a href="'.route('legal.drafting.customer-detail',
+                        [$customer->name,$customer->id]).'"
+                        class="btn btn-primary justify-content-center">Detail</a>
+                    ';
+                })
+
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('pages.user.regulation.internal.index');
     }
 }

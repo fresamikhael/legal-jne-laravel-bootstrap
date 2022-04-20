@@ -129,3 +129,35 @@
         </form>
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#dataTables').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                ajax: "{{ route('legal.drafting.legal-customer-table') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        "className": "text-center",
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endpush

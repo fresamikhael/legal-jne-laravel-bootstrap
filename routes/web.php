@@ -4,6 +4,7 @@ use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\LeaseController;
 use App\Http\Controllers\Drafting\VendorController;
+use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Litigation\FraudController;
 use App\Http\Controllers\Litigation\OtherController;
@@ -42,11 +43,13 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
 
 Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('/index', function () {
-        return View('pages.legal.drafting.customer.index');
+        return View('pages.legal.drafting.index');
     })->name('index');
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer');
     Route::post('customer/post', [CustomerController::class, 'store'])->name('customer-post');
+    Route::get('customer/check', [DraftingCustomerController::class, 'check'])->name('legal-customer-check');
+    Route::get('customer/history', [DraftingCustomerController::class, 'historyTable'])->name('legal-customer-table');
 
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
     Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
