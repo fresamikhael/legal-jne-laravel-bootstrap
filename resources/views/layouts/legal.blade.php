@@ -16,31 +16,31 @@
 
     {{-- Style --}}
     @stack('prepend-style')
-    @include('includes.user.style')
+    @include('includes.legal.style')
     @stack('addon-style')
 
     {{-- React --}}
     @stack('prepend-react')
-    @include('includes.user.react')
+    @include('includes.legal.react')
     @stack('addon-react')
 </head>
 
 <body>
     {{-- Preloader --}}
-    @include('includes.user.preloader')
+    @include('includes.legal.preloader')
 
     {{-- Navbar --}}
-    @include('includes.user.navbar')
+    @include('includes.legal.navbar')
 
     {{-- Page Content --}}
     @yield('content')
 
     {{-- Footer --}}
-    @include('includes.user.footer')
+    @include('includes.legal.footer')
 
     {{-- Script --}}
     @stack('prepend-script')
-    @include('includes.user.script')
+    @include('includes.legal.script')
     @stack('addon-script')
 </body>
 
