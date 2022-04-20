@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RegulationType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -118,5 +119,15 @@ class DatabaseSeeder extends Seeder
         foreach ($user as $key => $value) {
             User::create($value);
         }
+
+        RegulationType::create([
+            'name' => 'Regulasi 1',
+            'type' => 'Internal'
+        ]);
+
+        RegulationType::create([
+            'name' => 'Regulasi 5',
+            'type' => 'Normatif'
+        ]);
     }
 }

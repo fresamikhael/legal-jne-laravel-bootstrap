@@ -15,17 +15,11 @@ return new class extends Migration
     {
         Schema::create('regulations', function (Blueprint $table) {
             $table->string('id')->unique();
+
             $table->string('name');
             $table->string('type');
-            $table->string('entity');
-            $table->string('number');
-            $table->string('year');
-            $table->string('title');
-            $table->date('set_date');
-            $table->date('promulgated_date');
-            $table->date('valid_date');
-            $table->string('source');
-            $table->string('status');
+            $table->string('file');
+            $table->string('rule_type');
 
             $table->timestamps();
         });

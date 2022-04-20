@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('file_regulations', function (Blueprint $table) {
+        Schema::create('regulation_types', function (Blueprint $table) {
             $table->string('id')->unique();
-            $table->string('regulation_id');
-            $table->string('file');
-            $table->foreign('regulation_id')->references('id')->on('regulations')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('name');
+            $table->string('type');
+
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_regulations');
+        Schema::dropIfExists('regulation_types');
     }
 };

@@ -80,7 +80,7 @@ Route::get('/login', function () {
 
 
 Route::prefix('regulation')->name('regulation.')->group(function () {
-    Route::get('/', function () {
+    Route::get('/index', function () {
         return View('pages.user.regulation.index');
     })->name('index');
 
@@ -89,6 +89,11 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
 
     Route::get('internal-create', [InternalController::class, 'create'])->name('internal-create');
     Route::get('normative-create', [NormativeController::class, 'create'])->name('normative-create');
+
+    Route::post('internal-create/post', [InternalController::class, 'store'])->name('internal-post');
+    Route::post('normative-create/post', [NormativeController::class, 'store'])->name('normative-post');
+
+    Route::get('internal-detail', [InternalController::class, 'show'])->name('internal-detail');
 });
 
 Route::get('/statistic', function () {
