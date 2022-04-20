@@ -20,6 +20,7 @@ class Input extends Component
     public $postfix;
     public $hidden;
     public $value;
+    public $readOnly;
 
     /**
      * Create a new component instance.
@@ -41,6 +42,7 @@ class Input extends Component
         $postfix = null,
         $hidden = null,
         $value = null,
+        $readOnly = null,
     )
     {
         $this->inputClass = $inputClass;
@@ -57,6 +59,7 @@ class Input extends Component
         $this->postfix = $postfix;
         $this->hidden = $hidden;
         $this->value = $value;
+        $this->readOnly = $readOnly;
     }
 
     /**
