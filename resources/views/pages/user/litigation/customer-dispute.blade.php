@@ -32,7 +32,6 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" name="id" value="{{ $id }}" required readOnly/>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" required/>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name" required/>
                     <x-address label="Pengirim" name="seender"/>
@@ -139,9 +138,9 @@
                     <h5>Bukti :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Connote*" name="connote" required/>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Orion*" name="orion" required/>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. POD*" name="pod" option required/>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Connote*" name="file_connote" required/>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Orion*" name="file_orion" required/>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. POD*" name="file_pod" option required/>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Form Kasus Sengketa Konsumen" name="file_customer_case_form" required/>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Kronologis Destinasi" name="file_destination_chronology" option required/>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Kronologis Origin" name="file_orion_chronology" option required/>

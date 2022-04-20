@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
-class CustomerDispute extends Model
+class Cs extends Model
 {
     use HasFactory;
 
@@ -20,7 +20,7 @@ class CustomerDispute extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'users', 'length' => 6, 'prefix' => 'USR', 'reset_on_prefix_change' => true]);
+            $model->id = IdGenerator::generate(['table' => 'cs', 'length' => 5, 'prefix' => 'CS', 'reset_on_prefix_change'=>true]);
         });
     }
 }
