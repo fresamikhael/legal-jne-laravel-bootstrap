@@ -15,7 +15,7 @@ class InternalController extends Controller
     {
         if (request()->ajax())
         {
-            $data = Regulation::query()->where('rule_type', 'Internal')->latest()->get();
+            $data = Regulation::query()->where('rule_type', 'Internal');
             return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action',function($row){
