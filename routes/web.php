@@ -104,11 +104,11 @@ Route::prefix('permit')->name('permit.')->group(function () {
     // Route::get('other', [OtherController::class, 'index'])->name('other');
 });
 
-Route::prefix('database')->name('database.')->group(function () {
-    Route::get('/index', [DatabaseController::class, 'index'])->name('index');
-    Route::get('tambah', [DatabaseController::class, 'add'])->name('add');
-    Route::post('tambah', [DatabaseController::class, 'store'])->name('store');
-    Route::get('detail/{id}', [DatabaseController::class, 'show'])->name('show');
+Route::prefix('database')->name('database.')->controller(DatabaseController::class)->group(function () {
+    Route::get('/index', 'index')->name('index');
+    Route::get('tambah', 'add')->name('add');
+    Route::post('tambah', 'store')->name('store');
+    Route::get('detail/{id}', 'show')->name('show');
 });
 
 Route::get('/', function () {
@@ -138,6 +138,7 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::post('normative-create/post', [NormativeController::class, 'store'])->name('normative-post');
 
     Route::get('internal-detail', [InternalController::class, 'show'])->name('internal-detail');
+    Route::get('normative-detail', [NormativeController::class, 'show'])->name('normative-detail');
 });
 
 Route::get('/statistic', function () {

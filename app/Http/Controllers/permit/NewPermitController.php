@@ -13,6 +13,19 @@ class NewPermitController extends Controller
     public function index()
     {
 
+        if (request()->ajax()) {
+            $data = Permit::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return '
+                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
+                    ';
+                })
+
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
         return view('pages.user.permit.perizinan-baru');
     }

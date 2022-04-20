@@ -6,6 +6,11 @@
 
 @section('content')
     <x-base>
+        @if (Session::get('message_success'))
+            @slot('alert')
+                <x-alert message="{{ Session::get('message_success') }}" type="success" />
+            @endslot
+        @endif
         <form class="mt-4" method="POST" enctype="multipart/form-data"
             action="{{ route('regulation.normative-post') }}">
             @csrf
