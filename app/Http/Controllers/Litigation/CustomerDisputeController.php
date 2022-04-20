@@ -11,27 +11,7 @@ class CustomerDisputeController extends Controller
 {
     public function index()
     {
-        $dateNow = date('Y-m-d') . ' 00:00:00';
-        $check_user = CustomerDispute::select('*')
-            ->whereDate('created_at', '>=', $dateNow)
-            ->count();
-
-        if ($check_user === 0) {
-            $id = 'CD' . date('dmy') . '0001';
-        } else {
-            $item = $check_user + 1;
-            if ($item < 10) {
-                $id = 'CD' . date('dmy') . '000' . $item;
-            } elseif ($item >= 10 && $item <= 99) {
-                $id = 'CD' . date('dmy') . '00' . $item;
-            } elseif ($item >= 100 && $item <= 999) {
-                $id = 'CD' . date('dmy') . '0' . $item;
-            } elseif ($item >= 1000 && $item <= 9999) {
-                $id = 'CD' . date('dmy') . $item;
-            }
-        }
-
-        return view('pages.user.litigation.customer-dispute', compact('id'));
+        return view('pages.user.litigation.customer-dispute');
     }
 
     function store(Request $request)
