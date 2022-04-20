@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\database\DatabaseController;
+use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\LeaseController;
 use App\Http\Controllers\Drafting\VendorController;
@@ -26,13 +26,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('drafting')->name('drafting.')->group(function () {
-    Route::get('/', function () {
+    Route::get('/index', function () {
         return View('pages.user.drafting.index');
     })->name('index');
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    Route::post('customer/post', [CustomerController::class, 'store'])->name('customer-post');
+
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
+    Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
+
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
+    Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
+});
+
+Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.legal.drafting.customer.index');
+    })->name('index');
+
+    Route::get('customer', [CustomerController::class, 'index'])->name('customer');
+    Route::post('customer/post', [CustomerController::class, 'store'])->name('customer-post');
+
+    Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
+    Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
+
+    Route::get('lease', [LeaseController::class, 'index'])->name('lease');
+    Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {
@@ -40,10 +60,25 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
         return View('pages.user.litigation.index');
     })->name('index');
 
-    Route::get('customer-dispute', [CustomerDisputeController::class, 'index'])->name('customer-dispute');
-    Route::get('fraud', [FraudController::class, 'index'])->name('fraud');
-    Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
-    Route::get('other', [OtherController::class, 'index'])->name('other');
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
+    Route::prefix('fraud')->name('fraud.')->controller(FraudController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
+    Route::prefix('outstanding')->name('outstanding.')->controller(OutstandingController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
+    Route::prefix('other')->name('other.')->controller(OtherController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
 });
 
 Route::prefix('information')->name('information.')->group(function () {
@@ -66,11 +101,20 @@ Route::prefix('permit')->name('permit.')->group(function () {
     // Route::get('other', [OtherController::class, 'index'])->name('other');
 });
 
-Route::get('/database', [DatabaseController::class, 'index'])->name('database');
+Route::prefix('database')->name('database.')->group(function () {
+    Route::get('/index', [DatabaseController::class, 'index'])->name('index');
+    Route::get('tambah', [DatabaseController::class, 'add'])->name('add');
+    Route::post('tambah', [DatabaseController::class, 'store'])->name('store');
+    Route::get('detail/{id}', [DatabaseController::class, 'show'])->name('show');
+});
 
 Route::get('/', function () {
     return view('pages.user.index');
 })->name('home');
+
+Route::get('/legal', function () {
+    return view('pages.legal.index');
+})->name('legal-home');
 
 Route::get('/login', function () {
     return view('pages.auth.index');
