@@ -53,10 +53,12 @@
                         function handleChange() {
                             var x = document.getElementById("type");
                             if (x.value === "Addendum") {
-                                document.getElementById("addendum_to1").style.display = "flex";
+                                document.getElementById("addendum_to1").classList.remove('d-none');
+                                document.getElementById("addendum_to1").classList.add('d-flex');
                                 document.getElementById("addendum_to").required = true;
                             } else {
-                                document.getElementById("addendum_to1").style.display = "none";
+                                document.getElementById("addendum_to1").classList.remove('d-flex');
+                                document.getElementById("addendum_to1").classList.add('d-flex');
                                 document.getElementById("addendum_to").required = false;
                             }
                         }

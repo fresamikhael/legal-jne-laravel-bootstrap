@@ -9,10 +9,10 @@
                     <option value="no">Tidak Ada</option>
                     <option value="yes">Ada</option>
                 </select>
-                <input type="file" class="form-control w-100" style="display: none;" name="{{ $name }}" id="{{ $name }}" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}>
+                <input type="file" class="form-control w-100" style="display: none;" name="{{ $name }}" id="{{ $name }}" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}/>
             </div>
         @else
-            <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}>
+            <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}/>
         @endif
     </div>
 </div>

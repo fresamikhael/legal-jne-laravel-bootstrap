@@ -37,6 +37,7 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
     Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
 
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
+    Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {
@@ -44,10 +45,25 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
         return View('pages.user.litigation.index');
     })->name('index');
 
-    Route::get('customer-dispute', [CustomerDisputeController::class, 'index'])->name('customer-dispute');
-    Route::get('fraud', [FraudController::class, 'index'])->name('fraud');
-    Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
-    Route::get('other', [OtherController::class, 'index'])->name('other');
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
+    Route::prefix('fraud')->name('fraud.')->controller(FraudController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
+    Route::prefix('outstanding')->name('outstanding.')->controller(OutstandingController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
+
+    Route::prefix('other')->name('other.')->controller(OtherController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+    });
 });
 
 Route::prefix('information')->name('information.')->group(function () {

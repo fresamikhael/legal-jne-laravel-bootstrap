@@ -56,14 +56,18 @@
                         function handleChange() {
                             var x = document.getElementById("vendor_type");
                             if (x.value === "Others") {
-                                document.getElementById("file_form_vendor1").style.display = "flex";
-                                document.getElementById("file_supporting_attachment1").style.display = "flex";
+                                document.getElementById("file_form_vendor1").classList.remove('d-none');
+                                document.getElementById("file_form_vendor1").classList.add('d-flex');
                                 document.getElementById("file_form_vendor").required = true;
+                                document.getElementById("file_supporting_attachment1").classList.remove('d-none');
+                                document.getElementById("file_form_vendor1").classList.add('d-flex');
                                 document.getElementById("file_supporting_attachment").required = true;
                             } else {
-                                document.getElementById("file_form_vendor1").style.display = "none";
-                                document.getElementById("file_supporting_attachment1").style.display = "none";
+                                document.getElementById("file_form_vendor1").classList.remove('d-flex');
+                                document.getElementById("file_form_vendor1").classList.add('d-none');
                                 document.getElementById("file_form_vendor").required = false;
+                                document.getElementById("file_supporting_attachment1").classList.remove('d-flex');
+                                document.getElementById("file_supporting_attachment1").classList.add('d-none');
                                 document.getElementById("file_supporting_attachment").required = false;
                             }
                         }
@@ -86,10 +90,12 @@
                         function handleChange() {
                             var x = document.getElementById("type");
                             if (x.value === "Addendum") {
-                                document.getElementById("addendum_to1").style.display = "flex";
+                                document.getElementById("addendum_to1").classList.remove('d-none');
+                                document.getElementById("addendum_to1").classList.add('d-flex');
                                 document.getElementById("addendum_to").required = true;
                             } else {
-                                document.getElementById("addendum_to1").style.display = "none";
+                                document.getElementById("addendum_to1").classList.remove('d-flex');
+                                document.getElementById("addendum_to1").classList.add('d-none');
                                 document.getElementById("addendum_to").required = false;
                             }
                         }
@@ -109,18 +115,22 @@
                         function handleChange() {
                             var x = document.getElementById("guarantee");
                             if (x.value === "Bank Garansi") {
-                                document.getElementById("bank_guarantee1").style.display = "flex";
+                                document.getElementById("bank_guarantee1").classList.remove('d-none');
+                                document.getElementById("bank_guarantee1").classList.add('d-flex');
                                 document.getElementById("bank_guarantee").required = true;
                             } else {
-                                document.getElementById("bank_guarantee1").style.display = "none";
+                                document.getElementById("bank_guarantee1").classList.remove('d-flex');
+                                document.getElementById("bank_guarantee1").classList.add('d-none');
                                 document.getElementById("bank_guarantee").required = false;
                             }
 
                             if (x.value === "Deposit") {
-                                document.getElementById("deposit_guarantee1").style.display = "flex";
+                                document.getElementById("deposit_guarantee1").classList.remove('d-none');
+                                document.getElementById("deposit_guarantee1").classList.add('d-flex');
                                 document.getElementById("deposit_guarantee").required = true;
                             } else {
-                                document.getElementById("deposit_guarantee1").style.display = "none";
+                                document.getElementById("deposit_guarantee1").classList.remove('d-flex');
+                                document.getElementById("deposit_guarantee1").classList.add('d-none');
                                 document.getElementById("deposit_guarantee").required = false;
                             }
                         }
