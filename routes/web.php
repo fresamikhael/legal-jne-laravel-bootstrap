@@ -138,7 +138,7 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
 });
 
 Route::get('/statistic', function () {
-    return view('pages.user.statistic');
+    return view('pages.legal.statistic');
 })->name('statistic');
 
 
