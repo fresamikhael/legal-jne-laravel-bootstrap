@@ -120,9 +120,6 @@ Route::get('/login', function () {
     return view('pages.auth.index');
 })->name('login');
 
-
-
-
 Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('/index', function () {
         return View('pages.user.regulation.index');
