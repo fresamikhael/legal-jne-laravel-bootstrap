@@ -17,11 +17,11 @@
                                 <option value="yes">Ada</option>
                             </select>
                             { type === 'yes' ? (
-                                <input type="file" class="form-control w-100" name="{{ $name }}" id="{{ $name }}" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}/>
+                                <input type="file" class="form-control w-100" name="{{ $name }}" id="{{ $name }}" required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}"/>
                             ) : '' }
                         </div>
                     @else
-                        <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}/>
+                        <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}" required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}"/>
                     @endif
                 </div>
             </React.Fragment>
