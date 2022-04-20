@@ -8,6 +8,7 @@ use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Litigation\FraudController;
 use App\Http\Controllers\Litigation\OtherController;
 use App\Http\Controllers\Litigation\OutstandingController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\permit\NewPermitController;
 use App\Http\Controllers\permit\ProlongationController;
 use App\Http\Controllers\Regulation\InternalController;
