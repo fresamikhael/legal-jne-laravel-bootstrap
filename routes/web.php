@@ -127,9 +127,12 @@ Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
     })->name('index');
 
     Route::get('perizinan-baru', [NewPermitController::class, 'index_legal'])->name('newpermit');
-    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
     Route::post('perizinan-baru/post', [NewPermitController::class, 'store_legal'])->name('newpermit-post');
+
+    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
+    Route::post('perizinan-baru/check/post/{id}', [NewPermitController::class, 'store_check_legal'])->name('check-post');
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
+
     Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
 
     // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');

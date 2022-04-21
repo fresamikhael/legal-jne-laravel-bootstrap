@@ -5,6 +5,7 @@ namespace App\Http\Controllers\permit;
 use App\Http\Controllers\Controller;
 use App\Mail\MailJNE;
 use App\Models\Permit;
+use App\Models\User;
 // use App\Models\Permit\Permit as PermitPermit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -94,13 +95,13 @@ class NewPermitController extends Controller
 
         // UploadFile::create($validatedData2);
         Permit::create($data);
-
+        $datenow = date('y-m-d', strtotime(Carbon::now()));
         $mailData = [
-            'title' => 'Mail from ItSolutionStuff.com',
-            'body' => 'This is for testing email using smtp.'
+            'title' => 'New permit has been sumbitted',
+            'body' => 'new permit has been sumbitted by ' . auth()->user()->name .  ' '
         ];
 
-        Mail::to('gunturburn@gmail.com')->send(new MailJNE($mailData));
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
 
         return redirect()->route('home');
     }
@@ -140,8 +141,6 @@ class NewPermitController extends Controller
         //     'file_document3' => 'required',
         // ]);
         // ]);
-        $ser = $request->validate('user_id');
-        var_dump($ser);
         $data = $request->all();
         // $id_permit = $data['id'];
 
@@ -190,11 +189,11 @@ class NewPermitController extends Controller
         Permit::create($data);
 
         $mailData = [
-            'title' => 'Mail from ItSolutionStuff.com',
-            'body' => 'This is for testing email using smtp.'
+            'title' => 'New permit has been sumbitted',
+            'body' => 'new permit has been sumbitted by ' . auth()->user()->name .  ' '
         ];
 
-        Mail::to('gunturburn@gmail.com')->send(new MailJNE($mailData));
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
 
         return redirect()->route('home');
     }
@@ -207,5 +206,46 @@ class NewPermitController extends Controller
         return view('pages.legal.permit.perizinan-baru.check', [
             'permit' => $permit
         ]);
+    }
+
+    public function store_check_legal(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'return':
+                $data = $request->all();
+
+                $item = Permit::findOrFail($id);
+                $user = User::findOrFail($item->user_id);
+
+                $item->update([$data, 'status' => 'RETURN']);
+
+
+                $mailData = [
+                    'title' => 'New permit has been rejected',
+                    'body' => 'new permit has been rejected by ' . auth()->user()->name .  ' '
+                ];
+
+                Mail::to($user->email)->send(new MailJNE($mailData));
+
+
+                return redirect()->route('legal.permit.index');
+                break;
+
+            case 'approve':
+                $data = $request->all();
+
+                $item = Permit::findOrFail($id);
+
+                $item->update([$data, 'status' => 'IN PROGRESS']);
+                $mailData = [
+                    'title' => 'New permit has been approve',
+                    'body' => 'new permit has been approve by ' . auth()->user()->name .  ' '
+                ];
+
+                Mail::to($item->email)->send(new MailJNE($mailData));
+
+                return redirect()->route('home');
+                break;
+        }
     }
 }

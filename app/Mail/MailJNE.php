@@ -29,7 +29,7 @@ class MailJNE extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from ItSolutionStuff.com')->from('ilhambachtiar802@gmail.com', 'Example')
+        return $this->subject('New permit has been sumbitted')->from('ilhambachtiar802@gmail.com', auth()->user()->name)
             ->view('emails.index');
     }
 }

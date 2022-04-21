@@ -14,7 +14,15 @@
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
-                <x-modal-history id="dataTables">
+                <x-modal-history>
+                    @slot('header')
+                        <tr>
+                            <th>No</th>
+                            <th>Nomor Kasus</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    @endslot
                     @slot('data')
                         <tr>
                             <td></td>
@@ -83,4 +91,3 @@
 
         {{-- <x-input label="Lokasi"></x-input> --}}
     </x-base>
-@endsection
