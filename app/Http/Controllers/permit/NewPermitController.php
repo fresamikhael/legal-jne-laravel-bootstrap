@@ -14,24 +14,19 @@ use Illuminate\Support\Str;
 
 class NewPermitController extends Controller
 {
+
+    public function home()
+    {
+        return View('pages.user.permit.index');
+    }
     public function index()
     {
 
-        if (request()->ajax()) {
-            $data = Permit::all();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    return '
-                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
-                    ';
-                })
-
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('pages.user.permit.perizinan-baru.perizinan-baru');
+        $data = Permit::where('user_id', auth()->user()->id)
+            ->get();
+        return view('pages.user.permit.perizinan-baru.perizinan-baru', [
+            'data' => $data
+        ]);
     }
 
     public function store(Request $request)
@@ -109,21 +104,12 @@ class NewPermitController extends Controller
     public function index_legal()
     {
 
-        if (request()->ajax()) {
-            $data = Permit::all();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    return '
-                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
-                    ';
-                })
+        $data = Permit::where('user_id', auth()->user()->id)
+            ->get();
 
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('pages.user.permit.perizinan-baru.perizinan-baru');
+        return view('pages.legal.permit.perizinan-baru.perizinan-baru', [
+            'data' => $data
+        ]);
     }
 
     public function store_legal(Request $request)
@@ -237,12 +223,13 @@ class NewPermitController extends Controller
                 $item = Permit::findOrFail($id);
 
                 $item->update([$data, 'status' => 'IN PROGRESS']);
+                $user = User::findOrFail($item->user_id);
                 $mailData = [
                     'title' => 'New permit has been approve',
                     'body' => 'new permit has been approve by ' . auth()->user()->name .  ' '
                 ];
 
-                Mail::to($item->email)->send(new MailJNE($mailData));
+                Mail::to($user->email)->send(new MailJNE($mailData));
 
                 return redirect()->route('home');
                 break;

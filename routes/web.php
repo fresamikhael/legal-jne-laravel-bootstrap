@@ -107,15 +107,17 @@ Route::prefix('information')->name('information.')->group(function () {
     })->name('index');
 });
 
-Route::prefix('permit')->name('permit.')->group(function () {
-    Route::get('/', function () {
-        return View('pages.user.permit.index');
-    })->name('index');
+Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)->group(function () {
+    // Route::get('/', function () {
+    //     return View('pages.user.permit.index');
+    // })->name('index');
 
-    Route::get('perizinan-baru', [NewPermitController::class, 'index'])->name('newpermit');
-    Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('newpermit-post');
+    Route::get('/dashboard', 'home');
+
+    Route::get('perizinan-baru',  'index')->name('newpermit');
+    Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
-    Route::get('perpanjangan', [ProlongationController::class, 'index'])->name('prolongation');
+    Route::get('perpanjangan',  'index')->name('prolongation');
 
     // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
     // Route::get('other', [OtherController::class, 'index'])->name('other');
