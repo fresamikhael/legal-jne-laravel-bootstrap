@@ -9,6 +9,14 @@
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer Dispute</h2>
             <x-modal-history>
+                @slot('header')
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor Kasus</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                @endslot
                 @slot('data')
                     <tr>
                         <td></td>
