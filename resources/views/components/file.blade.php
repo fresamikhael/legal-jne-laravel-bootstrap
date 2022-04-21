@@ -21,6 +21,8 @@
                                 required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />
                             ) : '' }
                         </div>
+                    @elseif($type == "download")
+                        <a href="{{ $path }}" target="{{ $blank ? "_blank" : "" }}" class="btn btn-primary w-100">{{ $slot }}</a>
                     @else
                         <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
                             required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />

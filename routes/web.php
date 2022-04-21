@@ -158,10 +158,12 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login'])->name('login-attempt');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/downloadPermit/{path}', [DownloadController::class, 'downloadPermit'])->name('download');
-Route::get('/downloadLitigation/{path}', [DownloadController::class, 'downloadLitigation'])->name('download-litigation');
-Route::get('/downloadDrafting/{path}', [DownloadController::class, 'downloadDrafting'])->name('download-Drafting');
-Route::get('/downloadRegulation/{path}', [DownloadController::class, 'downloadRegulation'])->name('download-Regulation');
+Route::prefix('download')->name('download.')->controller(DownloadController::class)->group(function () {
+    Route::get('/permit/{path}', 'downloadPermit')->name('permit');
+    Route::get('/litigation/{path}', 'downloadLitigation')->name('litigation');
+    Route::get('/drafting/{path}', 'downloadDrafting')->name('drafting');
+    Route::get('/regulation/{path}', 'downloadRegulation')->name('regulation');
+});
 
 Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('/index', function () {
