@@ -26,18 +26,7 @@
                         </tr>
                     @endslot
                 </x-modal-history>
-                <x-modal-all-input>
-                    @slot('data')
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
-                            </td>
-                        </tr>
-                    @endslot
-                </x-modal-all-input>
+
             </div>
             <div class="row mt-3">
                 {{-- <input type="hidden" name="id"> --}}

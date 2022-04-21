@@ -9,6 +9,6 @@ class ProlongationController extends Controller
 {
     public function index()
     {
-        return view('pages.user.permit.perpanjangan');
+        return view('pages.user.permit.perpanjangan.perpanjangan');
     }
 }

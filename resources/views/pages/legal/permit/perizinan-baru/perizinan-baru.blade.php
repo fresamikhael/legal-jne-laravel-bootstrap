@@ -27,7 +27,7 @@
                     @endslot
                 </x-modal-history>
             </div>
-            <input type="hidden" name="id" value="{{ $no_kasus }}">
+
             <input type="hidden" name="user_id" value="USR002">
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Tipe Perizinan</label>

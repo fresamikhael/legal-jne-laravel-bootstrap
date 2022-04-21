@@ -29,7 +29,7 @@ class NewPermitController extends Controller
                 ->make(true);
         }
 
-        return view('pages.user.permit.perizinan-baru');
+        return view('pages.user.permit.perizinan-baru.perizinan-baru');
     }
 
     public function store(Request $request)
@@ -93,5 +93,31 @@ class NewPermitController extends Controller
         Mail::to('gunturburn@gmail.com')->send(new MailJNE($mailData));
 
         return redirect()->route('home');
+    }
+
+    public function index_legal()
+    {
+
+        if (request()->ajax()) {
+            $data = Permit::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return '
+                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
+                    ';
+                })
+
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pages.user.permit.perizinan-baru.perizinan-baru');
+    }
+
+    public function check_legal()
+    {
+
+        return view('pages.legal.permit.perizinan-baru.check');
     }
 }
