@@ -13,14 +13,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="dataTables" class="table table-striped table-bordered" style="width:100%">
+                <table id="dataTables2" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nomor Kasus</th>
                             <th>Status</th>
                             <th>Aksi</th>
-                        </tr>
+                        </tr>   
                     </thead>
                     <tbody>
                         {{ $data }}

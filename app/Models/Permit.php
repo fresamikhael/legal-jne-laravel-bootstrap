@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Permit extends Model
 {
+    protected $table = 'permits';
+
     use HasFactory;
 
-    protected $guarded = [''];
+    protected $guarded = ['id'];
 
     protected $primaryKey = 'id';
 

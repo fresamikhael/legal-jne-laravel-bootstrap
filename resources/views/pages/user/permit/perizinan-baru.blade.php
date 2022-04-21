@@ -14,30 +14,42 @@
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
-                <x-modal-history>
-                    @slot('data')
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
-                            </td>
-                        </tr>
-                    @endslot
-                </x-modal-history>
-                <x-modal-all-input>
-                    @slot('data')
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
-                            </td>
-                        </tr>
-                    @endslot
-                </x-modal-all-input>
+
+                <div class="d-flex align-items-center gap-3">
+                    <x-modal-history id="dataTables">
+                        @slot('header')
+                            <tr>
+                                <th>No</th>
+                                <th>Nomor Kasus</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        @endslot
+                        
+                        @slot('data')
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-primary">Lihat</a>
+                                </td>
+                            </tr>
+                        @endslot
+                    </x-modal-history>
+                    <x-modal-all-input>
+                        @slot('data')
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-primary">Lihat</a>
+                                </td>
+                            </tr>
+                        @endslot
+                    </x-modal-all-input>
+                </div>
             </div>
             <div class="row mt-3">
                 {{-- <input type="hidden" name="id"> --}}
@@ -95,3 +107,38 @@
         {{-- <x-input label="Lokasi"></x-input> --}}
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#dataTables').DataTable({
+                paging: false,
+                searching: false,
+                retrieve: true,
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                ajax: "{{ route('permit.newpermit') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        "className": "text-center",
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endpush

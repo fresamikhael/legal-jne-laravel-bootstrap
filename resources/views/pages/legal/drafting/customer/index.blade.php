@@ -8,18 +8,46 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer</h2>
-            <x-modal-history>
-                @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
-                @endslot
-            </x-modal-history>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop2">
+                <i class="fa fa-clock-o"></i> Riwayat
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table id="legal-customer" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nomor Kasus</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nomor Kasus</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @if (Session::get('message_success'))
@@ -129,3 +157,35 @@
         </form>
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#legal-customer').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                ajax: "{{ route('legal.drafting.legal-customer-table') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        "className": "text-center",
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endpush

@@ -34,7 +34,7 @@
             $menu = [
                 [
                     'label' => 'Drafting',
-                    'route' => 'drafting/index',
+                    'route' => 'legal/drafting/index',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [

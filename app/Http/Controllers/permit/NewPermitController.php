@@ -3,16 +3,31 @@
 namespace App\Http\Controllers\permit;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailJNE;
 use App\Models\Permit;
 // use App\Models\Permit\Permit as PermitPermit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class NewPermitController extends Controller
 {
     public function index()
     {
 
+        if (request()->ajax()) {
+            $data = Permit::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    return '
+                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
+                    ';
+                })
+
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
         return view('pages.user.permit.perizinan-baru');
     }
@@ -65,8 +80,17 @@ class NewPermitController extends Controller
         // $save->path = $path3;
         // $save->path = $path4;
 
+
+        // dd("Email is sent successfully.");
+
         // UploadFile::create($validatedData2);
         Permit::create($data);
+        $mailData = [
+            'title' => 'Mail from ItSolutionStuff.com',
+            'body' => 'This is for testing email using smtp.'
+        ];
+
+        Mail::to('gunturburn@gmail.com')->send(new MailJNE($mailData));
 
         return redirect()->route('home');
     }
