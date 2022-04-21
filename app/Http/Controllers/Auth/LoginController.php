@@ -54,8 +54,8 @@ class LoginController extends Controller
             $request->session()->regenerate();
             if (auth()->user()->role == 'ADMIN') {
                 return redirect()->route('admin-dashboard');
-            } elseif (auth()->user()->role == 'LEGALPERMIT') {
-                return redirect()->route('legal-permit-dashboard');
+            } elseif (auth()->user()->role == 'LEGAL') {
+                return redirect()->route('legal-home');
             } elseif (auth()->user()->role == 'LEGALLEASE') {
                 return redirect()->route('legal-lease-dashboard');
             } elseif (auth()->user()->role == 'TEAMCS') {

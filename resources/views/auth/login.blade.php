@@ -8,7 +8,7 @@
                     <div class="card-header d-flex justify-content-center">{{ __('Selamat Datang') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login-attempt') }}">
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="row mb-3">
