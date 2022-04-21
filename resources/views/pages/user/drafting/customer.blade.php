@@ -17,7 +17,7 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
+
                 @slot('data')
                     <tr>
                         <td></td>

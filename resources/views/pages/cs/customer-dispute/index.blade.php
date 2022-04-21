@@ -21,7 +21,7 @@
                 @slot('data')
                     @foreach ($data as $row)
                         <tr>
-                            <td>{{ $loop->iterantion }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>

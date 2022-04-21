@@ -51,10 +51,10 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
         return View('pages.legal.drafting.index');
     })->name('index');
 
-    Route::get('customer', [DraftingCustomerController::class, 'index'])->name('legal-customer');
-    Route::post('customer/post', [DraftingCustomerController::class, 'store'])->name('legal-customer-post');
-    Route::get('customer/check/{id}', [DraftingCustomerController::class, 'check'])->name('legal-customer-check');
-    Route::get('customer/history', [DraftingCustomerController::class, 'historyTable'])->name('legal-customer-table');
+    Route::get('customer', [CustomerController::class, 'legalCreate'])->name('legal-customer');
+    Route::post('customer/post', [CustomerController::class, 'legalStore'])->name('legal-customer-post');
+    Route::get('customer/check/{id}', [CustomerController::class, 'legalCheck'])->name('legal-customer-check');
+    Route::get('customer/history', [CustomerController::class, 'historyTable'])->name('legal-customer-table');
 
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
     Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');

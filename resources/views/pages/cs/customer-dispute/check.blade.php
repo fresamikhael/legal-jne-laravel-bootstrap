@@ -18,37 +18,61 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" value="" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" value="" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pengirim" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pengirim" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pengirim" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pengirim" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pengirim" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" value="{{ $data->id }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" value="{{ $data->sender_name }}" disabled/>
+                    @php
+                        $province = DB::table('provinces')
+                            ->where('id', $data->sender_province)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pengirim" value="{{ ucwords(strtolower($province->name)) }}" disabled/>
+                    @php
+                        $regency = DB::table('regencies')
+                            ->where('id', $data->sender_regency)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pengirim" value="{{ ucwords(strtolower($regency->name)) }}" disabled/>
+                    @php
+                        $district = DB::table('districts')
+                            ->where('id', $data->sender_district)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pengirim" value="{{ ucwords(strtolower($district->name)) }}" disabled/>
+                    @php
+                        $village = DB::table('villages')
+                            ->where('id', $data->sender_village)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pengirim" value="{{ ucwords(strtolower($village->name)) }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pengirim" value="{{ $data->sender_zip_code }}" disabled/>
                     <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pengirim" disabled>
+                        {{ $data->sender_address }}
                     </x-textarea>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab" disabled/>
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab (Lain-Lain)" name="causative_factor_other" disabled>    
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab" value="{{ $data->shipping_date }}" disabled/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab (Lain-Lain)" disabled>    
+                        {{ $data->shipping_date }}
                     </x-textarea>
                 </div>
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Penerima" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Penerima" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Penerima" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Penerima" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Penerima" disabled/>
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Penerima" disabled/>               
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Penerima" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Kerugian/Klaim" prefix="Rp" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Barang" prefix="Rp" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Connote/Perjanjian" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Customer" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Pengiriman" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi" disabled/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi Nominal" prefix="Rp" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Penerima" disabled>
+                        {{ $data->shipping_date }}
+                    </x-textarea>               
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Penerima" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Kerugian/Klaim" prefix="Rp" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Barang" prefix="Rp" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Connote/Perjanjian" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Customer" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Pengiriman" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi" value="{{ $data->shipping_date }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi Nominal" value="{{ $data->shipping_date }}" prefix="Rp" disabled/>
                 </div>
             </div>
     

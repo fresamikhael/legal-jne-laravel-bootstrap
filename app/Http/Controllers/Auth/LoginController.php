@@ -58,18 +58,18 @@ class LoginController extends Controller
                 return redirect()->route('legal-home');
             } elseif (auth()->user()->role == 'LEGALLEASE') {
                 return redirect()->route('legal-lease-dashboard');
-            } elseif (auth()->user()->role == 'TEAMCS') {
-                return redirect()->route('team-cs-dashboard');
+            } elseif (auth()->user()->role == 'CS') {
+                return to_route('cs.index');
             } elseif (auth()->user()->role == 'LEGALLITIGASI1') {
                 return redirect()->route('legal1-dashboard');
             } elseif (auth()->user()->role == 'LEGALLITIGASI2') {
                 return redirect()->route('legal2-dashboard');
             } elseif (auth()->user()->role == 'LEGALMANAGER') {
                 return redirect()->route('legal-manager-dashboard');
-            } elseif (auth()->user()->role == 'CONTRACTBUSINESS') {
-                return redirect()->route('cd-dashboard');
+            } elseif (auth()->user()->role == 'CB') {
+                return redirect()->route('cb-home');
             } elseif (auth()->user()->role == 'USER') {
-                return redirect()->route('home');
+                return to_route('home');
             }
         } else {
             return redirect()->route('login')

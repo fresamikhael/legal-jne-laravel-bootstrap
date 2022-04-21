@@ -20,7 +20,12 @@ class CustomerDispute extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'users', 'length' => 6, 'prefix' => 'USR', 'reset_on_prefix_change' => true]);
+            $model->id = IdGenerator::generate(['table' => 'customer_disputes', 'length' => 6, 'prefix' => 'CD', 'reset_on_prefix_change' => true]);
         });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
