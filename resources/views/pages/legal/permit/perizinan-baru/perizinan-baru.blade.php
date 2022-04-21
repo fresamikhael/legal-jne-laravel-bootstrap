@@ -10,50 +10,27 @@
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
         <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('permit.newpermit-post') }}">
+            action="{{ route('legal.permit.newpermit-post') }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
+                <x-modal-history id="dataTables">
+                    @slot('data')
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="" class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endslot
+                </x-modal-history>
 
-                <div class="d-flex align-items-center gap-3">
-                    <x-modal-history id="dataTables">
-                        @slot('header')
-                            <tr>
-                                <th>No</th>
-                                <th>Nomor Kasus</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        @endslot
-                        
-                        @slot('data')
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="" class="btn btn-primary">Lihat</a>
-                                </td>
-                            </tr>
-                        @endslot
-                    </x-modal-history>
-                    <x-modal-all-input>
-                        @slot('data')
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="" class="btn btn-primary">Lihat</a>
-                                </td>
-                            </tr>
-                        @endslot
-                    </x-modal-all-input>
-                </div>
             </div>
             <div class="row mt-3">
                 {{-- <input type="hidden" name="id"> --}}
-                <input type="hidden" name="user_id" value="USR002">
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Tipe Perizinan</label>
                     <div class="col-sm-10">
@@ -74,12 +51,12 @@
                 </div>
                 <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input>
                 <x-input label="Spesifikasi" name="specification" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input>
-                <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10">
-                </x-input>
+                {{-- <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10">
+                </x-input> --}}
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                        <textarea class="form-control" name="application_reason" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 100px"></textarea>
                     </div>
                 </div>
@@ -107,38 +84,3 @@
         {{-- <x-input label="Lokasi"></x-input> --}}
     </x-base>
 @endsection
-
-@push('addon-script')
-    <script type="text/javascript">
-        $(function() {
-            var table = $('#dataTables').DataTable({
-                paging: false,
-                searching: false,
-                retrieve: true,
-                processing: true,
-                serverSide: true,
-                ordering: true,
-                ajax: "{{ route('permit.newpermit') }}",
-                columns: [{
-                        data: 'id',
-                        name: 'id',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'id',
-                        name: 'id',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        "className": "text-center",
-                        orderable: true,
-                        searchable: true
-                    },
-                ]
-            });
-
-        });
-    </script>
-@endpush

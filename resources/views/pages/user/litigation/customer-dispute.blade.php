@@ -8,7 +8,7 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer Dispute</h2>
-            <x-modal-history>
+            <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
@@ -18,14 +18,16 @@
                     </tr>
                 @endslot
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($data as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                <a href="" class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -42,8 +44,8 @@
                 <div class="col-sm-6">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" required/>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name" required/>
-                    <x-address label="Pengirim" name="seender"/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" required/>
+                    <x-address label="Pengirim" name="sender"/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" name="sender_phone_number" required/>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" name="case_type" required>
                         <option value="Terlambat">Terlambat</option>
                         <option value="Hilang">Hilang</option>
@@ -58,7 +60,7 @@
                         <option value="Force Majeur">Force Majeur</option>
                         <option value="Lain-Lain">Lain-Lain</option>
                     </x-select>
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab (Lain-Lain)" name="causative_factor_other" hidden/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab (Lain-Lain)" name="causative_factor_others" hidden/>
                     
                     <script>
                         document.getElementById("causative_factor").addEventListener("change", handleChange);
@@ -90,8 +92,8 @@
                         <option value="Dangerous Goods">Dangerous Goods</option>
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi" name="assurance" required>
-                        <option value="yes">Ada</option>
-                        <option value="no">Tidak</option>
+                        <option value="Ada">Ada</option>
+                        <option value="Tidak">Tidak</option>
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi Nominal" name="assurance_nominal" prefix="Rp" hidden/>
                     <script>
@@ -99,7 +101,7 @@
                 
                         function handleChange() {
                             var x = document.getElementById("assurance");
-                            if (x.value === "yes" ) {
+                            if (x.value === "Ada" ) {
                                 document.getElementById("assurance_nominal1").classList.remove('d-none');
                                 document.getElementById("assurance_nominal1").classList.add('d-flex');
                                 document.getElementById("assurance_nominal").required = true;
@@ -137,7 +139,21 @@
                         <option value="Aksesoris">Aksesoris</option>
                         <option value="Lain-Lain">Lain-Lain</option>
                     </x-select>
-                    <x-textarea fieldClass="col-sm-12" name="detail_shipping_form" required/>
+                    <x-textarea fieldClass="col-sm-12" name="detail_shipping_form" hidden/>
+                    <script>
+                        document.getElementById("shipping_form").addEventListener("change", handleChange);
+                
+                        function handleChange() {
+                            var x = document.getElementById("shipping_form");
+                            if (x.value === "Lain-Lain" ) {
+                                document.getElementById("detail_shipping_form1").style.display = "flex";
+                                document.getElementById("detail_shipping_form").required = true;
+                            } else {
+                                document.getElementById("detail_shipping_form1").style.display = "none";
+                                document.getElementById("detail_shipping_form").required = false;
+                            }
+                        }
+                    </script>
                 </div>
             </div>
     

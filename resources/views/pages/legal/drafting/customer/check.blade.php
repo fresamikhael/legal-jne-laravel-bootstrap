@@ -17,7 +17,7 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
+
                 @slot('data')
                     <tr>
                         <td></td>
@@ -31,30 +31,55 @@
             </x-modal-history>
         </div>
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.customer-post') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.legal-customer-post') }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
                     <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
-                        value="{{ $data->party_name }}" readonly />
-                    <x-address label="Pihak" name="party" />
+                        value="{{ $data->party_name }}" readOnly />
+                    <x-input name="party_province" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" value="{{ App\Models\Province::find($data->party_province)->name }}"
+                        readOnly />
+                    <x-input name="party_regency" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ App\Models\Regency::find($data->party_regency)->name }}" readOnly />
+                    <x-input name="party_district" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" value="{{ App\Models\District::find($data->party_district)->name }}"
+                        readOnly />
+                    <x-input name="party_village" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ App\Models\Village::find($data->party_village)->name }}" readOnly />
+                    <x-input name="party_zip_code" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" value="{{ $data->party_zip_code }}" readOnly />
+                    <x-input name="party_address" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ $data->party_address }}" readOnly />
+                    {{-- <x-address label="Pihak" name="party" /> --}}
                 </div>
                 <div class="col-sm-6">
                     <x-input value="{{ $data->optional_party_name }}" labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="Nama Pihak (Optional)" name="optional_party_name" />
-                    <x-address label="Pihak (Optional)" name="optional_party" />
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input name="party_province" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" value="{{ $data->optional_party_province }}" readOnly />
+                    <x-input name="party_regency" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ $data->optional_party_regency }}" readOnly />
+                    <x-input name="party_district" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" value="{{ $data->optional_party_district }}" readOnly />
+                    <x-input name="party_village" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ $data->optional_party_village }}" readOnly />
+                    <x-input name="party_zip_code" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" value="{{ $data->optional_party_zip_code }}" readOnly />
+                    <x-input name="party_address" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ $data->optional_party_address }}" readOnly />
                     <x-input value="{{ $data->type }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis"
-                        name="type" />
+                        name="type" readOnly />
                     <x-input value="{{ $data->addendum_to }}" labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="Addendum Ke" name="addendum_to" />
+                        label="Addendum Ke" name="addendum_to" readOnly />
                     <x-input value="{{ $data->discount }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount"
-                        name="discount" postfix="%" />
+                        name="discount" postfix="%" readOnly />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
-                    <x-textarea name="other_point"
+                    <x-textarea name="other_point" disabled
                         label="Poin-Poin Khusus Lainnya Yang Dicantumkan Dalam Perjanjian Sesuai Kesepakatan Para Pihak:">
                         {!! $data->other_point !!}
                     </x-textarea>
@@ -71,7 +96,8 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
                         name="file_agreement_draft" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Form Pengajuan PKS*"
-                        name="file_claim_form" />
+                        name="file_claim_form">
+                    </x-file>
                 </div>
             </div>
 
@@ -80,11 +106,24 @@
                     <h5>Korespondensi :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama PIC" name="correspondence_name" />
-                    <x-address label="PIC" name="correspondence" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon PIC"
-                        name="correspondence_phone" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC" name="correspondence_email" />
+                    <x-input value="{{ $data->correspondence_name }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_province }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_regency }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_district }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_village }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_zip_code }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_address }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak (Optional)" name="optional_party_name" readOnly />
+                    <x-input value="{{ $data->correspondence_phone }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="No Telepon PIC" name="correspondence_phone" readOnly />
+                    <x-input value="{{ $data->correspondence_email }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Email PIC" name="correspondence_email" readOnly />
                 </div>
             </div>
 

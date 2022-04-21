@@ -11,7 +11,11 @@ class CustomerDisputeController extends Controller
 {
     public function index()
     {
-        return view('pages.user.litigation.customer-dispute');
+        $data = CustomerDispute::where('user_id', auth()->user()->id)
+            ->with('user')
+            ->get();
+
+        return view('pages.user.litigation.customer-dispute', compact('data'));
     }
 
     function store(Request $request)
@@ -76,11 +80,11 @@ class CustomerDisputeController extends Controller
             $data['file_subpoena'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
-        if ($request->file('file_cs_chronology')) {
-            $file = $request->file('file_cs_chronology');
+        if ($request->file('file_procuration')) {
+            $file = $request->file('file_procuration');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_cs_chronology'] = 'Litigation/'.$filename;
+            $data['file_procuration'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
 

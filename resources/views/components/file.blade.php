@@ -11,17 +11,21 @@
                 <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
                     @if ($option)
                         <div class="d-flex gap-3">
-                            <select id="{{ $name . 1 }}" class="form-select" onChange={ (e) => setType(e.target.value) }>
+                            <select id="{{ $name . 1 }}" class="form-select" onChange={ (e)=> setType(e.target.value) }>
                                 <option class="d-none">-- Pilih --</option>
                                 <option value="no">Tidak Ada</option>
                                 <option value="yes">Ada</option>
                             </select>
                             { type === 'yes' ? (
-                                <input type="file" class="form-control w-100" name="{{ $name }}" id="{{ $name }}" required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}"/>
+                            <input type="file" class="form-control w-100" name="{{ $name }}" id="{{ $name }}"
+                                required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />
                             ) : '' }
                         </div>
+                    @elseif($type == "download")
+                        <a href="{{ $path }}" target="{{ $blank ? "_blank" : "" }}" class="btn btn-primary w-100">{{ $slot }}</a>
                     @else
-                        <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}" required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}"/>
+                        <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
+                            required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />
                     @endif
                 </div>
             </React.Fragment>
