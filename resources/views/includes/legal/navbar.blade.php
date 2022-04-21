@@ -22,11 +22,17 @@
                         <li class="scroll-to-section">
                             <a href="{{ route('contact-us') }}">Hubungi Kami</a>
                         </li>
-                        <li class="scroll-to-section">
-                            <div class="main-red-button">
-                                <a href="{{ route('login') }}">Login</a>
-                            </div>
-                        </li>
+                        @guest
+                            <li class="scroll-to-section">
+                                <div class="main-red-button">
+                                    <a href="{{ route('login') }}">Login</a>
+                                </div>
+                            </li>
+                        @endguest
+                        @auth
+                            <a href="{{ route('logout') }}" style="margin-top: 7px; color: black">Hi,
+                                {{ auth()->user()->name }}</a>
+                        @endauth
                     </ul>
                     <a class="menu-trigger">
                         <span>Menu</span>
