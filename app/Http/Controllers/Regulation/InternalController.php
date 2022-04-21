@@ -20,7 +20,7 @@ class InternalController extends Controller
             ->addIndexColumn()
             ->addColumn('action',function($row){
                     return '
-                        <a href="'.route('regulation.internal-detail',[$row->name,$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
+                        <a href="'.route('regulation.internal-detail',[$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
                     ';
             })
 
@@ -57,8 +57,12 @@ class InternalController extends Controller
         return redirect()->route('regulation.internal-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('pages.user.regulation.normative.index');
+        $data = Regulation::where('id', $id)->firstOrFail();
+
+        return view('pages.user.regulation.internal.detail', [
+            'data' => $data
+        ]);
     }
 }

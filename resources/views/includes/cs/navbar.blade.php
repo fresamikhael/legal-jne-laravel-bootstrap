@@ -13,23 +13,20 @@
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Regulasi</a></li>
                         <li class="scroll-to-section">
+                            <a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
+                        </li>
+                        <li class="scroll-to-section">
                             <a href="{{ route('information.index') }}">Informasi</a>
                         </li>
                         <li class="scroll-to-section"><a href="{{ route('database.index') }}">Database</a></li>
                         <li class="scroll-to-section">
                             <a href="{{ route('contact-us') }}">Hubungi Kami</a>
                         </li>
-                        @guest
-                            <li class="scroll-to-section">
-                                <div class="main-red-button">
-                                    <a href="{{ route('login') }}">Login</a>
-                                </div>
-                            </li>
-                        @endguest
-                        @auth
-                            <a href="{{ route('logout') }}" style="margin-top: 7px; color: black">Hi,
-                                {{ auth()->user()->name }}</a>
-                        @endauth
+                        <li class="scroll-to-section">
+                            <div class="main-red-button">
+                                <a href="{{ route('login') }}">Login</a>
+                            </div>
+                        </li>
                     </ul>
                     <a class="menu-trigger">
                         <span>Menu</span>

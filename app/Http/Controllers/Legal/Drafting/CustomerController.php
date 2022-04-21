@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('pages.legal.drafting.customer');
+        return view('pages.legal.drafting.customer.index');
     }
 
     public function store(Request $request)
