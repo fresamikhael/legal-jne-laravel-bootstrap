@@ -1,14 +1,10 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\Cs\CustomerDisputeController as CsCustomerDisputeController;
-use App\Http\Controllers\Database\DatabaseController;
-=======
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
->>>>>>> c11b13a8526f7d1a114a3895cb93299e3b8e2357
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Drafting\LeaseController;
 use App\Http\Controllers\Drafting\VendorController;
