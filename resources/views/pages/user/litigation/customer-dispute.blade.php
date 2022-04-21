@@ -60,7 +60,7 @@
                         <option value="Force Majeur">Force Majeur</option>
                         <option value="Lain-Lain">Lain-Lain</option>
                     </x-select>
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab (Lain-Lain)" name="causative_factor_other" hidden/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Faktor Penyebab (Lain-Lain)" name="causative_factor_others" hidden/>
                     
                     <script>
                         document.getElementById("causative_factor").addEventListener("change", handleChange);
@@ -92,8 +92,8 @@
                         <option value="Dangerous Goods">Dangerous Goods</option>
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi" name="assurance" required>
-                        <option value="yes">Ada</option>
-                        <option value="no">Tidak</option>
+                        <option value="Ada">Ada</option>
+                        <option value="Tidak">Tidak</option>
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi Nominal" name="assurance_nominal" prefix="Rp" hidden/>
                     <script>
@@ -101,7 +101,7 @@
                 
                         function handleChange() {
                             var x = document.getElementById("assurance");
-                            if (x.value === "yes" ) {
+                            if (x.value === "Ada" ) {
                                 document.getElementById("assurance_nominal1").classList.remove('d-none');
                                 document.getElementById("assurance_nominal1").classList.add('d-flex');
                                 document.getElementById("assurance_nominal").required = true;
