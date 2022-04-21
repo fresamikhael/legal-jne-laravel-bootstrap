@@ -23,4 +23,9 @@ class Vendor extends Model
             $model->id = IdGenerator::generate(['table' => 'vendors', 'length' => 6, 'prefix' => 'VNS', 'reset_on_prefix_change'=>true]);
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

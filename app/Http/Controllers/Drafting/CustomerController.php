@@ -11,12 +11,18 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('pages.user.drafting.customer');
+        $data = Customer::query()->where('id', auth()->user()->id);
+
+        return view('pages.user.drafting.customer', compact('data'));
     }
 
     public function legalCreate()
     {
-        return view('pages.legal.drafting.customer.index');
+        $data = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.legal.drafting.customer.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -282,9 +288,13 @@ class CustomerController extends Controller
 
     public function legalCheck($id)
     {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
         $data = Customer::where('id', $id)->firstOrFail();
         return view('pages.legal.drafting.customer.check', [
-            'data' => $data
+            'data' => $data,
+            'table' => $table
         ]);
     }
 }

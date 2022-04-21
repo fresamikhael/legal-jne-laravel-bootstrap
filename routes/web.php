@@ -56,11 +56,13 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('customer/check/{id}', [CustomerController::class, 'legalCheck'])->name('legal-customer-check');
     Route::get('customer/history', [CustomerController::class, 'historyTable'])->name('legal-customer-table');
 
-    Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
-    Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
+    Route::get('vendor', [VendorController::class, 'legalCreate'])->name('legal-vendor');
+    Route::post('vendor/post', [VendorController::class, 'store'])->name('legal-vendor-post');
+    Route::get('vendor/check/{id}', [VendorController::class, 'legalCheck'])->name('legal-vendor-check');
 
-    Route::get('lease', [LeaseController::class, 'index'])->name('lease');
-    Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
+    Route::get('lease', [LeaseController::class, 'index'])->name('legal-lease');
+    Route::post('lease/post', [LeaseController::class, 'store'])->name('legal-lease-post');
+    Route::get('lease/check/{id}', [LeaseController::class, 'legalCheck'])->name('legal-lease-check');
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {

@@ -19,14 +19,17 @@
                 @endslot
 
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($table as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
+                                    class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -35,148 +38,84 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Nama Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $data->party_name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Provinsi Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\Province::find($data->party_province)->name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kab/Kota Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\Regency::find($data->party_regency)->name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kecamatan Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\District::find($data->party_district)->name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kelurahan Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\Village::find($data->party_village)->name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kode Pos Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $data->party_zip_code }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Alamat Pihak</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $data->party_address }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
+                        value="{{ $data->party_name }}" disabled />
+                    @php
+                        $province = DB::table('provinces')
+                            ->where('id', $data->party_province)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pihak"
+                        value="{{ ucwords(strtolower($province->name)) }}" disabled />
+                    @php
+                        $regency = DB::table('regencies')
+                            ->where('id', $data->party_regency)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pihak"
+                        value="{{ ucwords(strtolower($regency->name)) }}" disabled />
+                    @php
+                        $district = DB::table('districts')
+                            ->where('id', $data->party_district)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pihak"
+                        value="{{ ucwords(strtolower($district->name)) }}" disabled />
+                    @php
+                        $village = DB::table('villages')
+                            ->where('id', $data->party_village)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pihak"
+                        value="{{ ucwords(strtolower($village->name)) }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pihak"
+                        value="{{ $data->party_zip_code }}" disabled />
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak" disabled>
+                        {{ $data->party_address }}
+                    </x-textarea>
                 </div>
                 <div class="col-sm-6">
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Nama Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $data->optional_party_name }}"
-                                    name="id" disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Provinsi Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\Province::find($data->optional_party_province)->name }}"
-                                    name="id" disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kab/Kota Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\Regency::find($data->optional_party_regency)->name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kecamatan Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\District::find($data->optional_party_district)->name }}"
-                                    name="id" disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kelurahan Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control"
-                                    value="{{ App\Models\Village::find($data->optional_party_village)->name }}" name="id"
-                                    disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Kode Pos Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $data->optional_party_zip_code }}"
-                                    name="id" disabled />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="id" class="col-sm-5 col-form-label">Alamat Pihak (Opsional)</label>
-                        <div class="col-sm-7">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $data->optional_party_address }}"
-                                    name="id" disabled />
-                            </div>
-                        </div>
-                    </div>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Opsional)"
+                        value="{{ $data->optional_party_name }}" disabled />
+                    @php
+                        $province = DB::table('provinces')
+                            ->where('id', $data->optional_party_province)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pihak (Opsional)"
+                        value="{{ ucwords(strtolower($province->name)) }}" disabled />
+                    @php
+                        $regency = DB::table('regencies')
+                            ->where('id', $data->optional_party_regency)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pihak (Opsional)"
+                        value="{{ ucwords(strtolower($regency->name)) }}" disabled />
+                    @php
+                        $district = DB::table('districts')
+                            ->where('id', $data->optional_party_district)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pihak (Opsional)"
+                        value="{{ ucwords(strtolower($district->name)) }}" disabled />
+                    @php
+                        $village = DB::table('villages')
+                            ->where('id', $data->optional_party_village)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pihak (Opsional)"
+                        value="{{ ucwords(strtolower($village->name)) }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pihak (Opsional)"
+                        value="{{ $data->optional_party_zip_code }}" disabled />
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak (Opsional)" disabled>
+                        {{ $data->optional_party_address }}
+                    </x-textarea>
                     <x-input value="{{ $data->type }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis"
-                        name="type" readOnly />
+                        name="type" disabled />
                     <x-input value="{{ $data->addendum_to }}" labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="Addendum Ke" name="addendum_to" readOnly />
+                        label="Addendum Ke" name="addendum_to" disabled />
                     <x-input value="{{ $data->discount }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount"
-                        name="discount" postfix="%" readOnly />
+                        name="discount" postfix="%" disabled />
                 </div>
             </div>
 

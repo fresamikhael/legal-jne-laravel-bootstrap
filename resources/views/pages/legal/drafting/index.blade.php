@@ -17,12 +17,12 @@
                     ],
                     [
                         'label' => 'Vendor & Supplier',
-                        'route' => 'legal.drafting.vendor',
+                        'route' => 'legal.drafting.legal-vendor',
                         'style' => 'background: #fe3f40 !important; color: #fff !important;',
                     ],
                     [
                         'label' => 'Lease',
-                        'route' => 'legal.drafting.lease',
+                        'route' => 'legal.drafting.legal-lease',
                         'style' => 'background: #2a2a2a !important; color: #fff !important;',
                     ],
                 ];

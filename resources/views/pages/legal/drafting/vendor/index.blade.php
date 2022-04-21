@@ -1,13 +1,13 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
-    Lease
+    Vendor & Supplier
 @endsection
 
 @section('content')
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
-            <h2>Lease</h2>
+            <h2>Vendor & Supplier</h2>
             <x-modal-history>
                 @slot('header')
                     <tr>
@@ -17,7 +17,7 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
+
                 @slot('data')
                     <tr>
                         <td></td>
@@ -37,12 +37,55 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.lease-post') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.vendor-post') }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord" name="landlord_name" />
-                    <x-address label="Landlord" name="landlord" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Pihak Pertama" name="party_name" />
+                    <x-address label="Pihak" name="party" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Perjanjian" prefix="Rp"
+                        name="agreement_nominal" />
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Vendor" name="vendor_type">
+                        <option value="Contractor Building">Contractor Building</option>
+                        <option value="Jasa Perizinan">Jasa Perizinan</option>
+                        <option value="Kendaraan">Kendaraan</option>
+                        <option value="Peralatan">Peralatan</option>
+                        <option value="KSO">KSO</option>
+                        <option value="Outsourcing">Outsourcing</option>
+                        <option value="Sistem IT">Sistem IT</option>
+                        <option value="Others">Others</option>
+                    </x-select>
+                    <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Form"
+                        name="file_form_vendor" hidden />
+                    <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Lampiran Pendukung"
+                        name="file_supporting_attachment" hidden />
+                    <script>
+                        document.getElementById("vendor_type").addEventListener("change", handleChange);
+
+                        function handleChange() {
+                            var x = document.getElementById("vendor_type");
+                            if (x.value === "Others") {
+                                document.getElementById("file_form_vendor1").classList.remove('d-none');
+                                document.getElementById("file_form_vendor1").classList.add('d-flex');
+                                document.getElementById("file_form_vendor").required = true;
+                                document.getElementById("file_supporting_attachment1").classList.remove('d-none');
+                                document.getElementById("file_form_vendor1").classList.add('d-flex');
+                                document.getElementById("file_supporting_attachment").required = true;
+                            } else {
+                                document.getElementById("file_form_vendor1").classList.remove('d-flex');
+                                document.getElementById("file_form_vendor1").classList.add('d-none');
+                                document.getElementById("file_form_vendor").required = false;
+                                document.getElementById("file_supporting_attachment1").classList.remove('d-flex');
+                                document.getElementById("file_supporting_attachment1").classList.add('d-none');
+                                document.getElementById("file_supporting_attachment").required = false;
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="col-sm-6">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)"
+                        name="optional_party_name" />
+                    <x-address label="Pihak (Optional)" name="optional_party" />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
                         <option value="Baru">Baru</option>
                         <option value="Perpanjangan">Perpanjangan</option>
@@ -61,35 +104,48 @@
                                 document.getElementById("addendum_to").required = true;
                             } else {
                                 document.getElementById("addendum_to1").classList.remove('d-flex');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
+                                document.getElementById("addendum_to1").classList.add('d-none');
                                 document.getElementById("addendum_to").required = false;
                             }
                         }
                     </script>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional">
-                        <option value="Jakarta">Jakarta</option>
-                        <option value="Bodetabekarcil">Bodetabekarcil</option>
-                        <option value="Jawa Barat">Jawa Barat</option>
-                        <option value="Jawa Tengah & DIY">Jawa Tengah & DIY</option>
-                        <option value="JTBNN">JTBNN</option>
-                        <option value="Sumatera Bagian Utara">Sumatera Bagian Utara</option>
-                        <option value="Sumatera Bagian Selatan">Sumatera Bagian Selatan</option>
-                        <option value="Kalimantan">Kalimantan</option>
-                        <option value="Sulampapua">Sulampapua</option>
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jaminan" name="guarantee">
+                        <option value="Bank Garansi">Bank Garansi</option>
+                        <option value="Deposit">Deposit</option>
+                        <option value="Tidak Ada">Tidak Ada</option>
                     </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp"
-                        name="rental_value" />
-                    <x-address label="Objek Sewa" name="rental_object" />
-                </div>
-                <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
-                        name="optional_landlord_name" />
-                    <x-address label="Landlord (Optional)" name="optional_landlord" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Hari"
-                        name="period_of_time" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Jaminan" prefix="Rp"
-                        name="guarantee_nominal" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" name="main_branch" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Bank Garansi" name="bank_guarantee"
+                        hidden />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Deposit" name="deposit_guarantee"
+                        hidden />
+                    <script>
+                        document.getElementById("guarantee").addEventListener("change", handleChange);
+
+                        function handleChange() {
+                            var x = document.getElementById("guarantee");
+                            if (x.value === "Bank Garansi") {
+                                document.getElementById("bank_guarantee1").classList.remove('d-none');
+                                document.getElementById("bank_guarantee1").classList.add('d-flex');
+                                document.getElementById("bank_guarantee").required = true;
+                            } else {
+                                document.getElementById("bank_guarantee1").classList.remove('d-flex');
+                                document.getElementById("bank_guarantee1").classList.add('d-none');
+                                document.getElementById("bank_guarantee").required = false;
+                            }
+
+                            if (x.value === "Deposit") {
+                                document.getElementById("deposit_guarantee1").classList.remove('d-none');
+                                document.getElementById("deposit_guarantee1").classList.add('d-flex');
+                                document.getElementById("deposit_guarantee").required = true;
+                            } else {
+                                document.getElementById("deposit_guarantee1").classList.remove('d-flex');
+                                document.getElementById("deposit_guarantee1").classList.add('d-none');
+                                document.getElementById("deposit_guarantee").required = false;
+                            }
+                        }
+                    </script>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu Retensi" postfix="Bulan"
+                        name="relation_period" />
                 </div>
             </div>
 
@@ -100,110 +156,77 @@
                 </div>
             </div>
 
-            <x-lease-type>
-                @slot('individual')
-                    <div class="row mt-3">
-                        <div class="col-sm-3">
-                            <h5>Dokumen :</h5>
-                        </div>
-                        <div class="col-sm-9">
-                            <x-input type="file" name="file_director_disposition" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="1. Fotocopy Disposisi Direksi" />
-                            <x-input name="file_internal_memo" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="2. Asli Internal Memo Pengajuan Sewa" />
-                            <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="3. Asli Lease Drafting Application Form" />
-                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="4. Fotocopy Kartu Identitas Pemilik Hak" />
-                            <x-input name="file_npwp_individual" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="5. Copy NPWP" />
-                            <x-input name="file_family_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="6. Copy Kartu Keluarga" />
-                            <x-input name="file_marriage_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="7. Copy Akta Nikah" />
-                            <x-input name="file_death_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="8. Copy Akta Kematian" />
-                            <x-input name="file_heir_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="9. Copy Surat Keterangan Ahli Waris" />
-                            <x-input name="file_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="10. Fotocopy Sertifikat/Girik" />
-                            <x-input name="file_imb" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="11. Fotocopy IMB" />
-                            <x-input name="file_sppt" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="12. Fotocopy SPPT & STTS (PBB)" />
-                            <x-input name="file_dp_receipt" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="13. Fotocopy Kuitansi DP" />
-                            <x-input name="file_payment_imb" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="14. Fotocopy Kuitansi Pelunasan" />
-                            <x-input name="file_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="15. Asli Surat Kuasa" />
-                            <x-input name="file_previous_agreement" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="16. Perjanjian Sewa Sebelumnya" />
-                            <x-input name="file_director_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="17. Surat Kuasa Direksi" />
-                            <x-input name="file_lease_application" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="18. Form Pengajuan Sewa" />
-                            <x-input name="file_lease_eligibility" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="19. Form Kelayakan Sewa" />
-                        </div>
-                    </div>
-                @endslot
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Entitas :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan*"
+                        name="file_deed_of_company" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*"
+                        name="file_nib" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)*"
+                        name="file_npwp" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha*"
+                        name="file_business_permit" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS*"
+                        name="file_oss_location" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi*"
+                        name="file_director_id_card" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" />
+                </div>
+            </div>
 
-                @slot('legal_entity')
-                    <div class="row mt-3">
-                        <div class="col-sm-3">
-                            <h5>Dokumen :</h5>
-                        </div>
-                        <div class="col-sm-9">
-                            <x-input name="file_director_disposition" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="1. Fotocopy Disposisi Direksi" />
-                            <x-input name="file_internal_memo" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="2. Asli Internal Memo Pengajuan Sewa" />
-                            <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="3. Asli Lease Drafting Application Form" />
-                            <x-input name="file_director_id_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="4. Fotocopy KTP Direksi" />
-                            <x-input name="file_deed_of_incorporation" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="5. Fotocopy Akta Pendirian dan Perubahan Terakhir" />
-                            <x-input name="file_sk_menkumham" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="6. Fotocopy SK MENKUM-HAM" />
-                            <x-input name="file_siup" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="7. Fotocopy SIUP" />
-                            <x-input name="file_tdp" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="8. Fotocopy TDP" />
-                            <x-input name="file_npwp_legal_entity" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="9. Fotocopy NPWP" />
-                            <x-input name="file_skd" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="10. Fotocopy SKD" />
-                            <x-input name="file_skdu" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="11. Fotocopy SKDU" />
-                            <x-input name="file_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="12. Fotocopy Sertifikat/Girik" />
-                            <x-input name="file_imb" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="13. Fotocopy IMB" />
-                            <x-input name="file_sppt" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="14. Fotocopy SPPT & STTS (PBB)" />
-                            <x-input name="file_dp_receipt" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="15. Fotocopy Kuitansi DP" />
-                            <x-input name="file_payment_imb" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="16. Fotocopy Kuitansi Pelunasan" />
-                            <x-input name="file_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="17. Asli Surat Kuasa" />
-                            <x-input name="file_previous_agreement" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="18. Perjanjian Sewa Sebelumnya" />
-                            <x-input name="file_director_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="19. Surat Kuasa Direksi" />
-                            <x-input name="file_lease_application" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="20. Form Pengajuan Sewa" />
-                            <x-input name="file_lease_eligibility" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="21. Form Kelayakan Sewa" />
-                        </div>
-                    </div>
-                @endslot
-            </x-lease-type>
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Korespondensi :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama PIC" name="correspondence_name" />
+                    <x-address label="PIC" name="correspondence" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon PIC"
+                        name="correspondence_phone" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC" name="correspondence_email" />
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Dokumen :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Penawaran Vendor"
+                        name="file_vendor_offer" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. MOM Kesepakatan Para Pihak"
+                        name="file_mom" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Disposisi" name="file_dispotition" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Draft Perjanjian dalam bentuk word"
+                        name="file_agreement_draft" />
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Entitas Customer :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta & SK Kemenkumham"
+                        name="file_sk_menkumham" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)"
+                        name="file_nib2" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)"
+                        name="file_npwp2" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha & Izin Lokasi OSS"
+                        name="file_business_permit2" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. KTP Direksi"
+                        name="file_director_id_card2" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Lain-lain" name="file_other2" />
+                </div>
+            </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Submit" buttonClass="btn-primary" />
+                <x-button type="submit" name="Submit" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>
