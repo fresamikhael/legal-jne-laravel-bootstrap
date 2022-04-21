@@ -27,7 +27,7 @@ class DownloadController extends Controller
 
     function downloadRegulation($path)
     {
-        $file = public_path('Rule/'. $path);
+        $file = public_path('Regulation/'. $path);
 
         return response()->download($file);
     }

@@ -48,8 +48,8 @@ class NormativeController extends Controller
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file'] = 'Normatif/'.$filename;
-            $file->move('Normatif', $filename);
+            $data['file'] = 'Regulation/'.$filename;
+            $file->move('Regulation', $filename);
         }
 
         Regulation::create($data);
