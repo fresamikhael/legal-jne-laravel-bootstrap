@@ -61,6 +61,7 @@ return new class extends Migration
             $table->string('file_cs_chronology')->nullable();
             $table->string('file_subpoena')->nullable();
             $table->string('file_procuration')->nullable();
+            $table->string('status')->default('PENDING');
 
             $table->timestamps();
 
