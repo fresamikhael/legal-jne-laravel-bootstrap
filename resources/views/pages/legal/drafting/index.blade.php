@@ -12,7 +12,7 @@
                 $menu = [
                     [
                         'label' => 'Customer',
-                        'route' => 'legal.drafting.customer',
+                        'route' => 'legal.drafting.legal-customer',
                         'style' => 'background: #03a4ed !important; color: #fff !important;',
                     ],
                     [

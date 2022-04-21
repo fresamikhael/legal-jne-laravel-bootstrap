@@ -14,6 +14,7 @@
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
+<<<<<<< HEAD:resources/views/pages/user/permit/perizinan-baru/perizinan-baru.blade.php
                 <x-modal-history id="dataTables">
                     @slot('data')
                         <tr>
@@ -27,6 +28,44 @@
                     @endslot
                 </x-modal-history>
 
+=======
+
+                <div class="d-flex align-items-center gap-3">
+                    <x-modal-history id="dataTables">
+                        @slot('header')
+                            <tr>
+                                <th>No</th>
+                                <th>Nomor Kasus</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        @endslot
+                        
+                        @slot('data')
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-primary">Lihat</a>
+                                </td>
+                            </tr>
+                        @endslot
+                    </x-modal-history>
+                    <x-modal-all-input>
+                        @slot('data')
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-primary">Lihat</a>
+                                </td>
+                            </tr>
+                        @endslot
+                    </x-modal-all-input>
+                </div>
+>>>>>>> 322955f346cfeccdb93254683dea70786dd87f7c:resources/views/pages/user/permit/perizinan-baru.blade.php
             </div>
             <div class="row mt-3">
                 {{-- <input type="hidden" name="id"> --}}

@@ -20,7 +20,7 @@
                             <th>Nomor Kasus</th>
                             <th>Status</th>
                             <th>Aksi</th>
-                        </tr>
+                        </tr>   
                     </thead>
                     <tbody>
                         {{ $data }}

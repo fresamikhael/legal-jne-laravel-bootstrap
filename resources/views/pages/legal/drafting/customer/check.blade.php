@@ -9,6 +9,15 @@
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer</h2>
             <x-modal-history>
+                @slot('header')
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor Kasus</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                @endslot
+                
                 @slot('data')
                     <tr>
                         <td></td>
@@ -61,8 +70,16 @@
                         name="file_mom" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
                         name="file_agreement_draft" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Form Pengajuan PKS*"
-                        name="file_claim_form" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Form Pengajuan PKS*"
+                        name="file_claim_form">
+                        <a href="{{ route('download-Drafting', substr($data->file_claim_form, 11)) }}"
+                            style="font-size:24px ">
+                            <div class="btn btn-primary">
+                                Download
+                                <i class="fa fa-download"></i>
+                            </div>
+                        </a>
+                    </x-input>
                 </div>
             </div>
 

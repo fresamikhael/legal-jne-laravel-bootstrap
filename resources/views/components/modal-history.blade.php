@@ -15,23 +15,13 @@
             <div class="modal-body">
                 <table id="{{ $id }}" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nomor Kasus</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
+                        {{ $header }}
                     </thead>
                     <tbody>
                         {{ $data }}
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nomor Kasus</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
+                        {{ $header }}
                     </tfoot>
                 </table>
             </div>
