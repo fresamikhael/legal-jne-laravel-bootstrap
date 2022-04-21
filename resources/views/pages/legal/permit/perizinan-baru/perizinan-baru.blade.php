@@ -36,7 +36,26 @@
         <form class="mt-4" method="post" enctype="multipart/form-data"
             action="{{ route('permit.newpermit-post') }}">
             @csrf
+<<<<<<< HEAD:resources/views/pages/legal/permit/perizinan-baru/perizinan-baru.blade.php
+            <div class="d-flex align-items-center justify-content-between">
+                <h2>Perizinan Baru</h2>
+                <x-modal-history>
+                    @slot('data')
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="" class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endslot
+                </x-modal-history>
+            </div>
+
+=======
             <input type="hidden" name="id" value="{{ $no_kasus }}">
+>>>>>>> 322955f346cfeccdb93254683dea70786dd87f7c:resources/views/pages/legal/permit/perizinan-baru.blade.php
             <input type="hidden" name="user_id" value="USR002">
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Tipe Perizinan</label>

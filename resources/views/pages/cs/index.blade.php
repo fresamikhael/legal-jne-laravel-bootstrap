@@ -1,4 +1,4 @@
-@extends('layouts.legal')
+@extends('layouts.cs')
 
 @section('title')
     Home
@@ -33,19 +33,9 @@
         @php
             $menu = [
                 [
-                    'label' => 'Drafting',
-                    'route' => 'legal/drafting/index',
+                    'label' => 'Customer Dispute',
+                    'route' => 'cs.customer-dispute.index',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'Litigation',
-                    'route' => 'litigation',
-                    'style' => 'background: #fe3f40 !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'Permit',
-                    'route' => 'legal/permit',
-                    'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
             ];
         @endphp
@@ -58,7 +48,7 @@
         @slot('menu')
             @foreach ($menu as $row)
                 <div class="col-lg-3 col-sm-6">
-                    <a href="{{ $row['route'] }}">
+                    <a href="{{ route($row['route']) }}">
                         <div class="item">
                             <div class="card-custom" style="{{ $row['style'] }}">
                                 {{ $row['label'] }}

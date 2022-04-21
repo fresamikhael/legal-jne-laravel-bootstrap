@@ -12,12 +12,12 @@
                 $menu = [
                     [
                         'label' => 'Perizinan Baru',
-                        'route' => 'permit.newpermit',
+                        'route' => 'legal.permit.newpermit',
                         'style' => 'background: #03a4ed !important; color: #fff !important;',
                     ],
                     [
                         'label' => 'Perpanjangan',
-                        'route' => 'permit.prolongation',
+                        'route' => 'legal.permit.prolongation',
                         'style' => 'background: #fe3f40 !important; color: #fff !important;',
                     ],
                     // [

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cs\CustomerDisputeController as CsCustomerDisputeController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -88,6 +89,18 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     });
 });
 
+Route::prefix('cs')->name('cs.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.cs.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CsCustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+    });
+});
+
 Route::prefix('information')->name('information.')->group(function () {
     Route::get('/', function () {
         return View('pages.user.information.index');
@@ -103,6 +116,21 @@ Route::prefix('permit')->name('permit.')->group(function () {
     Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('newpermit-post');
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan', [ProlongationController::class, 'index'])->name('prolongation');
+
+    // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
+    // Route::get('other', [OtherController::class, 'index'])->name('other');
+});
+
+Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.permit.index');
+    })->name('index');
+
+    Route::get('perizinan-baru', [NewPermitController::class, 'index_legal'])->name('newpermit');
+    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
+    Route::post('perizinan-baru/post', [NewPermitController::class, 'store_legal'])->name('newpermit-post');
+    // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
+    Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
 
     // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
     // Route::get('other', [OtherController::class, 'index'])->name('other');
