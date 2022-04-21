@@ -149,8 +149,8 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::post('internal-create/post', [InternalController::class, 'store'])->name('internal-post');
     Route::post('normative-create/post', [NormativeController::class, 'store'])->name('normative-post');
 
-    Route::get('internal-detail', [InternalController::class, 'show'])->name('internal-detail');
-    Route::get('normative-detail', [NormativeController::class, 'show'])->name('normative-detail');
+    Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
+    Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
 });
 
 Route::get('/statistic', function () {
