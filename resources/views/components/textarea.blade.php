@@ -6,6 +6,7 @@
     @endif
     <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
         <textarea class="form-control" placeholder="{{ $placeholder }}" id="{{ $name }}" style="height: 100px"
-            {{ $required ? 'required' : '' }} {{ $disabled ? 'disabled' : '' }} name="{{ $name }}">{{ $slot }}</textarea>
+            {{ $readOnly ? 'readonly' : '' }} {{ $required ? 'required' : '' }}
+            {{ $disabled ? 'disabled' : '' }} name="{{ $name }}">{{ $slot }}</textarea>
     </div>
 </div>

@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    Login
+@endsection
+
 @section('content')
     <div class="container" style="margin-top: 150px">
         <div class="row justify-content-center">
