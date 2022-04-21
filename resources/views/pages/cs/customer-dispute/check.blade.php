@@ -26,25 +26,25 @@
                             ->where('id', $data->sender_province)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pengirim" value="{{ $province->name }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pengirim" value="{{ ucwords(strtolower($province->name)) }}" disabled/>
                     @php
                         $regency = DB::table('regencies')
                             ->where('id', $data->sender_regency)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pengirim" value="{{ $regency->name }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pengirim" value="{{ ucwords(strtolower($regency->name)) }}" disabled/>
                     @php
                         $district = DB::table('districts')
                             ->where('id', $data->sender_district)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pengirim" value="{{ $district->name }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pengirim" value="{{ ucwords(strtolower($district->name)) }}" disabled/>
                     @php
                         $village = DB::table('villages')
                             ->where('id', $data->sender_village)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pengirim" value="{{ $village->name }}" disabled/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pengirim" value="{{ ucwords(strtolower($village->name)) }}" disabled/>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pengirim" value="{{ $data->sender_zip_code }}" disabled/>
                     <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pengirim" disabled>
                         {{ $data->sender_address }}
