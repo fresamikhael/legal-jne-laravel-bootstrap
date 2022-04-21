@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CreateUsersSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class CreateUsersSeeder extends Seeder
             [
                 'id' => 'USR001',
                 'name' => 'Admin',
-                'username' => 'admin',
+                'nik' => '123',
                 'role' => 'ADMIN',
                 'email' => 'admin@jne.co.id',
                 'password' => bcrypt('admin'),
@@ -26,7 +27,7 @@ class CreateUsersSeeder extends Seeder
             [
                 'id' => 'USR002',
                 'name' => 'Joko',
-                'username' => 'joko',
+                'nik' => '1234',
                 'role' => 'USER',
                 'email' => 'joko@jne.co.id',
                 'password' => bcrypt('joko'),
@@ -34,82 +35,50 @@ class CreateUsersSeeder extends Seeder
             [
                 'id' => 'USR003',
                 'name' => 'Nanang',
-                'username' => 'nanang',
-                'role' => 'LEGALPERMIT',
+                'nik' => '12345',
+                'role' => 'LEGAL',
                 'email' => 'nanang@jne.co.id',
                 'password' => bcrypt('nanang'),
             ],
             [
                 'id' => 'USR004',
                 'name' => 'Udin',
-                'username' => 'udin',
-                'role' => 'LEGALLEASE',
+                'nik' => '123456',
+                'role' => 'CS',
                 'email' => 'udin@jne.co.id',
                 'password' => bcrypt('udin'),
             ],
             [
                 'id' => 'USR005',
-                'name' => 'Marko',
-                'username' => 'marko',
-                'role' => 'LEGALLITIGASI2',
-                'email' => 'marko@jne.co.id',
-                'password' => bcrypt('marko'),
+                'name' => 'Samson',
+                'nik' => '1234567',
+                'role' => 'LITI1',
+                'email' => 'samson@jne.co.id',
+                'password' => bcrypt('samson'),
             ],
             [
                 'id' => 'USR006',
-                'name' => 'Komar',
-                'username' => 'komar',
-                'role' => 'LEGALMANAGER',
-                'email' => 'komar@jne.co.id',
-                'password' => bcrypt('komar'),
+                'name' => 'Jafar',
+                'nik' => '12345678',
+                'role' => 'LITI2',
+                'email' => 'jafar@jne.co.id',
+                'password' => bcrypt('jafar'),
             ],
             [
                 'id' => 'USR007',
-                'name' => 'abc',
-                'username' => 'abc',
-                'role' => 'TEAMCS',
-                'email' => 'abc@jne.co.id',
-                'password' => bcrypt('abc'),
+                'name' => 'Riri',
+                'nik' => '123456789',
+                'role' => 'LITIMANAGER',
+                'email' => 'riri@jne.co.id',
+                'password' => bcrypt('riri'),
             ],
             [
                 'id' => 'USR008',
-                'name' => 'abcd',
-                'username' => 'abcd',
-                'role' => 'USER',
-                'email' => 'abcd@jne.co.id',
-                'password' => bcrypt('abc'),
-            ],
-            [
-                'id' => 'USR009',
-                'name' => 'Arif',
-                'username' => 'arif',
-                'role' => 'LEGALLITIGASI1',
-                'email' => 'arif@jne.co.id',
-                'password' => bcrypt('arif'),
-            ],
-            [
-                'id' => 'USR0010',
-                'name' => 'Juna',
-                'username' => 'juna',
-                'role' => 'LEGALLITIGASI2',
-                'email' => 'juna@jne.co.id',
-                'password' => bcrypt('juna'),
-            ],
-            [
-                'id' => 'USR011',
-                'name' => 'Lani',
-                'username' => 'lani',
-                'role' => 'LEGALMANAGER',
-                'email' => 'lani@jne.co.id',
-                'password' => bcrypt('lani'),
-            ],
-            [
-                'id' => 'USR012',
-                'name' => 'Contract Business',
-                'username' => 'cd',
-                'role' => 'CONTRACTBUSINESS',
-                'email' => 'cd@jne.co.id',
-                'password' => bcrypt('cd'),
+                'name' => 'Vani',
+                'nik' => '12345632',
+                'role' => 'CD',
+                'email' => 'vani@jne.co.id',
+                'password' => bcrypt('vani'),
             ],
         ];
 

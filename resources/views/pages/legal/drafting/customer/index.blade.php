@@ -56,7 +56,7 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.customer-post') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.legal-customer-post') }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
