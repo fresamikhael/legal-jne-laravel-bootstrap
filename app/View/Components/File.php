@@ -15,6 +15,8 @@ class File extends Component
     public $required;
     public $option;
     public $multiple;
+    public $path;
+    public $blank;
     /**
      * Create a new component instance.
      *
@@ -30,6 +32,8 @@ class File extends Component
         $required = null,
         $option = null,
         $multiple = null,
+        $path = null,
+        $blank = null,
     )
     {
         $this->inputClass = $inputClass;
@@ -41,6 +45,8 @@ class File extends Component
         $this->required = $required;
         $this->option = $option;
         $this->multiple = $multiple;
+        $this->path = $path;
+        $this->blank = $blank;
     }
 
     /**
