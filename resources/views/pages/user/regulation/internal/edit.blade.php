@@ -50,17 +50,9 @@
                     </div>
 
                 </div>
-                <div class="mb-3 row">
-                    <label for="id" class="col-sm-5 col-form-label">File Regulasi</label>
-                    <div class="col-sm-7">
-                        <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $data->name }}" name="name" />
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
-                    </div>
-                </div>
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file"
-                    value="{{ $data->file }}">
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Sebelumnya" type="download"
+                    path="{{ asset($data->file) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file">
                 </x-file>
             </div>
 
