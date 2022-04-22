@@ -61,11 +61,11 @@ class LoginController extends Controller
             } elseif (auth()->user()->role == 'CS') {
                 return to_route('cs.index');
             } elseif (auth()->user()->role == 'LEGALLITIGASI1') {
-                return redirect()->route('legal1-dashboard');
+                return to_route('legal-litigation-1.index');
             } elseif (auth()->user()->role == 'LEGALLITIGASI2') {
-                return redirect()->route('legal2-dashboard');
+                return to_route('legal-litigation-2.index');
             } elseif (auth()->user()->role == 'LEGALMANAGER') {
-                return redirect()->route('legal-manager-dashboard');
+                return to_route('legal-manager.index');
             } elseif (auth()->user()->role == 'CB') {
                 return redirect()->route('cb-home');
             } elseif (auth()->user()->role == 'USER') {
