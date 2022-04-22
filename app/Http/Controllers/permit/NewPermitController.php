@@ -101,6 +101,17 @@ class NewPermitController extends Controller
         return redirect()->route('home');
     }
 
+    public function detail($id)
+    {
+        $permit = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.user.permit.perizinan-baru.detail', [
+            'permit' => $permit
+        ]);
+    }
+
+
     public function index_legal()
     {
 
@@ -128,7 +139,6 @@ class NewPermitController extends Controller
         // ]);
         // ]);
         $data = $request->all();
-        // $id_permit = $data['id'];
 
         if ($request->file('file_disposition')) {
             $file = $request->file('file_disposition');
@@ -198,7 +208,12 @@ class NewPermitController extends Controller
     {
         switch ($request->input('action')) {
             case 'return':
-                $data = $request->all();
+                // $data = $request->all();
+                $data = $request->validate([
+                    // 'id' => 'required',
+                    'note' => 'required',
+                ]);
+
 
                 $item = Permit::findOrFail($id);
                 $user = User::findOrFail($item->user_id);
