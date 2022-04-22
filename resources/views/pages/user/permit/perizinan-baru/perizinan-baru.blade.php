@@ -30,7 +30,7 @@
                                 <td>{{ $row->id }}</td>
                                 <td>{{ $row->status }}</td>
                                 <td>
-                                    <a href="{{ route('permit.d etail', $row->id) }}" class="btn btn-primary">Lihat</a>
+                                    <a href="{{ route('permit.detail', $row->id) }}" class="btn btn-primary">Lihat</a>
                                 </td>
                             </tr>
                         @endforeach

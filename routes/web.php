@@ -117,6 +117,9 @@ Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)
     Route::get('perizinan-baru',  'index')->name('newpermit');
     Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
     Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
+    Route::get('perizinan-baru/edit/{id}',  'edit')->name('edit');
+    Route::post('perizinan-baru/update/{id}',  'update')->name('update');
+
 
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan',  'index')->name('prolongation');
