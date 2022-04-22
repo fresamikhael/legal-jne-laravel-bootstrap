@@ -60,7 +60,7 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::post('vendor/post', [VendorController::class, 'store'])->name('legal-vendor-post');
     Route::get('vendor/check/{id}', [VendorController::class, 'legalCheck'])->name('legal-vendor-check');
 
-    Route::get('lease', [LeaseController::class, 'index'])->name('legal-lease');
+    Route::get('lease', [LeaseController::class, 'legalCreate'])->name('legal-lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('legal-lease-post');
     Route::get('lease/check/{id}', [LeaseController::class, 'legalCheck'])->name('legal-lease-check');
 });

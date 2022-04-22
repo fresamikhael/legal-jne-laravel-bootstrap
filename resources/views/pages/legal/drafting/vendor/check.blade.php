@@ -19,7 +19,7 @@
                 @endslot
 
                 @slot('data')
-                    @foreach ($data as $row)
+                    @foreach ($table as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>

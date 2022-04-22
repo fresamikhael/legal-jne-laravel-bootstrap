@@ -133,12 +133,28 @@
                     <h5>Dokumen :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
-                        name="file_mom" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
-                        name="file_agreement_draft" option />
+                    @if ($data->file_mom)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
+                            name="file_mom" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_mom, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
+                            value="Tidak Ada" readOnly />
+                    @endif
+                    @if ($data->file_agreement_draft)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
+                            name="file_agreement_draft" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
+                            value="Tidak Ada" readOnly />
+                    @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Form Pengajuan PKS*"
-                        name="file_claim_form">
+                        name="file_claim_form" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_claim_form, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
                     </x-file>
                 </div>
             </div>
@@ -227,20 +243,69 @@
                     <h5>Entitas :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan"
-                        name="file_deed_of_company" option />
+                    @if ($data->file_deed_of_company)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan"
+                            name="file_deed_of_company" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_deed_of_company, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan" value="Tidak Ada"
+                            readOnly />
+                    @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*"
-                        name="file_nib" />
+                        name="file_nib" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_nib, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
+                    </x-file>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)*"
-                        name="file_npwp" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha" name="file_business_permit"
-                        option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS" name="file_oss_location"
-                        option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi" name="file_director_id_card"
-                        option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" />
+                        name="file_npwp" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_npwp, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
+                    </x-file>
+                    @if ($data->file_business_permit)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha"
+                            name="file_business_permit" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_business_permit, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                    @if ($data->file_oss_location)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS"
+                            name="file_oss_location" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_oss_location, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                    @if ($data->file_director_id_card)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi"
+                            name="file_director_id_card" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_director_id_card, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                    @if ($data->file_sk)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk"
+                            type="download" path="{{ route('download.drafting', [substr($data->file_sk, 9)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                    @if ($data->file_other)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other"
+                            type="download" path="{{ route('download.drafting', [substr($data->file_other, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" value="Tidak Ada"
+                            readOnly />
+                    @endif
                 </div>
             </div>
 
