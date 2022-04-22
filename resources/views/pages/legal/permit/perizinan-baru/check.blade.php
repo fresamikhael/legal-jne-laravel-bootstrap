@@ -10,7 +10,7 @@
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
         <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.permit.newpermit-post') }}">
+            action="{{ route('legal.permit.check-post', $permit->id, $permit->user_id) }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
