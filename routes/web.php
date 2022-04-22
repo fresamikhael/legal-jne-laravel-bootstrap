@@ -97,7 +97,7 @@ Route::prefix('cs')->name('cs.')->group(function () {
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CsCustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
-        Route::post('/', 'store')->name('store');
+        Route::post('/{id}', 'store')->name('store');
     });
 });
 
