@@ -116,11 +116,10 @@ Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)
 
     Route::get('perizinan-baru',  'index')->name('newpermit');
     Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
+    Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
+
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan',  'index')->name('prolongation');
-
-    // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
-    // Route::get('other', [OtherController::class, 'index'])->name('other');
 });
 
 Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
@@ -136,9 +135,6 @@ Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
 
     Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
-
-    // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
-    // Route::get('other', [OtherController::class, 'index'])->name('other');
 });
 
 Route::prefix('database')->name('database.')->controller(DatabaseController::class)->group(function () {
