@@ -109,18 +109,19 @@ Route::prefix('information')->name('information.')->group(function () {
     })->name('index');
 });
 
-Route::prefix('permit')->name('permit.')->group(function () {
-    Route::get('/', function () {
-        return View('pages.user.permit.index');
-    })->name('index');
+Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)->group(function () {
+    // Route::get('/', function () {
+    //     return View('pages.user.permit.index');
+    // })->name('index');
 
-    Route::get('perizinan-baru', [NewPermitController::class, 'index'])->name('newpermit');
-    Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('newpermit-post');
+    Route::get('/dashboard', 'home');
+
+    Route::get('perizinan-baru',  'index')->name('newpermit');
+    Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
+    Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
+
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
-    Route::get('perpanjangan', [ProlongationController::class, 'index'])->name('prolongation');
-
-    // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
-    // Route::get('other', [OtherController::class, 'index'])->name('other');
+    Route::get('perpanjangan',  'index')->name('prolongation');
 });
 
 Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
@@ -129,13 +130,13 @@ Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
     })->name('index');
 
     Route::get('perizinan-baru', [NewPermitController::class, 'index_legal'])->name('newpermit');
-    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
     Route::post('perizinan-baru/post', [NewPermitController::class, 'store_legal'])->name('newpermit-post');
-    // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
-    Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
 
-    // Route::get('outstanding', [OutstandingController::class, 'index'])->name('outstanding');
-    // Route::get('other', [OtherController::class, 'index'])->name('other');
+    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
+    Route::post('perizinan-baru/check/post/{id}', [NewPermitController::class, 'store_check_legal'])->name('check-post');
+    // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
+
+    Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
 });
 
 Route::prefix('database')->name('database.')->controller(DatabaseController::class)->group(function () {
@@ -180,6 +181,9 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
 
     Route::post('internal-create/post', [InternalController::class, 'store'])->name('internal-post');
     Route::post('normative-create/post', [NormativeController::class, 'store'])->name('normative-post');
+
+    Route::get('internal-edit/{id}', [InternalController::class, 'edit'])->name('internal-edit');
+    Route::post('internal-update/post/{id}', [InternalController::class, 'update'])->name('internal-update');
 
     Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
     Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\permit;
 use App\Http\Controllers\Controller;
 use App\Mail\MailJNE;
 use App\Models\Permit;
+use App\Models\User;
 // use App\Models\Permit\Permit as PermitPermit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,24 +14,19 @@ use Illuminate\Support\Str;
 
 class NewPermitController extends Controller
 {
+
+    public function home()
+    {
+        return View('pages.user.permit.index');
+    }
     public function index()
     {
 
-        if (request()->ajax()) {
-            $data = Permit::all();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    return '
-                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
-                    ';
-                })
-
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('pages.user.permit.perizinan-baru.perizinan-baru');
+        $data = Permit::where('user_id', auth()->user()->id)
+            ->get();
+        return view('pages.user.permit.perizinan-baru.perizinan-baru', [
+            'data' => $data
+        ]);
     }
 
     public function store(Request $request)
@@ -94,35 +90,37 @@ class NewPermitController extends Controller
 
         // UploadFile::create($validatedData2);
         Permit::create($data);
-
+        $datenow = date('y-m-d', strtotime(Carbon::now()));
         $mailData = [
-            'title' => 'Mail from ItSolutionStuff.com',
-            'body' => 'This is for testing email using smtp.'
+            'title' => 'New permit has been sumbitted',
+            'body' => 'new permit has been sumbitted by ' . auth()->user()->name .  ' '
         ];
 
-        Mail::to('gunturburn@gmail.com')->send(new MailJNE($mailData));
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
 
         return redirect()->route('home');
     }
 
+    public function detail($id)
+    {
+        $permit = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.user.permit.perizinan-baru.detail', [
+            'permit' => $permit
+        ]);
+    }
+
+
     public function index_legal()
     {
 
-        if (request()->ajax()) {
-            $data = Permit::all();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    return '
-                        <a href="" class="btn btn-primary justify-content-center">Detail</a>
-                    ';
-                })
+        $data = Permit::where('user_id', auth()->user()->id)
+            ->get();
 
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('pages.user.permit.perizinan-baru.perizinan-baru');
+        return view('pages.legal.permit.perizinan-baru.perizinan-baru', [
+            'data' => $data
+        ]);
     }
 
     public function store_legal(Request $request)
@@ -140,10 +138,7 @@ class NewPermitController extends Controller
         //     'file_document3' => 'required',
         // ]);
         // ]);
-        $ser = $request->validate('user_id');
-        var_dump($ser);
         $data = $request->all();
-        // $id_permit = $data['id'];
 
         if ($request->file('file_disposition')) {
             $file = $request->file('file_disposition');
@@ -190,11 +185,11 @@ class NewPermitController extends Controller
         Permit::create($data);
 
         $mailData = [
-            'title' => 'Mail from ItSolutionStuff.com',
-            'body' => 'This is for testing email using smtp.'
+            'title' => 'New permit has been sumbitted',
+            'body' => 'new permit has been sumbitted by ' . auth()->user()->name .  ' '
         ];
 
-        Mail::to('gunturburn@gmail.com')->send(new MailJNE($mailData));
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
 
         return redirect()->route('home');
     }
@@ -207,5 +202,52 @@ class NewPermitController extends Controller
         return view('pages.legal.permit.perizinan-baru.check', [
             'permit' => $permit
         ]);
+    }
+
+    public function store_check_legal(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'return':
+                // $data = $request->all();
+                $data = $request->validate([
+                    // 'id' => 'required',
+                    'note' => 'required',
+                ]);
+
+
+                $item = Permit::findOrFail($id);
+                $user = User::findOrFail($item->user_id);
+
+                $item->update([$data, 'status' => 'RETURN']);
+
+
+                $mailData = [
+                    'title' => 'New permit has been rejected',
+                    'body' => 'new permit has been rejected by ' . auth()->user()->name .  ' '
+                ];
+
+                Mail::to($user->email)->send(new MailJNE($mailData));
+
+
+                return redirect()->route('legal.permit.index');
+                break;
+
+            case 'approve':
+                $data = $request->all();
+
+                $item = Permit::findOrFail($id);
+
+                $item->update([$data, 'status' => 'IN PROGRESS']);
+                $user = User::findOrFail($item->user_id);
+                $mailData = [
+                    'title' => 'New permit has been approve',
+                    'body' => 'new permit has been approve by ' . auth()->user()->name .  ' '
+                ];
+
+                Mail::to($user->email)->send(new MailJNE($mailData));
+
+                return redirect()->route('home');
+                break;
+        }
     }
 }

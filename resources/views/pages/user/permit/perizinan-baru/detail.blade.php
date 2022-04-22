@@ -167,16 +167,26 @@
                     <label class="col-sm-2 col-form-label">Note</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px"></textarea>
+                            style="height: 100px">{{ $permit->note }}</textarea>
                     </div>
                 </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->status }}" name="id" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button value="return" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"
                         style="background-color:#fe3f40">return</button>
                     <button value="approve" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"
                         style="background-color:#fe3f40">approve</button>
-                </div>
+                </div> --}}
             </div>
         </form>
 

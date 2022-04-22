@@ -19,8 +19,8 @@
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name"></x-input>
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type">
-                    @foreach ($type as $item)
-                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                    @foreach ($type as $types)
+                        <option value="{{ $types->name }}">{{ $types->name }}</option>
                     @endforeach
                 </x-select>
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file"></x-file>
