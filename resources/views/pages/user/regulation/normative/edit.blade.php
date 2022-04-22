@@ -1,7 +1,7 @@
 @extends ('layouts.user')
 
 @section('title')
-    Edit Regulasi Internal
+    Edit Regulasi Normatif
 @endsection
 
 @section('content')
@@ -12,10 +12,10 @@
             @endslot
         @endif
         <form class="mt-4" method="POST" enctype="multipart/form-data"
-            action="{{ route('regulation.internal-update', $data->id) }}">
+            action="{{ route('regulation.normative-update', $data->id) }}">
             @csrf
 
-            <h2>Regulasi Internal</h2>
+            <h2>Regulasi Normatif</h2>
             <div class="row mt-4">
                 {{-- <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name"
                     value="{{ $data->name }}"></x-input> --}}
