@@ -10,7 +10,7 @@
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
         <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.permit.newpermit-post') }}">
+            action="{{ route('legal.permit.check-post', $permit->id, $permit->user_id) }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
@@ -84,14 +84,92 @@
                 <div class="mt-4 mb-3 row">
                     <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
                 </div>
-                <x-input label="Disposisi" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
-                </x-input>
-                <x-input label="Dokumen 1" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
-                </x-input>
-                <x-input label="Dokumen 2" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
-                </x-input>
-                <x-input label="Dokumen 3" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
-                </x-input>
+                <div class="mb-3 row">
+                    <label for="specification" class="col-sm-2 col-form-label">1. Disposisi</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="form-group row">
+                                <a href="{{ route('download.permit', substr($permit->file_disposition, 7)) }}"
+                                    style="font-size:24px ">
+                                    <div
+                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        Download
+                                        <i class="fa fa-download"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="specification" class="col-sm-2 col-form-label">2. Dokumen 1</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="form-group row">
+                                <a href="{{ route('download.permit', substr($permit->file_document1, 7)) }}"
+                                    style="font-size:24px ">
+                                    <div
+                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        Download
+
+                                        <i class="fa fa-download"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="specification" class="col-sm-2 col-form-label">3. Dokumen 2</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="form-group row">
+                                <a href="{{ route('download.permit', substr($permit->file_document2, 7)) }}"
+                                    style="font-size:24px ">
+                                    <div
+                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        Download
+
+                                        <i class="fa fa-download"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="specification" class="col-sm-2 col-form-label">4. Dokumen 3</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="form-group row">
+                                <a href="{{ route('download.permit', substr($permit->file_document3, 7)) }}"
+                                    style="font-size:24px ">
+                                    <div
+                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        Download
+
+                                        <i class="fa fa-download"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Note</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                            style="height: 100px"></textarea>
+                    </div>
+                </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button value="return" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"

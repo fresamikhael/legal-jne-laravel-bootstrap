@@ -44,7 +44,7 @@
                 ],
                 [
                     'label' => 'Permit',
-                    'route' => 'permit',
+                    'route' => 'permit/dashboard',
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
             ];

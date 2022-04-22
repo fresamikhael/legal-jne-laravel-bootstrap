@@ -15,15 +15,25 @@
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
                 <x-modal-history id="dataTables">
-                    @slot('data')
+                    @slot('header')
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
-                            </td>
+                            <th>No</th>
+                            <th>Nomor Kasus</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
+                    @endslot
+                    @slot('data')
+                        @foreach ($data as $row)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $row->id }}</td>
+                                <td>{{ $row->status }}</td>
+                                <td>
+                                    <a href="{{ route('permit.detail', $row->id) }}" class="btn btn-primary">Lihat</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     @endslot
                 </x-modal-history>
 
