@@ -180,7 +180,7 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::post('normative-create/post', [NormativeController::class, 'store'])->name('normative-post');
 
     Route::get('internal-edit/{id}', [InternalController::class, 'edit'])->name('internal-edit');
-    Route::post('internal-update/post', [InternalController::class, 'update'])->name('internal-update');
+    Route::post('internal-update/post/{id}', [InternalController::class, 'update'])->name('internal-update');
 
     Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
     Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');

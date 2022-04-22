@@ -68,19 +68,27 @@ class InternalController extends Controller
         ]);
     }
 
-    public function update(Request $request, Regulation $regulation)
+    public function update(Request $request, Regulation $regulation,$id)
     {
-        $data = $request->all();
-
-        // $employee = Employee::where('id', $employee->id)->firstOrFail();
-
-        $validatedData = $request->validate([
+        $data = $request->validate([
             // 'id' => 'required',
             'name' => 'required',
             'type' => 'required',
             'file' => 'required',
         ]);
 
+
+        $regulation = Regulation::where('id',$id)->firstOrFail();
+
+        if ($request->file('file')) {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file'] = 'Regulation/'.$filename;
+            $file->move('Regulation', $filename);
+        }
+
+        
         $regulation->update($data);
 
         return redirect()->route('regulation.internal')->with('success','Edit Success');;
