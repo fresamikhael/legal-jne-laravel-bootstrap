@@ -41,24 +41,27 @@
             </div>
         </div>
 
-        <div class="row mt-3">
-            <div class="col-sm-3">
-                <h5>Berkas Legal Litigation 1 :</h5>
+        <form action="{{ route('legal-litigation-1.customer-dispute.store', [$cs->form_id]) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Berkas Legal Litigation 1 :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Tanggapan Somasi" name="file_subpoena_responese_draft"/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Analisis Kasus" name="case_analysis"/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Jika Ditokak)" name="note"/>
+                </div>
             </div>
-            <div class="col-sm-9">
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Tanggapan Somasi" name="file_subpoena_responese_draft"/>
-                <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Analisis Kasus" name="case_analysis"/>
-                <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Jika Ditokak)" name="note"/>
+    
+            <div class="d-flex align-items-center gap-3 justify-content-end">
+                <div class="d-flex justify-content-end">
+                    <x-button type="submit" name="Return" buttonClass="btn-danger" />
+                </div>
+                <div class="d-flex justify-content-end">
+                    <x-button type="submit" name="Approve" buttonClass="btn-primary" />
+                </div>
             </div>
-        </div>
-
-        <div class="d-flex align-items-center gap-3 justify-content-end">
-            <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Return" buttonClass="btn-danger" />
-            </div>
-            <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Approve" buttonClass="btn-primary" />
-            </div>
-        </div>
+        </form>
     </x-base>
 @endsection
