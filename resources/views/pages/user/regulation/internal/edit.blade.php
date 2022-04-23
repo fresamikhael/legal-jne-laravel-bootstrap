@@ -15,7 +15,7 @@
             action="{{ route('regulation.internal-update', $data->id) }}">
             @csrf
 
-            <h2>Regulasi Internal</h2>
+            <h2>Regulasi Internal - {{ $data->name }}</h2>
             <div class="row mt-4">
                 {{-- <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name"
                     value="{{ $data->name }}"></x-input> --}}

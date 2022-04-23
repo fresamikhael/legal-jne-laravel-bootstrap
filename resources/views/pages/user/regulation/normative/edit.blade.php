@@ -15,7 +15,7 @@
             action="{{ route('regulation.normative-update', $data->id) }}">
             @csrf
 
-            <h2>Regulasi Normatif</h2>
+            <h2>Regulasi Normatif - {{ $data->name }}</h2>
             <div class="row mt-4">
                 {{-- <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name"
                     value="{{ $data->name }}"></x-input> --}}
