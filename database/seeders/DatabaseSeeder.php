@@ -97,5 +97,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Regulasi 5',
             'type' => 'Normatif'
         ]);
+
+        RegulationType::create([
+            'name' => 'Regulasi 2',
+            'type' => 'Normatif'
+        ]);
+
+        RegulationType::create([
+            'name' => 'Regulasi 3',
+            'type' => 'Internal'
+        ]);
     }
 }

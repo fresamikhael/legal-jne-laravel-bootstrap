@@ -19,6 +19,7 @@ use App\Http\Controllers\Regulation\NormativeController;
 use App\Http\Controllers\Litigation\OutstandingController;
 use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
+use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,7 +105,19 @@ Route::prefix('cs')->name('cs.')->group(function () {
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CsCustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
-        Route::post('/', 'store')->name('store');
+        Route::post('/{id}', 'store')->name('store');
+    });
+});
+
+Route::prefix('legal-litigation-1')->name('legal-litigation-1.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal-litigation-1.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigation1CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'store')->name('store');
     });
 });
 
@@ -124,6 +137,9 @@ Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)
     Route::get('perizinan-baru',  'index')->name('newpermit');
     Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
     Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
+    Route::get('perizinan-baru/edit/{id}',  'edit')->name('edit');
+    Route::post('perizinan-baru/update/{id}',  'update')->name('update');
+
 
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan',  'index')->name('prolongation');
@@ -189,6 +205,9 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
 
     Route::get('internal-edit/{id}', [InternalController::class, 'edit'])->name('internal-edit');
     Route::post('internal-update/post/{id}', [InternalController::class, 'update'])->name('internal-update');
+
+    Route::get('normative-edit/{id}', [NormativeController::class, 'edit'])->name('normative-edit');
+    Route::post('normative-update/post/{id}', [NormativeController::class, 'update'])->name('normative-update');
 
     Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
     Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
