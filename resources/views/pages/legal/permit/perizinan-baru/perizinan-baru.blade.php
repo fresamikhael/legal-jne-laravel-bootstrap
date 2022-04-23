@@ -14,28 +14,58 @@
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
-                <x-modal-history id="dataTables">
-                    @slot('header')
-                        <tr>
-                            <th>No</th>
-                            <th>Nomor Kasus</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    @endslot
-                    @slot('data')
-                        @foreach ($data as $row)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ $row->status }}</td>
-                                <td>
-                                    <a href="" class="btn btn-primary">Lihat</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endslot
-                </x-modal-history>
+                <div class="row">
+                    <div class="col-6">
+                        <x-modal-history id="dataTables">
+                            @slot('header')
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nomor Kasus</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            @endslot
+                            @slot('data')
+                                @foreach ($data as $row)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $row->id }}</td>
+                                        <td>{{ $row->status }}</td>
+                                        <td>
+                                            <a href="{{ route('permit.detail', $row->id) }}" class="btn btn-primary">Lihat</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endslot
+                        </x-modal-history>
+                    </div>
+
+                    <div class="col-6">
+                        <x-modal-all-input id="dataTables">
+                            @slot('header')
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nomor Kasus</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            @endslot
+                            @slot('data')
+                                @foreach ($data2 as $row)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $row->id }}</td>
+                                        <td>{{ $row->status }}</td>
+                                        <td>
+                                            <a href="{{ route('permit.detail', $row->id) }}" class="btn btn-primary">Lihat</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endslot
+                        </x-modal-all-input>
+                    </div>
+                </div>
+
 
             </div>
             <div class="row mt-3">
@@ -85,7 +115,7 @@
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-danger btn-lg px-4 py-2" type="submit"
-                        style="background-color:#fe3f40">Button</button>
+                        style="background-color:#fe3f40">Submit</button>
                 </div>
             </div>
         </form>

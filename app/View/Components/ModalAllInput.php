@@ -6,14 +6,20 @@ use Illuminate\View\Component;
 
 class ModalAllInput extends Component
 {
+    public $id;
+    public $header;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        $id = null,
+        $header = null,
+    ) {
+
+        $this->id = $id;
+        $this->header = $header;
     }
 
     /**

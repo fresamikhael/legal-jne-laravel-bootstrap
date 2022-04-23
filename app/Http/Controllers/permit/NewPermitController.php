@@ -24,8 +24,10 @@ class NewPermitController extends Controller
 
         $data = Permit::where('user_id', auth()->user()->id)
             ->get();
+
         return view('pages.user.permit.perizinan-baru.perizinan-baru', [
-            'data' => $data
+            'data' => $data,
+
         ]);
     }
 
@@ -187,9 +189,10 @@ class NewPermitController extends Controller
 
         $data = Permit::where('user_id', auth()->user()->id)
             ->get();
-
+        $data2 = Permit::all();
         return view('pages.legal.permit.perizinan-baru.perizinan-baru', [
-            'data' => $data
+            'data' => $data,
+            'data2' => $data2
         ]);
     }
 

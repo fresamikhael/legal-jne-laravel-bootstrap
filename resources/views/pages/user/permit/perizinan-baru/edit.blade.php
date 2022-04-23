@@ -74,7 +74,7 @@
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-danger btn-lg px-4 py-2" type="submit"
-                    style="background-color:#fe3f40">Button</button>
+                    style="background-color:#fe3f40">Submit</button>
             </div>
 
         </form>

@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal"
+<button type="button" class="btn btn-primary d-flex align-items-center gap-1" data-bs-toggle="modal"
     data-bs-target="#staticBackdrop">
     <i class="fa fa-clock-o"></i> All Input
 </button>
@@ -13,14 +13,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="dataTables2" class="table table-striped table-bordered" style="width:100%">
+                <table id="{{ $id }}" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nomor Kasus</th>
                             <th>Status</th>
                             <th>Aksi</th>
-                        </tr>   
+                        </tr>
                     </thead>
                     <tbody>
                         {{ $data }}
