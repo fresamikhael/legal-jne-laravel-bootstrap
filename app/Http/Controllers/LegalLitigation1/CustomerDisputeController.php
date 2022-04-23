@@ -64,6 +64,7 @@ class CustomerDisputeController extends Controller
                 Cs::where('form_id', $id)->update([
                     'file_subpoena_responese_draft' => $data['file_subpoena_responese_draft'],
                     'case_analysis' => $data['case_analysis'],
+                    'note' => null,
                     'status' => $data['status'],
                 ]);
                 CustomerDispute::where('id', $id)->update([

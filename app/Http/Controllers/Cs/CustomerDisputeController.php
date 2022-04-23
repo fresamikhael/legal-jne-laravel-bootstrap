@@ -30,7 +30,20 @@ class CustomerDisputeController extends Controller
         $data = $request->all();
         
         $data['user_id'] = auth()->user()->id;
-        $data['status'] = 'DILENGKAPI OLEH CS';
+
+        $cs = Cs::where('form_id', $id)->first();
+
+        if ($request->note) {
+            $data['status'] = 'DIPERBAIKI OLEH CS';
+        } else {
+            $data['status'] = 'DILENGKAPI OLEH CS';
+        }
+
+        if ($request->nominal_indemnity_offer) {
+            $data['nominal_indemnity_offer'] = $cs->nominal_indemnity_offer;
+        } else {
+            $data['nominal_indemnity_offer'] = $request->nominal_indemnity_offer;
+        }
 
         if ($request->file('file_consumer_dispute_case_form')) {
             $file = $request->file('file_consumer_dispute_case_form');
@@ -38,6 +51,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_consumer_dispute_case_form'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_consumer_dispute_case_form'] = $cs->file_consumer_dispute_case_form;
         }
         if ($request->file('file_operational_delivery_chronology')) {
             $file = $request->file('file_operational_delivery_chronology');
@@ -45,6 +60,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_operational_delivery_chronology'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_operational_delivery_chronology'] = $cs->file_operational_delivery_chronology;
         }
         if ($request->file('file_cs_handling_chronology')) {
             $file = $request->file('file_cs_handling_chronology');
@@ -52,6 +69,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_cs_handling_chronology'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_cs_handling_chronology'] = $cs->file_cs_handling_chronology;
         }
         if ($request->file('file_pod_evidence')) {
             $file = $request->file('file_pod_evidence');
@@ -59,6 +78,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_pod_evidence'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_pod_evidence'] = $cs->file_pod_evidence;
         }
         if ($request->file('file_receipt_proof')) {
             $file = $request->file('file_receipt_proof');
@@ -66,6 +87,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_receipt_proof'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_receipt_proof'] = $cs->file_receipt_proof;
         }
         if ($request->file('file_proof_of_documentation1')) {
             $file = $request->file('file_proof_of_documentation1');
@@ -73,6 +96,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_proof_of_documentation1'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_proof_of_documentation1'] = $cs->file_proof_of_documentation1;
         }
         if ($request->file('file_proof_of_documentation2')) {
             $file = $request->file('file_proof_of_documentation2');
@@ -80,6 +105,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_proof_of_documentation2'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_proof_of_documentation2'] = $cs->file_proof_of_documentation2;
         }
         if ($request->file('file_proof_of_documentation3')) {
             $file = $request->file('file_proof_of_documentation3');
@@ -87,6 +114,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_proof_of_documentation3'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_proof_of_documentation3'] = $request->file_proof_of_documentation3;
         }
         if ($request->file('file_other_supporting_document')) {
             $file = $request->file('file_other_supporting_document');
@@ -94,6 +123,8 @@ class CustomerDisputeController extends Controller
             $filename = str()->random(40) . '.' . $extension;
             $data['file_other_supporting_document'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
+        } else {
+            $data['file_other_supporting_document'] = $cs->file_other_supporting_document;
         }
 
         Cs::where('form_id', $id)->update([

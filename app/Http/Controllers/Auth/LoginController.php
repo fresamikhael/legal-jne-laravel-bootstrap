@@ -60,11 +60,11 @@ class LoginController extends Controller
                 return redirect()->route('legal-lease-dashboard');
             } elseif (auth()->user()->role == 'CS') {
                 return to_route('cs.index');
-            } elseif (auth()->user()->role == 'LEGALLITIGASI1') {
+            } elseif (auth()->user()->role == 'LITI1') {
                 return to_route('legal-litigation-1.index');
-            } elseif (auth()->user()->role == 'LEGALLITIGASI2') {
+            } elseif (auth()->user()->role == 'LITI2') {
                 return to_route('legal-litigation-2.index');
-            } elseif (auth()->user()->role == 'LEGALMANAGER') {
+            } elseif (auth()->user()->role == 'LITIMANAGER') {
                 return to_route('legal-manager.index');
             } elseif (auth()->user()->role == 'CB') {
                 return redirect()->route('cb-home');

@@ -314,9 +314,6 @@
                             path="{{ route('download.drafting', [substr($data->file_internal_memo, 9)]) }}">Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
-                    @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="9. File Internal Memo" value="Tidak Ada"
-                            readOnly />
                     @endif
                 </div>
             </div>
