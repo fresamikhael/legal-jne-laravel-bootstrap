@@ -11,7 +11,16 @@ class VendorController extends Controller
 {
     public function index()
     {
-        return view('pages.user.drafting.vendor');
+        return view('pages.legal.drafting.vendor.index');
+    }
+
+    public function legalCreate()
+    {
+        $data = Vendor::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.legal.drafting.vendor.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -166,10 +175,23 @@ class VendorController extends Controller
             $file->move('Drafting', $filename);
         }
 
-        $data['user_id'] = 'USR003';
+        $data['user_id'] = auth()->user()->id;
 
         Vendor::create($data);
 
         return redirect()->route('drafting.vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function legalCheck($id)
+    {
+        $table = Vendor::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        $data = Vendor::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.vendor.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
     }
 }

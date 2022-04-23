@@ -111,6 +111,76 @@ class NewPermitController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.user.permit.perizinan-baru.edit', [
+            'data' => $data
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+            // 'user_id' => 'required',
+            'permit_type' => 'required',
+            'location' => 'required',
+            'specification' => 'required',
+            'application_reason' => 'required',
+            'file_disposition' => 'required',
+            'file_document1' => 'required',
+            'file_document2' => 'required',
+            'file_document3' => 'required',
+
+        ]);
+
+        if ($request->file('file_disposition')) {
+            $file = $request->file('file_disposition');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_disposition'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_document1')) {
+            $file = $request->file('file_document1');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_document1'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_document2')) {
+            $file = $request->file('file_document2');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_document2'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_document3')) {
+            $file = $request->file('file_document3');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_document3'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update([$data, 'status' => 'PENDING']);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        $mailData = [
+            'title' => '' . $item->permit_type . 'permit has been sumbitted',
+            'body' => 'permit has been sumbitted by ' . auth()->user()->name .  ' '
+        ];
+
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
+
+        return redirect()->route('home');
+    }
+
+
+
 
     public function index_legal()
     {
@@ -212,13 +282,15 @@ class NewPermitController extends Controller
                 $data = $request->validate([
                     // 'id' => 'required',
                     'note' => 'required',
+                    'status' => 'RETURN'
                 ]);
 
+                // $regulation = Regulation::where('id', $id)->firstOrFail();
 
-                $item = Permit::findOrFail($id);
+                $item = Permit::where('id', $id)->firstOrFail();
                 $user = User::findOrFail($item->user_id);
 
-                $item->update([$data, 'status' => 'RETURN']);
+                $item->update($data);
 
 
                 $mailData = [
@@ -233,11 +305,16 @@ class NewPermitController extends Controller
                 break;
 
             case 'approve':
-                $data = $request->all();
+                // $data = $request->all();
+                $data = $request->validate([
+                    // 'id' => 'required',
+                    'note' => 'required',
+                    'status' => 'IN PROGRESS'
+                ]);
 
                 $item = Permit::findOrFail($id);
 
-                $item->update([$data, 'status' => 'IN PROGRESS']);
+                $item->update($data);
                 $user = User::findOrFail($item->user_id);
                 $mailData = [
                     'title' => 'New permit has been approve',

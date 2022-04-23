@@ -167,7 +167,7 @@
                     <label class="col-sm-2 col-form-label">Note</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px">{{ $permit->note }}</textarea>
+                            style="height: 100px" disabled>{{ $permit->note }}</textarea>
                     </div>
                 </div>
 
@@ -180,6 +180,15 @@
                         </div>
                     </div>
                 </div>
+                @if ($permit->status == 'RETURN')
+                    <div class="mb-3 row">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ route('permit.edit', $permit->id) }}" class="btn btn-danger btn-lg px-4 py-2"
+                                style="background-color:#fe3f40">Edit</a>
+                        </div>
+                    </div>
+                @endif
+
 
                 {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button value="return" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"

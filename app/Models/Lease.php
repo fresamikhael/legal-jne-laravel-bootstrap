@@ -23,4 +23,9 @@ class Lease extends Model
             $model->id = IdGenerator::generate(['table' => 'leases', 'length' => 6, 'prefix' => 'LSE', 'reset_on_prefix_change'=>true]);
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

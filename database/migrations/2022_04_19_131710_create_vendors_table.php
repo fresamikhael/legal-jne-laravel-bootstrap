@@ -75,6 +75,10 @@ return new class extends Migration
             $table->string('file_business_permit2');
             $table->string('file_director_id_card2');
             $table->string('file_other2')->nullable();
+            $table->string('file_internal_memo')->nullable();
+
+            $table->string('user_note')->nullable();
+            $table->string('cb_note')->nullable();
             $table->string('status')->default('PENDING');
 
             $table->timestamps();

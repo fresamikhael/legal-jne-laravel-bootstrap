@@ -60,6 +60,10 @@ return new class extends Migration
             $table->string('file_director_id_card')->nullable();
             $table->string('file_sk')->nullable();
             $table->string('file_other');
+            $table->string('file_internal_memo')->nullable();
+
+            $table->string('user_note')->nullable();
+            $table->string('cb_note')->nullable();
             $table->string('status')->default('PENDING');
 
             $table->timestamps();

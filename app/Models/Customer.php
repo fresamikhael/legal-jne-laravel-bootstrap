@@ -23,4 +23,9 @@ class Customer extends Model
             $model->id = IdGenerator::generate(['table' => 'customers', 'length' => 6, 'prefix' => 'CST', 'reset_on_prefix_change'=>true]);
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
