@@ -20,6 +20,7 @@ use App\Http\Controllers\Litigation\OutstandingController;
 use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
+use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +109,18 @@ Route::prefix('legal-litigation-1')->name('legal-litigation-1.')->group(function
     })->name('index');
 
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigation1CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'store')->name('store');
+    });
+});
+
+Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal-litigation-2.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigation2CustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/{id}', 'store')->name('store');

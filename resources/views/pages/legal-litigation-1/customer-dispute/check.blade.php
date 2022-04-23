@@ -13,12 +13,13 @@
                 <x-alert message="{{ Session::get('message_success') }}" type="success"/>
             @endslot
         @endif
+        
         <div class="row mt-3">
             <div class="col-sm-6">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Kasus" value="{{ $cs->form_id }}" readOnly/>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" value="{{ $cs->id }}" readOnly/>
             </div>
             <div class="col-sm-6">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima" value="{{ $cs->id }}" readOnly/>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen Litigasi" value="{{ $cs->form_id }}" readOnly/>
             </div>
         </div>
 
@@ -41,27 +42,59 @@
             </div>
         </div>
 
-        <form action="{{ route('legal-litigation-1.customer-dispute.store', [$cs->form_id]) }}" method="post" enctype="multipart/form-data">
-            @csrf
+        @if ($cs->status == "RETURNED BY LEGAL LITIGASI 1")
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Berkas Legal Litigation 1 :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Tanggapan Somasi" name="file_subpoena_responese_draft"/>
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Analisis Kasus" name="case_analysis"/>
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Jika Ditokak)" name="note"/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Jika Ditokak)" name="note" readOnly>
+                        {{ $cs->note }}
+                    </x-textarea>
                 </div>
             </div>
-    
-            <div class="d-flex align-items-center gap-3 justify-content-end">
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-danger" name="action" value="return">Return</button>
+        @elseif ($cs->status == "APPROVED BY LEGAL LITIGASI 1")
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Berkas Legal Litigation 1 :</h5>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
+                <div class="col-sm-9">
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Tanggapan Somasi" name="file_subpoena_responese_draft" type="download" path="{{ route('download.litigation', [substr($cs->file_subpoena_responese_draft, 11)]) }}">Unduh <i class="fa fa-download"></i></x-file>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Analisis Kasus" name="case_analysis" readOnly>
+                        {{ $cs->case_analysis }}
+                    </x-textarea>
                 </div>
             </div>
-        </form>
+        @else
+            <form action="{{ route('legal-litigation-1.customer-dispute.store', [$cs->form_id]) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="row mt-3">
+                    <div class="col-sm-3">
+                        <h5>Berkas Legal Litigation 1 :</h5>
+                    </div>
+                    <div class="col-sm-9">
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Tanggapan Somasi" name="file_subpoena_responese_draft"/>
+                        <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Analisis Kasus" name="case_analysis"/>
+                        @if ($cs->status == "DIPERBAIKI OLEH CS")
+                            <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Penolakan Baru)" name="note"/>
+                            <x-textarea readOnly labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Penolakan Sebelumnya)">
+                                {{$cs->note}}
+                            </x-textarea>
+                        @else
+                            <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Note (Jika Ditokak)" name="note"/>
+                        @endif
+                    </div>
+                </div>
+        
+                <div class="d-flex align-items-center gap-3 justify-content-end">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger" name="action" value="return">Return</button>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
+                    </div>
+                </div>
+            </form>
+        @endif
     </x-base>
 @endsection
