@@ -12,20 +12,20 @@
                 @slot('header')
                     <tr>
                         <th>No</th>
-                        <th>Nomor Kasus</th>
+                        <th>Nomor</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 @endslot
 
                 @slot('data')
-                    @foreach ($data as $row)
+                    @foreach ($table as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('cs.customer-dispute.show', [$row->id]) }}" class="btn btn-primary">Lihat</a>
+                                <a href="{{ route('drafting.customer-check', [$row->id]) }}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
                     @endforeach

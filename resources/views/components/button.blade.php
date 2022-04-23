@@ -1,1 +1,2 @@
-<button type="{{ $type }}" class="btn {{ $buttonClass }}">{{ $name }}</button>
+<button value="{{ $value }}" name="action" type="{{ $type }}"
+    class="btn {{ $buttonClass }}">{{ $name }}</button>

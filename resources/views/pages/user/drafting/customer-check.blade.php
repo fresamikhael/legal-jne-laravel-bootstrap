@@ -34,8 +34,7 @@
             </x-modal-history>
         </div>
 
-        <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.drafting.legal-customer-check-post', $data->id) }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.customer-check-post', $data->id) }}">
             @csrf
 
             <div class="row mt-3">
@@ -308,33 +307,25 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" value="Tidak Ada"
                             readOnly />
                     @endif
-                    @if ($data->file_internal_memo)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. File Internal Memo"
-                            name="file_internal_memo" type="download"
-                            path="{{ route('download.drafting', [substr($data->file_internal_memo, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                    @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="9. File Internal Memo" value="Tidak Ada"
-                            readOnly />
-                    @endif
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Internal Memo"
+                        name="file_internal_memo" />
                 </div>
             </div>
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Contract Business</label>
-                <textarea class="form-control" name="cb_note" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="cb_note" id="" cols="30" rows="10" disabled>{{ $data->cb_note }}</textarea>
             </div>
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan untuk Contract Business</label>
-                <textarea class="form-control" name="user_note" id="" cols="30" rows="10"
-                    disabled>{{ $data->user_note }}</textarea>
+                <textarea class="form-control" name="user_note" id="" cols="30" rows="10"></textarea>
             </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
-                <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />
+                <x-button type="submit" buttonClass="btn-primary me-3">
+                    Submit
+                </x-button>
             </div>
         </form>
     </x-base>
