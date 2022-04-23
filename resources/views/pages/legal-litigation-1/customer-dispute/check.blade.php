@@ -56,10 +56,10 @@
     
             <div class="d-flex align-items-center gap-3 justify-content-end">
                 <div class="d-flex justify-content-end">
-                    <x-button type="submit" name="Return" buttonClass="btn-danger" />
+                    <button type="submit" class="btn btn-danger" name="action" value="return">Return</button>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <x-button type="submit" name="Approve" buttonClass="btn-primary" />
+                    <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
                 </div>
             </div>
         </form>

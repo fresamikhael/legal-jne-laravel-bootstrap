@@ -39,9 +39,41 @@ class CustomerDisputeController extends Controller
         switch ($request->input('action')) {
             case 'return':
                 $data['status'] = 'RETURNED BY LEGAL LITIGASI 1';
+                
+                Cs::where('form_id', $id)->update([
+                    'note' => $data['note'],
+                    'status' => $data['status']
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return to_route('legal-litigation-1.customer-dispute.index');
+                break;
+            case 'approve':
+                $data['status'] = 'APPROVED BY LEGAL LITIGASI 1';
+
+                if ($request->file('file_subpoena_responese_draft')) {
+                    $file = $request->file('file_subpoena_responese_draft');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_subpoena_responese_draft'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename); 
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'file_subpoena_responese_draft' => $data['file_subpoena_responese_draft'],
+                    'case_analysis' => $data['case_analysis'],
+                    'status' => $data['status'],
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return to_route('legal-litigation-1.customer-dispute.index');
                 break;
             default:
-                $data['status'] = 'APPROVED BY LEGAL LITIGASI 1';
+                return to_route('legal-litigation-1.customer-dispute.index');
                 break;
         }
     }
