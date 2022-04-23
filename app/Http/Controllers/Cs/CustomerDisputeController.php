@@ -40,9 +40,9 @@ class CustomerDisputeController extends Controller
         }
 
         if ($request->nominal_indemnity_offer) {
-            $data['nominal_indemnity_offer'] = $cs->nominal_indemnity_offer;
-        } else {
             $data['nominal_indemnity_offer'] = $request->nominal_indemnity_offer;
+        } else {
+            $data['nominal_indemnity_offer'] = $cs->nominal_indemnity_offer;
         }
 
         if ($request->file('file_consumer_dispute_case_form')) {
