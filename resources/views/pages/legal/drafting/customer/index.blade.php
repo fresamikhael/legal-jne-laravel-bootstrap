@@ -8,46 +8,30 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer</h2>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop2">
-                <i class="fa fa-clock-o"></i> Riwayat
-            </button>
+            <x-modal-history>
+                @slot('header')
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor Kasus</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                @endslot
 
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <table id="legal-customer" class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nomor Kasus</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nomor Kasus</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @slot('data')
+                    @foreach ($data as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
+                                    class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endslot
+            </x-modal-history>
         </div>
 
         @if (Session::get('message_success'))

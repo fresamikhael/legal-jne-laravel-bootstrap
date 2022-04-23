@@ -11,7 +11,16 @@ class LeaseController extends Controller
 {
     public function index()
     {
-        return view('pages.user.drafting.lease');
+        return view('pages.legal.drafting.lease.index');
+    }
+
+    public function legalCreate()
+    {
+        $data = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.legal.drafting.lease.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -231,10 +240,23 @@ class LeaseController extends Controller
             $file->move('Drafting', $filename);
         }
 
-        $data['user_id'] = 'USR003';
+        $data['user_id'] = auth()->user()->id;
 
         Lease::create($data);
 
         return redirect()->route('drafting.lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function legalCheck($id)
+    {
+        $table = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        $data = Lease::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.lease.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
     }
 }

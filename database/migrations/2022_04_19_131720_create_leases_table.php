@@ -90,6 +90,8 @@ return new class extends Migration
             $table->string('file_lease_application')->nullable();
             $table->string('file_lease_eligibility')->nullable();
 
+            $table->string('user_note')->nullable();
+            $table->string('cb_note')->nullable();
             $table->string('status')->default('PENDING');
             $table->timestamps();
 

@@ -11,12 +11,21 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('pages.user.drafting.customer');
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::query()->where('id', auth()->user()->id);
+
+        return view('pages.user.drafting.customer', compact('data', 'table'));
     }
 
     public function legalCreate()
     {
-        return view('pages.legal.drafting.customer.index');
+        $data = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.legal.drafting.customer.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -155,36 +164,6 @@ class CustomerController extends Controller
 
         $data = $request->all();
 
-        // $validatedData = $request->validate([
-        //     'id' => 'required',
-        //     'user_id' => 'required',
-        //     'first_party' => 'required',
-        //     'second_party' => 'required',
-        //     'third_party' => 'required',
-        //     'agreement_draft' => 'required',
-        //     'addendum' => 'required',
-        //     'customer_type' => 'required',
-        //     'assurance_goods' => 'required',
-        //     'compensation' => 'required',
-        //     'start_date' => 'required',
-        //     'end_date' => 'required',
-        //     'discount' => 'required',
-        //     'other_point' => 'required',
-        //     'shipping_type' => 'required',
-        //     'shipping_type_description' => 'required',
-        //     'file_mom' => 'required',
-        //     'file_agreement_draft' => 'required',
-        //     'file_claim_form' => 'required',
-        //     'file_sk_menkumham' => 'required',
-        //     'file_nib' => 'required',
-        //     'file_npwp' => 'required',
-        //     'file_business_permit	' => 'required',
-        //     'file_npwp' => 'required',
-        //     'file_business_permit	' => 'required',
-        //     'file_other' => 'required',
-        //     'status' => 'required',
-        // ]);
-
         if ($request->file('file_mom')) {
             $file = $request->file('file_mom');
             $extension = $file->getClientOriginalExtension();
@@ -280,11 +259,82 @@ class CustomerController extends Controller
         return redirect()->route('legal.drafting.legal-customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
     }
 
+    public function userCheck($id)
+    {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.user.drafting.customer-check', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function userCheckPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_internal_memo')) {
+            $file = $request->file('file_internal_memo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_internal_memo'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Customer::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_internal_memo' => $data['file_internal_memo'],
+            'user_note' => $request->user_note,
+            'status' => 'RETURNED BY USER']);
+
+        return redirect()->route('drafting.customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
     public function legalCheck($id)
     {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
         $data = Customer::where('id', $id)->firstOrFail();
         return view('pages.legal.drafting.customer.check', [
-            'data' => $data
+            'data' => $data,
+            'table' => $table
         ]);
+    }
+
+    public function legalCheckPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = Customer::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'RETURNED BY CONTRACT BUSINESS']);
+
+                return redirect()->route('legal.drafting.legal-customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                $item = Customer::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'APPROVED BY CONTRACT BUSINESS'
+                ]);
+
+                return redirect()->route('legal.drafting.legal-customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
     }
 }

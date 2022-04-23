@@ -9,6 +9,7 @@ class Button extends Component
     public $type;
     public $buttonClass;
     public $name;
+    public $value;
     /**
      * Create a new component instance.
      *
@@ -18,11 +19,13 @@ class Button extends Component
         $type = null,
         $buttonClass = null,
         $name = null,
+        $value = null
     )
     {
         $this->type = $type;
         $this->buttonClass = $buttonClass;
         $this->name = $name;
+        $this->value = $value;
     }
 
     /**
