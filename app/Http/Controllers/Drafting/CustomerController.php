@@ -275,8 +275,6 @@ class CustomerController extends Controller
     {
         $data = $request->all();
 
-        $item = Customer::findOrFail($id);
-
         if ($request->file('file_internal_memo')) {
             $file = $request->file('file_internal_memo');
             $extension = $file->getClientOriginalExtension();
@@ -285,8 +283,11 @@ class CustomerController extends Controller
             $file->move('Drafting', $filename);
         }
 
+        $item = Customer::findOrFail($id);
+
         $item->update([
             $data,
+            'file_internal_memo' => $data['file_internal_memo'],
             'user_note' => $request->user_note,
             'status' => 'RETURNED BY USER']);
 
