@@ -8,6 +8,7 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer Dispute</h2>
+            
             <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
