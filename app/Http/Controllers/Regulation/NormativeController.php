@@ -70,13 +70,14 @@ class NormativeController extends Controller
 
     public function update(Request $request, Regulation $regulation,$id)
     {
-        $data = $request->validate([
+        $request->validate([
             // 'id' => 'required',
             'name' => 'required',
             'type' => 'required',
-            'file' => 'required',
+            // 'file' => 'required',
         ]);
 
+        $data = $request->all();
 
         $regulation = Regulation::where('id',$id)->firstOrFail();
 
@@ -86,6 +87,9 @@ class NormativeController extends Controller
             $filename = Str::random(40) . '.' . $extension;
             $data['file'] = 'Regulation/'.$filename;
             $file->move('Regulation', $filename);
+        }
+        else {
+            unset($data['file']);
         }
 
         
