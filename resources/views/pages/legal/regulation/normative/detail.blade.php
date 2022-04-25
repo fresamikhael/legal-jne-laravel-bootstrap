@@ -1,7 +1,7 @@
 @extends ('layouts.user')
 
 @section('title')
-    Detail Internal
+    Detail Normatif
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-form-label" style="width: 10%;flex: 0 0 10%;max-width: 10%;">Detail</label>
+                <label class="col-form-label" style="width: 10%;flex: 0 0 10%;max-width: 10%;">Tipe Regulasi</label>
                 <div class="col-form-label" style="width: 5%;flex: 0 0 5%;max-width: 5%;">:</div>
                 <div class="col-sm-4 col-form-label">
                     {{ $data->type }}

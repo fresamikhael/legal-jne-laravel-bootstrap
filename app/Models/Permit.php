@@ -18,6 +18,18 @@ class Permit extends Model
 
     public $incrementing = false;
 
+    // protected $fillable = [
+    //     'status',
+    //     'permit_type',
+    //     'location',
+    //     'specification',
+    //     'application_reason',
+    //     'file_disposition',
+    //     'file_document1',
+    //     'file_document2',
+    //     'file_document3',
+    // ];
+
     public static function boot()
     {
         parent::boot();

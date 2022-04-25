@@ -21,7 +21,6 @@ class InternalController extends Controller
             ->addColumn('action',function($row){
                     return '
                         <a href="'.route('regulation.internal-detail',[$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
-                        <a href="'.route('regulation.internal-edit',[$row->id]).'" class="btn btn-primary justify-content-center">Edit</a>
                     ';
             })
 
@@ -31,11 +30,31 @@ class InternalController extends Controller
         return view('pages.user.regulation.internal.index');
     }
 
+    public function indexLegal()
+    {
+        if (request()->ajax())
+        {
+            $data = Regulation::query()->where('rule_type', 'Internal');
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action',function($row){
+                    return '
+                        <a href="'.route('legal.regulation.internal-detail',[$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
+                        <a href="'.route('legal.regulation.internal-edit',[$row->id]).'" class="btn btn-primary justify-content-center">Edit</a>
+                    ';
+            })
+
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('pages.legal.regulation.internal.index');
+    }
+
     public function create()
     {
         $type = RegulationType::query()->where('type', 'Internal')->get();
         
-        return view('pages.user.regulation.internal.create', [
+        return view('pages.legal.regulation.internal.create', [
             'type' => $type
         ]);
     }
@@ -55,14 +74,14 @@ class InternalController extends Controller
 
         Regulation::create($data);
 
-        return redirect()->route('regulation.internal-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+        return redirect()->route('legal.regulation.internal-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 
     public function edit($id)
     {
         $data = Regulation::where('id', $id)->firstOrFail();
         $type = RegulationType::query()->where('type', 'Internal')->get();
-        return view('pages.user.regulation.internal.edit', [
+        return view('pages.legal.regulation.internal.edit', [
             'data' => $data,
             'type' => $type
         ]);
@@ -95,7 +114,7 @@ class InternalController extends Controller
         
         $regulation->update($data);
 
-        return redirect()->route('regulation.internal')->with('success','Edit Success');;
+        return redirect()->route('legal.regulation.internal')->with('message_success','Berhasil memperbaharui data');;
     }
 
     public function show($id)
@@ -103,6 +122,15 @@ class InternalController extends Controller
         $data = Regulation::where('id', $id)->firstOrFail();
 
         return view('pages.user.regulation.internal.detail', [
+            'data' => $data
+        ]);
+    }
+
+    public function showLegal($id)
+    {
+        $data = Regulation::where('id', $id)->firstOrFail();
+
+        return view('pages.legal.regulation.internal.detail', [
             'data' => $data
         ]);
     }

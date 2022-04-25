@@ -66,8 +66,7 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="application_reason" placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px"></textarea>
+                        <textarea class="form-control" name="application_reason" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
                 </div>
                 <div class="mt-4 mb-3 row">

@@ -24,13 +24,13 @@
                 </div>
             </div>
             <div class="form-group row mt-3">
-                <a href="{{ route('download.regulation', substr($data->file, 11)) }}" style="font-size:24px ">
-                    <div
-                        class="col-sm-3 btn btn-primary justify-content-center col-form-label bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        Download
+                <div class="col-sm-3 btn btn-primary justify-content-center col-form-label">
+                    <a href="{{ route('download.regulation', substr($data->file, 11)) }}"
+                        style="font-size:16px; color:white">
+                        Unduh
                         <i class="fa fa-download"></i>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
 

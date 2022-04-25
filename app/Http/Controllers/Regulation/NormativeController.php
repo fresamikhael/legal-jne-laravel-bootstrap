@@ -21,7 +21,6 @@ class NormativeController extends Controller
             ->addColumn('action',function($row){
                     return '
                         <a href="'.route('regulation.normative-detail',[$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
-                        <a href="'.route('regulation.normative-edit',[$row->id]).'" class="btn btn-primary justify-content-center">Edit</a>
                     ';
             })
 
@@ -31,11 +30,31 @@ class NormativeController extends Controller
         return view('pages.user.regulation.normative.index');
     }
 
+    public function indexLegal()
+    {
+        if (request()->ajax())
+        {
+            $data = Regulation::query()->where('rule_type', 'Normatif');
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action',function($row){
+                    return '
+                        <a href="'.route('legal.regulation.normative-detail',[$row->id]).'" class="btn btn-primary justify-content-center">Detail</a>
+                        <a href="'.route('legal.regulation.normative-edit',[$row->id]).'" class="btn btn-primary justify-content-center">Edit</a>
+                    ';
+            })
+
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('pages.legal.regulation.normative.index');
+    }
+
     public function create()
     {
         $type = RegulationType::query()->where('type', 'Normatif')->get();
         
-        return view('pages.user.regulation.normative.create',[
+        return view('pages.legal.regulation.normative.create',[
             'type' => $type
         ]);
     }
@@ -55,14 +74,14 @@ class NormativeController extends Controller
 
         Regulation::create($data);
 
-        return redirect()->route('regulation.normative-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+        return redirect()->route('legal.regulation.normative-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 
     public function edit($id)
     {
         $data = Regulation::where('id', $id)->firstOrFail();
         $type = RegulationType::query()->where('type', 'Normatif')->get();
-        return view('pages.user.regulation.normative.edit', [
+        return view('pages.legal.regulation.normative.edit', [
             'data' => $data,
             'type' => $type
         ]);
@@ -95,7 +114,7 @@ class NormativeController extends Controller
         
         $regulation->update($data);
 
-        return redirect()->route('regulation.normative')->with('success','Edit Success');;
+        return redirect()->route('legal.regulation.normative')->with('message_success','Berhasil memperbaharui data');;
     }
 
     public function show($id)
@@ -103,6 +122,15 @@ class NormativeController extends Controller
         $data = Regulation::where('id', $id)->firstOrFail();
 
         return view('pages.user.regulation.normative.detail', [
+            'data' => $data
+        ]);
+    }
+
+    public function showLegal($id)
+    {
+        $data = Regulation::where('id', $id)->firstOrFail();
+
+        return view('pages.legal.regulation.normative.detail', [
             'data' => $data
         ]);
     }

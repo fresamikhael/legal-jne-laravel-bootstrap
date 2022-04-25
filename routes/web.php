@@ -167,22 +167,35 @@ Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)
     Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
     Route::get('perizinan-baru/edit/{id}',  'edit')->name('edit');
     Route::post('perizinan-baru/update/{id}',  'update')->name('update');
+    Route::get('perizinan-baru/konfirmasi_skpd/{id}',  'confirm_skpd')->name('confirm_skpd');
+    Route::post('perizinan-baru/konfirmasi_skpd/post/{id}',  'confirm_skpd_update')->name('confirm_skpd_update');
 
 
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan',  'index')->name('prolongation');
 });
 
-Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
+Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitController::class)->group(function () {
     Route::get('/', function () {
         return View('pages.legal.permit.index');
     })->name('index');
 
-    Route::get('perizinan-baru', [NewPermitController::class, 'index_legal'])->name('newpermit');
-    Route::post('perizinan-baru/post', [NewPermitController::class, 'store_legal'])->name('newpermit-post');
+    Route::get('perizinan-baru',  'index_legal')->name('newpermit');
+    Route::post('perizinan-baru/post',  'store_legal')->name('newpermit-post');
 
-    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
-    Route::post('perizinan-baru/check/post/{id}', [NewPermitController::class, 'store_check_legal'])->name('check-post');
+    Route::get('perizinan-baru/check/{id}', 'check_legal')->name('check');
+    Route::post('perizinan-baru/check/post/{id}',  'store_check_legal')->name('check-post');
+
+    Route::get('perizinan-baru/detail/{id}',  'detail_legal')->name('detail');
+    Route::get('perizinan-baru/edit/skpd/{id}',  'upload_skpd_legal')->name('upload_skpd');
+    Route::post('perizinan-baru/update/{id}',  'update_legal')->name('update');
+    Route::get('perizinan-baru/edit/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
+    Route::post('perizinan-baru/update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
+
+
+
+
+
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
 
     Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
@@ -225,6 +238,18 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('internal', [InternalController::class, 'index'])->name('internal');
     Route::get('normative', [NormativeController::class, 'index'])->name('normative');
 
+    Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
+    Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
+});
+
+Route::prefix('legal/regulation')->name('legal.regulation.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.regulation.index');
+    })->name('index');
+
+    Route::get('internal', [InternalController::class, 'indexLegal'])->name('internal');
+    Route::get('normative', [NormativeController::class, 'indexLegal'])->name('normative');
+
     Route::get('internal-create', [InternalController::class, 'create'])->name('internal-create');
     Route::get('normative-create', [NormativeController::class, 'create'])->name('normative-create');
 
@@ -237,8 +262,8 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('normative-edit/{id}', [NormativeController::class, 'edit'])->name('normative-edit');
     Route::post('normative-update/post/{id}', [NormativeController::class, 'update'])->name('normative-update');
 
-    Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
-    Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
+    Route::get('internal-detail/{id}', [InternalController::class, 'showLegal'])->name('internal-detail');
+    Route::get('normative-detail/{id}', [NormativeController::class, 'showLegal'])->name('normative-detail');
 });
 
 Route::get('/statistic', function () {

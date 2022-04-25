@@ -28,6 +28,7 @@ class CreatePermitsTable extends Migration
             $table->text('note')->nullable();
             $table->string('latest_skpd')->nullable();
             $table->string('proof_of_payment')->nullable();
+            $table->boolean('cost_control')->nullable();
             $table->string('status')->default('PENDING');
             $table->timestamps();
 
