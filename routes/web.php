@@ -158,16 +158,23 @@ Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)
     Route::get('perpanjangan',  'index')->name('prolongation');
 });
 
-Route::prefix('legal/permit')->name('legal.permit.')->group(function () {
+Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitController::class)->group(function () {
     Route::get('/', function () {
         return View('pages.legal.permit.index');
     })->name('index');
 
-    Route::get('perizinan-baru', [NewPermitController::class, 'index_legal'])->name('newpermit');
-    Route::post('perizinan-baru/post', [NewPermitController::class, 'store_legal'])->name('newpermit-post');
+    Route::get('perizinan-baru',  'index_legal')->name('newpermit');
+    Route::post('perizinan-baru/post',  'store_legal')->name('newpermit-post');
 
-    Route::get('perizinan-baru/check/{id}', [NewPermitController::class, 'check_legal'])->name('check');
-    Route::post('perizinan-baru/check/post/{id}', [NewPermitController::class, 'store_check_legal'])->name('check-post');
+    Route::get('perizinan-baru/check/{id}', 'check_legal')->name('check');
+    Route::post('perizinan-baru/check/post/{id}',  'store_check_legal')->name('check-post');
+
+    Route::get('perizinan-baru/detail/{id}',  'detail_legal')->name('detail');
+    Route::get('perizinan-baru/edit/{id}',  'edit_legal')->name('edit');
+    Route::post('perizinan-baru/update/{id}',  'update_legal')->name('update');
+
+
+
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
 
     Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');

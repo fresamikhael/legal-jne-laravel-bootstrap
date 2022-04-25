@@ -148,8 +148,8 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Note</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px" disabled>{{ $permit->note }}</textarea>
+                        <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"
+                            disabled>{{ $permit->note }}</textarea>
                     </div>
 
                 </div>

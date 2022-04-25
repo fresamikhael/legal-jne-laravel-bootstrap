@@ -4,6 +4,7 @@ namespace App\Http\Controllers\permit;
 
 use App\Http\Controllers\Controller;
 use App\Mail\MailJNE;
+use App\Mail\MailUPDATE;
 use App\Models\Permit;
 use App\Models\User;
 // use App\Models\Permit\Permit as PermitPermit;
@@ -301,7 +302,7 @@ class NewPermitController extends Controller
                     'body' => 'new permit has been rejected by ' . auth()->user()->name .  ' '
                 ];
 
-                Mail::to($user->email)->send(new MailJNE($mailData));
+                Mail::to($user->email)->send(new MailUPDATE($mailData));
 
 
                 return redirect()->route('legal.permit.index');
@@ -324,10 +325,69 @@ class NewPermitController extends Controller
                     'body' => 'new permit has been approve by ' . auth()->user()->name .  ' '
                 ];
 
-                Mail::to($user->email)->send(new MailJNE($mailData));
+                Mail::to($user->email)->send(new MailUPDATE($mailData));
 
                 return redirect()->route('home');
                 break;
         }
+    }
+
+    public function detail_legal($id)
+    {
+        $permit = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.legal.permit.perizinan-baru.detail', [
+            'permit' => $permit
+        ]);
+    }
+
+    public function edit_legal($id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.legal.permit.perizinan-baru.edit', [
+            'data' => $data
+        ]);
+    }
+    public function update_legal(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+            // 'user_id' => 'required',
+            // 'permit_type' => 'required',
+            // 'location' => 'required',
+            // 'specification' => 'required',
+            // 'application_reason' => 'required',
+            // 'file_disposition' => 'required',
+            // 'file_document1' => 'required',
+            // 'file_document2' => 'required',
+            // 'file_document3' => 'required',
+            'latest_skpd' => 'required'
+
+        ]);
+
+        if ($request->file('latest_skpd')) {
+            $file = $request->file('latest_skpd');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['latest_skpd'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update($data);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        $mailData = [
+            'title' => 'update from legal',
+            'body' => 'legal telah mengupload skpd'
+        ];
+
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
+
+        return redirect()->route('legal.permit.newpermit');
     }
 }

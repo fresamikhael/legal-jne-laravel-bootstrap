@@ -144,6 +144,23 @@
 
                     </div>
                 </div>
+                @if ($permit->latest_skpd != null)
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-2 col-form-label">5. SKPD</label>
+                        <div class="col-sm-10">
+                            <a href="{{ route('download.permit', substr($permit->latest_skpd, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
 
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Note</label>
@@ -163,11 +180,11 @@
                         </div>
                     </div>
                 </div>
-                @if ($permit->status == 'RETURN')
+                @if ($permit->status == 'IN PROGRESS')
                     <div class="mb-3 row">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="{{ route('permit.edit', $permit->id) }}" class="btn btn-danger btn-lg px-4 py-2"
-                                style="background-color:#fe3f40">Edit</a>
+                            <a href="{{ route('legal.permit.edit', $permit->id) }}"
+                                class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">Upload SKPD</a>
                         </div>
                     </div>
                 @endif

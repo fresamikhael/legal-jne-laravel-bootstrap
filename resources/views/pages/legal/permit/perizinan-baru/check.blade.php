@@ -74,92 +74,67 @@
                 {{-- <x-input label="Alasan Permohonan" name="application_reason" value="{{ $permit->location }}"
                     labelClass="col-sm-2" fieldClass="col-sm-10" read-only>
                 </x-input> --}}
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-                            readonly>{{ $permit->location }}</textarea>
-                    </div>
-                </div>
                 <div class="mt-4 mb-3 row">
                     <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
                 </div>
                 <div class="mb-3 row">
-                    <label for="specification" class="col-sm-2 col-form-label">1. Disposisi</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <div class="form-group row">
-                                <a href="{{ route('download.permit', substr($permit->file_disposition, 7)) }}"
-                                    style="font-size:24px ">
-                                    <div
-                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Download
-                                        <i class="fa fa-download"></i>
-                                    </div>
-                                </a>
+                    <label for="specification" class="col-sm-4 col-form-label">1. Disposisi</label>
+
+                    <div class="col-sm-8">
+                        <a href="{{ route('download.permit', substr($permit->file_disposition, 7)) }}"
+                            style="font-size:24px ">
+                            <div
+                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Unduh
+                                <i class="fa fa-download"></i>
                             </div>
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
+                        </a>
+
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="specification" class="col-sm-2 col-form-label">2. Dokumen 1</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <div class="form-group row">
-                                <a href="{{ route('download.permit', substr($permit->file_document1, 7)) }}"
-                                    style="font-size:24px ">
-                                    <div
-                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Download
-
-                                        <i class="fa fa-download"></i>
-                                    </div>
-                                </a>
+                    <label for="specification" class="col-sm-4 col-form-label">2. Dokumen 1</label>
+                    <div class="col-sm-8">
+                        <a href="{{ route('download.permit', substr($permit->file_document1, 7)) }}"
+                            style="font-size:24px ">
+                            <div
+                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Unduh
+                                <i class="fa fa-download"></i>
                             </div>
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
+                        </a>
+
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="specification" class="col-sm-2 col-form-label">3. Dokumen 2</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <div class="form-group row">
-                                <a href="{{ route('download.permit', substr($permit->file_document2, 7)) }}"
-                                    style="font-size:24px ">
-                                    <div
-                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Download
-
-                                        <i class="fa fa-download"></i>
-                                    </div>
-                                </a>
+                    <label for="specification" class="col-sm-4 col-form-label">3. Dokumen 2</label>
+                    <div class="col-sm-8">
+                        <a href="{{ route('download.permit', substr($permit->file_document2, 7)) }}"
+                            style="font-size:24px ">
+                            <div
+                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Unduh
+                                <i class="fa fa-download"></i>
                             </div>
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
+                        </a>
+
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="specification" class="col-sm-2 col-form-label">4. Dokumen 3</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <div class="form-group row">
-                                <a href="{{ route('download.permit', substr($permit->file_document3, 7)) }}"
-                                    style="font-size:24px ">
-                                    <div
-                                        class="col-form-label text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Download
-
-                                        <i class="fa fa-download"></i>
-                                    </div>
-                                </a>
+                    <label for="specification" class="col-sm-4 col-form-label">4. Dokumen 3</label>
+                    <div class="col-sm-8">
+                        <a href="{{ route('download.permit', substr($permit->file_document3, 7)) }}"
+                            style="font-size:24px ">
+                            <div
+                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Unduh
+                                <i class="fa fa-download"></i>
                             </div>
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
+                        </a>
+
                     </div>
                 </div>
 
