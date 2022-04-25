@@ -152,6 +152,8 @@ Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)
     Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
     Route::get('perizinan-baru/edit/{id}',  'edit')->name('edit');
     Route::post('perizinan-baru/update/{id}',  'update')->name('update');
+    Route::get('perizinan-baru/konfirmasi_skpd/{id}',  'confirm_skpd')->name('confirm_skpd');
+    Route::post('perizinan-baru/konfirmasi_skpd/post/{id}',  'confirm_skpd_update')->name('confirm_skpd_update');
 
 
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
@@ -170,8 +172,12 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
     Route::post('perizinan-baru/check/post/{id}',  'store_check_legal')->name('check-post');
 
     Route::get('perizinan-baru/detail/{id}',  'detail_legal')->name('detail');
-    Route::get('perizinan-baru/edit/{id}',  'edit_legal')->name('edit');
+    Route::get('perizinan-baru/edit/skpd/{id}',  'upload_skpd_legal')->name('upload_skpd');
     Route::post('perizinan-baru/update/{id}',  'update_legal')->name('update');
+    Route::get('perizinan-baru/edit/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
+    Route::post('perizinan-baru/update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
+
+
 
 
 

@@ -10,12 +10,10 @@
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
         <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.permit.update', $data->id) }}">
+            action="{{ route('legal.permit.update_invoice', $data->id) }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
-                <h2>Perizinan Baru</h2>
-
-
+                <h2>Upload SKPD</h2>
             </div>
 
 
@@ -24,6 +22,17 @@
             </div>
             <x-input label="1. SKPD" name="latest_skpd" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
             </x-input>
+            <x-input label="2. Bukti pembayaran" name="proof_of_payment" type="file" labelClass="col-sm-4"
+                fieldClass="col-sm-8">
+            </x-input>
+            <label class="col-sm-2 col-form-label">Note</label>
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"></textarea>
+                </div>
+            </div>
+            <input type="hidden" name="status" value="CLOSE">
+
 
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
