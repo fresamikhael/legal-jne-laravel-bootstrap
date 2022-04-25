@@ -114,7 +114,7 @@ class InternalController extends Controller
         
         $regulation->update($data);
 
-        return redirect()->route('legal.regulation.internal')->with('success','Edit Success');;
+        return redirect()->route('legal.regulation.internal')->with('message_success','Berhasil memperbaharui data');;
     }
 
     public function show($id)
