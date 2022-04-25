@@ -89,23 +89,44 @@ class DatabaseSeeder extends Seeder
         }
 
         RegulationType::create([
-            'name' => 'Regulasi 1',
+            'name' => 'Peraturan Perusahaan',
             'type' => 'Internal'
         ]);
 
         RegulationType::create([
-            'name' => 'Regulasi 5',
-            'type' => 'Normatif'
-        ]);
-
-        RegulationType::create([
-            'name' => 'Regulasi 2',
-            'type' => 'Normatif'
-        ]);
-
-        RegulationType::create([
-            'name' => 'Regulasi 3',
+            'name' => 'SK DIREKSI',
             'type' => 'Internal'
         ]);
+
+        RegulationType::create([
+            'name' => 'SE DIREKSI',
+            'type' => 'Internal'
+        ]);
+
+        RegulationType::create([
+            'name' => 'Internal Memo',
+            'type' => 'Internal'
+        ]);
+
+        RegulationType::create([
+            'name' => 'Undang-Undang',
+            'type' => 'Normatif'
+        ]);
+
+        RegulationType::create([
+            'name' => 'Peraturan Pemerintah',
+            'type' => 'Normatif'
+        ]);
+
+        RegulationType::create([
+            'name' => 'Peraturan Menteri',
+            'type' => 'Normatif'
+        ]);
+
+        RegulationType::create([
+            'name' => 'PERDA Provinsi/Kota',
+            'type' => 'Normatif'
+        ]);
+        
     }
 }

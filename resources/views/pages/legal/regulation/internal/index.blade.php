@@ -6,6 +6,11 @@
 
 @section('content')
     <x-base>
+        @if (Session::get('message_success'))
+            @slot('alert')
+                <x-alert message="{{ Session::get('message_success') }}" type="success" />
+            @endslot
+        @endif
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">

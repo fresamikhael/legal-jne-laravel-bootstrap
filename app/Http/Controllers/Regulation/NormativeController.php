@@ -114,7 +114,7 @@ class NormativeController extends Controller
         
         $regulation->update($data);
 
-        return redirect()->route('legal.regulation.normative')->with('success','Edit Success');;
+        return redirect()->route('legal.regulation.normative')->with('message_success','Berhasil memperbaharui data');;
     }
 
     public function show($id)
