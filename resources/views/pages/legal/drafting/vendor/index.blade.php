@@ -159,6 +159,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Entitas :</h5>
@@ -181,6 +183,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Korespondensi :</h5>
@@ -194,6 +198,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Dokumen :</h5>
@@ -204,10 +210,10 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. MOM Kesepakatan Para Pihak"
                         name="file_mom" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Disposisi" name="file_dispotition" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Draft Perjanjian dalam bentuk word"
-                        name="file_agreement_draft" />
                 </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
@@ -227,6 +233,8 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Lain-lain" name="file_other2" />
                 </div>
             </div>
+
+            <hr>
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />

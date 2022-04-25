@@ -11,7 +11,12 @@ class VendorController extends Controller
 {
     public function index()
     {
-        return view('pages.legal.drafting.vendor.index');
+        $table = Vendor::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Vendor::query()->where('id', auth()->user()->id);
+
+        return view('pages.user.drafting.vendor', compact('data', 'table'));
     }
 
     public function legalCreate()
@@ -182,6 +187,41 @@ class VendorController extends Controller
         return redirect()->route('drafting.vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
     }
 
+    public function userCheck($id)
+    {
+        $table = Vendor::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Vendor::where('id', $id)->firstOrFail();
+        return view('pages.user.drafting.vendor-check', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function userCheckPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_internal_memo')) {
+            $file = $request->file('file_internal_memo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_internal_memo'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Vendor::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_internal_memo' => $data['file_internal_memo'],
+            'user_note' => $request->user_note,
+            'status' => 'RETURNED BY USER']);
+
+        return redirect()->route('drafting.vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
     public function legalCheck($id)
     {
         $table = Vendor::orderBy('id', 'DESC')
@@ -193,5 +233,37 @@ class VendorController extends Controller
             'data' => $data,
             'table' => $table
         ]);
+    }
+
+    public function legalCheckPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = Vendor::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'RETURNED BY CONTRACT BUSINESS']);
+
+                return redirect()->route('legal.drafting.legal-vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                $item = Vendor::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'APPROVED BY CONTRACT BUSINESS'
+                ]);
+
+                return redirect()->route('legal.drafting.legal-vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
     }
 }

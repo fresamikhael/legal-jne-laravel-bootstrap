@@ -259,6 +259,167 @@ class CustomerController extends Controller
         return redirect()->route('legal.drafting.legal-customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
     }
 
+    public function userUpdate($id)
+    {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.user.drafting.customer-update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function userUpdatePost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = Customer::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'user_note' => $request->user_note,
+                    'status' => 'USER RETURNED AGREEMENT DRAFT']);
+
+                return redirect()->route('drafting.customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                $item = Customer::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'user_note' => $request->user_note,
+                    'status' => 'USER APPROVED AGREEMENT DRAFT'
+                ]);
+
+                return redirect()->route('drafting.customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
+    }
+
+    public function userProcess($id)
+    {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.user.drafting.customer-process', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function userProcessPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_agreement_signature_final')) {
+            $file = $request->file('file_agreement_signature_final');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_agreement_signature_final'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Customer::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_agreement_signature_final' => $data['file_agreement_signature_final'],
+            'user_note' => $request->user_note,
+            'status' => 'USER SEND SIGNATURED FINAL AGREEMENT']);
+
+        return redirect()->route('drafting.customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function legalProcess($id)
+    {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.customer.process', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalProcessPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_agreement_signature')) {
+            $file = $request->file('file_agreement_signature');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_agreement_signature'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Customer::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_agreement_signature' => $data['file_agreement_signature'],
+            'cb_note' => $request->cb_note,
+            'status' => 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE']);
+
+        return redirect()->route('legal.drafting.legal-customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function legalUpdate($id)
+    {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.customer.update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalFinal($id)
+    {
+        $table = Customer::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Customer::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.customer.final', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalUpdatePost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_agreement_draft')) {
+            $file = $request->file('file_agreement_draft');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_agreement_draft'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Customer::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_agreement_draft' => $data['file_agreement_draft'],
+            'cb_note' => $request->cb_note,
+            'status' => 'CONTRACT BUSINESS SEND AGREEMENT DRAFT']);
+
+        return redirect()->route('legal.drafting.legal-customer')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
     public function userCheck($id)
     {
         $table = Customer::orderBy('id', 'DESC')

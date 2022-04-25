@@ -30,24 +30,14 @@
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
                                 @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
-                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
-                                        DRAFT</button>
-                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
-                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
                                 @else
                                     <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
                                 @endif
                             </td>
                             <td>
                                 @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
-                                    <a href="{{ route('legal.drafting.legal-customer-update', [$row->id]) }}"
+                                    <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
-                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
-                                    <a href="{{ route('legal.drafting.legal-customer-process', [$row->id]) }}"
-                                        class="btn btn-primary">Check</a>
                                 @else
                                     <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
                                         class="btn btn-danger">Update</a>
@@ -60,7 +50,7 @@
         </div>
 
         <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.drafting.legal-customer-check-post', $data->id) }}">
+            action="{{ route('legal.drafting.legal-customer-process-post', $data->id) }}">
             @csrf
 
             <div class="row mt-3">
@@ -179,6 +169,22 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Form Pengajuan PKS*"
                         name="file_claim_form" type="download"
                         path="{{ route('download.drafting', [substr($data->file_claim_form, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Draft Perjanjian dalam bentuk word"
+                        name="file_agreement_draft" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Perjanjian yang telah ditandatangani"
+                        name="file_agreement_signature" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_agreement_signature, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="5. Perjanjian yang telah ditandatangani oleh semua pihak"
+                        name="file_agreement_signature_final" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_agreement_signature_final, 9)]) }}">
                         Unduh <i class="fa fa-download"></i>
                     </x-file>
                 </div>
@@ -349,18 +355,14 @@
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Contract Business</label>
-                <textarea class="form-control" name="cb_note" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="cb_note" id="" cols="30"
+                    rows="10">Berikut terlampil file Perjanjian yang telah ditandatangani, silahkan diperiksa</textarea>
             </div>
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan untuk Contract Business</label>
                 <textarea class="form-control" name="user_note" id="" cols="30" rows="10"
                     disabled>{{ $data->user_note }}</textarea>
-            </div>
-
-            <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
-                <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>

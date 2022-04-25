@@ -30,13 +30,6 @@
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
                                 @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
-                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
-                                        DRAFT</button>
-                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
-                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
                                 @else
                                     <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
                                 @endif
@@ -46,6 +39,9 @@
                                     <a href="{{ route('legal.drafting.legal-customer-update', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
                                 @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-customer-process', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
                                     <a href="{{ route('legal.drafting.legal-customer-process', [$row->id]) }}"
                                         class="btn btn-primary">Check</a>
                                 @else
@@ -60,7 +56,7 @@
         </div>
 
         <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.drafting.legal-customer-check-post', $data->id) }}">
+            action="{{ route('legal.drafting.legal-customer-update-post', $data->id) }}">
             @csrf
 
             <div class="row mt-3">
@@ -181,6 +177,8 @@
                         path="{{ route('download.drafting', [substr($data->file_claim_form, 9)]) }}">
                         Unduh <i class="fa fa-download"></i>
                     </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Draft Perjanjian dalam bentuk word"
+                        name="file_agreement_draft" />
                 </div>
             </div>
 
@@ -349,7 +347,8 @@
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Contract Business</label>
-                <textarea class="form-control" name="cb_note" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="cb_note" id="" cols="30"
+                    rows="10">Berikut terlampil draft perjanjian, silahkan diperiksa</textarea>
             </div>
 
             <div class="col-sm-12 mb-3">
@@ -359,8 +358,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
-                <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />
+                <button type="submit" class="btn btn-danger">Submit</button>
             </div>
         </form>
     </x-base>

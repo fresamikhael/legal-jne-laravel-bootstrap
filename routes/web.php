@@ -43,9 +43,18 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
 
     Route::get('customer/check/{id}', [CustomerController::class, 'userCheck'])->name('customer-check');
     Route::post('customer/check/{id}', [CustomerController::class, 'userCheckPost'])->name('customer-check-post');
+    Route::get('customer/update/{id}', [CustomerController::class, 'userUpdate'])->name('customer-update');
+    Route::post('customer/update/{id}', [CustomerController::class, 'userUpdatePost'])->name('customer-update-post');
+    Route::get('customer/process/{id}', [CustomerController::class, 'userProcess'])->name('customer-process');
+    Route::post('customer/process/{id}', [CustomerController::class, 'userProcessPost'])->name('customer-process-post');
+
+    Route::get('customer/final/{id}', [CustomerController::class, 'userFinal'])->name('customer-final');
 
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
     Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
+
+    Route::get('vendor/check/{id}', [VendorController::class, 'userCheck'])->name('vendor-check');
+    Route::post('vendor/check/{id}', [VendorController::class, 'userCheckPost'])->name('vendor-check-post');
 
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
@@ -61,11 +70,17 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
 
     Route::get('customer/check/{id}', [CustomerController::class, 'legalCheck'])->name('legal-customer-check');
     Route::post('customer/check/{id}', [CustomerController::class, 'legalCheckPost'])->name('legal-customer-check-post');
+    Route::get('customer/update/{id}', [CustomerController::class, 'legalUpdate'])->name('legal-customer-update');
+    Route::post('customer/update/{id}', [CustomerController::class, 'legalUpdatePost'])->name('legal-customer-update-post');
+    Route::get('customer/process/{id}', [CustomerController::class, 'legalProcess'])->name('legal-customer-process');
+    Route::post('customer/process/{id}', [CustomerController::class, 'legalProcessPost'])->name('legal-customer-process-post');
+    Route::get('customer/final/{id}', [CustomerController::class, 'legalFinal'])->name('legal-customer-final');
+
     Route::get('customer/history', [CustomerController::class, 'historyTable'])->name('legal-customer-table');
 
     Route::get('vendor', [VendorController::class, 'legalCreate'])->name('legal-vendor');
-    Route::post('vendor/post', [VendorController::class, 'store'])->name('legal-vendor-post');
     Route::get('vendor/check/{id}', [VendorController::class, 'legalCheck'])->name('legal-vendor-check');
+    Route::post('vendor/check/{id}', [VendorController::class, 'legalCheckPost'])->name('legal-vendor-check-post');
 
     Route::get('lease', [LeaseController::class, 'legalCreate'])->name('legal-lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('legal-lease-post');

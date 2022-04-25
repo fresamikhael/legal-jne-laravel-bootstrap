@@ -17,16 +17,18 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
+
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($table as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                <a href="{{ route('drafting.vendor-check', [$row->id]) }}" class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -156,6 +158,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Entitas :</h5>
@@ -178,6 +182,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Korespondensi :</h5>
@@ -190,6 +196,8 @@
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC" name="correspondence_email" />
                 </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
@@ -205,6 +213,8 @@
                         name="file_agreement_draft" />
                 </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
