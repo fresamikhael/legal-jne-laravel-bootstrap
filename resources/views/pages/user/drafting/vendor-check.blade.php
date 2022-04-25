@@ -23,10 +23,37 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal.drafting.legal-vendor-check', [$row->id]) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        DRAFT</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        SIGNATURE</button>
+                                @else
+                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <a href="{{ route('drafting.vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <a href="{{ route('drafting.vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
+                                    <a href="{{ route('drafting.vendor-process', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @else
+                                    <a href="{{ route('drafting.vendor-check', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -431,9 +458,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" buttonClass="btn-primary me-3">
-                    Submit
-                </x-button>
+                <button type="submit" class="btn btn-danger">Submit</button>
             </div>
         </form>
     </x-base>

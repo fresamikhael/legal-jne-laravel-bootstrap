@@ -52,9 +52,12 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
 
     Route::get('vendor', [VendorController::class, 'index'])->name('vendor');
     Route::post('vendor/post', [VendorController::class, 'store'])->name('vendor-post');
-
     Route::get('vendor/check/{id}', [VendorController::class, 'userCheck'])->name('vendor-check');
     Route::post('vendor/check/{id}', [VendorController::class, 'userCheckPost'])->name('vendor-check-post');
+    Route::get('vendor/update/{id}', [VendorController::class, 'userUpdate'])->name('vendor-update');
+    Route::post('vendor/update/{id}', [VendorController::class, 'userUpdatePost'])->name('vendor-update-post');
+    Route::get('vendor/process/{id}', [VendorController::class, 'userProcess'])->name('vendor-process');
+    Route::post('vendor/process/{id}', [VendorController::class, 'userProcessPost'])->name('vendor-process-post');
 
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
@@ -81,6 +84,11 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('vendor', [VendorController::class, 'legalCreate'])->name('legal-vendor');
     Route::get('vendor/check/{id}', [VendorController::class, 'legalCheck'])->name('legal-vendor-check');
     Route::post('vendor/check/{id}', [VendorController::class, 'legalCheckPost'])->name('legal-vendor-check-post');
+    Route::get('vendor/update/{id}', [VendorController::class, 'legalUpdate'])->name('legal-vendor-update');
+    Route::post('vendor/update/{id}', [VendorController::class, 'legalUpdatePost'])->name('legal-vendor-update-post');
+    Route::get('vendor/process/{id}', [VendorController::class, 'legalProcess'])->name('legal-vendor-process');
+    Route::post('vendor/process/{id}', [VendorController::class, 'legalProcessPost'])->name('legal-vendor-process-post');
+    Route::get('vendor/final/{id}', [VendorController::class, 'legalFinal'])->name('legal-vendor-final');
 
     Route::get('lease', [LeaseController::class, 'legalCreate'])->name('legal-lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('legal-lease-post');

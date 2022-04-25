@@ -23,10 +23,44 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal.drafting.legal-vendor-check', [$row->id]) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        DRAFT</button>
+                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
+                                @elseif ($row->status == 'USER SEND SIGNATURED FINAL AGREEMENT')
+                                    <button type="button" class="btn btn-success" disabled>USER SEND SIGNATURED FINAL
+                                        AGREEMENT</button>
+                                @else
+                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <a href="{{ route('legal.drafting.legal-vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-vendor-process', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER SEND SIGNATURED FINAL AGREEMENT')
+                                    <a href="{{ route('legal.drafting.legal-vendor-final', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @else
+                                    <a href="{{ route('legal.drafting.legal-vendor-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -368,6 +402,17 @@
                         path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
                         Unduh
                         <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Perjanjian yang telah ditandatangani"
+                        name="file_agreement_signature" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_agreement_signature, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="6. Perjanjian yang telah ditandatangani oleh semua pihak"
+                        name="file_agreement_signature_final" type="download"
+                        path="{{ route('download.drafting', [substr($data->file_agreement_signature_final, 9)]) }}">
+                        Unduh <i class="fa fa-download"></i>
                     </x-file>
                 </div>
             </div>

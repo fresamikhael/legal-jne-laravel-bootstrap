@@ -23,10 +23,44 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal.drafting.legal-vendor-check', [$row->id]) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        DRAFT</button>
+                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
+                                @elseif ($row->status == 'USER SEND SIGNATURED FINAL AGREEMENT')
+                                    <button type="button" class="btn btn-success" disabled>USER SEND SIGNATURED FINAL
+                                        AGREEMENT</button>
+                                @else
+                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <a href="{{ route('legal.drafting.legal-vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-vendor-process', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER SEND SIGNATURED FINAL AGREEMENT')
+                                    <a href="{{ route('legal.drafting.legal-vendor-final', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @else
+                                    <a href="{{ route('legal.drafting.legal-vendor-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -135,36 +169,13 @@
                     @endif
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jaminan" value="{{ $data->guarantee }}"
                         disabled />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Bank Garansi" name="bank_guarantee"
-                        hidden />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Deposit" name="deposit_guarantee"
-                        hidden />
-                    <script>
-                        document.getElementById("guarantee").addEventListener("change", handleChange);
-
-                        function handleChange() {
-                            var x = document.getElementById("guarantee");
-                            if (x.value === "Bank Garansi") {
-                                document.getElementById("bank_guarantee1").classList.remove('d-none');
-                                document.getElementById("bank_guarantee1").classList.add('d-flex');
-                                document.getElementById("bank_guarantee").required = true;
-                            } else {
-                                document.getElementById("bank_guarantee1").classList.remove('d-flex');
-                                document.getElementById("bank_guarantee1").classList.add('d-none');
-                                document.getElementById("bank_guarantee").required = false;
-                            }
-
-                            if (x.value === "Deposit") {
-                                document.getElementById("deposit_guarantee1").classList.remove('d-none');
-                                document.getElementById("deposit_guarantee1").classList.add('d-flex');
-                                document.getElementById("deposit_guarantee").required = true;
-                            } else {
-                                document.getElementById("deposit_guarantee1").classList.remove('d-flex');
-                                document.getElementById("deposit_guarantee1").classList.add('d-none');
-                                document.getElementById("deposit_guarantee").required = false;
-                            }
-                        }
-                    </script>
+                    @if ($data->guarantee == 'Bank Garansi')
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Bank Garansi" name="bank_guarantee"
+                            value="{{ $data->bank_guarantee }}" disabled />
+                    @elseif($data->guarantee == 'Deposit')
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Isi Deposit" name="deposit_guarantee"
+                            value="{{ $data->deposit_guarantee }}" disabled />
+                    @endif
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu Retensi" postfix="Bulan"
                         name="relation_period" value="{{ $data->relation_period }}" disabled />
                 </div>

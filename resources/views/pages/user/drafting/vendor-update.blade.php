@@ -40,7 +40,7 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.vendor-check-post', $data->id) }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.vendor-update-post', $data->id) }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -255,8 +255,6 @@
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Internal Memo"
-                        name="file_internal_memo" />
                 </div>
             </div>
 
@@ -431,9 +429,8 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" buttonClass="btn-primary me-3">
-                    Submit
-                </x-button>
+                <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
+                <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>

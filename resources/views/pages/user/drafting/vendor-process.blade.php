@@ -40,7 +40,7 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.vendor-check-post', $data->id) }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.vendor-process-post', $data->id) }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -255,8 +255,6 @@
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Internal Memo"
-                        name="file_internal_memo" />
                 </div>
             </div>
 
@@ -370,6 +368,18 @@
                         Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
+                    @if ($data->file_agreement_signature)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Perjanjian yang telah ditandatangani"
+                            name="file_agreement_signature" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_agreement_signature, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="5. Draft Perjanjian yang telah ditandatangan" value="Tidak Ada" hidden />
+                    @endif
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="6. Perjanjian yang telah ditandatangani semua pihak" name="file_agreement_signature_final" />
                 </div>
             </div>
 
