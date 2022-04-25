@@ -210,6 +210,18 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('internal', [InternalController::class, 'index'])->name('internal');
     Route::get('normative', [NormativeController::class, 'index'])->name('normative');
 
+    Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
+    Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
+});
+
+Route::prefix('legal/regulation')->name('legal.regulation.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.regulation.index');
+    })->name('index');
+
+    Route::get('internal', [InternalController::class, 'indexLegal'])->name('internal');
+    Route::get('normative', [NormativeController::class, 'indexLegal'])->name('normative');
+
     Route::get('internal-create', [InternalController::class, 'create'])->name('internal-create');
     Route::get('normative-create', [NormativeController::class, 'create'])->name('normative-create');
 
@@ -222,8 +234,8 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('normative-edit/{id}', [NormativeController::class, 'edit'])->name('normative-edit');
     Route::post('normative-update/post/{id}', [NormativeController::class, 'update'])->name('normative-update');
 
-    Route::get('internal-detail/{id}', [InternalController::class, 'show'])->name('internal-detail');
-    Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
+    Route::get('internal-detail/{id}', [InternalController::class, 'showLegal'])->name('internal-detail');
+    Route::get('normative-detail/{id}', [NormativeController::class, 'showLegal'])->name('normative-detail');
 });
 
 Route::get('/statistic', function () {

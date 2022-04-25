@@ -8,12 +8,12 @@
     <div class="container" style="margin-top: 140px">
         <div class="d-flex">
             <div class="col-lg-3 me-5">
-                <x-card style="margin-top: 300px" href2="{{ route('regulation.internal') }}"
-                    href="{{ route('regulation.internal-create') }}">Regulasi Internal</x-card>
+                <x-card-one-button style="margin-top: 300px" href2="{{ route('regulation.internal') }}">Regulasi Internal
+                </x-card-one-button>
             </div>
             <div class="col-lg-3 me-5">
-                <x-card style="margin-top: 300px" href2="{{ route('regulation.normative') }}"
-                    href="{{ route('regulation.normative-create') }}">Regulasi Normatif</x-card>
+                <x-card-one-button style="margin-top: 300px" href2="{{ route('regulation.normative') }}">Regulasi Normatif
+                </x-card-one-button>
             </div>
         </div>
     </div>
