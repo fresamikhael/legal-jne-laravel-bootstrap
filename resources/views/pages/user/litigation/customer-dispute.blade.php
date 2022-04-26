@@ -25,7 +25,7 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
+                                <a href="{{ route('permit.detail', $row->id) }}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
                     @endforeach
@@ -181,3 +181,38 @@
         </form>
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#dataTables').DataTable({
+                paging: false,
+                searching: false,
+                retrieve: true,
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                ajax: "{{ route('permit.newpermit') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        "className": "text-center",
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endpush
