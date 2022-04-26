@@ -62,6 +62,9 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
 
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
+    Route::get('lease/update/{id}', [LeaseController::class, 'userUpdate'])->name('lease-update');
+    Route::post('lease/update/{id}', [LeaseController::class, 'userUpdatePost'])->name('lease-update-post');
+    Route::get('lease/final/{id}', [LeaseController::class, 'userFinal'])->name('lease-final');
 });
 
 Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
@@ -94,6 +97,11 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('lease', [LeaseController::class, 'legalCreate'])->name('legal-lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('legal-lease-post');
     Route::get('lease/check/{id}', [LeaseController::class, 'legalCheck'])->name('legal-lease-check');
+    Route::post('lease/check/{id}', [LeaseController::class, 'legalCheckPost'])->name('legal-lease-check-post');
+    Route::get('lease/update/{id}', [LeaseController::class, 'legalUpdate'])->name('legal-lease-update');
+    Route::post('lease/update/{id}', [LeaseController::class, 'legalUpdatePost'])->name('legal-lease-update-post');
+    Route::get('lease/process/{id}', [LeaseController::class, 'legalProcess'])->name('legal-lease-process');
+    Route::post('lease/process/{id}', [LeaseController::class, 'legalProcessPost'])->name('legal-lease-process-post');
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {

@@ -41,7 +41,7 @@
         @endif
 
         <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.drafting.legal-lease-check-post', $data->id) }}">
+            action="{{ route('legal.drafting.legal-lease-process-post', $data->id) }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -284,6 +284,13 @@
                             path="{{ route('download.drafting', [substr($data->file_lease_eligibility, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Draft Perjanjian"
+                            name="file_agreement_draft" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
+                            Unduh <i class="fa fa-download"></i>
+                        </x-file>
+                        <x-input type="file" name="file_agreement_signature" labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="File Perjanjian Ditandatangani" />
                     </div>
                 @elseif ($data->landlord_type == 'Badan Hukum')
                     <div class="col-sm-9">
@@ -388,13 +395,19 @@
                             path="{{ route('download.drafting', [substr($data->file_lease_eligibility, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Draft Perjanjian"
+                            name="file_agreement_draft" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
+                            Unduh <i class="fa fa-download"></i>
+                        </x-file>
+                        <x-input type="file" name="file_agreement_signature" labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="File Perjanjian Ditandatangani" />
                     </div>
                 @endif
             </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
-                <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />
+                <button type="submit" class="btn btn-danger">Submit</button>
             </div>
         </form>
     </x-base>
