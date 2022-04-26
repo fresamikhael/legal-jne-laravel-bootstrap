@@ -122,6 +122,17 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     });
 });
 
+Route::prefix('legal/litigation')->name('legal.litigation.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.litigation.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'indexLegal')->name('index');
+        Route::post('/', 'storeLegal')->name('store');
+    });
+});
+
 Route::prefix('cs')->name('cs.')->group(function () {
     Route::get('/', function () {
         return View('pages.cs.index');

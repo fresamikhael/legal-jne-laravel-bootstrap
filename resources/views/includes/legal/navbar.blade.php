@@ -11,10 +11,7 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="{{ route('legal.regulation.index') }}">Regulasi</a></li>
-                        <li class="scroll-to-section">
-                            <a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
-                        </li>
+                        <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Regulasi</a></li>
                         <li class="scroll-to-section">
                             <a href="{{ route('information.index') }}">Informasi</a>
                         </li>
