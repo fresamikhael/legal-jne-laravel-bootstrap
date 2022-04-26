@@ -17,6 +17,7 @@ class File extends Component
     public $multiple;
     public $path;
     public $blank;
+    public $hidden;
     /**
      * Create a new component instance.
      *
@@ -34,6 +35,7 @@ class File extends Component
         $multiple = null,
         $path = null,
         $blank = null,
+        $hidden = null,
     )
     {
         $this->inputClass = $inputClass;
@@ -47,6 +49,7 @@ class File extends Component
         $this->multiple = $multiple;
         $this->path = $path;
         $this->blank = $blank;
+        $this->hidden = $hidden;
     }
 
     /**

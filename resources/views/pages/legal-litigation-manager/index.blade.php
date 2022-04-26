@@ -34,7 +34,7 @@
             $menu = [
                 [
                     'label' => 'Customer Dispute',
-                    'route' => 'cs.customer-dispute.index',
+                    'route' => 'legal-litigation-manager.customer-dispute.index',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
             ];

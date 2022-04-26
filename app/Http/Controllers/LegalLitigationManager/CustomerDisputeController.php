@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\LegalLitigation2;
+namespace App\Http\Controllers\LegalLitigationManager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cs;
@@ -13,14 +13,16 @@ class CustomerDisputeController extends Controller
     {
         $data = CustomerDispute::orderBy('id', 'DESC')
             ->with('user')
-            ->where('status', 'APPROVED BY LEGAL LITIGASI 1')
+            ->where('status', 'APPROVED BY LEGAL LITIGASI 2')
+            ->orWhere('status', 'RETURNED BY LEGAL LITIGASI 2')
             ->get();
             
         $cs = Cs::orderBy('id', 'DESC')
-            ->where('status', 'APPROVED BY LEGAL LITIGASI 1')
+            ->where('status', 'APPROVED BY LEGAL LITIGASI 2')
+            ->orWhere('status', 'RETURNED BY LEGAL LITIGASI 2')
             ->get();
 
-        return view('pages.legal-litigation-2.customer-dispute.index', compact(['data', 'cs']));
+        return view('pages.legal-litigation-manager.customer-dispute.index', compact(['data', 'cs']));
     }
 
     public function show($id)
@@ -28,7 +30,7 @@ class CustomerDisputeController extends Controller
         $data = CustomerDispute::where('id', $id)->with('user')->first();
         $cs = Cs::where('form_id', $id)->first();
 
-        return view('pages.legal-litigation-2.customer-dispute.check', compact(['data', 'cs']));
+        return view('pages.legal-litigation-manager.customer-dispute.check', compact(['data', 'cs']));
     }
 
     public function store(Request $request, $id)
@@ -38,7 +40,7 @@ class CustomerDisputeController extends Controller
 
         switch ($request->input('action')) {
             case 'return':
-                $data['status'] = 'RETURNED BY LEGAL LITIGASI 2';
+                $data['status'] = 'RETURNED BY LEGAL LITIGASI MANAGER';
                 
                 Cs::where('form_id', $id)->update([
                     'status' => $data['status']
@@ -47,10 +49,10 @@ class CustomerDisputeController extends Controller
                     'status' => $data['status']
                 ]);
 
-                return to_route('legal-litigation-2.customer-dispute.index');
+                return to_route('legal-litigation-manager.customer-dispute.index');
                 break;
             case 'approve':
-                $data['status'] = 'APPROVED BY LEGAL LITIGASI 2';
+                $data['status'] = 'APPROVED BY LEGAL LITIGASI MANAGER';
 
                 Cs::where('form_id', $id)->update([
                     'status' => $data['status'],
@@ -59,10 +61,10 @@ class CustomerDisputeController extends Controller
                     'status' => $data['status']
                 ]);
 
-                return to_route('legal-litigation-2.customer-dispute.index');
+                return to_route('legal-litigation-manager.customer-dispute.index');
                 break;
             default:
-                return to_route('legal-litigation-2.customer-dispute.index');
+                return to_route('legal-litigation-manager.customer-dispute.index');
                 break;
         }
     }

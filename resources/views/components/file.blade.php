@@ -1,35 +1,47 @@
-<div class="mb-3 row {{ $inputClass }}" id="form-input-{{ $name }}"></div>
+<div class="mb-3 row {{ $inputClass }} {{ $hidden ? 'd-none' : '' }}">
+    @if ($label)
+        <label for="{{ $name }}"
+            class="{{ $labelClass ? $labelClass : 'col-sm-3' }} col-form-label">{{ $label }}</label>
+    @endif
+    <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
+        @if ($option)
+            <div class="d-flex gap-3">
+                <select id="{{ $name . 1 }}" class="form-select">
+                    <option value="" class="d-none">-- Pilih --</option>
+                    <option value="Tidak Ada">Tidak Ada</option>
+                    <option value="Ada">Ada</option>
+                </select>
+                <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
+                    style="display: none; width: 100%;" multiple="{{ $multiple ? 'multiple' : '' }}" />
+            </div>
+        @elseif($type == "download")
+            <a href="{{ $path }}" target="{{ $blank ? "_blank" : "" }}" class="btn btn-primary w-100">{{ $slot }}</a>
+        @else
+            <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
+                required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />
+        @endif
+    </div>
+</div>
 
-<script type="text/babel">
-    function Option() {
-        const [type, setType] = React.useState();
 
-        return (
-            <React.Fragment>
-                <label for="{{ $option ? $name . 1 : $name }}"
-                    class="{{ $labelClass ? $labelClass : 'col-sm-3' }} col-form-label">{{ $label }}</label>
-                <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
-                    @if ($option)
-                        <div class="d-flex gap-3">
-                            <select id="{{ $name . 1 }}" class="form-select" onChange={ (e)=> setType(e.target.value) }>
-                                <option class="d-none">-- Pilih --</option>
-                                <option value="no">Tidak Ada</option>
-                                <option value="yes">Ada</option>
-                            </select>
-                            { type === 'yes' ? (
-                            <input type="file" class="form-control w-100" name="{{ $name }}" id="{{ $name }}"
-                                required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />
-                            ) : '' }
-                        </div>
-                    @elseif($type == "download")
-                        <a href="{{ $path }}" target="{{ $blank ? "_blank" : "" }}" class="btn btn-primary w-100">{{ $slot }}</a>
-                    @else
-                        <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
-                            required="{{ $required ? 'required' : '' }}" multiple="{{ $multiple ? 'multiple' : '' }}" />
-                    @endif
-                </div>
-            </React.Fragment>
-        )
+<script>
+    document.getElementById("{{$name . 1}}").addEventListener("change", handleChange);
+
+    function handleChange() {
+        var x = document.getElementById("{{$name . 1}}");
+        console.log('====================================');
+        console.log(x.value);
+        console.log('====================================');
+        if (x.value === "Ada" ) {
+            document.getElementById("{{$name}}").style.display = "flex";
+            document.getElementById("{{$name}}").required = true;
+            document.getElementById("{{$name . 1}}").style.flex = "1";
+            document.getElementById("{{$name}}").style.flex = "4";
+        } else {
+            document.getElementById("{{$name}}").style.display = "none";
+            document.getElementById("{{$name}}").required = false;
+            document.getElementById("{{$name . 1}}").style.flex = "4";
+            document.getElementById("{{$name}}").style.flex = "1";
+        }
     }
-    ReactDOM.render(<Option />,document.getElementById('form-input-{{ $name }}'))
 </script>

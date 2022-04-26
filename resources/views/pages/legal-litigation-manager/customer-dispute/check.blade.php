@@ -54,8 +54,8 @@
             </div>
         </div>
 
-        @if ($cs->status != "APPROVED BY LEGAL LITIGASI 2")
-            <form action="{{ route('legal-litigation-2.customer-dispute.store', [$cs->form_id]) }}" method="post" enctype="multipart/form-data">
+        @if ($cs->status != "APPROVED BY LEGAL LITIGASI MANAGER")
+            <form action="{{ route('legal-litigation-manager.customer-dispute.store', [$cs->form_id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="d-flex align-items-center gap-3 justify-content-end">
                     <div class="d-flex justify-content-end">
