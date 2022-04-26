@@ -40,8 +40,7 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.drafting.legal-lease-check-post', $data->id) }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.lease-update-post', $data->id) }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -284,6 +283,11 @@
                             path="{{ route('download.drafting', [substr($data->file_lease_eligibility, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Draft Perjanjian"
+                            name="file_agreement_draft" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
+                            Unduh <i class="fa fa-download"></i>
+                        </x-file>
                     </div>
                 @elseif ($data->landlord_type == 'Badan Hukum')
                     <div class="col-sm-9">
@@ -386,6 +390,11 @@
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="21. Form Kelayakan Sewa"
                             name="file_lease_eligibility" type="download"
                             path="{{ route('download.drafting', [substr($data->file_lease_eligibility, 9)]) }}">
+                            Unduh <i class="fa fa-download"></i>
+                        </x-file>
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Draft Perjanjian"
+                            name="file_agreement_draft" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
                     </div>

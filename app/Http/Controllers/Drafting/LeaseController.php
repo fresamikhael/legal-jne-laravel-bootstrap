@@ -11,7 +11,12 @@ class LeaseController extends Controller
 {
     public function index()
     {
-        return view('pages.legal.drafting.lease.index');
+        $table = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Lease::query()->where('id', auth()->user()->id);
+
+        return view('pages.user.drafting.lease', compact('data', 'table'));
     }
 
     public function legalCreate()
@@ -255,6 +260,161 @@ class LeaseController extends Controller
 
         $data = Lease::where('id', $id)->firstOrFail();
         return view('pages.legal.drafting.lease.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalCheckPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = Lease::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'status' => 'RETURNED BY LEGAL']);
+
+                return redirect()->route('legal.drafting.legal-lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                $item = Lease::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'status' => 'IN PROGRESS'
+                ]);
+
+                return redirect()->route('legal.drafting.legal-lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
+    }
+
+    public function legalUpdate($id)
+    {
+        $table = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Lease::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.lease.update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalUpdatePost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_agreement_draft')) {
+            $file = $request->file('file_agreement_draft');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_agreement_draft'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Lease::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_agreement_draft' => $data['file_agreement_draft'],
+            'status' => 'LEGAL SEND AGREEMENT DRAFT']);
+
+        return redirect()->route('legal.drafting.legal-lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function userUpdate($id)
+    {
+        $table = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Lease::where('id', $id)->firstOrFail();
+        return view('pages.user.drafting.lease-update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function userUpdatePost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = Lease::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'user_note' => $request->user_note,
+                    'status' => 'USER RETURNED AGREEMENT DRAFT']);
+
+                return redirect()->route('drafting.lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                $item = Lease::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'user_note' => $request->user_note,
+                    'status' => 'USER APPROVED AGREEMENT DRAFT'
+                ]);
+
+                return redirect()->route('drafting.lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
+    }
+
+    public function legalProcess($id)
+    {
+        $table = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Lease::where('id', $id)->firstOrFail();
+        return view('pages.legal.drafting.lease.process', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalProcessPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_agreement_signature')) {
+            $file = $request->file('file_agreement_signature');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_agreement_signature'] = 'Drafting/'.$filename;
+            $file->move('Drafting', $filename);
+        }
+
+        $item = Lease::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_agreement_signature' => $data['file_agreement_signature'],
+            'cb_note' => 'Permohonan penerbitan perjanjian telah selesai, Silahkan download file perjanjian sebagai arsip.',
+            'status' => 'CLOSE']);
+
+        return redirect()->route('legal.drafting.legal-process')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function userFinal($id)
+    {
+        $table = Lease::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Lease::where('id', $id)->firstOrFail();
+        return view('pages.user.drafting.lease-final', [
             'data' => $data,
             'table' => $table
         ]);
