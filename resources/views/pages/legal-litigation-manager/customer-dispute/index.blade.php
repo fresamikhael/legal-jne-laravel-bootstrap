@@ -25,7 +25,7 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal-litigation-2.customer-dispute.show', [$row->id]) }}" class="btn btn-primary">Lihat</a>
+                                <a href="{{ route('legal-litigation-manager.customer-dispute.show', [$row->id]) }}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
                     @endforeach

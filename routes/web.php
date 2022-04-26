@@ -21,6 +21,7 @@ use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
+use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +131,8 @@ Route::prefix('cs')->name('cs.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/{id}', 'store')->name('store');
+        Route::post('/finish/{id}', 'finish')->name('finish');
+        Route::post('/close/{id}', 'close')->name('close');
     });
 });
 
@@ -151,6 +154,18 @@ Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function
     })->name('index');
 
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigation2CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'store')->name('store');
+    });
+});
+
+Route::prefix('legal-litigation-manager')->name('legal-litigation-manager.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal-litigation-manager.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigationManagerCustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/{id}', 'store')->name('store');
