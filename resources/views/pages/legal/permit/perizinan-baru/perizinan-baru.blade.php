@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-6">
-                        <x-modal-all-input id="dataTables">
+                        <x-modal-all-input id="dataTables2">
                             @slot('header')
                                 <tr>
                                     <th>No</th>
