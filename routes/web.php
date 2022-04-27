@@ -13,12 +13,12 @@ use App\Http\Controllers\Litigation\OtherController;
 use App\Http\Controllers\permit\NewPermitController;
 use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Controllers\Drafting\CustomerController;
+use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
 use App\Http\Controllers\permit\ProlongationController;
 use App\Http\Controllers\Regulation\InternalController;
 use App\Http\Controllers\Regulation\NormativeController;
 use App\Http\Controllers\Litigation\OutstandingController;
 use App\Http\Controllers\Litigation\CustomerDisputeController;
-use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
@@ -65,6 +65,8 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
     Route::get('lease/update/{id}', [LeaseController::class, 'userUpdate'])->name('lease-update');
     Route::post('lease/update/{id}', [LeaseController::class, 'userUpdatePost'])->name('lease-update-post');
     Route::get('lease/final/{id}', [LeaseController::class, 'userFinal'])->name('lease-final');
+
+    Route::get('other', [DraftingOtherController::class, 'index'])->name('other');
 });
 
 Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {

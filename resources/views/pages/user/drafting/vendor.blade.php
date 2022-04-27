@@ -239,8 +239,7 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Disposisi" name="file_dispotition" />
                 </div>
             </div>
-
-            <hr>
+            {{-- <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
@@ -259,7 +258,7 @@
                         name="file_director_id_card2" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Lain-lain" name="file_other2" />
                 </div>
-            </div>
+            </div> --}}
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />
