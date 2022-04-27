@@ -21,6 +21,7 @@ use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
+use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,9 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
 
     Route::get('lease', [LeaseController::class, 'index'])->name('lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('lease-post');
+    Route::get('lease/update/{id}', [LeaseController::class, 'userUpdate'])->name('lease-update');
+    Route::post('lease/update/{id}', [LeaseController::class, 'userUpdatePost'])->name('lease-update-post');
+    Route::get('lease/final/{id}', [LeaseController::class, 'userFinal'])->name('lease-final');
 });
 
 Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
@@ -93,6 +97,11 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('lease', [LeaseController::class, 'legalCreate'])->name('legal-lease');
     Route::post('lease/post', [LeaseController::class, 'store'])->name('legal-lease-post');
     Route::get('lease/check/{id}', [LeaseController::class, 'legalCheck'])->name('legal-lease-check');
+    Route::post('lease/check/{id}', [LeaseController::class, 'legalCheckPost'])->name('legal-lease-check-post');
+    Route::get('lease/update/{id}', [LeaseController::class, 'legalUpdate'])->name('legal-lease-update');
+    Route::post('lease/update/{id}', [LeaseController::class, 'legalUpdatePost'])->name('legal-lease-update-post');
+    Route::get('lease/process/{id}', [LeaseController::class, 'legalProcess'])->name('legal-lease-process');
+    Route::post('lease/process/{id}', [LeaseController::class, 'legalProcessPost'])->name('legal-lease-process-post');
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {
@@ -121,6 +130,17 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     });
 });
 
+Route::prefix('legal/litigation')->name('legal.litigation.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.litigation.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'indexLegal')->name('index');
+        Route::post('/', 'storeLegal')->name('store');
+    });
+});
+
 Route::prefix('cs')->name('cs.')->group(function () {
     Route::get('/', function () {
         return View('pages.cs.index');
@@ -130,6 +150,8 @@ Route::prefix('cs')->name('cs.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/{id}', 'store')->name('store');
+        Route::post('/finish/{id}', 'finish')->name('finish');
+        Route::post('/close/{id}', 'close')->name('close');
     });
 });
 
@@ -151,6 +173,18 @@ Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function
     })->name('index');
 
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigation2CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'store')->name('store');
+    });
+});
+
+Route::prefix('legal-litigation-manager')->name('legal-litigation-manager.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal-litigation-manager.index');
+    })->name('index');
+
+    Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigationManagerCustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/{id}', 'store')->name('store');

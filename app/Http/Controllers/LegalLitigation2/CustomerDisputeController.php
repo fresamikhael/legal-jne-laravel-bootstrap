@@ -30,4 +30,40 @@ class CustomerDisputeController extends Controller
 
         return view('pages.legal-litigation-2.customer-dispute.check', compact(['data', 'cs']));
     }
+
+    public function store(Request $request, $id)
+    {
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
+
+        switch ($request->input('action')) {
+            case 'return':
+                $data['status'] = 'RETURNED BY LEGAL LITIGASI 2';
+                
+                Cs::where('form_id', $id)->update([
+                    'status' => $data['status']
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return to_route('legal-litigation-2.customer-dispute.index');
+                break;
+            case 'approve':
+                $data['status'] = 'APPROVED BY LEGAL LITIGASI 2';
+
+                Cs::where('form_id', $id)->update([
+                    'status' => $data['status'],
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return to_route('legal-litigation-2.customer-dispute.index');
+                break;
+            default:
+                return to_route('legal-litigation-2.customer-dispute.index');
+                break;
+        }
+    }
 }
