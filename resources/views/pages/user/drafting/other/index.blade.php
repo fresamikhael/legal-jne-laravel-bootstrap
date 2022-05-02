@@ -1,18 +1,18 @@
 @extends('layouts.user')
 
 @section('title')
-    Lease
+    Other
 @endsection
 
 @section('content')
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
-            <h2>Lease</h2>
+            <h2>Other</h2>
             <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
-                        <th>Nomor Kasus</th>
+                        <th>Nomor</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -23,16 +23,41 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
                             <td>
-                                @if ($row->status == 'IN PROGRESS')
-                                    <a href="{{ route('drafting.lease-update', [$row->id]) }}"
-                                        class="btn btn-primary">Lihat</a>
-                                @elseif ($row->status == 'LEGAL SEND AGREEMENT DRAFT')
-                                    <a href="{{ route('drafting.lease-update', [$row->id]) }}"
-                                        class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT
+                                        BUSINESS</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT
+                                        BUSINESS</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        DRAFT</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        SIGNATURE</button>
                                 @else
-                                    <a href="{{ route('drafting.lease-final', [$row->id]) }}" class="btn btn-primary">Lihat</a>
+                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <a href="{{ route('drafting.customer-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <a href="{{ route('drafting.customer-update', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <a href="{{ route('drafting.customer-process', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
+                                    <a href="{{ route('drafting.customer-process', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @else
+                                    <a href="{{ route('drafting.customer-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
                                 @endif
                             </td>
                         </tr>
@@ -47,12 +72,18 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.lease-post') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.customer-post') }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord" name="landlord_name" />
-                    <x-address label="Landlord" name="landlord" />
+                    <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" name="user_id" hidden />
+                    <x-address label="Pihak" name="party" />
+                </div>
+                <div class="col-sm-6">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)"
+                        name="optional_party_name" />
+                    <x-address label="Pihak (Optional)" name="optional_party" />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
                         <option value="Baru">Baru</option>
                         <option value="Perpanjangan">Perpanjangan</option>
@@ -76,30 +107,7 @@
                             }
                         }
                     </script>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional">
-                        <option value="Jakarta">Jakarta</option>
-                        <option value="Bodetabekarcil">Bodetabekarcil</option>
-                        <option value="Jawa Barat">Jawa Barat</option>
-                        <option value="Jawa Tengah & DIY">Jawa Tengah & DIY</option>
-                        <option value="JTBNN">JTBNN</option>
-                        <option value="Sumatera Bagian Utara">Sumatera Bagian Utara</option>
-                        <option value="Sumatera Bagian Selatan">Sumatera Bagian Selatan</option>
-                        <option value="Kalimantan">Kalimantan</option>
-                        <option value="Sulampapua">Sulampapua</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp"
-                        name="rental_value" />
-                    <x-address label="Objek Sewa" name="rental_object" />
-                </div>
-                <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
-                        name="optional_landlord_name" />
-                    <x-address label="Landlord (Optional)" name="optional_landlord" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Hari"
-                        name="period_of_time" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Jaminan" prefix="Rp"
-                        name="guarantee_nominal" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" name="main_branch" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" name="discount" prefix="%" />
                 </div>
             </div>
 
@@ -213,7 +221,7 @@
             </x-lease-type>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Submit" buttonClass="btn-primary" />
+                <x-button type="submit" name="Submit" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>

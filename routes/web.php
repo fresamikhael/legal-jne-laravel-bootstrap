@@ -104,6 +104,9 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::post('lease/update/{id}', [LeaseController::class, 'legalUpdatePost'])->name('legal-lease-update-post');
     Route::get('lease/process/{id}', [LeaseController::class, 'legalProcess'])->name('legal-lease-process');
     Route::post('lease/process/{id}', [LeaseController::class, 'legalProcessPost'])->name('legal-lease-process-post');
+
+    Route::get('other', [DraftingOtherController::class, 'legalCreate'])->name('legal-other');
+
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {
