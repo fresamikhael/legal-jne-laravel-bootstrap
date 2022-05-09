@@ -24,7 +24,7 @@ class Cd
                 return abort(403);
             }
         } else {
-            return to_route('login-attempt');
+            return to_route('login');
         }
     }
 }
