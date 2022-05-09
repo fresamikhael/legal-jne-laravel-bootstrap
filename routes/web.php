@@ -137,7 +137,7 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     });
 });
 
-Route::prefix('legal/litigation')->name('legal.litigation.')->group(function () {
+Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigation.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal.litigation.index');
     })->name('index');
@@ -148,7 +148,7 @@ Route::prefix('legal/litigation')->name('legal.litigation.')->group(function () 
     });
 });
 
-Route::prefix('cs')->name('cs.')->group(function () {
+Route::prefix('cs')->name('cs.')->middleware(['isCs'])->group(function () {
     Route::get('/', function () {
         return View('pages.cs.index');
     })->name('index');
@@ -162,7 +162,7 @@ Route::prefix('cs')->name('cs.')->group(function () {
     });
 });
 
-Route::prefix('legal-litigation-1')->name('legal-litigation-1.')->group(function () {
+Route::prefix('legal-litigation-1')->middleware(['isLiti1'])->name('legal-litigation-1.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal-litigation-1.index');
     })->name('index');
@@ -174,7 +174,7 @@ Route::prefix('legal-litigation-1')->name('legal-litigation-1.')->group(function
     });
 });
 
-Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function () {
+Route::prefix('legal-litigation-2')->middleware(['isLiti2'])->name('legal-litigation-2.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal-litigation-2.index');
     })->name('index');
@@ -186,7 +186,7 @@ Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function
     });
 });
 
-Route::prefix('legal-litigation-manager')->name('legal-litigation-manager.')->group(function () {
+Route::prefix('legal-litigation-manager')->middleware(['isLitiManager'])->name('legal-litigation-manager.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal-litigation-manager.index');
     })->name('index');
