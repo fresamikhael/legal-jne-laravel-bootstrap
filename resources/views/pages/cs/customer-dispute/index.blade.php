@@ -25,8 +25,8 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                @if ($row->status == "APPROVED BY LEGAL LITIGASI MANAGER" || $row->status == "APPROVED BY LEGAL LITIGASI 2")
-                                    <a href="{{ route('cs.customer-dispute.show', [$row->id, 'action=finish']) }}" class="btn btn-primary">Selesai</a>
+                                @if ($row->status == "APPROVED BY LEGAL LITIGASI MANAGER")
+                                    <a href="{{ route('cs.customer-dispute.show', [$row->id, 'action=finish']) }}" class="btn btn-primary">Update</a>
                                 @else   
                                     <a href="{{ route('cs.customer-dispute.show', [$row->id]) }}" class="btn btn-primary">Lihat</a>
                                 @endif

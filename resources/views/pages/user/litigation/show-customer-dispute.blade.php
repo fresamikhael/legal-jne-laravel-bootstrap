@@ -8,29 +8,6 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer Dispute</h2>
-            
-            <x-modal-history id="dataTables">
-                @slot('header')
-                    <tr>
-                        <th>No</th>
-                        <th>Nomor Kasus</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                @endslot
-                @slot('data')
-                    @foreach ($data as $row)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
-                            <td>
-                                <a href="{{ route('litigation.customer-dispute.show', $row->id) }}" class="btn btn-primary">Lihat</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endslot
-            </x-modal-history>
         </div>
         
         @if (Session::get('message_success'))
@@ -43,10 +20,38 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" required/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name" required/>
-                    <x-address label="Pengirim" name="sender"/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" name="sender_phone_number" required/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Pengiriman" name="shipping_date" type="date" value="{{ $cd->shipping_date }}" readOnly/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengirim" name="sender_name" value="{{ $cd->sender_name }}" readOnly/>
+                    @php
+                        $province = DB::table('provinces')
+                            ->where('id', $cd->sender_province)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pengirim" value="{{ ucwords(strtolower($province->name)) }}" readOnly/>
+                    @php
+                        $regency = DB::table('regencies')
+                            ->where('id', $cd->sender_regency)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pengirim" value="{{ ucwords(strtolower($regency->name)) }}" readOnly/>
+                    @php
+                        $district = DB::table('districts')
+                            ->where('id', $cd->sender_district)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pengirim" value="{{ ucwords(strtolower($district->name)) }}" readOnly/>
+                    @php
+                        $village = DB::table('villages')
+                            ->where('id', $cd->sender_village)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pengirim" value="{{ ucwords(strtolower($village->name)) }}" readOnly/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pengirim" value="{{ $cd->sender_zip_code }}" readOnly/>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pengirim" readOnly>
+                        {{ $cd->sender_address }}
+                    </x-textarea>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Telepon Pengirim" name="sender_phone_number" readOnly value="{{ $cd->sender_phone_number }}"/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" name="sender_phone_number" readOnly value="{{ $cd->sender_phone_number }}"/>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Kasus" name="case_type" required>
                         <option value="Terlambat">Terlambat</option>
                         <option value="Hilang">Hilang</option>

@@ -117,6 +117,7 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
     });
 
     Route::prefix('fraud')->name('fraud.')->controller(FraudController::class)->group(function () {

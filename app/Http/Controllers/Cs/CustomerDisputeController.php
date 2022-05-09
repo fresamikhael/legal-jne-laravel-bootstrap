@@ -155,7 +155,7 @@ class CustomerDisputeController extends Controller
         
         $data['user_id'] = auth()->user()->id;
 
-        $data['status'] = 'FINISHED BY CS';
+        $data['status'] = 'UPDATE BY CS';
 
         if ($request->file('file_response_letter')) {
             $file = $request->file('file_response_letter');

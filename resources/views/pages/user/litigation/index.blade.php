@@ -16,19 +16,14 @@
                   'style' => 'background: #03a4ed !important; color: #fff !important;',  
               ],
               [
-                  'label' => 'Fraud',  
-                  'route' => 'litigation.fraud.index',  
+                  'label' => 'Outstanding',  
+                  'route' => 'litigation.outstanding.index',  
                   'style' => 'background: #fe3f40 !important; color: #fff !important;',  
-              ],
-              [
-                  'label' => 'Outstanding', 
-                  'route' => 'litigation.outstanding.index', 
-                  'style' => 'background: #2a2a2a !important; color: #fff !important;',  
               ],
               [
                   'label' => 'Other', 
                   'route' => 'litigation.other.index', 
-                  'style' => 'background: #3b566e !important; color: #fff !important;',  
+                  'style' => 'background: #2a2a2a !important; color: #fff !important;',  
               ],
           ];
       @endphp
