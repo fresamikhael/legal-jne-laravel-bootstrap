@@ -76,7 +76,7 @@
                 <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-                        readonly>{{ $permit->location }}</textarea>
+                        readonly>{{ $permit->application_reason }}</textarea>
                 </div>
             </div>
             <div class="mt-4 mb-3 row">
@@ -142,7 +142,7 @@
 
             @if ($permit->latest_skpd != null && $permit->status == 'CLOSE')
                 <div class="mb-3 row">
-                    <label for="specification" class="col-sm-2 col-form-label">5. SKPD</label>
+                    <label for="specification" class="col-sm-2 col-form-label">5. SKPD Terupdate</label>
                     <div class="col-sm-10">
                         <a href="{{ route('download.permit', substr($permit->latest_skpd, 7)) }}" style="font-size:24px ">
                             <div

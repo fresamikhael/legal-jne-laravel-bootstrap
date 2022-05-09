@@ -12,6 +12,7 @@ use App\Http\Controllers\Litigation\FraudController;
 use App\Http\Controllers\Litigation\OtherController;
 use App\Http\Controllers\permit\NewPermitController;
 use App\Http\Controllers\Database\DatabaseController;
+use App\Http\Controllers\document_request\documentRequestController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
 use App\Http\Controllers\permit\ProlongationController;
@@ -249,12 +250,39 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
     Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
 });
 
+Route::prefix('request_document')->name('document_request.')->controller(documentRequestController::class)->group(function () {
+    // Route::get('/', function () {
+    //     return View('pages.user.document_request.index');
+    // })->name('index');
+
+    Route::get('/dashboard', 'home')->name('home');
+    Route::get('/', 'index')->name('form');
+    Route::post('/post',  'store')->name('post');
+    Route::get('/detail/{id}', 'detail')->name('detail');
+});
+
+Route::prefix('legal/request_document')->name('legal.document_request.')->controller(documentRequestController::class)->group(function () {
+    // Route::get('/', function () {
+    //     return View('pages.user.document_request.index');
+    // })->name('index');
+
+    // Route::get('/', 'home_legal')->name('home');
+    Route::get('/', 'index_legal')->name('form');
+    Route::post('/post',  'store_legal')->name('post');
+    Route::get('/check/{id}', 'check_legal')->name('check');
+    Route::get('/detail/{id}', 'detail_legal')->name('detail');
+});
+
+
+
 Route::prefix('database')->name('database.')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'index')->name('index');
     Route::get('tambah', 'add')->name('add');
     Route::post('tambah', 'store')->name('store');
     Route::get('detail/{id}', 'show')->name('show');
 });
+
+
 
 Route::get('/', function () {
     return view('pages.user.index');
