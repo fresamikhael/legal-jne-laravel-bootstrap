@@ -47,6 +47,11 @@
                     'route' => 'legal/permit',
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
+                [
+                    'label' => 'Permohonan Dokumen',
+                    'route' => 'legal/request_document',
+                    'style' => 'background: #03a4ed !important; color: #fff !important;',
+                ],
             ];
         @endphp
 

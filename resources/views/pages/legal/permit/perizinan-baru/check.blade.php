@@ -161,7 +161,8 @@
                             <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
                         </div>
                     </div>
-                </div </div>
+                </div>
+            </div>
         </form>
 
 
