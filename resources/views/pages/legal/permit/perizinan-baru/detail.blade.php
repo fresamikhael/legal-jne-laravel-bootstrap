@@ -78,7 +78,7 @@
                     <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-                            readonly>{{ $permit->location }}</textarea>
+                            readonly>{{ $permit->application_reason }}</textarea>
                     </div>
                 </div>
                 <div class="mt-4 mb-3 row">
@@ -146,7 +146,7 @@
                 </div>
                 @if ($permit->latest_skpd != null)
                     <div class="mb-3 row">
-                        <label for="specification" class="col-sm-2 col-form-label">5. SKPD</label>
+                        <label for="specification" class="col-sm-2 col-form-label">5. SKPD Terupdate</label>
                         <div class="col-sm-10">
                             <a href="{{ route('download.permit', substr($permit->latest_skpd, 7)) }}"
                                 style="font-size:24px ">
@@ -160,31 +160,67 @@
                         </div>
                     </div>
                 @endif
+                @if ($permit->proof_of_payment != null)
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-2 col-form-label">6. Bukti Pembayaran</label>
+                        <div class="col-sm-10">
+                            <a href="{{ route('download.permit', substr($permit->proof_of_payment, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
 
-
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Note</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px" disabled>{{ $permit->note }}</textarea>
+                        </div>
                     </div>
+                @endif
 
-                </div>
+                @if ($permit->note == null)
+                    <label class="col-sm-2 col-form-label">Note</label>
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px" disabled>Tidak ada</textarea>
+                        </div>
+                    </div>
+                @else
+                    <label class="col-sm-2 col-form-label">Note</label>
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px" disabled>{{ $permit->note }}</textarea>
+                        </div>
+                    </div>
+                @endif
 
+
+
+
+                <label for="id" class="col-sm-2 col-form-label">Status</label>
                 <div class="mb-3 row">
-                    <label for="id" class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                         <div class="input-group">
                             <input type="text" class="form-control" value="{{ $permit->status }}" name="id" disabled />
                             {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
                 </div>
-                @if ($permit->status == 'IN PROGRESS')
+                @if ($permit->status == 'IN PROGRESS' && $permit->latest_skpd == null)
                     <div class="mb-3 row">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="{{ route('legal.permit.edit', $permit->id) }}"
+                            <a href="{{ route('legal.permit.upload_skpd', $permit->id) }}"
                                 class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">Upload SKPD</a>
+                        </div>
+                    </div>
+                @endif
+                @if ($permit->cost_control == true && $permit->proof_of_payment == null && $permit->status != 'RETURN' && $permit->latest_skpd != null && $permit->cost_control == 'TRUE')
+                    <div class="mb-3 row">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ route('legal.permit.upload_skpd_invoice', $permit->id) }}"
+                                class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">Update SKPD dan
+                                Bukti Pembayaran</a>
                         </div>
                     </div>
                 @endif

@@ -25,7 +25,7 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
+                                <a href="{{ route('litigation.customer-dispute.show', $row->id) }}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
                     @endforeach
@@ -69,11 +69,11 @@
                         function handleChange() {
                             var x = document.getElementById("causative_factor");
                             if (x.value === "Lain-Lain" ) {
-                                document.getElementById("causative_factor_other1").style.display = "flex";
-                                document.getElementById("causative_factor_other").required = true;
+                                document.getElementById("causative_factor_others1").style.display = "flex";
+                                document.getElementById("causative_factor_others").required = true;
                             } else {
-                                document.getElementById("causative_factor_other1").style.display = "none";
-                                document.getElementById("causative_factor_other").required = false;
+                                document.getElementById("causative_factor_others1").style.display = "none";
+                                document.getElementById("causative_factor_others").required = false;
                             }
                         }
                     </script>

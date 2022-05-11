@@ -8,7 +8,7 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Lease</h2>
-            <x-modal-history>
+            <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
@@ -25,8 +25,19 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal.drafting.legal-lease-check', [$row->id]) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'IN PROGRESS')
+                                    <a href="{{ route('legal.drafting.legal-lease-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'USER SEND AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-lease-process', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-lease-process', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @else
+                                    <a href="{{ route('legal.drafting.legal-lease-check', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

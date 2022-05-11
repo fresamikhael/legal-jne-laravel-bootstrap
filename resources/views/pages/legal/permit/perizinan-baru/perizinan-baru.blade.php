@@ -15,7 +15,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Perizinan Baru</h2>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-5">
                         <x-modal-history id="dataTables">
                             @slot('header')
                                 <tr>
@@ -47,8 +47,8 @@
                         </x-modal-history>
                     </div>
 
-                    <div class="col-6">
-                        <x-modal-all-input id="dataTables">
+                    <div class="col-7">
+                        <x-modal-all-input id="dataTables2">
                             @slot('header')
                                 <tr>
                                     <th>No</th>

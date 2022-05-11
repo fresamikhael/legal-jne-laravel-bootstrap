@@ -138,19 +138,29 @@
                     </div>
                 </div>
 
+                <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Note</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                         <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 100px"></textarea>
                     </div>
                 </div>
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button value="return" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"
                         style="background-color:#fe3f40">return</button>
                     <button value="approve" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"
                         style="background-color:#fe3f40">approve</button>
+                </div> --}}
+
+                <div class="mb-3 row">
+                    <div class="d-flex align-items-center gap-3 justify-content-end">
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-danger" name="action" value="return">Return</button>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

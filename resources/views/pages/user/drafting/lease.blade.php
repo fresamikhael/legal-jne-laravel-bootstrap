@@ -8,7 +8,7 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Lease</h2>
-            <x-modal-history>
+            <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
@@ -17,16 +17,26 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
+
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($table as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                @if ($row->status == 'IN PROGRESS')
+                                    <a href="{{ route('drafting.lease-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'LEGAL SEND AGREEMENT DRAFT')
+                                    <a href="{{ route('drafting.lease-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @else
+                                    <a href="{{ route('drafting.lease-final', [$row->id]) }}" class="btn btn-primary">Lihat</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>

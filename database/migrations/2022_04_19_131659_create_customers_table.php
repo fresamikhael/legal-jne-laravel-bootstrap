@@ -64,6 +64,8 @@ return new class extends Migration
 
             $table->string('user_note')->nullable();
             $table->string('cb_note')->nullable();
+
+            $table->string('file_agreement_signature')->nullable();
             $table->string('status')->default('PENDING');
 
             $table->timestamps();

@@ -39,13 +39,18 @@
                 ],
                 [
                     'label' => 'Litigation',
-                    'route' => 'litigation',
+                    'route' => 'legal/litigation/',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
                 ],
                 [
                     'label' => 'Permit',
                     'route' => 'legal/permit',
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
+                ],
+                [
+                    'label' => 'Permohonan Dokumen',
+                    'route' => 'legal/request_document',
+                    'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
             ];
         @endphp

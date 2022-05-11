@@ -25,6 +25,11 @@
                         'route' => 'drafting.lease',
                         'style' => 'background: #2a2a2a !important; color: #fff !important;',
                     ],
+                    [
+                        'label' => 'Other',
+                        'route' => 'drafting.other',
+                        'style' => 'background: #2a2a2a !important; color: #fff !important;',
+                    ],
                 ];
             @endphp
             @slot('title')

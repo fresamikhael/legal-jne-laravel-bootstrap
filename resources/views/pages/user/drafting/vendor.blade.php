@@ -8,7 +8,7 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Vendor & Supplier</h2>
-            <x-modal-history>
+            <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
@@ -17,16 +17,46 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
+
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($table as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        DRAFT</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        SIGNATURE</button>
+                                @else
+                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <a href="{{ route('drafting.vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <a href="{{ route('drafting.vendor-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
+                                    <a href="{{ route('drafting.vendor-process', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @else
+                                    <a href="{{ route('drafting.vendor-check', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -156,6 +186,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Entitas :</h5>
@@ -178,6 +210,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Korespondensi :</h5>
@@ -191,6 +225,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Dokumen :</h5>
@@ -201,10 +237,9 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. MOM Kesepakatan Para Pihak"
                         name="file_mom" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Disposisi" name="file_dispotition" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Draft Perjanjian dalam bentuk word"
-                        name="file_agreement_draft" />
                 </div>
             </div>
+            {{-- <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
@@ -223,7 +258,7 @@
                         name="file_director_id_card2" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Lain-lain" name="file_other2" />
                 </div>
-            </div>
+            </div> --}}
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />

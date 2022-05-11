@@ -67,7 +67,7 @@ return new class extends Migration
             $table->string('file_vendor_offer');
             $table->string('file_mom');
             $table->string('file_dispotition');
-            $table->string('file_agreement_draft');
+            $table->string('file_agreement_draft')->nullable();
 
             $table->string('file_sk_menkumham');
             $table->string('file_nib2');
@@ -79,6 +79,8 @@ return new class extends Migration
 
             $table->string('user_note')->nullable();
             $table->string('cb_note')->nullable();
+
+            $table->string('file_director_procuration')->nullable();
             $table->string('status')->default('PENDING');
 
             $table->timestamps();

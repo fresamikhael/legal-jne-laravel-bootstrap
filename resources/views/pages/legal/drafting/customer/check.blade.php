@@ -8,7 +8,7 @@
     <x-base>
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer</h2>
-            <x-modal-history>
+            <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
@@ -23,10 +23,35 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
+                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
+                                        DRAFT</button>
+                                @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
+                                @else
+                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
+                                    <a href="{{ route('legal.drafting.legal-customer-update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
+                                    <a href="{{ route('legal.drafting.legal-customer-process', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @else
+                                    <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -114,8 +139,13 @@
                     </x-textarea>
                     <x-input value="{{ $data->type }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis"
                         name="type" disabled />
-                    <x-input value="{{ $data->addendum_to }}" labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="Addendum Ke" name="addendum_to" disabled />
+                    @if ($data->type == 'Addendum')
+                        <x-input value="{{ $data->addendum_to }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="Addendum Ke" name="addendum_to" disabled />
+                    @else
+                        <x-input value="{{ $data->addendum_to }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="Addendum Ke" name="addendum_to" hidden />
+                    @endif
                     <x-input value="{{ $data->discount }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount"
                         name="discount" postfix="%" disabled />
                 </div>
@@ -129,6 +159,8 @@
                     </x-textarea>
                 </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
@@ -144,22 +176,15 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
                             value="Tidak Ada" readOnly />
                     @endif
-                    @if ($data->file_agreement_draft)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
-                            name="file_agreement_draft" type="download"
-                            path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">Unduh <i
-                                class="fa fa-download"></i></x-file>
-                    @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Draft Perjanjian dalam bentuk word"
-                            value="Tidak Ada" readOnly />
-                    @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Form Pengajuan PKS*"
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Form Pengajuan PKS*"
                         name="file_claim_form" type="download"
                         path="{{ route('download.drafting', [substr($data->file_claim_form, 9)]) }}">
                         Unduh <i class="fa fa-download"></i>
                     </x-file>
                 </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
                 <div class="col-sm-3">
@@ -240,6 +265,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
                 <div class="col-sm-3">
                     <h5>Entitas :</h5>
@@ -317,6 +344,8 @@
                     @endif
                 </div>
             </div>
+
+            <hr>
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Contract Business</label>
