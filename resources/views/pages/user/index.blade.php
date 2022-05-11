@@ -47,6 +47,11 @@
                     'route' => 'permit/dashboard',
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
+                [
+                    'label' => 'Legal Corporate',
+                    'route' => 'legalcorporate/index',
+                    'style' => 'background: #1e3278 !important; color: #fff !important;',
+                ],
             ];
         @endphp
 

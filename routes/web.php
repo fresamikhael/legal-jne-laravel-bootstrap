@@ -19,6 +19,8 @@ use App\Http\Controllers\Regulation\NormativeController;
 use App\Http\Controllers\Litigation\OutstandingController;
 use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
+use App\Http\Controllers\LegalCorporate\LandSellController;
+use App\Http\Controllers\LegalCorporate\PowerAttorneyController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 
@@ -207,6 +209,18 @@ Route::prefix('download')->name('download.')->controller(DownloadController::cla
     Route::get('/litigation/{path}', 'downloadLitigation')->name('litigation');
     Route::get('/drafting/{path}', 'downloadDrafting')->name('drafting');
     Route::get('/regulation/{path}', 'downloadRegulation')->name('regulation');
+});
+
+Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.user.legal-corporate.index');
+    })->name('index');
+
+    Route::get('landsell', [LandSellController::class, 'index'])->name('landsell');
+    Route::get('powerattorney', [PowerAttorneyController::class, 'index'])->name('powerattorney');
+    Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
+    Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+    
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {
