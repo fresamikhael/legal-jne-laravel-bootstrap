@@ -20,6 +20,9 @@ use App\Http\Controllers\Regulation\InternalController;
 use App\Http\Controllers\Regulation\NormativeController;
 use App\Http\Controllers\Litigation\OutstandingController;
 use App\Http\Controllers\Litigation\CustomerDisputeController;
+use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
+use App\Http\Controllers\LegalCorporate\LandSellController;
+use App\Http\Controllers\LegalCorporate\PowerAttorneyController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
@@ -117,6 +120,7 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
     });
 
     Route::prefix('fraud')->name('fraud.')->controller(FraudController::class)->group(function () {
@@ -135,7 +139,7 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     });
 });
 
-Route::prefix('legal/litigation')->name('legal.litigation.')->group(function () {
+Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigation.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal.litigation.index');
     })->name('index');
@@ -146,7 +150,7 @@ Route::prefix('legal/litigation')->name('legal.litigation.')->group(function () 
     });
 });
 
-Route::prefix('cs')->name('cs.')->group(function () {
+Route::prefix('cs')->name('cs.')->middleware(['isCs'])->group(function () {
     Route::get('/', function () {
         return View('pages.cs.index');
     })->name('index');
@@ -160,7 +164,7 @@ Route::prefix('cs')->name('cs.')->group(function () {
     });
 });
 
-Route::prefix('legal-litigation-1')->name('legal-litigation-1.')->group(function () {
+Route::prefix('legal-litigation-1')->middleware(['isLiti1'])->name('legal-litigation-1.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal-litigation-1.index');
     })->name('index');
@@ -172,7 +176,7 @@ Route::prefix('legal-litigation-1')->name('legal-litigation-1.')->group(function
     });
 });
 
-Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function () {
+Route::prefix('legal-litigation-2')->middleware(['isLiti2'])->name('legal-litigation-2.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal-litigation-2.index');
     })->name('index');
@@ -184,7 +188,7 @@ Route::prefix('legal-litigation-2')->name('legal-litigation-2.')->group(function
     });
 });
 
-Route::prefix('legal-litigation-manager')->name('legal-litigation-manager.')->group(function () {
+Route::prefix('legal-litigation-manager')->middleware(['isLitiManager'])->name('legal-litigation-manager.')->group(function () {
     Route::get('/', function () {
         return View('pages.legal-litigation-manager.index');
     })->name('index');
@@ -322,6 +326,18 @@ Route::prefix('download')->name('download.')->controller(DownloadController::cla
     Route::get('/litigation/{path}', 'downloadLitigation')->name('litigation');
     Route::get('/drafting/{path}', 'downloadDrafting')->name('drafting');
     Route::get('/regulation/{path}', 'downloadRegulation')->name('regulation');
+});
+
+Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.user.legal-corporate.index');
+    })->name('index');
+
+    Route::get('landsell', [LandSellController::class, 'index'])->name('landsell');
+    Route::get('powerattorney', [PowerAttorneyController::class, 'index'])->name('powerattorney');
+    Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
+    Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+    
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {

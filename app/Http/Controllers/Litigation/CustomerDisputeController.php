@@ -97,6 +97,13 @@ class CustomerDisputeController extends Controller
         return to_route('litigation.customer-dispute.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
     
+    public function show($id)
+    {
+        $cd = CustomerDispute::where('id', $id)->first();
+        
+        return view('pages.user.litigation.show-customer-dispute', compact('cd'));
+    }
+
     public function indexLegal()
     {
         $data = CustomerDispute::where('user_id', auth()->user()->id)

@@ -48,6 +48,11 @@
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
                 [
+                    'label' => 'Legal Corporates',
+                    'route' => 'legalcorporate/index',
+                    'style' => 'background: #1e3278 !important; color: #fff !important;',
+                ],
+                [
                     'label' => 'Permohonan Dokumen',
                     'route' => 'request_document/dashboard',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
