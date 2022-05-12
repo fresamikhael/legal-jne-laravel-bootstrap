@@ -48,7 +48,6 @@ class NewPermitController extends Controller
         // ]);
         // ]);
         $data = $request->all();
-        // $id_permit = $data['id'];
 
         if ($request->file('file_disposition')) {
             $file = $request->file('file_disposition');
@@ -79,19 +78,6 @@ class NewPermitController extends Controller
             $file->move('Permit', $filename);
         }
 
-        // $save = new Permit();
-
-        // $save->name = $name1;
-        // $save->name = $name2;
-        // $save->name = $name3;
-        // $save->name = $name4;
-
-        // $save->path = $path1;
-        // $save->path = $path2;
-        // $save->path = $path3;
-        // $save->path = $path4;
-
-        // UploadFile::create($validatedData2);
         Permit::create($data);
         $datenow = date('y-m-d', strtotime(Carbon::now()));
         $mailData = [
@@ -199,15 +185,7 @@ class NewPermitController extends Controller
         // $data = $request->all();
         // $id_permit = $data['id'];
         $data = $request->validate([
-            // 'user_id' => 'required',
-            // 'permit_type' => 'required',
-            // 'location' => 'required',
-            // 'specification' => 'required',
-            // 'application_reason' => 'required',
-            // 'file_disposition' => 'required',
-            // 'file_document1' => 'required',
-            // 'file_document2' => 'required',
-            // 'file_document3' => 'required',
+
             'cost_control' => 'required',
             'note' => 'required'
 
@@ -289,19 +267,6 @@ class NewPermitController extends Controller
             $file->move('Permit', $filename);
         }
 
-        // $save = new Permit();
-
-        // $save->name = $name1;
-        // $save->name = $name2;
-        // $save->name = $name3;
-        // $save->name = $name4;
-
-        // $save->path = $path1;
-        // $save->path = $path2;
-        // $save->path = $path3;
-        // $save->path = $path4;
-
-        // UploadFile::create($validatedData2);
         Permit::create($data);
 
         $mailData = [
@@ -331,6 +296,7 @@ class NewPermitController extends Controller
                 // $data = $request->all();
                 $data = $request->validate([
                     // 'id' => 'required',
+                    'legal_id' => 'required',
                     'note' => 'required',
                     // 'status' => 'required'
                 ]);
@@ -359,6 +325,7 @@ class NewPermitController extends Controller
                 // $data = $request->all();
                 $data = $request->validate([
                     // 'id' => 'required',
+                    'legal_id' => 'required',
                     'note' => 'required',
                     // 'status' => 'IN PROGRESS'
                 ]);
@@ -383,10 +350,12 @@ class NewPermitController extends Controller
     public function detail_legal($id)
     {
         $permit = Permit::query()->where('id', $id)->firstOrFail();
-        // dd($permit);
+        // $check_legal = Permit::query()->where('user_id', auth()->user()->id)->firstOrFail();
+        // dd($check_legal);
 
         return view('pages.legal.permit.perizinan-baru.detail', [
-            'permit' => $permit
+            'permit' => $permit,
+            // 'checkLegal' => $check_legal,
         ]);
     }
 
@@ -440,6 +409,42 @@ class NewPermitController extends Controller
         return redirect()->route('legal.permit.newpermit');
     }
 
+    public function confirm_skpd_legal(Request $request, $id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.legal.permit.perizinan-baru.confirm_skpd', [
+            'data' => $data
+        ]);
+    }
+
+    public function confirm_skpd_update_legal(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+
+            'cost_control' => 'required',
+            'note' => 'required'
+
+        ]);
+
+
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update($data);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        $mailData = [
+            'title' => 'update from user',
+            'body' => 'SKPD telah masuk ke Cost control, mohon untuk memonitoring Cost control'
+        ];
+
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
+
+        return redirect()->route('legal.permit.newpermit');
+    }
+
     public function upload_skpd_invoice_legal($id)
     {
         $data = Permit::query()->where('id', $id)->firstOrFail();
@@ -454,15 +459,8 @@ class NewPermitController extends Controller
         // $data = $request->all();
         // $id_permit = $data['id'];
         $data = $request->validate([
-            // 'user_id' => 'required',
-            // 'permit_type' => 'required',
-            // 'location' => 'required',
-            // 'specification' => 'required',
-            // 'application_reason' => 'required',
-            // 'file_disposition' => 'required',
-            // 'file_document1' => 'required',
-            // 'file_document2' => 'required',
-            // 'file_document3' => 'required',
+
+            'expired' => 'required',
             'latest_skpd' => 'required',
             'proof_of_payment' => 'required',
             'note' => 'required',

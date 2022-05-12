@@ -38,6 +38,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" class="form-control" value="{{ auth()->user()->id }}" name="legal_id" />
                 <div class="mb-3 row">
                     <label for="permit_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
                     <div class="col-sm-10">
@@ -142,7 +143,7 @@
                 <div class="mb-3 row">
                     <div class="col-sm-12">
                         <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                            style="height: 100px"></textarea>
+                            style="height: 100px" required></textarea>
                     </div>
                 </div>
                 {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
