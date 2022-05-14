@@ -16,7 +16,7 @@ class VendorController extends Controller
             ->get();
         $data = Vendor::query()->where('id', auth()->user()->id);
 
-        return view('pages.user.drafting.vendor', compact('data', 'table'));
+        return view('pages.user.drafting.vendor.index', compact('data', 'table'));
     }
 
     public function legalCreate()
@@ -193,7 +193,7 @@ class VendorController extends Controller
             ->with('user')
             ->get();
         $data = Vendor::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.vendor-check', [
+        return view('pages.user.drafting.vendor.check', [
             'data' => $data,
             'table' => $table
         ]);
@@ -308,7 +308,7 @@ class VendorController extends Controller
             ->with('user')
             ->get();
         $data = Vendor::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.vendor-update', [
+        return view('pages.user.drafting.vendor.update', [
             'data' => $data,
             'table' => $table
         ]);
@@ -387,7 +387,7 @@ class VendorController extends Controller
             ->with('user')
             ->get();
         $data = Vendor::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.vendor-process', [
+        return view('pages.user.drafting.vendor.process', [
             'data' => $data,
             'table' => $table
         ]);

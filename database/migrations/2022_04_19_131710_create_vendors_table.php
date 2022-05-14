@@ -64,18 +64,15 @@ return new class extends Migration
             $table->string('correspondence_phone');
             $table->string('correspondence_email');
 
+            $table->string('sales_name');
+            $table->string('sales_email');
+            $table->string('sales_phone');
+            $table->string('sales_department');
+
             $table->string('file_vendor_offer');
             $table->string('file_mom');
             $table->string('file_dispotition');
             $table->string('file_agreement_draft')->nullable();
-
-            $table->string('file_sk_menkumham');
-            $table->string('file_nib2');
-            $table->string('file_npwp2');
-            $table->string('file_business_permit2');
-            $table->string('file_director_id_card2');
-            $table->string('file_other2')->nullable();
-            $table->string('file_internal_memo')->nullable();
 
             $table->string('user_note')->nullable();
             $table->string('cb_note')->nullable();

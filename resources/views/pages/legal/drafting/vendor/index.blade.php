@@ -251,24 +251,16 @@
 
             <div class="row mt-3">
                 <div class="col-sm-3">
-                    <h5>Entitas Customer :</h5>
+                    <h5>Kontak Sales/PIC :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta & SK Kemenkumham"
-                        name="file_sk_menkumham" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)"
-                        name="file_nib2" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)"
-                        name="file_npwp2" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha & Izin Lokasi OSS"
-                        name="file_business_permit2" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. KTP Direksi"
-                        name="file_director_id_card2" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Lain-lain" name="file_other2" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama" name="sales_name" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email" name="sales_email" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon" name="sales_phone" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang"
+                        name="sales_department" />
                 </div>
             </div>
-
-            <hr>
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />
