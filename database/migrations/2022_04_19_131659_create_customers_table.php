@@ -52,6 +52,11 @@ return new class extends Migration
             $table->string('correspondence_phone');
             $table->string('correspondence_email');
 
+            $table->string('sales_name');
+            $table->string('sales_email');
+            $table->string('sales_phone');
+            $table->string('sales_department');
+
             $table->string('file_deed_of_company')->nullable();
             $table->string('file_nib');
             $table->string('file_npwp');

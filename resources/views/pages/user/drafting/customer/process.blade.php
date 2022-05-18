@@ -23,38 +23,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
                             <td>
                                 @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
-                                    <button type="button" class="btn btn-success" disabled>APPROVED BY CONTRACT BUSINESS</button>
-                                @elseif ($row->status == 'RETURNED BY USER')
-                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
-                                @elseif ($row->status == 'RETURNED BY CONTRACT BUSINESS')
-                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY CONTRACT BUSINESS</button>
-                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
-                                        DRAFT</button>
-                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
-                                    <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
-                                        SIGNATURE</button>
-                                @else
-                                    <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
-                                @endif
-                            </td>
-                            <td>
-                                @if ($row->status == 'APPROVED BY CONTRACT BUSINESS')
-                                    <a href="{{ route('drafting.customer-update', [$row->id]) }}"
+                                    <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
-                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT DRAFT')
-                                    <a href="{{ route('drafting.customer-update', [$row->id]) }}"
-                                        class="btn btn-primary">Check</a>
-                                @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
-                                    <a href="{{ route('drafting.customer-process', [$row->id]) }}"
-                                        class="btn btn-primary">Check</a>
-                                @elseif ($row->status == 'CONTRACT BUSINESS SEND AGREEMENT SIGNATURE')
-                                    <a href="{{ route('drafting.customer-process', [$row->id]) }}"
-                                        class="btn btn-primary">Check</a>
                                 @else
-                                    <a href="{{ route('drafting.customer-check', [$row->id]) }}"
+                                    <a href="{{ route('legal.drafting.legal-customer-check', [$row->id]) }}"
                                         class="btn btn-danger">Update</a>
                                 @endif
                             </td>
@@ -64,7 +39,8 @@
             </x-modal-history>
         </div>
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.customer-check-post', $data->id) }}">
+        <form method="POST" enctype="multipart/form-data"
+            action="{{ route('drafting.customer-process-post', $data->id) }}">
             @csrf
 
             <div class="row mt-3">
@@ -199,6 +175,8 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7"
                             label="4. Draft Perjanjian yang telah ditandatangan" value="Tidak Ada" hidden />
                     @endif
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="5. Perjanjian yang telah ditandatangani semua pihak" name="file_agreement_signature_final" />
                 </div>
             </div>
 
@@ -353,8 +331,34 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" value="Tidak Ada"
                             readOnly />
                     @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Internal Memo"
-                        name="file_internal_memo" />
+                    @if ($data->file_internal_memo)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Internal Memo"
+                            name="file_internal_memo" type="download"
+                            path="{{ route('download.drafting', [substr($data->file_internal_memo, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Internal Memo" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Kontak Sales/PIC :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-input value="{{ $data->sales_name }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama"
+                        name="sales_name" readOnly />
+                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Email"
+                        name="sales_email" readOnly />
+                    <x-input value="{{ $data->sales_phone }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="No Telepon" name="sales_phone" readOnly />
+                    <x-input value="{{ $data->sales_department }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Departemen/Cabang" name="sales_department" readOnly />
                 </div>
             </div>
 
@@ -376,35 +380,3 @@
         </form>
     </x-base>
 @endsection
-
-@push('addon-script')
-    <script type="text/javascript">
-        $(function() {
-            var table = $('#dataTables').DataTable({
-                processing: true,
-                serverSide: true,
-                ordering: true,
-                ajax: "{{ route('regulation.internal') }}",
-                columns: [{
-                        data: 'id',
-                        name: 'id',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'name',
-                        name: 'name',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        "className": "text-center",
-                        orderable: true,
-                        searchable: true
-                    },
-                ]
-            });
-
-        });
-    </script>
-@endpush

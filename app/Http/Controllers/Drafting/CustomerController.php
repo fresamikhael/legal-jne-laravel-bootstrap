@@ -16,7 +16,7 @@ class CustomerController extends Controller
             ->get();
         $data = Customer::query()->where('id', auth()->user()->id);
 
-        return view('pages.user.drafting.customer', compact('data', 'table'));
+        return view('pages.user.drafting.customer.index', compact('data', 'table'));
     }
 
     public function legalCreate()
@@ -32,42 +32,13 @@ class CustomerController extends Controller
     {
 
         $data = $request->all();
-
-        // $validatedData = $request->validate([
-        //     'id' => 'required',
-        //     'user_id' => 'required',
-        //     'first_party' => 'required',
-        //     'second_party' => 'required',
-        //     'third_party' => 'required',
-        //     'agreement_draft' => 'required',
-        //     'addendum' => 'required',
-        //     'customer_type' => 'required',
-        //     'assurance_goods' => 'required',
-        //     'compensation' => 'required',
-        //     'start_date' => 'required',
-        //     'end_date' => 'required',
-        //     'discount' => 'required',
-        //     'other_point' => 'required',
-        //     'shipping_type' => 'required',
-        //     'shipping_type_description' => 'required',
-        //     'file_mom' => 'required',
-        //     'file_agreement_draft' => 'required',
-        //     'file_claim_form' => 'required',
-        //     'file_sk_menkumham' => 'required',
-        //     'file_nib' => 'required',
-        //     'file_npwp' => 'required',
-        //     'file_business_permit	' => 'required',
-        //     'file_npwp' => 'required',
-        //     'file_business_permit	' => 'required',
-        //     'file_other' => 'required',
-        //     'status' => 'required',
-        // ]);
+        $dir = 'Drafting/';
 
         if ($request->file('file_mom')) {
             $file = $request->file('file_mom');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_mom'] = 'Drafting/'.$filename;
+            $data['file_mom'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -75,7 +46,7 @@ class CustomerController extends Controller
             $file = $request->file('file_agreement_draft');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_agreement_draft'] = 'Drafting/'.$filename;
+            $data['file_agreement_draft'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -83,7 +54,7 @@ class CustomerController extends Controller
             $file = $request->file('file_claim_form');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_claim_form'] = 'Drafting/'.$filename;
+            $data['file_claim_form'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -91,7 +62,7 @@ class CustomerController extends Controller
             $file = $request->file('file_nib');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_nib'] = 'Drafting/'.$filename;
+            $data['file_nib'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -99,7 +70,7 @@ class CustomerController extends Controller
             $file = $request->file('file_npwp');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_npwp'] = 'Drafting/'.$filename;
+            $data['file_npwp'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -107,7 +78,7 @@ class CustomerController extends Controller
             $file = $request->file('file_business_permit');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_business_permit'] = 'Drafting/'.$filename;
+            $data['file_business_permit'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -115,7 +86,7 @@ class CustomerController extends Controller
             $file = $request->file('file_director_id_card');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_director_id_card'] = 'Drafting/'.$filename;
+            $data['file_director_id_card'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -123,7 +94,7 @@ class CustomerController extends Controller
             $file = $request->file('file_other');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_other'] = 'Drafting/'.$filename;
+            $data['file_other'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -131,7 +102,7 @@ class CustomerController extends Controller
             $file = $request->file('file_deed_of_company');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_deed_of_company'] = 'Drafting/'.$filename;
+            $data['file_deed_of_company'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -139,7 +110,7 @@ class CustomerController extends Controller
             $file = $request->file('file_oss_location');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_oss_location'] = 'Drafting/'.$filename;
+            $data['file_oss_location'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -147,7 +118,7 @@ class CustomerController extends Controller
             $file = $request->file('file_sk');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_sk'] = 'Drafting/'.$filename;
+            $data['file_sk'] = $dir.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -265,7 +236,7 @@ class CustomerController extends Controller
             ->with('user')
             ->get();
         $data = Customer::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.customer-update', [
+        return view('pages.user.drafting.customer.update', [
             'data' => $data,
             'table' => $table
         ]);
@@ -309,7 +280,7 @@ class CustomerController extends Controller
             ->with('user')
             ->get();
         $data = Customer::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.customer-process', [
+        return view('pages.user.drafting.customer.process', [
             'data' => $data,
             'table' => $table
         ]);
@@ -426,7 +397,7 @@ class CustomerController extends Controller
             ->with('user')
             ->get();
         $data = Customer::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.customer-check', [
+        return view('pages.user.drafting.customer.check', [
             'data' => $data,
             'table' => $table
         ]);

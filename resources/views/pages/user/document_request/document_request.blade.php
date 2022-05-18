@@ -9,36 +9,37 @@
         {{-- @slot('alert')
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
+        
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Permintaan Dokumen</h2>
+            <x-modal-history id="dataTables">
+                @slot('header')
+                    <tr>
+                        <th>No</th>
+                        <th>Nomor Kasus</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                @endslot
+                @slot('data')
+                    @foreach ($data as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                <a href="{{ route('document_request.detail', $row->id) }}"
+                                    class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endslot
+            </x-modal-history>
+        </div>
+        
         <form class="mt-4" method="post" enctype="multipart/form-data"
             action="{{ route('document_request.post') }}">
             @csrf
-            <div class="d-flex align-items-center justify-content-between">
-                <h2>Permintaan Dokumen</h2>
-                <x-modal-history id="dataTables">
-                    @slot('header')
-                        <tr>
-                            <th>No</th>
-                            <th>Nomor Kasus</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    @endslot
-                    @slot('data')
-                        @foreach ($data as $row)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ $row->status }}</td>
-                                <td>
-                                    <a href="{{ route('document_request.detail', $row->id) }}"
-                                        class="btn btn-primary">Lihat</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endslot
-                </x-modal-history>
-
-            </div>
             <div class="row mt-3">
                 {{-- <input type="hidden" name="id"> --}}
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -52,7 +53,6 @@
                             <option value="Soft Copy">Sof Copy</option>
                         </select>
                     </div>
-
                 </div>
                 {{-- <x-input label="Kode Dokumen" name="document_code" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input> --}}
                 {{-- <x-input label="Kode Dokumen" name="document_code" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input> --}}
