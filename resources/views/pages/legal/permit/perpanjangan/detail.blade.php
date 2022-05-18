@@ -182,6 +182,23 @@
 
                 </div>
             </div>
+            @if ($permit->update_photo != null)
+                <div class="mb-3 row">
+                    <label for="specification" class="col-sm-2 col-form-label">7. Foto Terupdate</label>
+                    <div class="col-sm-10">
+                        <a href="{{ route('download.permit', substr($permit->update_photo, 7)) }}"
+                            style="font-size:24px ">
+                            <div
+                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Unduh
+                                <i class="fa fa-download"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            @endif
+
 
             @if ($permit->note == null)
                 <label class="col-sm-2 col-form-label">Note</label>
@@ -229,19 +246,31 @@
                     </div>
                 </div>
             @endif
-            @if ($permit->status == 'RETURN')
+
+            @if ($permit->extend == 'Ya' && $permit->cost_control == 'TRUE' && $permit->proof_of_payment != '')
                 <div class="mb-3 row">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('permit.edit', $permit->id) }}" class="btn btn-danger btn-lg px-4 py-2"
-                            style="background-color:#fe3f40">Edit</a>
+                        <a href="{{ route('legal.perpanjangan.upload_skpd', $permit->id) }}"
+                            class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">Upload SKPD</a>
                     </div>
                 </div>
             @endif
-            @if ($permit->latest_skpd != null && $permit->cost_control == 'FALSE')
+
+            @if ($permit->latest_skpd != null && $permit->cost_control == 'FALSE' && $permit->user_id == $permit->legal_id)
                 <div class="mb-3 row">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('permit.confirm_skpd', $permit->id) }}" class="btn btn-danger btn-lg px-4 py-2"
-                            style="background-color:#fe3f40">konfirmasi SKPD</a>
+                        <a href="{{ route('legal.permit.upload_skpd_invoice', $permit->id) }}"
+                            class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">konfirmasi SKPD</a>
+                    </div>
+                </div>
+            @endif
+
+            @if ($permit->proof_of_payment == '' && $permit->status != 'RETURN' && $permit->latest_skpd != null && $permit->cost_control == 'TRUE')
+                <div class="mb-3 row">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ route('legal.perpanjangan.upload_skpd_invoice', $permit->id) }}"
+                            class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">Update SKPD dan
+                            Bukti Pembayaran</a>
                     </div>
                 </div>
             @endif

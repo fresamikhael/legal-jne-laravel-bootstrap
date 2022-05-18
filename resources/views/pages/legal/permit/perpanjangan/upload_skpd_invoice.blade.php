@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Perizinan baru
+    Perpanjangan Perizinan
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
         <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.permit.update_invoice', $data->id) }}">
+            action="{{ route('legal.perpanjangan.update_invoice', $data->id) }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Upload Bukti Pembayaran dan SKPD</h2>
