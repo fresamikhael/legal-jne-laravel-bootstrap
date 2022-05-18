@@ -6,6 +6,8 @@
 
 @section('content')
     <x-base>
+        <x-button-back />
+
         <div class="d-flex align-items-center justify-content-between">
             <h2>Outstanding</h2>
             <x-modal-history>
