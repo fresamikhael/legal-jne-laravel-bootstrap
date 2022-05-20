@@ -72,7 +72,7 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.customer-post') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.other-post') }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -230,7 +230,8 @@
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama" name="sales_name" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email" name="sales_email" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon" name="sales_phone" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang" name="sales_phone" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang"
+                        name="sales_department" />
                 </div>
             </div>
 

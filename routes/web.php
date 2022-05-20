@@ -71,6 +71,7 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
     Route::get('lease/final/{id}', [LeaseController::class, 'userFinal'])->name('lease-final');
 
     Route::get('other', [DraftingOtherController::class, 'index'])->name('other');
+    Route::post('other/post', [DraftingOtherController::class, 'store'])->name('other-post');
 });
 
 Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
@@ -337,7 +338,7 @@ Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
     Route::get('powerattorney', [PowerAttorneyController::class, 'index'])->name('powerattorney');
     Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
     Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
-    
+
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {

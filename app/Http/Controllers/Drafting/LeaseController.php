@@ -16,7 +16,7 @@ class LeaseController extends Controller
             ->get();
         $data = Lease::query()->where('id', auth()->user()->id);
 
-        return view('pages.user.drafting.lease', compact('data', 'table'));
+        return view('pages.user.drafting.lease.index', compact('data', 'table'));
     }
 
     public function legalCreate()
@@ -335,7 +335,7 @@ class LeaseController extends Controller
             ->with('user')
             ->get();
         $data = Lease::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.lease-update', [
+        return view('pages.user.drafting.lease.update', [
             'data' => $data,
             'table' => $table
         ]);
@@ -405,7 +405,7 @@ class LeaseController extends Controller
             'cb_note' => 'Permohonan penerbitan perjanjian telah selesai, Silahkan download file perjanjian sebagai arsip.',
             'status' => 'CLOSE']);
 
-        return redirect()->route('legal.drafting.legal-process')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        return redirect()->route('legal.drafting.legal-lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
     }
 
     public function userFinal($id)
@@ -414,7 +414,7 @@ class LeaseController extends Controller
             ->with('user')
             ->get();
         $data = Lease::where('id', $id)->firstOrFail();
-        return view('pages.user.drafting.lease-final', [
+        return view('pages.user.drafting.lease.final', [
             'data' => $data,
             'table' => $table
         ]);
