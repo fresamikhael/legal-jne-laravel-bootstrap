@@ -4,6 +4,7 @@ namespace App\Http\Controllers\document_request;
 
 use App\Http\Controllers\Controller;
 use App\Models\DocumentRequest;
+use App\Models\FileDocumentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,22 +17,58 @@ class documentRequestController extends Controller
 
     public function index()
     {
+        $check_document = DocumentRequest::select('*')->count();
+
+        if ($check_document === 0) {
+            $no_kasus = 'DR' . '0001';
+        } else {
+            $item = $check_document + 1;
+            if ($item < 10) {
+                $no_kasus = 'CS' . '000' . $item;
+            } elseif ($item >= 10 && $item <= 99) {
+                $no_kasus = 'CS' . '00' . $item;
+            } elseif ($item >= 100 && $item <= 999) {
+                $no_kasus = 'CS' . '0' . $item;
+            } elseif ($item >= 1000 && $item <= 9999) {
+                $no_kasus = 'CS' . $item;
+            }
+        }
 
         $data = DocumentRequest::where('user_id', auth()->user()->id)
             ->get();
 
         return view('pages.user.document_request.document_request', [
             'data' => $data,
+            'no_kasus' => $no_kasus,
         ]);
     }
 
     public function store(Request $request)
     {
 
-
-        $data = $request->all();
-
+        // dd($request->all());
+        $data = $request->validate([
+            'user_id' => 'required',
+            'request_document_reason' => 'required'
+        ]);
         DocumentRequest::create($data);
+        $document_name = $request->document_name;
+        $dt = $request->document_type;
+        $document_id = $request->document_id;
+
+        $i = 0;
+
+        foreach ($document_name as $dn) {
+            $dr = FileDocumentRequest::create([
+                'document_id' => $document_id,
+                'document_name' => $dn,
+                'document_type' => $dt[$i],
+            ]);
+            $dr->save();
+            $i++;
+        }
+
+
 
 
         return redirect()->route('document_request.form');
@@ -53,8 +90,7 @@ class documentRequestController extends Controller
     public function index_legal()
     {
 
-        $data = DocumentRequest::where('user_id', auth()->user()->id)
-            ->get();
+        $data = DocumentRequest::get();
 
         return view('pages.legal.document_request.document_request', [
             'data' => $data,
