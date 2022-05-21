@@ -50,20 +50,19 @@ class documentRequestController extends Controller
             'request_document_reason' => 'required'
         ]);
 
-        DocumentRequest::create([
+        $document = DocumentRequest::create([
             'request_document_reason' => $request->request_document_reason,
             'user_id' => $request->user_id,
                 
         ]);
         $document_name = $request->document_name;
         $dt = $request->document_type;
-        $document_id = $request->document_id;
 
         $i = 0;
 
         foreach ($document_name as $dn) {
             $dr = FileDocumentRequest::create([
-                'document_id' => $document_id,
+                'document_id' => $document->id,
                 'document_name' => $dn,
                 'document_type' => $dt[$i],
             ]);
