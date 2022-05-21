@@ -21,7 +21,8 @@
             <label class="col-sm-2 col-form-label">Note</label>
             <div class="mb-3 row">
                 <div class="col-sm-12">
-                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"
+                        required>SKPD telah masuk ke Cost control</textarea>
                 </div>
             </div>
 

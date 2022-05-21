@@ -421,48 +421,19 @@
 
             <div class="row mt-3">
                 <div class="col-sm-3">
-                    <h5>Entitas Customer :</h5>
+                    <h5>Kontak Sales/PIC :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta & SK Kemenkumham"
-                        name="file_sk_menkumham" type="download"
-                        path="{{ route('download.drafting', [substr($data->file_sk_menkumham, 9)]) }}">
-                        Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)"
-                        name=" file_nib2" type="download"
-                        path="{{ route('download.drafting', [substr($data->file_nib2, 9)]) }}">
-                        Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)"
-                        name="file_npwp2" type="download"
-                        path="{{ route('download.drafting', [substr($data->file_npwp2, 9)]) }}">
-                        Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha & Izin Lokasi OSS"
-                        name="file_business_permit2" type="download"
-                        path="{{ route('download.drafting', [substr($data->file_business_permit2, 9)]) }}">
-                        Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. KTP Direksi" name="file_director_id_card2"
-                        type="download"
-                        path="{{ route('download.drafting', [substr($data->file_director_id_card2, 9)]) }}">
-                        Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Lain-lain" name="file_other2"
-                        type="download" path="{{ route('download.drafting', [substr($data->file_other2, 9)]) }}">
-                        Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
+                    <x-input value="{{ $data->sales_name }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama"
+                        name="sales_name" readOnly />
+                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Email"
+                        name="sales_email" readOnly />
+                    <x-input value="{{ $data->sales_phone }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="No Telepon" name="sales_phone" readOnly />
+                    <x-input value="{{ $data->sales_department }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Departemen/Cabang" name="sales_department" readOnly />
                 </div>
             </div>
-
-            <hr>
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Contract Business</label>

@@ -10,7 +10,11 @@ class OutstandingController extends Controller
 {
     public function index()
     {
-        return view('pages.user.litigation.outstanding');
+        $ost = Outstanding::where('user_id', auth()->user()->id)
+                ->with('user')
+                ->get();
+
+        return view('pages.user.litigation.outstanding', compact('ost'));
     }
 
     public function store(Request $request)
@@ -72,5 +76,12 @@ class OutstandingController extends Controller
         $outstanding = Outstanding::create($data);
 
         return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+    }
+
+    public function show($id)
+    {
+        $ost = Outstanding::where('id', $id)->first();
+        
+        return view('pages.user.litigation.show-outstanding', compact('ost'));
     }
 }

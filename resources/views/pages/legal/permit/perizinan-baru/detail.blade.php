@@ -38,6 +38,18 @@
                         </div>
                     </div>
                 </div>
+                @if ($permit->expired != null)
+                    <div class="mb-3 row">
+                        <label for="permit_type" class="col-sm-2 col-form-label">Expired</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="{{ $permit->expired }}"
+                                    name="permit_type" disabled />
+                                {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="mb-3 row">
                     <label for="permit_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
                     <div class="col-sm-10">
@@ -215,6 +227,16 @@
                         </div>
                     </div>
                 @endif
+
+                @if ($permit->latest_skpd != null && $permit->cost_control == 'FALSE' && $permit->user_id == $permit->legal_id)
+                    <div class="mb-3 row">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ route('legal.permit.confirm_skpd', $permit->id) }}"
+                                class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">konfirmasi SKPD</a>
+                        </div>
+                    </div>
+                @endif
+
                 @if ($permit->cost_control == true && $permit->proof_of_payment == null && $permit->status != 'RETURN' && $permit->latest_skpd != null && $permit->cost_control == 'TRUE')
                     <div class="mb-3 row">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

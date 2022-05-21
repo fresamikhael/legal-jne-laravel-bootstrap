@@ -6,9 +6,12 @@
 
 @section('content')
     <x-base>
+        <x-button-back />
+
         <div class="d-flex align-items-center justify-content-between">
             <h2>Outstanding</h2>
-            <x-modal-history>
+            
+            <x-modal-history id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
@@ -17,16 +20,17 @@
                         <th>Aksi</th>
                     </tr>
                 @endslot
-                
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($ost as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->status }}</td>
+                            <td>
+                                <a href="{{ route('litigation.outstanding.show', $row->id) }}" class="btn btn-primary">Lihat</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -41,15 +45,15 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" name="party_name"/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" name="party_name" required/>
                     <x-address label="Pihak" name="party"/>                
                 </div>
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit/Departemen/Divisi" name="department"/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Perjanjian" name="agreement_number"/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Kerugian" prefix="Rp" name="total_loss"/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Perjanjian" type="date" name="form_date"/>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Berakhir Perjanjian" type="date" name="till_date"/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit/Departemen/Divisi" name="department" required/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Perjanjian" name="agreement_number" required/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Kerugian" prefix="Rp" name="total_loss" required/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Perjanjian" type="date" name="from_date" required/>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Berakhir Perjanjian" type="date" name="till_date" required/>
                 </div>
             </div>
     

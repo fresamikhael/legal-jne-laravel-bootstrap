@@ -20,12 +20,13 @@
             <div class="mt-4 mb-3 row">
                 <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
             </div>
-            <x-input label="1. SKPD" name="latest_skpd" type="file" labelClass="col-sm-4" fieldClass="col-sm-8">
+            <x-input label="1. SKPD" name="latest_skpd" type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required>
             </x-input>
             <label class="col-sm-2 col-form-label">Note</label>
             <div class="mb-3 row">
                 <div class="col-sm-12">
-                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"
+                        required>Segera mengambil SKPD untuk langsung diproses pembayaran ke Cost Control</textarea>
                 </div>
             </div>
 

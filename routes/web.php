@@ -110,7 +110,6 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::post('lease/process/{id}', [LeaseController::class, 'legalProcessPost'])->name('legal-lease-process-post');
 
     Route::get('other', [DraftingOtherController::class, 'legalCreate'])->name('legal-other');
-
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {
@@ -132,11 +131,13 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     Route::prefix('outstanding')->name('outstanding.')->controller(OutstandingController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
     });
 
     Route::prefix('other')->name('other.')->controller(OtherController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
     });
 });
 
@@ -241,17 +242,43 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
     Route::get('perizinan-baru/detail/{id}',  'detail_legal')->name('detail');
     Route::get('perizinan-baru/edit/skpd/{id}',  'upload_skpd_legal')->name('upload_skpd');
     Route::post('perizinan-baru/update/{id}',  'update_legal')->name('update');
-    Route::get('perizinan-baru/edit/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
+    Route::get('perizinan-baru/upload/invoice-skpd/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
     Route::post('perizinan-baru/update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
-
+    Route::get('perizinan-baru/konfirmasi_skpd/{id}',  'confirm_skpd_legal')->name('confirm_skpd');
+    Route::post('perizinan-baru/konfirmasi_skpd/post/{id}',  'confirm_skpd_update_legal')->name('confirm_skpd_update');
 
 
 
 
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
 
-    Route::get('perpanjangan', [ProlongationController::class, 'index_legal'])->name('prolongation');
 });
+
+Route::prefix('permit/perpanjangan-perizinan')->name('perpanjangan.')->controller(ProlongationController::class)->group(
+    function () {
+        Route::get('/', 'index')->name('prolongation');
+        Route::get('/detail/{id}', 'detail')->name('detail');
+        Route::get('check/{id}', 'check_perpanjangan')->name('prolongation-check');
+        // Route::get('check/unxtended/{id}', 'check_unxtended')->name('unxtended');
+        Route::post('check/update/{id}',  'store_check_perpanjangan')->name('perpanjangan-check-update');
+        Route::get('konfirmasi_skpd/{id}',  'confirm_skpd')->name('confirm_skpd');
+        Route::post('konfirmasi_skpd/post/{id}',  'confirm_skpd_update')->name('confirm_skpd_update');
+    }
+);
+
+Route::prefix('legal/permit/perpanjangan-perizinan')->name('legal.perpanjangan.')->controller(ProlongationController::class)->group(
+    function () {
+        Route::get('/', 'index_legal')->name('prolongation');
+        Route::get('/detail/{id}', 'detail_legal')->name('detail');
+        Route::get('check/upload_tanda_terima/{id}', 'upload_tanda_terima_legal')->name('upload-tanda-terima');
+        Route::post('check/upload_tanda_terima/update/{id}',  'store_upload_tanda_terima_legal')->name('upload-tanda-terima-update');
+        Route::get('upload/skpd/{id}',  'upload_skpd_legal')->name('upload_skpd');
+        Route::post('update/{id}',  'update_skpd_legal')->name('update');
+        Route::get('upload/invoice-skpd/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
+        Route::post('update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
+    }
+);
+
 
 Route::prefix('request_document')->name('document_request.')->controller(documentRequestController::class)->group(function () {
     // Route::get('/', function () {

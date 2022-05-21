@@ -17,7 +17,7 @@
                     ],
                     [
                         'label' => 'Perpanjangan',
-                        'route' => 'legal.permit.prolongation',
+                        'route' => 'legal.perpanjangan.prolongation',
                         'style' => 'background: #fe3f40 !important; color: #fff !important;',
                     ],
                     // [

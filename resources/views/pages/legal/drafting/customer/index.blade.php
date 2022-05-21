@@ -173,41 +173,24 @@
                 </div>
             </div>
 
+            <hr>
+
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Kontak Sales/PIC :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama" name="sales_name" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email" name="sales_email" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon" name="sales_phone" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang"
+                        name="sales_department" />
+                </div>
+            </div>
+
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>
 @endsection
-
-@push('addon-script')
-    <script type="text/javascript">
-        $(function() {
-            var table = $('#legal-customer').DataTable({
-                processing: true,
-                serverSide: true,
-                ordering: true,
-                ajax: "{{ route('legal.drafting.legal-customer-table') }}",
-                columns: [{
-                        data: 'id',
-                        name: 'id',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'name',
-                        name: 'name',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        "className": "text-center",
-                        orderable: true,
-                        searchable: true
-                    },
-                ]
-            });
-
-        });
-    </script>
-@endpush

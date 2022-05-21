@@ -6,6 +6,8 @@
 
 @section('content')
     <x-base>
+        <x-button-back />
+
         <div class="d-flex align-items-center justify-content-between">
             <h2>Customer Dispute</h2>
             
@@ -94,7 +96,7 @@
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi" name="assurance" required>
                         <option value="Ada">Ada</option>
-                        <option value="Tidak">Tidak</option>
+                        <option value="Tidak Ada">Tidak Ada</option>
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Asuransi Nominal" name="assurance_nominal" prefix="Rp" hidden/>
                     <script>
