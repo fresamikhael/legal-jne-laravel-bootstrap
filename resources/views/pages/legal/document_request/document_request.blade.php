@@ -49,6 +49,7 @@
                 {{-- <input type="hidden" name="id"> --}}
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <x-input label="Nama Dokumen" name="document_name" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input>
+
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Tipe Dokumen</label>
                     <div class="col-sm-10">

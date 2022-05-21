@@ -213,8 +213,8 @@
             @if ($permit->latest_skpd != null && $permit->cost_control == 'FALSE')
                 <div class="mb-3 row">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('permit.confirm_skpd', $permit->id) }}" class="btn btn-danger btn-lg px-4 py-2"
-                            style="background-color:#fe3f40">konfirmasi SKPD</a>
+                        <a href="{{ route('perpanjangan.confirm_skpd', $permit->id) }}"
+                            class="btn btn-danger btn-lg px-4 py-2" style="background-color:#fe3f40">konfirmasi SKPD</a>
                     </div>
                 </div>
             @endif

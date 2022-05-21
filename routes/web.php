@@ -242,7 +242,7 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
     Route::get('perizinan-baru/detail/{id}',  'detail_legal')->name('detail');
     Route::get('perizinan-baru/edit/skpd/{id}',  'upload_skpd_legal')->name('upload_skpd');
     Route::post('perizinan-baru/update/{id}',  'update_legal')->name('update');
-    Route::get('perizinan-baru/edit/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
+    Route::get('perizinan-baru/upload/invoice-skpd/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
     Route::post('perizinan-baru/update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
     Route::get('perizinan-baru/konfirmasi_skpd/{id}',  'confirm_skpd_legal')->name('confirm_skpd');
     Route::post('perizinan-baru/konfirmasi_skpd/post/{id}',  'confirm_skpd_update_legal')->name('confirm_skpd_update');
@@ -254,22 +254,28 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
 
 });
 
-Route::prefix('perpanjangan-perizinan')->name('perpanjangan.')->controller(ProlongationController::class)->group(
+Route::prefix('permit/perpanjangan-perizinan')->name('perpanjangan.')->controller(ProlongationController::class)->group(
     function () {
         Route::get('/', 'index')->name('prolongation');
         Route::get('/detail/{id}', 'detail')->name('detail');
         Route::get('check/{id}', 'check_perpanjangan')->name('prolongation-check');
-        Route::get('check/unxtended/{id}', 'check_unxtended')->name('unxtended');
+        // Route::get('check/unxtended/{id}', 'check_unxtended')->name('unxtended');
         Route::post('check/update/{id}',  'store_check_perpanjangan')->name('perpanjangan-check-update');
+        Route::get('konfirmasi_skpd/{id}',  'confirm_skpd')->name('confirm_skpd');
+        Route::post('konfirmasi_skpd/post/{id}',  'confirm_skpd_update')->name('confirm_skpd_update');
     }
 );
 
-Route::prefix('legal/perpanjangan-perizinan')->name('legal.perpanjangan.')->controller(ProlongationController::class)->group(
+Route::prefix('legal/permit/perpanjangan-perizinan')->name('legal.perpanjangan.')->controller(ProlongationController::class)->group(
     function () {
         Route::get('/', 'index_legal')->name('prolongation');
         Route::get('/detail/{id}', 'detail_legal')->name('detail');
         Route::get('check/upload_tanda_terima/{id}', 'upload_tanda_terima_legal')->name('upload-tanda-terima');
         Route::post('check/upload_tanda_terima/update/{id}',  'store_upload_tanda_terima_legal')->name('upload-tanda-terima-update');
+        Route::get('upload/skpd/{id}',  'upload_skpd_legal')->name('upload_skpd');
+        Route::post('update/{id}',  'update_skpd_legal')->name('update');
+        Route::get('upload/invoice-skpd/{id}',  'upload_skpd_invoice_legal')->name('upload_skpd_invoice');
+        Route::post('update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
     }
 );
 
@@ -339,7 +345,6 @@ Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
     Route::get('powerattorney', [PowerAttorneyController::class, 'index'])->name('powerattorney');
     Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
     Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
-    
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {
