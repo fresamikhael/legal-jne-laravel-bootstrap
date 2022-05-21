@@ -131,11 +131,13 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
     Route::prefix('outstanding')->name('outstanding.')->controller(OutstandingController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
     });
 
     Route::prefix('other')->name('other.')->controller(OtherController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
     });
 });
 

@@ -42,7 +42,7 @@
                     <label for="{{ $name }}_province" class="col-sm-5 col-form-label">Provinsi {{ $label }}</label>        
                     <div class="col-sm-7">
                         <select required onChange={ inputProvinceChange } name="{{ $name }}_province" id="{{ $name }}_province" class="form-select" aria-label="Default select example">
-                            <option class="d-none">-- Pilih --</option>
+                            <option class="d-none" value="">-- Pilih --</option>
                             @foreach ($province as $row)
                                 <option value="{{$row->id}}">{{ ucwords(strtolower($row->name)) }}</option>
                             @endforeach
@@ -53,7 +53,7 @@
                     <label for="{{ $name }}_regency" class="col-sm-5 col-form-label">Kab/Kota {{ $label }}</label>        
                     <div class="col-sm-7">
                         <select required onChange={ inputRegencyChange } name="{{ $name }}_regency" id="{{ $name }}_regency" class="form-select" aria-label="Default select example">
-                            <option class="d-none">-- Pilih --</option>
+                            <option class="d-none" value="">-- Pilih --</option>
                             { regency.map((value, index) => {
                                 return (
                                     <option key={index} value={value.id}>{ucwords(value.name.toLowerCase())}</option>
@@ -66,7 +66,7 @@
                     <label for="{{ $name }}_district" class="col-sm-5 col-form-label">Kecamatan {{ $label }}</label>        
                     <div class="col-sm-7">
                         <select required onChange={ inputDistrictChange } name="{{ $name }}_district" id="{{ $name }}_district" class="form-select" aria-label="Default select example">
-                            <option class="d-none">-- Pilih --</option>
+                            <option class="d-none" value="">-- Pilih --</option>
                             { district.map((value, index) => {
                                 return (
                                     <option key={index} value={value.id}>{ucwords(value.name.toLowerCase())}</option>
@@ -79,7 +79,7 @@
                     <label for="{{ $name }}_village" class="col-sm-5 col-form-label">Kelurahan {{ $label }}</label>        
                     <div class="col-sm-7">
                         <select required name="{{ $name }}_village" id="{{ $name }}_village" class="form-select" aria-label="Default select example">
-                            <option class="d-none">-- Pilih --</option>
+                            <option class="d-none" value="">-- Pilih --</option>
                             { village.map((value, index) => {
                                 return (
                                     <option key={index} value={value.id}>{ucwords(value.name.toLowerCase())}</option>
