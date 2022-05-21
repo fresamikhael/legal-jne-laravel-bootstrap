@@ -60,8 +60,8 @@
                         <td>
                             <div class="d-flex justify-content-center my-2">
                                 <div class="col-sm-12">
-                                    <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-4"
-                                        fieldClass="col-sm-8" required>
+                                    <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6"
+                                        fieldClass="col-sm-6" required>
                                         {{-- <option value="" style="display: none" selected>-- Pilih --</option> --}}
                                         <option value="Hard Copy">Hard Copy</option>
                                         <option value="Soft Copy">Sof Copy</option>
@@ -203,7 +203,7 @@
             <td>
                 <div class="d-flex justify-content-center my-2">
                     <div class="col-sm-12">
-                        <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-4" fieldClass="col-sm-8"
+                        <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6" fieldClass="col-sm-6"
                             required>
                             {{-- <option value="" style="display: none" selected>-- Pilih --</option> --}}
                             <option value="Hard Copy">Hard Copy</option>

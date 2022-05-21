@@ -34,7 +34,7 @@ class FileDocumentRequest extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'permits', 'length' => 6, 'prefix' => 'FDR', 'reset_on_prefix_change' => true]);
+            $model->id = IdGenerator::generate(['table' => 'file_document_request', 'length' => 6, 'prefix' => 'FDR', 'reset_on_prefix_change' => true]);
         });
     }
 }

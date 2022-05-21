@@ -45,13 +45,16 @@ class documentRequestController extends Controller
 
     public function store(Request $request)
     {
-
-        // dd($request->all());
-        $data = $request->validate([
+        $request->validate([
             'user_id' => 'required',
             'request_document_reason' => 'required'
         ]);
-        DocumentRequest::create($data);
+
+        DocumentRequest::create([
+            'request_document_reason' => $request->request_document_reason,
+            'user_id' => $request->user_id,
+                
+        ]);
         $document_name = $request->document_name;
         $dt = $request->document_type;
         $document_id = $request->document_id;
