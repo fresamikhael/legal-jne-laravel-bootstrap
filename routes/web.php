@@ -307,6 +307,8 @@ Route::prefix('download')->name('download.')->controller(DownloadController::cla
     Route::get('/litigation/{path}', 'downloadLitigation')->name('litigation');
     Route::get('/drafting/{path}', 'downloadDrafting')->name('drafting');
     Route::get('/regulation/{path}', 'downloadRegulation')->name('regulation');
+    Route::get('/landsell/{path}', 'downloadLandSell')->name('landsell');
+    Route::get('/powerattorney/{path}', 'downloadPowerAttorney')->name('powerattorney');
 });
 
 Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
@@ -318,7 +320,54 @@ Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
     Route::get('powerattorney', [PowerAttorneyController::class, 'index'])->name('powerattorney');
     Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
     Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+
+    Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'userCheck'])->name('powerattorney-check');
+    Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'userCheckPost'])->name('powerattorney-check-post');
+
+    Route::get('landsell/check/{id}', [LandSellController::class, 'userCheck'])->name('landsell-check');
+    Route::post('landsell/check/{id}', [LandSellController::class, 'userCheckPost'])->name('landsell-check-post');
+
+    Route::get('landsell/final/{id}', [LandSellController::class, 'userFinal'])->name('landsell-final');
+    Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
     
+});
+
+Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.legal.legal-corporate.index');
+    })->name('index');
+
+    Route::get('landsell', [LandSellController::class, 'legalIndex'])->name('landsell');
+    Route::get('powerattorney', [PowerAttorneyController::class, 'legalIndex'])->name('powerattorney');
+    Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
+    Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+
+    Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'legalCheck'])->name('powerattorney-check');
+    Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'legalCheckPost'])->name('powerattorney-check-post');
+
+    Route::get('landsell/check/{id}', [LandSellController::class, 'legalCheck'])->name('landsell-check');
+    Route::post('landsell/check/{id}', [LandSellController::class, 'legalCheckPost'])->name('landsell-check-post');
+
+    Route::get('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdate'])->name('powerattorney-update');
+    Route::post('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdatePost'])->name('powerattorney-update-post');
+    
+    Route::get('landsell/final/{id}', [LandSellController::class, 'legalFinal'])->name('landsell-final');
+    Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
+});
+
+Route::get('/headlegal', function () {
+    return view('pages.head-legal.index');
+})->name('headlegal');
+
+Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.head-legal.legal-corporate.index');
+    })->name('index');
+
+    Route::get('powerattorney', [PowerAttorneyController::class, 'headlegalIndex'])->name('powerattorney');
+
+    Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheck'])->name('powerattorney-check');
+    Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheckPost'])->name('powerattorney-check-post');
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {

@@ -19,14 +19,52 @@
                 @endslot
 
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($table as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY LEGAL
+                                        CORPORATES</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
+                                        CORPORATES</button>
+                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
+                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY HEAD OF LEGAL
+                                        DIVISION</button>
+                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
+                                    <button type="button" class="btn btn-danger" disabled>REJECTED BY HEAD OF LEGAL
+                                        DIVISION</button>
+                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED DOCUMENT
+                                        SENT</button>
+                                @else
+                                    <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <a href="{{ route('legalcorporate.powerattorney-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
+                                    <a href="{{ route('legalcorporate.powerattorney-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
+                                    <a href="{{ route('legalcorporate.powerattorney-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
+                                    <a href="{{ route('legalcorporate.powerattorney-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @else
+                                    <a href="{{ route('legalcorporate.powerattorney-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -55,6 +93,8 @@
                         fieldClass="col-sm-7" />
                 </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
 

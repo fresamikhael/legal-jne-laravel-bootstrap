@@ -25,4 +25,9 @@ class LandSell extends Model
             $model->id = IdGenerator::generate(['table' => 'land_sells', 'length' => 6, 'prefix' => 'LAS', 'reset_on_prefix_change' => true]);
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
