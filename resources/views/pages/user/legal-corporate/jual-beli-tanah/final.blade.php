@@ -298,11 +298,15 @@
                         </x-file>
                     @endif
                     <hr>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Kesepakatan/Pengikatan Jual Beli"
-                        name="file_sale_agreement_draft_" type="download"
-                        path="{{ route('download.landsell', [substr($data->file_sale_agreement_draft_, 9)]) }}">Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
+
+                    @if ($data->file_sale_agreement_draft_ == null)
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Kesepakatan/Pengikatan Jual Beli"
+                            name="file_sale_agreement_draft_" type="download"
+                            path="{{ route('download.landsell', [substr($data->file_sale_agreement_draft_, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
                 </div>
             </div>
 
