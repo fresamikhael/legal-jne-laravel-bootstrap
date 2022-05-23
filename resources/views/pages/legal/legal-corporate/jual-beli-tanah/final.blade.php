@@ -32,12 +32,17 @@
                                 @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
                                         CORPORATES</button>
+                                @elseif ($row->status == 'REJECTED')
+                                    <button type="button" class="btn btn-danger" disabled>REJECTED</button>
                                 @else
                                     <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
                                 @endif
                             </td>
                             <td>
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <a href="{{ route('legal.legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'REJECTED')
                                     <a href="{{ route('legal.legalcorporate.landsell-final', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
                                 @else
@@ -301,11 +306,14 @@
                     @endif
 
                     <hr>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Kesepakatan/Pengikatan Jual Beli"
-                        name="file_sale_agreement_draft_" type="download"
-                        path="{{ route('download.landsell', [substr($data->file_sale_agreement_draft_, 9)]) }}">Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
+                    @if ($data->file_sale_agreement_draft_ == null)
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Draft Kesepakatan/Pengikatan Jual Beli"
+                            name="file_sale_agreement_draft_" type="download"
+                            path="{{ route('download.landsell', [substr($data->file_sale_agreement_draft_, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
                 </div>
             </div>
 
