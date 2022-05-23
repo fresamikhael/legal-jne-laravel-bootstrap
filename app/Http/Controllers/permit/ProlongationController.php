@@ -80,11 +80,21 @@ class ProlongationController extends Controller
                 // $data = $request->all();
                 $data = $request->validate([
                     // 'id' => 'required',
+                    'update_photo' => 'required',
                     'note' => 'required',
                     // 'status' => 'IN PROGRESS'
                 ]);
                 $data['status'] = 'IN PROGRESS';
                 $data['extend'] = 'Ya';
+
+
+                if ($request->file('update_photo')) {
+                    $file = $request->file('update_photo');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = Str::random(40) . '.' . $extension;
+                    $data['update_photo'] = 'Permit/' . $filename;
+                    $file->move('Permit', $filename);
+                }
 
                 $item = Permit::findOrFail($id);
 
@@ -95,6 +105,46 @@ class ProlongationController extends Controller
                 break;
         }
     }
+
+
+    public function confirm_skpd(Request $request, $id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.user.permit.perpanjangan.confirm_skpd', [
+            'data' => $data
+        ]);
+    }
+
+    public function confirm_skpd_update(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+
+            'cost_control' => 'required',
+            'note' => 'required'
+
+        ]);
+        $data['proof_of_payment'] = '';
+
+
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update($data);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        // $mailData = [
+        //     'title' => 'update from user',
+        //     'body' => 'SKPD telah masuk ke Cost control, mohon untuk memonitoring Cost control'
+        // ];
+
+        // Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
+
+        return redirect()->route('perpanjangan.prolongation');
+    }
+
+
 
     public function index_legal()
     {
@@ -153,5 +203,146 @@ class ProlongationController extends Controller
         // Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
 
         return redirect()->route('perpanjangan.prolongation');
+    }
+
+    public function upload_skpd_legal($id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.legal.permit.perpanjangan.upload_skpd', [
+            'data' => $data
+        ]);
+    }
+
+    public function update_skpd_legal(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+
+            'latest_skpd' => 'required',
+            'note' => 'required'
+
+        ]);
+
+        $data['cost_control'] = 'FALSE';
+
+        if ($request->file('latest_skpd')) {
+            $file = $request->file('latest_skpd');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['latest_skpd'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update($data);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        // $mailData = [
+        //     'title' => 'update from legal',
+        //     'body' => 'legal telah mengupload skpd'
+        // ];
+
+        // Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
+
+        return redirect()->route('legal.perpanjangan.prolongation');
+    }
+
+    public function confirm_skpd_legal(Request $request, $id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.legal.permit.perizinan-baru.confirm_skpd', [
+            'data' => $data
+        ]);
+    }
+
+    public function confirm_skpd_update_legal(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+
+            'cost_control' => 'required',
+            'note' => 'required'
+
+        ]);
+
+
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update($data);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        $mailData = [
+            'title' => 'update from user',
+            'body' => 'SKPD telah masuk ke Cost control, mohon untuk memonitoring Cost control'
+        ];
+
+        Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
+
+        return redirect()->route('legal.perpanjangan.prolongation');
+    }
+
+    public function upload_skpd_invoice_legal($id)
+    {
+        $data = Permit::query()->where('id', $id)->firstOrFail();
+        // dd($permit);
+
+        return view('pages.legal.permit.perpanjangan.upload_skpd_invoice', [
+            'data' => $data
+        ]);
+    }
+    public function update_invoice_legal(Request $request, $id)
+    {
+        // $data = $request->all();
+        // $id_permit = $data['id'];
+        $data = $request->validate([
+
+            'expired' => 'required',
+            'latest_skpd' => 'required',
+            'proof_of_payment' => 'required',
+            'note' => 'required',
+            'status' => 'required'
+
+        ]);
+
+        $data['extend'] = null;
+        $data['check_expired'] = 'FALSE';
+
+
+
+        if ($request->file('latest_skpd')) {
+            $file = $request->file('latest_skpd');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['latest_skpd'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('proof_of_payment')) {
+            $file = $request->file('proof_of_payment');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['proof_of_payment'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+
+        $item = Permit::where('id', $id)->firstOrFail();
+
+        $item->update($data);
+        // $datenow = date('y-m-d', strtotime(Carbon::now()));
+        //         $mailData = [
+        //             'title' => 'update from legal',
+        //             'body' => 'Permohonan pengajuan
+        // reklame telah selesai, Silahkan download file SKPD sebagai arsip apabila ada
+        // pemeriksaan dari instansi berwenang.
+        // '
+        //         ];
+
+        //         Mail::to('ilhambachtiar48@gmail.com')->send(new MailUPDATE($mailData));
+
+        return redirect()->route('legal.perpanjangan.prolongation');
     }
 }
