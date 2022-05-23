@@ -15,6 +15,7 @@ use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Controllers\document_request\documentRequestController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\permit\ProlongationController;
 use App\Http\Controllers\Regulation\InternalController;
 use App\Http\Controllers\Regulation\NormativeController;
@@ -209,6 +210,18 @@ Route::prefix('information')->name('information.')->group(function () {
     })->name('index');
 });
 
+Route::prefix('legal/information')->name('legal.information.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.information.index');
+    })->name('index');
+
+    Route::get('create', [InformationController::class, 'create'])->name('create');
+    Route::post('create', [InformationController::class, 'store'])->name('store');
+
+    Route::get('qna/create', [InformationController::class, 'qnaCreate'])->name('qna-create');
+    Route::post('qna/create', [InformationController::class, 'qnaStore'])->name('qna-store');
+});
+
 Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)->group(function () {
     // Route::get('/', function () {
     //     return View('pages.user.permit.index');
@@ -357,7 +370,7 @@ Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
 
     Route::get('landsell/final/{id}', [LandSellController::class, 'userFinal'])->name('landsell-final');
     Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
-    
+
 });
 
 Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(function () {
@@ -378,7 +391,7 @@ Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(func
 
     Route::get('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdate'])->name('powerattorney-update');
     Route::post('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdatePost'])->name('powerattorney-update-post');
-    
+
     Route::get('landsell/final/{id}', [LandSellController::class, 'legalFinal'])->name('landsell-final');
     Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
 });
