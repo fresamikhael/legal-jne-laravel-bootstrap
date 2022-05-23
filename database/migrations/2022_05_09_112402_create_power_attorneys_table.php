@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('power_attorneys', function (Blueprint $table) {
             $table->string('id')->unique();
+            $table->string('user_id');
 
             $table->string('name');
             $table->string('division');
@@ -23,6 +24,14 @@ return new class extends Migration
             $table->string('file_internal_memo');
             $table->string('file_supporting_document');
             $table->string('file_endorsee_id');
+
+            $table->string('user_note')->nullable();
+            $table->string('cb_note')->nullable();
+
+            $table->string('file_scan_power_attorneys')->nullable();
+            $table->string('status')->default('PENDING');
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -10,7 +10,11 @@ class OtherController extends Controller
 {
     public function index()
     {
-        return view('pages.user.litigation.other');
+        $ol = OtherLitigation::where('user_id', auth()->user()->id)
+                ->with('user')
+                ->get();
+
+        return view('pages.user.litigation.other', compact('ol'));
     }
 
     public function store(Request $request)
@@ -38,5 +42,12 @@ class OtherController extends Controller
         $other = OtherLitigation::create($data);
 
         return to_route('litigation.other.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+    }
+
+    public function show($id)
+    {
+        $ol = OtherLitigation::where('id', $id)->first();
+        
+        return view('pages.user.litigation.show-other', compact('ol'));
     }
 }

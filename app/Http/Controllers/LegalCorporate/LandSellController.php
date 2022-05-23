@@ -11,7 +11,12 @@ class LandSellController extends Controller
 {
     public function index()
     {
-        return view('pages.user.legal-corporate.jual-beli-tanah.index');
+        $table = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::query()->where('id', auth()->user()->id);
+
+        return view('pages.user.legal-corporate.jual-beli-tanah.index', compact('data', 'table'));
     }
 
     public function store(Request $request)
@@ -238,8 +243,122 @@ class LandSellController extends Controller
             $file->move('LandSell', $filename);
         }
 
+        $data['user_id'] = auth()->user()->id;
+
         LandSell::create($data);
 
         return redirect()->route('legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+    }
+
+    public function legalIndex()
+    {
+        $data = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.legal.legal-corporate.jual-beli-tanah.index', compact('data'));
+    }
+
+    public function userCheck($id)
+    {
+        $table = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::where('id', $id)->firstOrFail();
+        return view('pages.user.legal-corporate.jual-beli-tanah.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function userCheckPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $item = LandSell::findOrFail($id);
+
+        $item->update([
+            $data,
+            'user_note' => $request->user_note,
+            'status' => 'RETURNED BY USER']);
+
+        return redirect()->route('legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function legalCheck($id)
+    {
+        $table = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::where('id', $id)->firstOrFail();
+        return view('pages.legal.legal-corporate.jual-beli-tanah.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalCheckPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = LandSell::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'RETURNED BY LEGAL CORPORATES']);
+
+                return redirect()->route('legal.legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                if ($request->file('file_sale_agreement_draft_')) {
+                    $file = $request->file('file_sale_agreement_draft_');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = Str::random(40) . '.' . $extension;
+                    $data['file_sale_agreement_draft_'] = 'LandSell/'.$filename;
+                    $file->move('LandSell', $filename);
+                }
+
+                $item = LandSell::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'file_sale_agreement_draft_' => $data['file_sale_agreement_draft_'],
+                    'cb_note' => $request->cb_note,
+                    'status' => 'APPROVED BY LEGAL CORPORATES'
+                ]);
+
+                return redirect()->route('legal.legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
+    }
+
+    public function userFinal($id)
+    {
+        $table = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::where('id', $id)->firstOrFail();
+        return view('pages.user.legal-corporate.jual-beli-tanah.final', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalFinal($id)
+    {
+        $table = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::where('id', $id)->firstOrFail();
+        return view('pages.legal.legal-corporate.jual-beli-tanah.final', [
+            'data' => $data,
+            'table' => $table
+        ]);
     }
 }

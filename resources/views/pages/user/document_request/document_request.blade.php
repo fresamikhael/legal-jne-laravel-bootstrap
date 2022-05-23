@@ -9,7 +9,7 @@
         {{-- @slot('alert')
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
-        
+
         <div class="d-flex align-items-center justify-content-between">
             <h2>Permintaan Dokumen</h2>
             <x-modal-history id="dataTables">
@@ -28,32 +28,81 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('document_request.detail', $row->id) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                <a href="{{ route('document_request.detail', $row->id) }}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
                     @endforeach
                 @endslot
             </x-modal-history>
         </div>
-        
+
         <form class="mt-4" method="post" enctype="multipart/form-data"
             action="{{ route('document_request.post') }}">
             @csrf
             <div class="row mt-3">
                 {{-- <input type="hidden" name="id"> --}}
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                <x-input label="Nama Dokumen" name="document_name" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Tipe Dokumen</label>
-                    <div class="col-sm-10">
-                        <select name="document_type" class="form-control" aria-label="Default select example">
-                            <option value='' style="display: none" selected disabled>-- Pilih --</option>
-                            <option value="Hard Copy">Hard Copy</option>
-                            <option value="Soft Copy">Sof Copy</option>
-                        </select>
+                <input type="text" name="document_id" value="{{ $no_kasus }}">
+                <table class="table table-borderless" id="dynamicTable">
+                    <tr>
+                        <th>Document</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-center my-2">
+                                <div class="col-sm-12">
+                                    <x-input label="Nama Dokumen" name="document_name[]" labelClass="col-sm-4"
+                                        fieldClass="col-sm-8">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center my-2">
+                                <div class="col-sm-12">
+                                    <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6"
+                                        fieldClass="col-sm-6" required>
+                                        {{-- <option value="" style="display: none" selected>-- Pilih --</option> --}}
+                                        <option value="Hard Copy">Hard Copy</option>
+                                        <option value="Soft Copy">Sof Copy</option>
+                                    </x-select>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center my-2">
+                                {{-- <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Remove</button> --}}
+                                <button type="button" name="add" id="add" class="btn btn-success ">Add More</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                {{-- <div class="px-4">
+                    <div class="mb-3" id="dynamic">
+                        <div class="row" id="form">
+                            <h5>Document 1</h5>
+                            <div class="col-sm-6">
+                                <x-input label="Nama Dokumen" name="document_name" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8">
+                                </x-input>
+                            </div>
+                            <div class="col-sm-6">
+                                <x-select label="Tipe Dokumen" name="document_type" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required>
+                                    <option value="" style="display: none" selected>-- Pilih --</option>
+                                    <option value="Hard Copy">Hard Copy</option>
+                                    <option value="Soft Copy">Sof Copy</option>
+                                </x-select>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="d-flex justify-content-end my-4">
+                        <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Remove</button>
+                        <button type="button" name="add" id="add" class="btn btn-success ">Add More</button>
+                    </div>
+                </div> --}}
+
                 {{-- <x-input label="Kode Dokumen" name="document_code" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input> --}}
                 {{-- <x-input label="Kode Dokumen" name="document_code" labelClass="col-sm-2" fieldClass="col-sm-10"></x-input> --}}
                 {{-- <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10">
@@ -121,5 +170,54 @@
             });
 
         });
+        var i = 0;
+
+        $("#add").click(function() {
+
+            ++i;
+
+
+            $("#dynamicTable").append($("#test").html());
+        });
+        // var form_tags = document.getElementById('form')
+        // $(document).on('click', '#remove', function() {
+        //     // $(this).parents('tr').remove();
+        //     if (form_tags.length > 2) {
+        //         form_tags.removeChild();
+        //     }
+        // });
+        $(document).on('click', '.remove-tr', function() {
+            $(this).parents('tr').remove();
+        });
+    </script>
+    <script type="text/html" id="test">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-center my-2">
+                    <div class="col-sm-12">
+                        <x-input label="Nama Dokumen" name="document_name[]" labelClass="col-sm-4" fieldClass="col-sm-8">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center my-2">
+                    <div class="col-sm-12">
+                        <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6" fieldClass="col-sm-6"
+                            required>
+                            {{-- <option value="" style="display: none" selected>-- Pilih --</option> --}}
+                            <option value="Hard Copy">Hard Copy</option>
+                            <option value="Soft Copy">Sof Copy</option>
+                        </x-select>
+                    </div>
+                </div>
+
+            </td>
+            <td>
+                <div class="d-flex justify-content-center my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Remove</button>
+                </div>
+            </td>
+        </tr>
     </script>
 @endpush

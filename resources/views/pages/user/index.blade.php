@@ -67,7 +67,7 @@
 
         @slot('menu')
             @foreach ($menu as $row)
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 mb-4">
                     <a href="{{ $row['route'] }}">
                         <div class="item">
                             <div class="card-custom" style="{{ $row['style'] }}">
