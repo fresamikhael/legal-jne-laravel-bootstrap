@@ -31,12 +31,17 @@
                                     @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
                                         <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
                                             CORPORATES</button>
+                                    @elseif ($row->status == 'REJECTED')
+                                        <button type="button" class="btn btn-danger" disabled>REJECTED</button>
                                     @else
                                         <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
                                     @endif
                                 </td>
                                 <td>
                                     @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                        <a href="{{ route('legal.legalcorporate.landsell-final', [$row->id]) }}"
+                                            class="btn btn-primary">Lihat</a>
+                                    @elseif ($row->status == 'REJECTED')
                                         <a href="{{ route('legal.legalcorporate.landsell-final', [$row->id]) }}"
                                             class="btn btn-primary">Lihat</a>
                                     @else
