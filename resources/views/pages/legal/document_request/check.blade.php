@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Perizinan baru
+    Permohoman Dokumen
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         {{-- @slot('alert')
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
-        <form class="mt-4" method="post" enctype="multipart/form-data" action="">
+        <form class="mt-4" method="post" enctype="multipart/form-data" action="{{  }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Permohoman Dokumen</h2>
@@ -47,12 +47,45 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Alasan Permohonan Document</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="floatingTextarea2" style="height: 100px"
+                            readonly>{{ $data->request_document_reason }}</textarea>
+                    </div>
+                </div>
+                <div class="my-4">
+                    <table id="dataTables4" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Dokumen</th>
+                                <th>Tipe Dokumen</th>
+                                {{-- <th>Aksi</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($file as $row)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $row->document_name }}</td>
+                                    <td>{{ $row->document_type }}</td>
+                                    {{-- <td>
+                                    <a href="{{ route('legal.perpanjangan.detail', $row->id) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                </td> --}}
+                                </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+
+                {{-- <div class="mb-3 row">
                     <label for="location" class="col-sm-2 col-form-label">Nama Dokumen</label>
                     <div class="col-sm-10">
                         <div class="input-group">
                             <input type="text" class="form-control" value="{{ $data->document_name }}" name="location"
                                 disabled />
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
                 </div>
@@ -62,23 +95,22 @@
                         <div class="input-group">
                             <input type="text" class="form-control" value="{{ $data->document_type }}"
                                 name="specification" disabled />
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
 
                 {{-- <x-input label="Alasan Permohonan" name="application_reason" value="{{ $permit->location }}"
                     labelClass="col-sm-2" fieldClass="col-sm-10" read-only>
                 </x-input> --}}
-                <div class="mb-3 row">
+                {{-- <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Alasan Permohonan Document</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="floatingTextarea2" style="height: 100px"
                             readonly>{{ $data->request_document_reason }}</textarea>
                     </div>
-                </div>
+                </div> --}}
                 <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
                     <div class="col-sm-12">
@@ -110,3 +142,36 @@
         {{-- <x-input label="Lokasi"></x-input> --}}
     </x-base>
 @endsection
+@push('addon-script')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#dataTable4').DataTable({
+                processing: false,
+                serverSide: false,
+                ordering: false,
+                // ajax: "{{ route('legal.perpanjangan.prolongation') }}",
+                columns: [
+
+                    {
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        "className": "text-center",
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endpush

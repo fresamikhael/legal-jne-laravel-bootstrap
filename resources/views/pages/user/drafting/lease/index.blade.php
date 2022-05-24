@@ -222,7 +222,8 @@
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama" name="sales_name" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email" name="sales_email" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon" name="sales_phone" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang" name="sales_phone" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang"
+                        name="sales_department" />
                 </div>
             </div>
 

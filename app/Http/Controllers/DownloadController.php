@@ -31,4 +31,25 @@ class DownloadController extends Controller
 
         return response()->download($file);
     }
+
+    function downloadDocumentRequest($path)
+    {
+        $file = public_path('document_request/' . $path);
+
+        return response()->download($file);
+    }
+
+    function downloadPowerAttorney($path)
+    {
+        $file = public_path('PowerAttorney/' . $path);
+
+        return response()->download($file);
+    }
+
+    function downloadLandSell($path)
+    {
+        $file = public_path('LandSell/' . $path);
+
+        return response()->download($file);
+    }
 }

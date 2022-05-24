@@ -63,6 +63,7 @@ class ProlongationController extends Controller
 
                 // $regulation = Regulation::where('id', $id)->firstOrFail();
                 // 'status' => 'RETURN'
+                $data['user_id'] = auth()->user()->id;
                 $data['status'] = 'CLOSED';
                 $data['extend'] = 'Tidak';
 
@@ -84,6 +85,7 @@ class ProlongationController extends Controller
                     'note' => 'required',
                     // 'status' => 'IN PROGRESS'
                 ]);
+                $data['user_id'] = auth()->user()->id;
                 $data['status'] = 'IN PROGRESS';
                 $data['extend'] = 'Ya';
 
@@ -183,6 +185,8 @@ class ProlongationController extends Controller
             'note' => 'required'
 
         ]);
+
+        $data['legal_id'] = auth()->user()->id;
 
         if ($request->file('receipt')) {
             $file = $request->file('receipt');

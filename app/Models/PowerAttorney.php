@@ -25,4 +25,9 @@ class PowerAttorney extends Model
             $model->id = IdGenerator::generate(['table' => 'power_attorneys', 'length' => 6, 'prefix' => 'PAT', 'reset_on_prefix_change' => true]);
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

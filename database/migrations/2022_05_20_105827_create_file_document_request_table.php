@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('file_number')->nullable();
             $table->dateTime('doc_out')->nullable();
             $table->dateTime('doc_in')->nullable();
+            $table->string('file')->nullable();
+            $table->string('note')->nullable();
+
             // $table->boolean('cost_control')->nullable();
             $table->string('status')->default('PENDING');
             $table->foreign('document_id')->references('id')->on('document_request')->onUpdate('cascade')->onDelete('cascade');

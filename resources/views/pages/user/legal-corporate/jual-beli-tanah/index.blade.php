@@ -19,14 +19,37 @@
                 @endslot
 
                 @slot('data')
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="" class="btn btn-primary">Lihat</a>
-                        </td>
-                    </tr>
+                    @foreach ($table as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->id }}</td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED BY LEGAL CORPORATES</button>
+                                @elseif ($row->status == 'RETURNED BY USER')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
+                                @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL CORPORATES</button>
+                                @elseif ($row->status == 'REJECTED')
+                                    <button type="button" class="btn btn-danger" disabled>REJECTED</button>
+                                @else
+                                    <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'REJECTED')
+                                    <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @else
+                                    <a href="{{ route('legalcorporate.landsell-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 @endslot
             </x-modal-history>
         </div>
@@ -69,6 +92,8 @@
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
 
                 <div class="col-sm-12">
@@ -88,6 +113,7 @@
                         name="file_im" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Gambar/Foto Objek Pembelian*"
                         name="file_purchase" />
+                    <hr>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Identitas Pemilik/Penjual"
                         name="identity_type">
                         <option value="Peorangan/Pribadi">Peorangan/Pribadi</option>
@@ -163,16 +189,16 @@
                                 document.getElementById("heir_note").required = true;
                                 document.getElementById("file_death_statement1").classList.remove('d-none');
                                 document.getElementById("file_death_statement1").classList.add('d-flex');
-                                document.getElementById("file_death_statement").required = true;
+                                document.getElementById("file_death_statement").required = false;
                                 document.getElementById("file_legal_heir1").classList.remove('d-none');
                                 document.getElementById("file_legal_heir1").classList.add('d-flex');
-                                document.getElementById("file_legal_heir").required = true;
+                                document.getElementById("file_legal_heir").required = false;
                                 document.getElementById("file_heir_id1").classList.remove('d-none');
                                 document.getElementById("file_heir_id1").classList.add('d-flex');
-                                document.getElementById("file_heir_id").required = true;
+                                document.getElementById("file_heir_id").required = false;
                                 document.getElementById("file_heir_npwp1").classList.remove('d-none');
                                 document.getElementById("file_heir_npwp1").classList.add('d-flex');
-                                document.getElementById("file_heir_npwp").required = true;
+                                document.getElementById("file_heir_npwp").required = false;
 
                                 document.getElementById("file_legal_corp1").classList.remove('d-flex');
                                 document.getElementById("file_legal_corp1").classList.add('d-none');
