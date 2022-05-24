@@ -237,7 +237,7 @@ class CustomerDisputeController extends Controller
                     'status' => $data['status']
                 ]);
 
-                return to_route('legal-litigation-1.customer-dispute.index');
+                return back();
                 break;
             case '2':
                 $data['status'] = 'PERDAMAIAN';
@@ -266,7 +266,7 @@ class CustomerDisputeController extends Controller
                     'status' => $data['status']
                 ]);
 
-                return to_route('legal-litigation-1.customer-dispute.index');
+                return back();
                 break;
             case '3':
                 $data['status'] = 'LEWAT > 3 BULAN';
@@ -296,10 +296,10 @@ class CustomerDisputeController extends Controller
                     'status' => $data['status']
                 ]);
 
-                return to_route('legal-litigation-1.customer-dispute.index');
+                return back();
                 break;
             default:
-                return to_route('legal-litigation-1.customer-dispute.index');
+                return back();
                 break;
         }
     }
