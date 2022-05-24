@@ -7,6 +7,8 @@ use App\Models\DocumentRequest;
 use App\Models\FileDocumentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class documentRequestController extends Controller
 {
@@ -53,7 +55,7 @@ class documentRequestController extends Controller
         $document = DocumentRequest::create([
             'request_document_reason' => $request->request_document_reason,
             'user_id' => $request->user_id,
-                
+
         ]);
         $document_name = $request->document_name;
         $dt = $request->document_type;
@@ -80,12 +82,15 @@ class documentRequestController extends Controller
     {
         $data = DocumentRequest::where('id', $id)
             ->firstOrfail();
+        $file = FileDocumentRequest::where('document_id', $data->id)->get();
         $user = User::query()->where('id', $data->user_id)->firstOrfail();
         $user_id = $data->user_id;
         // dd($user_id);
         return View('pages.user.document_request.detail', [
             'data' => $data,
-            'user' => $user
+            'user' => $user,
+            'file' => $file,
+
         ]);
     }
 
@@ -114,25 +119,218 @@ class documentRequestController extends Controller
     {
         $data = DocumentRequest::where('id', $id)
             ->firstOrfail();
+        $file = FileDocumentRequest::where('document_id', $data->id)->get();
+        // dd($file);
         $user = User::query()->where('id', $data->user_id)->firstOrfail();
         $user_id = $data->user_id;
         // dd($user_id);
         return View('pages.legal.document_request.check', [
             'data' => $data,
-            'user' => $user
+            'user' => $user,
+            'file' => $file,
         ]);
     }
 
+    public function check_legal_store(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'return':
+                // $data = $request->all();
+                $data = $request->validate([
+                    // 'id' => 'required',
+                    // 'legal_id' => 'required',
+                    'note' => 'required',
+                    // 'status' => 'required'
+                ]);
+
+                // $regulation = Regulation::where('id', $id)->firstOrFail();
+                // 'status' => 'RETURN'
+                $data['status'] = 'RETURN';
+                $item = DocumentRequest::where('id', $id)->firstOrFail();
+
+                $item->update($data);
+
+
+                return redirect()->route('legal.document_request.form');
+                break;
+
+            case 'approve':
+                $data['status'] = 'IN PROGRESS';
+
+                $item = DocumentRequest::where('id', $id)->firstOrFail();
+
+
+                $item->update($data);
+
+
+                return redirect()->route('legal.document_request.form');
+                break;
+        }
+    }
     public function detail_legal($id)
     {
         $data = DocumentRequest::where('id', $id)
             ->firstOrfail();
+        $file = FileDocumentRequest::where('document_id', $data->id)->get();
         $user = User::query()->where('id', $data->user_id)->firstOrfail();
         $user_id = $data->user_id;
         // dd($user_id);
         return View('pages.legal.document_request.detail', [
             'data' => $data,
-            'user' => $user
+            'user' => $user,
+            'file' => $file,
+
+        ]);
+    }
+
+    public function update_legal_hard($id)
+    {
+
+        $file = FileDocumentRequest::where('id', $id)->firstOrfail();
+        $data = DocumentRequest::where('id', $file->document_id)->firstOrfail();
+        // dd($data);
+        $user = User::query()->where('id', $data->user_id)->firstOrfail();
+        // $user_id = $data->user_id;
+        // dd($user_id);
+        return View('pages.legal.document_request.update', [
+            'data' => $data,
+            'user' => $user,
+            'file' => $file,
+
+        ]);
+    }
+    public function update_legal_hard_store(Request $request, $id)
+    {
+
+        $data = $request->all();
+
+        // if ($request->file('file')) {
+        //     $file = $request->file('file');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = Str::random(40) . '.' . $extension;
+        //     $data['file'] = 'document_request/' . $filename;
+        //     $file->move('document_request', $filename);
+        // }
+        $item = FileDocumentRequest::where('id', $id)->firstOrFail();
+
+
+        $item->update($data);
+
+        // FileDocumentRequest::create($data);
+
+        $data = DocumentRequest::get();
+
+        return view('pages.legal.document_request.document_request', [
+            'data' => $data,
+        ]);
+    }
+    public function update_legal_soft($id)
+    {
+
+        $file = FileDocumentRequest::where('id', $id)->firstOrfail();
+        $data = DocumentRequest::where('id', $file->document_id)->firstOrfail();
+        // dd($data);
+        $user = User::query()->where('id', $data->user_id)->firstOrfail();
+        // $user_id = $data->user_id;
+        // dd($user_id);
+        return View('pages.legal.document_request.update_soft', [
+            'data' => $data,
+            'user' => $user,
+            'file' => $file,
+
+        ]);
+    }
+    public function update_legal_soft_store(Request $request, $id)
+    {
+
+        $data = $request->all();
+
+        if ($request->file('file')) {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file'] = 'document_request/' . $filename;
+            $file->move('document_request', $filename);
+        }
+        $item = FileDocumentRequest::where('id', $id)->firstOrFail();
+
+
+        $item->update($data);
+
+        // FileDocumentRequest::create($data);
+
+        $data = DocumentRequest::get();
+
+        return view('pages.legal.document_request.document_request', [
+            'data' => $data,
+        ]);
+    }
+    public function update_legal_out($id)
+    {
+
+        $file = FileDocumentRequest::where('id', $id)->firstOrfail();
+        // $data = DocumentRequest::where('id', $file->document_id)->firstOrfail();
+        // // dd($data);
+        // $user = User::query()->where('id', $data->user_id)->firstOrfail();
+        // $user_id = $data->user_id;
+        // dd($user_id);
+        return View('pages.legal.document_request.update_out', [
+            // 'data' => $data,
+            // 'user' => $user,
+            'file' => $file,
+
+        ]);
+    }
+    public function update_legal_out_store(Request $request, $id)
+    {
+
+        $data = $request->all();
+
+        $item = FileDocumentRequest::where('id', $id)->firstOrFail();
+
+
+        $item->update($data);
+
+        // FileDocumentRequest::create($data);
+
+        $data = DocumentRequest::get();
+
+        return view('pages.legal.document_request.document_request', [
+            'data' => $data,
+        ]);
+    }
+    public function update_legal_in($id)
+    {
+
+        $file = FileDocumentRequest::where('id', $id)->firstOrfail();
+        // $data = DocumentRequest::where('id', $file->document_id)->firstOrfail();
+        // // dd($data);
+        // $user = User::query()->where('id', $data->user_id)->firstOrfail();
+        // $user_id = $data->user_id;
+        // dd($user_id);
+        return View('pages.legal.document_request.update_in', [
+            // 'data' => $data,
+            // 'user' => $user,
+            'file' => $file,
+
+        ]);
+    }
+    public function update_legal_in_store(Request $request, $id)
+    {
+
+        $data = $request->all();
+
+        $item = FileDocumentRequest::where('id', $id)->firstOrFail();
+
+
+        $item->update($data);
+
+        // FileDocumentRequest::create($data);
+
+        $data = DocumentRequest::get();
+
+        return view('pages.legal.document_request.document_request', [
+            'data' => $data,
         ]);
     }
 }

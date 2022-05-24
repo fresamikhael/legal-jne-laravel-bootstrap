@@ -31,4 +31,11 @@ class DownloadController extends Controller
 
         return response()->download($file);
     }
+
+    function downloadDocumentRequest($path)
+    {
+        $file = public_path('document_request/' . $path);
+
+        return response()->download($file);
+    }
 }

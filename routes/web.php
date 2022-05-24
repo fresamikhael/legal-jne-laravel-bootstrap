@@ -300,7 +300,16 @@ Route::prefix('legal/request_document')->name('legal.document_request.')->contro
     Route::get('/', 'index_legal')->name('form');
     Route::post('/post',  'store_legal')->name('post');
     Route::get('/check/{id}', 'check_legal')->name('check');
+    Route::post('/check/post/{id}', 'check_legal_store')->name('checkpost');
     Route::get('/detail/{id}', 'detail_legal')->name('detail');
+    Route::get('/update/hard_copy/{id}', 'update_legal_hard')->name('updatehard');
+    Route::get('/update/soft_copy/{id}', 'update_legal_soft')->name('updatesoft');
+    Route::post('/update/hard_copy/post/{id}', 'update_legal_hard_store')->name('updateposthard');
+    Route::post('/update/soft_copy/post/{id}', 'update_legal_soft_store')->name('updatepostsoft');
+    Route::get('/update/out/{id}', 'update_legal_out')->name('updatedoc_out');
+    Route::get('/update/in/{id}', 'update_legal_in')->name('updatedoc_in');
+    Route::post('/update/out/post/{id}', 'update_legal_out_store')->name('updatedoc_out_post');
+    Route::post('/update/in/post/{id}', 'update_legal_in_store')->name('updatedoc_in_post');
 });
 
 
@@ -334,6 +343,7 @@ Route::prefix('download')->name('download.')->controller(DownloadController::cla
     Route::get('/litigation/{path}', 'downloadLitigation')->name('litigation');
     Route::get('/drafting/{path}', 'downloadDrafting')->name('drafting');
     Route::get('/regulation/{path}', 'downloadRegulation')->name('regulation');
+    Route::get('/documentrequest/{path}', 'downloadDocumentRequest')->name('DR');
 });
 
 Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {

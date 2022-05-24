@@ -26,6 +26,7 @@ return new class extends Migration
             // $table->dateTime('doc_in')->nullable();
             // $table->boolean('cost_control')->nullable();
             $table->string('status')->default('PENDING');
+            $table->string('note')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

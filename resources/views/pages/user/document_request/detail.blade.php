@@ -45,26 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-3 row">
-                <label for="location" class="col-sm-2 col-form-label">Nama Dokumen</label>
-                <div class="col-sm-10">
-                    <div class="input-group">
-                        <input type="text" class="form-control" value="{{ $data->document_name }}" name="location"
-                            disabled />
-                        {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="specification" class="col-sm-2 col-form-label">Tipe Document</label>
-                <div class="col-sm-10">
-                    <div class="input-group">
-                        <input type="text" class="form-control" value="{{ $data->document_type }}" name="specification"
-                            disabled />
-                        {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                    </div>
-                </div>
-            </div>
+
 
 
 
@@ -77,6 +58,90 @@
                     <textarea class="form-control" id="floatingTextarea2" style="height: 100px"
                         readonly>{{ $data->request_document_reason }}</textarea>
                 </div>
+            </div>
+
+            <div class="my-4">
+                <table id="dataTables4" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Dokumen</th>
+                            <th>Tipe Dokumen</th>
+                            <th>Kode Dokumen</th>
+                            <th>File Number</th>
+                            <th>Dokumen Out</th>
+                            <th>Dokumen In</th>
+                            <th>Action</th>
+                            {{-- <th>Aksi</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($file as $row)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $row->document_name }}</td>
+                                <td>{{ $row->document_type }}</td>
+                                <td>
+                                    @if ($row->document_code == null)
+                                        -
+                                    @else
+                                        {{ $row->document_code }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($row->file_number == null)
+                                        -
+                                    @else
+                                        {{ $row->file_number }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($row->doc_out == null)
+                                        -
+                                    @else
+                                        {{ $row->doc_out }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($row->doc_in == null)
+                                        -
+                                    @else
+                                        {{ $row->doc_in }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($row->note == null)
+                                        -
+                                    @else
+                                        {{ $row->note }}
+                                    @endif
+
+                                </td>
+                                <td>
+                                    @if ($row->file != null)
+                                        <a href="{{ route('download.DR', substr($row->file, 17)) }}"
+                                            style="font-size:24px ">
+                                            <div
+                                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                Unduh
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </a>
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+
+
+                                {{-- <td>
+                                    <a href="{{ route('legal.perpanjangan.detail', $row->id) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                </td> --}}
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
             </div>
 
 
@@ -133,3 +198,36 @@
         {{-- <x-input label="Lokasi"></x-input> --}}
     </x-base>
 @endsection
+@push('addon-script')
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#dataTable4').DataTable({
+                processing: false,
+                serverSide: false,
+                ordering: false,
+                // ajax: "{{ route('legal.perpanjangan.prolongation') }}",
+                columns: [
+
+                    {
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'aksi',
+                        name: 'aksi',
+                        "className": "text-center",
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+        });
+    </script>
+@endpush
