@@ -48,6 +48,11 @@
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
                 [
+                    'label' => 'Legal Corporates',
+                    'route' => 'legal/legalcorporate/index',
+                    'style' => 'background: #1e3278 !important; color: #fff !important;',
+                ],
+                [
                     'label' => 'Permohonan Dokumen',
                     'route' => 'legal/request_document',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
@@ -62,7 +67,7 @@
 
         @slot('menu')
             @foreach ($menu as $row)
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 mb-4">
                     <a href="{{ $row['route'] }}">
                         <div class="item">
                             <div class="card-custom" style="{{ $row['style'] }}">

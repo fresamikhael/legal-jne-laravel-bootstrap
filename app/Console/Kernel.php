@@ -2,7 +2,10 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\LegalCorporate\LandSellController;
+use App\Models\LandSell;
 use App\Models\Permit;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,19 +28,40 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // print("test");
 
-            $jumlahpermit = Permit::all();
+            // $jumlahpermit = Permit::all();
 
-            foreach ($jumlahpermit as $permit) {
-                print("test");
-                // $waktu = $permit->updated_at;
-                // $sekarang = \Carbon\Carbon::now();
-                // $difference = $sekarang->diffInDays($waktu, false);
-                // if ($difference == 90) {
-                //     print("test");
-                // }
+            // foreach ($jumlahpermit as $permit) {
+            //     print("test");
+            //     // $waktu = $permit->updated_at;
+            //     // $sekarang = \Carbon\Carbon::now();
+            //     // $difference = $sekarang->diffInDays($waktu, false);
+            //     // if ($difference == 90) {
+            //     //     print("test");
+            //     // }
+            // }
+
+            $expiredLandSell = LandSell::where('created_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())->get();
+
+            foreach ($expiredLandSell as $expired) {
+                if ($expired->status == 'RETURNED BY USER' || $expired->status == 'RETURNED BY LEGAL CORPORATES'){
+                    $expired->update([
+                        'status' => 'REJECTED'
+                    ]);
+                }
             }
+            
         })->everyMinute();
     }
+
+    // protected function rejectLandSell(Schedule $schedule)
+    // {
+    //     $schedule->call(function () {
+
+    //         $expiredLandSell = LandSell::where('created_at', '<=', Carbon::now()->subDays(1)->toDateTimeString())->get();
+    //         print($expiredLandSell);
+    //         DB::table('recent_users')->delete();
+    //     })->everyMinute();
+    // }
 
     /**
      * Register the commands for the application.

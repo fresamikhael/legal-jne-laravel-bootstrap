@@ -392,6 +392,24 @@
                 @endif
             </div>
 
+            <hr>
+
+            <div class="row mt-3">
+                <div class="col-sm-3">
+                    <h5>Kontak Sales/PIC :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-input value="{{ $data->sales_name }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama"
+                        name="sales_name" readOnly />
+                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Email"
+                        name="sales_email" readOnly />
+                    <x-input value="{{ $data->sales_phone }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="No Telepon" name="sales_phone" readOnly />
+                    <x-input value="{{ $data->sales_department }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Departemen/Cabang" name="sales_department" readOnly />
+                </div>
+            </div>
+
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
                 <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />

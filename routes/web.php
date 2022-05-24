@@ -15,6 +15,7 @@ use App\Http\Controllers\Database\DatabaseController;
 use App\Http\Controllers\document_request\documentRequestController;
 use App\Http\Controllers\Drafting\CustomerController;
 use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\permit\ProlongationController;
 use App\Http\Controllers\Regulation\InternalController;
 use App\Http\Controllers\Regulation\NormativeController;
@@ -71,6 +72,7 @@ Route::prefix('drafting')->name('drafting.')->group(function () {
     Route::get('lease/final/{id}', [LeaseController::class, 'userFinal'])->name('lease-final');
 
     Route::get('other', [DraftingOtherController::class, 'index'])->name('other');
+    Route::post('other/post', [DraftingOtherController::class, 'store'])->name('other-post');
 });
 
 Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
@@ -206,6 +208,18 @@ Route::prefix('information')->name('information.')->group(function () {
     Route::get('/', function () {
         return View('pages.user.information.index');
     })->name('index');
+});
+
+Route::prefix('legal/information')->name('legal.information.')->group(function () {
+    Route::get('/', function () {
+        return View('pages.legal.information.index');
+    })->name('index');
+
+    Route::get('create', [InformationController::class, 'create'])->name('create');
+    Route::post('create', [InformationController::class, 'store'])->name('store');
+
+    Route::get('qna/create', [InformationController::class, 'qnaCreate'])->name('qna-create');
+    Route::post('qna/create', [InformationController::class, 'qnaStore'])->name('qna-store');
 });
 
 Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)->group(function () {
@@ -344,6 +358,8 @@ Route::prefix('download')->name('download.')->controller(DownloadController::cla
     Route::get('/drafting/{path}', 'downloadDrafting')->name('drafting');
     Route::get('/regulation/{path}', 'downloadRegulation')->name('regulation');
     Route::get('/documentrequest/{path}', 'downloadDocumentRequest')->name('DR');
+    Route::get('/landsell/{path}', 'downloadLandSell')->name('landsell');
+    Route::get('/powerattorney/{path}', 'downloadPowerAttorney')->name('powerattorney');
 });
 
 Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
@@ -355,6 +371,53 @@ Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
     Route::get('powerattorney', [PowerAttorneyController::class, 'index'])->name('powerattorney');
     Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
     Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+
+    Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'userCheck'])->name('powerattorney-check');
+    Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'userCheckPost'])->name('powerattorney-check-post');
+
+    Route::get('landsell/check/{id}', [LandSellController::class, 'userCheck'])->name('landsell-check');
+    Route::post('landsell/check/{id}', [LandSellController::class, 'userCheckPost'])->name('landsell-check-post');
+
+    Route::get('landsell/final/{id}', [LandSellController::class, 'userFinal'])->name('landsell-final');
+    Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
+});
+
+Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.legal.legal-corporate.index');
+    })->name('index');
+
+    Route::get('landsell', [LandSellController::class, 'legalIndex'])->name('landsell');
+    Route::get('powerattorney', [PowerAttorneyController::class, 'legalIndex'])->name('powerattorney');
+    Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
+    Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+
+    Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'legalCheck'])->name('powerattorney-check');
+    Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'legalCheckPost'])->name('powerattorney-check-post');
+
+    Route::get('landsell/check/{id}', [LandSellController::class, 'legalCheck'])->name('landsell-check');
+    Route::post('landsell/check/{id}', [LandSellController::class, 'legalCheckPost'])->name('landsell-check-post');
+
+    Route::get('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdate'])->name('powerattorney-update');
+    Route::post('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdatePost'])->name('powerattorney-update-post');
+
+    Route::get('landsell/final/{id}', [LandSellController::class, 'legalFinal'])->name('landsell-final');
+    Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
+});
+
+Route::get('/headlegal', function () {
+    return view('pages.head-legal.index');
+})->name('headlegal');
+
+Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->group(function () {
+    Route::get('/index', function () {
+        return View('pages.head-legal.legal-corporate.index');
+    })->name('index');
+
+    Route::get('powerattorney', [PowerAttorneyController::class, 'headlegalIndex'])->name('powerattorney');
+
+    Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheck'])->name('powerattorney-check');
+    Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheckPost'])->name('powerattorney-check-post');
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {

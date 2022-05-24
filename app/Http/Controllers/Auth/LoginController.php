@@ -70,6 +70,8 @@ class LoginController extends Controller
                 return redirect()->route('cb-home');
             } elseif (auth()->user()->role == 'USER') {
                 return to_route('home');
+            } elseif (auth()->user()->role == 'HEADLEGAL') {
+                return to_route('headlegal');
             }
         } else {
             return redirect()->route('login')

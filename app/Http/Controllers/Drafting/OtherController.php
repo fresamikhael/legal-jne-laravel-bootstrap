@@ -240,7 +240,7 @@ class OtherController extends Controller
 
         Other::create($data);
 
-        return redirect()->route('drafting.lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        return redirect()->route('drafting.other')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
     }
 
     public function legalCreate()

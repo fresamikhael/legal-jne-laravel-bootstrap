@@ -15,7 +15,7 @@
                         <li class="scroll-to-section"><a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
                         </li>
                         <li class="scroll-to-section">
-                            <a href="{{ route('information.index') }}">Informasi</a>
+                            <a href="{{ route('legal.information.index') }}">Informasi</a>
                         </li>
                         <li class="scroll-to-section"><a href="{{ route('database.index') }}">Database</a></li>
                         <li class="scroll-to-section">

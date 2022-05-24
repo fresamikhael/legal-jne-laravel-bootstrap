@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('land_sells', function (Blueprint $table) {
             $table->string('id')->unique();
+            $table->string('user_id');
 
             $table->string('name');
             $table->string('user_province');
@@ -59,6 +60,15 @@ return new class extends Migration
             $table->string('file_pb_umku')->nullable();
             $table->string('file_location_permit')->nullable();
             $table->string('file_npwp_card')->nullable();
+
+            $table->string('user_note')->nullable();
+            $table->string('cb_note')->nullable();
+
+            $table->string('file_sale_agreement_draft_')->nullable();
+            $table->string('status')->default('PENDING');
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
 
             $table->timestamps();
         });
