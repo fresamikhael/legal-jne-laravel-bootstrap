@@ -2,7 +2,6 @@
 <button type="button" class="btn btn-warning d-flex align-items-center gap-2 position-relative" data-bs-toggle="modal"
     data-bs-target="#staticBackdrop3">
     <i class="fa fa-clock-o"></i> Permintaan
-    @dd($data)
     @if ($data)
         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
             <span class="visually-hidden">New alerts</span>

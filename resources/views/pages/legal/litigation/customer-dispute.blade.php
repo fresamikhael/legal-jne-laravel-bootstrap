@@ -32,7 +32,7 @@
                         @endforeach
                     @endslot
                 </x-modal-history>
-                
+
                 <x-modal-submission id="dataTables2">
                     @slot('header')
                         <tr>
@@ -43,13 +43,13 @@
                         </tr>
                     @endslot
                     @slot('data')
-                        @foreach ($data as $row)
+                        @foreach ($submission as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row->id }}</td>
                                 <td>{{ $row->status }}</td>
                                 <td>
-                                    <a href="" class="btn btn-primary">Lihat</a>
+                                    <a href="{{ route("legal.litigation.customer-dispute.show", [$row->id]) }}" class="btn btn-primary">Lihat</a>
                                 </td>
                             </tr>
                         @endforeach

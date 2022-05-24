@@ -151,6 +151,7 @@ Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigati
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
         Route::get('/', 'indexLegal')->name('index');
         Route::post('/', 'storeLegal')->name('store');
+        Route::get('/{id}', 'showLegal')->name('show');
     });
 });
 
