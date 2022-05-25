@@ -152,6 +152,7 @@ Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigati
         Route::get('/', 'indexLegal')->name('index');
         Route::post('/', 'storeLegal')->name('store');
         Route::get('/{id}', 'showLegal')->name('show');
+        Route::post('/finish/{id}', 'finishLegal')->name('finish');
     });
 });
 

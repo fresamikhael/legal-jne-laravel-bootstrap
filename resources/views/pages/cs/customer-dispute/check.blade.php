@@ -13,8 +13,15 @@
                 <x-alert message="{{ Session::get('message_success') }}" type="success"/>
             @endslot
         @endif
-
-        @if ($data->status === "APPROVED BY LEGAL LITIGASI MANAGER")
+        @php
+            $status = array(
+                'KASUS SELESAI PENGGANTIAN',
+                'PERDAMAIAN',
+                'LEWAT > 3 BULAN',
+                'SOMASI',
+            );    
+        @endphp
+        @if ($data->status === "APPROVED BY LEGAL LITIGASI MANAGER" || in_array(strtoupper($data->status), $status))
             @php
                 $cs = DB::table('cs')
                     ->where('form_id', $data->id)
@@ -83,14 +90,14 @@
                             <h5>Berkas Penutupan Kasus :</h5>
                         </div>
                         <div class="col-sm-9">
-                            <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Status Kasus" name="status" required>
-                                <option value="Kasus selesai penggantian">Kasus selesai penggantian</option>
-                                <option value="Perdamaian">Perdamaian</option>
-                                <option value="Lewat > 3 Bulan">Lewat > 3 Bulan</option>
-                            </x-select>
-                            <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Surat Tanggapan Penerimaan" name="file_acceptance_letter" required/>
-                            <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Laporan Penyelesaian Kasus" name="file_case_report" required/>
-                            <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Bukti Pembayaran" name="file_invoice" required/>
+                            @if ($data->status === "KASUS SELESAI PENGGANTIAN" || $data->status === "PERDAMAIAN")
+                                <x-input type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Status" name="status" value="{{$data->status}}" readOnly/>
+                                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Bukti Pembayaran" name="file_invoice" required/>
+                            @elseif ($data->status === "LEWAT > 3 BULAN" || $data->status === "SOMASI")
+                                <x-input type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Status" name="status" value="{{$data->status}}" readOnly/>
+                                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen Pendukung Lainnya" name="other_supporting_documents" required/>
+                                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Penawaran Ganti Kerugian" name="compensation_offer_nominal" required/>
+                            @endif
                         </div>
                     </div>
 

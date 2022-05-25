@@ -163,27 +163,190 @@
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Status" value="{{ $data->status }}" readOnly/>
             </div>
         </div>
-        <form action="{{ route('legal.litigation.customer-dispute.finish', [$data->id]) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="row mt-3">
-                <div class="col-sm-3">
-                    <h5>Berkas Penutupan Kasus :</h5>
-                </div>
-                <div class="col-sm-9">
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Status Kasus" name="status" required>
-                        <option value="Kasus selesai penggantian">Kasus selesai penggantian</option>
-                        <option value="Perdamaian">Perdamaian</option>
-                        <option value="Lewat > 3 Bulan">Lewat > 3 Bulan</option>
-                    </x-select>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Surat Tanggapan Penerimaan" name="file_acceptance_letter" required/>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Laporan Penyelesaian Kasus" name="file_case_report" required/>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Bukti Pembayaran" name="file_invoice" required/>
-                </div>
-            </div>
+        @if ($data->status === "UPDATE BY CS")
+            <form action="{{ route('legal.litigation.customer-dispute.finish', [$data->id]) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="row mt-3">
+                    <div class="col-sm-3">
+                        <h5>Berkas Penutupan Kasus :</h5>
+                    </div>
+                    <div class="col-sm-9">
+                        <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Kasus" name="status" required>
+                            <option value="" disabled>Kasus Selesai</option>
+                            <option value="Kasus selesai penggantian">Kasus selesai penggantian</option>
+                            <option value="Perdamaian">Perdamaian</option>
+                            <option value="Lewat > 3 Bulan">Lewat > 3 Bulan</option>
+                            
+                            <option value="" disabled>Kasus Berlanjut</option>
+                            <option value="Somasi">Somasi</option>
+                            <option value="Gugatan Pengadilan">Gugatan Pengadilan</option>
+                            <option value="Gugatan BPSK">Gugatan BPSK</option>
+                        </x-select>
+                        <div id="s1" class="d-none">
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Surat Tanggapan Penerimaan" name="file_acceptance_letter"/>
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Laporan Penyelesaian Kasus" name="file_case_report"/>
+                        </div>
+                        <div id="s2" class="d-none">
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Surat Kesepakatan Perdamaian " name="file_peace_agreement"/>
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Laporan Penyelesaian Kasus" name="file_case_report"/>
+                        </div>
+                        <div id="s3" class="d-none">
+                            <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alasan Kasus Ditutup Sementara " name="reason_case_temporary_close"/>
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Somasi II  " name="file_somasi_2"/>
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen tanggapan customer" name="file_customer_response_document"/>
+                        </div>
+                        <div id="e1" class="d-none">
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Somasi II  " name="file_somasi_2"/>
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen tanggapan customer" name="file_customer_response_document"/>
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Laporan Perkembangan Kasus" name="file_case_progress_report"/>
+                        </div>
+                        <div id="e2" class="d-none">
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Gugatan Pengadilan" name="file_court_lawsuit" />
+                        </div>
+                        <div id="e3" class="d-none">
+                            <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="Gugatan BPSK" name="file_court_bpsk" />
+                        </div>
+                        <script>
+                            document.getElementById("status").addEventListener("change", handleChange);
+                    
+                            function handleChange() {
+                                var x = document.getElementById("status");
+                                if (x.value === "Kasus selesai penggantian") {
+                                    document.getElementById("e1").classList.remove('d-flex');
+                                    document.getElementById("e1").classList.add('d-none');
+                                    
+                                    document.getElementById("e2").classList.remove('d-flex');
+                                    document.getElementById("e2").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-flex');
+                                    document.getElementById("e3").classList.add('d-none');
 
-            <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Submit" buttonClass="btn-danger" />
-            </div>
-        </form>
+                                    document.getElementById("s2").classList.remove('d-flex');
+                                    document.getElementById("s2").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-flex');
+                                    document.getElementById("s3").classList.add('d-none');
+                                    
+                                    document.getElementById("s1").classList.remove('d-none');
+                                    document.getElementById("s1").classList.add('d-block');
+                                } else if (x.value === "Perdamaian") {
+                                    document.getElementById("e1").classList.remove('d-flex');
+                                    document.getElementById("e1").classList.add('d-none');
+                                    
+                                    document.getElementById("e2").classList.remove('d-flex');
+                                    document.getElementById("e2").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-flex');
+                                    document.getElementById("e3").classList.add('d-none');
+
+                                    document.getElementById("s1").classList.remove('d-flex');
+                                    document.getElementById("s1").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-flex');
+                                    document.getElementById("s3").classList.add('d-none');
+                                    
+                                    document.getElementById("s2").classList.remove('d-none');
+                                    document.getElementById("s2").classList.add('d-block');
+                                } else if (x.value === "Lewat > 3 Bulan") {
+                                    document.getElementById("e1").classList.remove('d-flex');
+                                    document.getElementById("e1").classList.add('d-none');
+                                    
+                                    document.getElementById("e2").classList.remove('d-flex');
+                                    document.getElementById("e2").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-flex');
+                                    document.getElementById("e3").classList.add('d-none');
+
+                                    document.getElementById("s1").classList.remove('d-flex');
+                                    document.getElementById("s1").classList.add('d-none');
+                                    
+                                    document.getElementById("s2").classList.remove('d-flex');
+                                    document.getElementById("s2").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-none');
+                                    document.getElementById("s3").classList.add('d-block');
+                                } else if (x.value === "Somasi") {
+                                    document.getElementById("s1").classList.remove('d-flex');
+                                    document.getElementById("s1").classList.add('d-none');
+                                    
+                                    document.getElementById("s2").classList.remove('d-flex');
+                                    document.getElementById("s2").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-flex');
+                                    document.getElementById("s3").classList.add('d-none');
+
+                                    document.getElementById("e2").classList.remove('d-flex');
+                                    document.getElementById("e2").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-flex');
+                                    document.getElementById("e3").classList.add('d-none');
+                                    
+                                    document.getElementById("e1").classList.remove('d-none');
+                                    document.getElementById("e1").classList.add('d-block');
+                                } else if (x.value === "Gugatan Pengadilan") {  
+                                    document.getElementById("s1").classList.remove('d-flex');
+                                    document.getElementById("s1").classList.add('d-none');
+                                    
+                                    document.getElementById("s2").classList.remove('d-flex');
+                                    document.getElementById("s2").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-flex');
+                                    document.getElementById("s3").classList.add('d-none');
+                                    
+                                    document.getElementById("e1").classList.remove('d-flex');
+                                    document.getElementById("e1").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-flex');
+                                    document.getElementById("e3").classList.add('d-none');
+                                    
+                                    document.getElementById("e2").classList.remove('d-none');
+                                    document.getElementById("e2").classList.add('d-block');
+                                } else if (x.value === "Gugatan BPSK") {
+                                    document.getElementById("s1").classList.remove('d-flex');
+                                    document.getElementById("s1").classList.add('d-none');
+                                    
+                                    document.getElementById("s2").classList.remove('d-flex');
+                                    document.getElementById("s2").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-flex');
+                                    document.getElementById("s3").classList.add('d-none');
+
+                                    document.getElementById("e1").classList.remove('d-flex');
+                                    document.getElementById("e1").classList.add('d-none');
+                                    
+                                    document.getElementById("e2").classList.remove('d-flex');
+                                    document.getElementById("e2").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-none');
+                                    document.getElementById("e3").classList.add('d-block');
+                                } else {
+                                    document.getElementById("s1").classList.remove('d-flex');
+                                    document.getElementById("s1").classList.add('d-none');
+                                    
+                                    document.getElementById("s2").classList.remove('d-flex');
+                                    document.getElementById("s2").classList.add('d-none');
+                                    
+                                    document.getElementById("s3").classList.remove('d-flex');
+                                    document.getElementById("s3").classList.add('d-none');
+
+                                    document.getElementById("e1").classList.remove('d-flex');
+                                    document.getElementById("e1").classList.add('d-none');
+                                    
+                                    document.getElementById("e2").classList.remove('d-flex');
+                                    document.getElementById("e2").classList.add('d-none');
+                                    
+                                    document.getElementById("e3").classList.remove('d-flex');
+                                    document.getElementById("e3").classList.add('d-none');
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <x-button type="submit" name="Submit" buttonClass="btn-danger" />
+                </div>
+            </form>
+        @endif
     </x-base>
 @endsection

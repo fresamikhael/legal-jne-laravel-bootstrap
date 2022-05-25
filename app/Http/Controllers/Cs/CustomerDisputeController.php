@@ -190,45 +190,64 @@ class CustomerDisputeController extends Controller
     public function close(Request $request, $id)
     {
         $data = $request->all();
-        
         $data['user_id'] = auth()->user()->id;
 
-        if ($request->file('file_acceptance_letter')) {
-            $file = $request->file('file_acceptance_letter');
-            $extension = $file->getClientOriginalExtension();
-            $filename = str()->random(40) . '.' . $extension;
-            $data['file_acceptance_letter'] = 'Litigation/'.$filename;
-            $file->move('Litigation', $filename);
+        switch ($request->input('status')) {
+            case 'KASUS SELESAI PENGGANTIAN' || 'PERDAMAIAN':
+                $data['status'] = $request->input('status') . ' - CS';
+
+                if ($request->file('file_invoice')) {
+                    $file = $request->file('file_invoice');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_invoice'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename); 
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'file_invoice' => $data['file_invoice'],
+                    'status' => $data['status'],
+                ]);
+
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+                break;
+            case 'LEWAT > 3 BULAN' || 'SOMASI':
+                $data['status'] = $request->input('status') . ' - CS';
+
+                if ($request->file('other_supporting_documents')) {
+                    $file = $request->file('other_supporting_documents');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['other_supporting_documents'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename); 
+                }
+                if ($request->file('compensation_offer_nominal')) {
+                    $file = $request->file('compensation_offer_nominal');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['compensation_offer_nominal'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename); 
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'other_supporting_documents' => $data['other_supporting_documents'],
+                    'compensation_offer_nominal' => $data['compensation_offer_nominal'],
+                    'status' => $data['status'],
+                ]);
+
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+                break;
+            default:
+                return back();
+                break;
         }
-
-        if ($request->file('file_case_report')) {
-            $file = $request->file('file_case_report');
-            $extension = $file->getClientOriginalExtension();
-                $filename = str()->random(40) . '.' . $extension;
-            $data['file_case_report'] = 'Litigation/'.$filename;
-            $file->move('Litigation', $filename);
-        }
-
-        if ($request->file('file_invoice')) {
-            $file = $request->file('file_invoice');
-            $extension = $file->getClientOriginalExtension();
-                $filename = str()->random(40) . '.' . $extension;
-            $data['file_invoice'] = 'Litigation/'.$filename;
-            $file->move('Litigation', $filename);
-        }
-
-        Cs::where('form_id', $id)->update([
-            'user_id' => $data['user_id'],
-            'file_acceptance_letter' => $data['file_acceptance_letter'],
-            'file_case_report' => $data['file_case_report'],
-            'file_invoice' => $data['file_invoice'],
-            'status' => strtoupper($data['status']),
-        ]);
-
-        CustomerDispute::where('id', $id)->update([
-            'status' => strtoupper($data['status'])
-        ]);
-        
-        return to_route('cs.customer-dispute.show', [$id])->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 }

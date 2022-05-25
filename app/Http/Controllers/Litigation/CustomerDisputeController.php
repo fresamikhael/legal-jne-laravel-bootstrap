@@ -208,8 +208,8 @@ class CustomerDisputeController extends Controller
         $data = $request->all();
         $data['user_id'] = auth()->user()->id;
 
-        switch ($request->input('action')) {
-            case '1':
+        switch ($request->input('status')) {
+            case 'Kasus selesai penggantian':
                 $data['status'] = 'KASUS SELESAI PENGGANTIAN';
                 
                 if ($request->file('file_acceptance_letter')) {
@@ -217,6 +217,64 @@ class CustomerDisputeController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $filename = str()->random(40) . '.' . $extension;
                     $data['file_acceptance_letter'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+                if ($request->file('file_case_report')) {
+                    $file = $request->file('file_case_report');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_case_report'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'file_acceptance_letter' => $data['file_acceptance_letter'],
+                    'file_case_report' => $data['file_case_report'],
+                    'status' => $data['status']
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+                break;
+            case 'Perdamaian':
+                $data['status'] = 'PERDAMAIAN';
+
+                if ($request->file('file_peace_agreement')) {
+                    $file = $request->file('file_peace_agreement');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_peace_agreement'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+                if ($request->file('file_case_report')) {
+                    $file = $request->file('file_case_report');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_case_report'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'file_peace_agreement' => $data['file_peace_agreement'],
+                    'file_case_report' => $data['file_case_report'],
+                    'status' => $data['status'],
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+                break;
+            case 'Lewat > 3 Bulan':
+                $data['status'] = 'LEWAT > 3 BULAN';
+
+                if ($request->file('file_somasi_2')) {
+                    $file = $request->file('file_somasi_2');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_somasi_2'] = 'Litigation/'.$filename;
                     $file->move('Litigation', $filename);
                 }
                 if ($request->file('file_customer_response_document')) {
@@ -228,47 +286,18 @@ class CustomerDisputeController extends Controller
                 }
 
                 Cs::where('form_id', $id)->update([
-                    'file_acceptance_letter' => $data['file_acceptance_letter'],
+                    'file_somasi_2' => $data['file_somasi_2'],
                     'file_customer_response_document' => $data['file_customer_response_document'],
-                    'file_case_settlement_report' => $data['file_case_settlement_report'],
-                    'status' => $data['status']
-                ]);
-                CustomerDispute::where('id', $id)->update([
-                    'status' => $data['status']
-                ]);
-
-                return back();
-                break;
-            case '2':
-                $data['status'] = 'PERDAMAIAN';
-
-                if ($request->file('file_peace_agreement')) {
-                    $file = $request->file('file_peace_agreement');
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = str()->random(40) . '.' . $extension;
-                    $data['file_peace_agreement'] = 'Litigation/'.$filename;
-                    $file->move('Litigation', $filename);
-                }
-                if ($request->file('file_acceptance_letter')) {
-                    $file = $request->file('file_acceptance_letter');
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = str()->random(40) . '.' . $extension;
-                    $data['file_acceptance_letter'] = 'Litigation/'.$filename;
-                    $file->move('Litigation', $filename);
-                }
-
-                Cs::where('form_id', $id)->update([
-                    'file_peace_agreement' => $data['file_peace_agreement'],
-                    'file_acceptance_letter' => $data['file_acceptance_letter'],
+                    'reason_case_temporary_close' => $data['reason_case_temporary_close'],
                     'status' => $data['status'],
                 ]);
                 CustomerDispute::where('id', $id)->update([
                     'status' => $data['status']
                 ]);
 
-                return back();
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
                 break;
-            case '3':
+                case 'Lewat > 3 Bulan':
                 $data['status'] = 'LEWAT > 3 BULAN';
 
                 if ($request->file('file_somasi_2')) {
@@ -279,16 +308,16 @@ class CustomerDisputeController extends Controller
                     $file->move('Litigation', $filename);
                 }
                 if ($request->file('file_customer_response_document')) {
-                    $file = $request->file('file_acceptance_letter');
+                    $file = $request->file('file_customer_response_document');
                     $extension = $file->getClientOriginalExtension();
                     $filename = str()->random(40) . '.' . $extension;
-                    $data['file_acceptance_letter'] = 'Litigation/'.$filename;
+                    $data['file_customer_response_document'] = 'Litigation/'.$filename;
                     $file->move('Litigation', $filename);
                 }
 
                 Cs::where('form_id', $id)->update([
                     'file_somasi_2' => $data['file_somasi_2'],
-                    'file_subpoena_responese_draft' => $data['file_subpoena_responese_draft'],
+                    'file_customer_response_document' => $data['file_customer_response_document'],
                     'reason_case_temporary_close' => $data['reason_case_temporary_close'],
                     'status' => $data['status'],
                 ]);
@@ -296,58 +325,89 @@ class CustomerDisputeController extends Controller
                     'status' => $data['status']
                 ]);
 
-                return back();
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
                 break;
-            default:
-                return back();
-                break;
-        }
-    }
+            case 'Somasi':
+                $data['status'] = 'SOMASI';
 
-    public function extendLegal(Request $request, $id)
-    {
-        $data = $request->all();
-        $data['user_id'] = auth()->user()->id;
-
-        switch ($request->input('action')) {
-            case 'return':
-                $data['status'] = 'RETURNED BY LEGAL LITIGASI 1';
-                
-                Cs::where('form_id', $id)->update([
-                    'note' => $data['note'],
-                    'status' => $data['status']
-                ]);
-                CustomerDispute::where('id', $id)->update([
-                    'status' => $data['status']
-                ]);
-
-                return to_route('legal-litigation-1.customer-dispute.index');
-                break;
-            case 'approve':
-                $data['status'] = 'APPROVED BY LEGAL LITIGASI 1';
-
-                if ($request->file('file_subpoena_responese_draft')) {
-                    $file = $request->file('file_subpoena_responese_draft');
+                if ($request->file('file_somasi_2')) {
+                    $file = $request->file('file_somasi_2');
                     $extension = $file->getClientOriginalExtension();
                     $filename = str()->random(40) . '.' . $extension;
-                    $data['file_subpoena_responese_draft'] = 'Litigation/'.$filename;
-                    $file->move('Litigation', $filename); 
+                    $data['file_somasi_2'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+                if ($request->file('file_customer_response_document')) {
+                    $file = $request->file('file_customer_response_document');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_customer_response_document'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+                if ($request->file('file_case_progress_report')) {
+                    $file = $request->file('file_case_progress_report');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_case_progress_report'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
                 }
 
                 Cs::where('form_id', $id)->update([
-                    'file_subpoena_responese_draft' => $data['file_subpoena_responese_draft'],
-                    'case_analysis' => $data['case_analysis'],
-                    'note' => null,
+                    'file_somasi_2' => $data['file_somasi_2'],
+                    'file_customer_response_document' => $data['file_customer_response_document'],
+                    'file_case_progress_report' => $data['file_case_progress_report'],
                     'status' => $data['status'],
                 ]);
                 CustomerDispute::where('id', $id)->update([
                     'status' => $data['status']
                 ]);
 
-                return to_route('legal-litigation-1.customer-dispute.index');
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+                break;
+            case 'Gugatan Pengadilan':
+                $data['status'] = 'GUGATAN PENGADILAN';
+
+                if ($request->file('file_court_lawsuit')) {
+                    $file = $request->file('file_court_lawsuit');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_court_lawsuit'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'file_court_lawsuit' => $data['file_court_lawsuit'],
+                    'status' => $data['status'],
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+                break;
+            case 'Gugatan BPSK':
+                $data['status'] = 'GUGATAN BPSK';
+
+                if ($request->file('file_court_bpsk')) {
+                    $file = $request->file('file_court_bpsk');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_court_bpsk'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                Cs::where('form_id', $id)->update([
+                    'file_court_bpsk' => $data['file_court_bpsk'],
+                    'status' => $data['status'],
+                ]);
+                CustomerDispute::where('id', $id)->update([
+                    'status' => $data['status']
+                ]);
+
+                return back()->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
                 break;
             default:
-                return to_route('legal-litigation-1.customer-dispute.index');
+                return back();
                 break;
         }
     }
