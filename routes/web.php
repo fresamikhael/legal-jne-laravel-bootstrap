@@ -115,7 +115,7 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
 });
 
 Route::prefix('litigation')->name('litigation.')->group(function () {
-    Route::get('/', function () {
+    Route::get('/index', function () {
         return View('pages.user.litigation.index');
     })->name('index');
 

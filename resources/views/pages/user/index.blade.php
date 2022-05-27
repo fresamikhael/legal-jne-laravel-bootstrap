@@ -39,7 +39,7 @@
                 ],
                 [
                     'label' => 'Litigation',
-                    'route' => 'litigation',
+                    'route' => 'litigation/index',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
                 ],
                 [

@@ -10,17 +10,17 @@ class OutstandingController extends Controller
 {
     public function index()
     {
-        $ost = Outstanding::where('user_id', auth()->user()->id)
+        $data = Outstanding::where('user_id', auth()->user()->id)
                 ->with('user')
                 ->get();
 
-        return view('pages.user.litigation.outstanding', compact('ost'));
+        return view('pages.user.litigation.outstanding.index', compact('data'));
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
-        
+
         $data['user_id'] = auth()->user()->id;
 
         if ($request->file('file_pcrf')) {
@@ -81,7 +81,7 @@ class OutstandingController extends Controller
     public function show($id)
     {
         $ost = Outstanding::where('id', $id)->first();
-        
+
         return view('pages.user.litigation.show-outstanding', compact('ost'));
     }
 }
