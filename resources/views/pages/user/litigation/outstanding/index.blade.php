@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Customer Dispute
+    Outstanding
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('litigation.customer-dispute.show', $row->id) }}"
+                                <a href="{{ route('litigation.outstanding.show', $row->id) }}"
                                     class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>

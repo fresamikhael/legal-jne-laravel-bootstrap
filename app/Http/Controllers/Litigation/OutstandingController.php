@@ -117,9 +117,14 @@ class OutstandingController extends Controller
 
     public function show($id)
     {
-        $ost = Outstanding::where('id', $id)->first();
-
-        return view('pages.user.litigation.show-outstanding', compact('ost'));
+        $table = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Outstanding::where('id', $id)->firstOrFail();
+        return view('pages.user.litigation.outstanding.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
     }
 
     public function showLegal($id)
@@ -132,5 +137,46 @@ class OutstandingController extends Controller
             'data' => $data,
             'table' => $table
         ]);
+    }
+
+    public function showLegalPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = Outstanding::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'legal_advice' => $request->legal_advice,
+                    'status' => 'RETURNED BY LEGAL']);
+
+                return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+                $data = $request->all();
+
+                $item = Outstanding::findOrFail($id);
+
+                if ($request->file('file_subpoena_draft')) {
+                    $file = $request->file('file_subpoena_draft');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_subpoena_draft'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                $item->update([
+                    $data,
+                    'file_subpoena_draft' => $data['file_subpoena_draft'],
+                    'legal_advice' => $request->legal_advice,
+                    'status' => 'APPROVED BY LEGAL'
+                ]);
+
+                return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
     }
 }

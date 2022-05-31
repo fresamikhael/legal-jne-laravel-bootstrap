@@ -27,6 +27,7 @@ use App\Http\Controllers\LegalCorporate\PowerAttorneyController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
+use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
 use App\Http\Controllers\Regulation\RegulationController;
 
 /*
@@ -160,6 +161,7 @@ Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigati
         Route::get('/', 'indexLegal')->name('index');
         Route::post('/', 'storeLegal')->name('store');
         Route::get('/{id}', 'showLegal')->name('show');
+        Route::post('/{id}', 'showLegalPost')->name('showPost');
         Route::post('/finish/{id}', 'finishLegal')->name('finish');
     });
 });
@@ -208,6 +210,12 @@ Route::prefix('legal-litigation-manager')->middleware(['isLitiManager'])->name('
     })->name('index');
 
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(LegalLitigationManagerCustomerDisputeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'store')->name('store');
+    });
+
+    Route::prefix('outstanding')->name('outstanding.')->controller(LegalLitigationManagerOutstandingController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/{id}', 'store')->name('store');

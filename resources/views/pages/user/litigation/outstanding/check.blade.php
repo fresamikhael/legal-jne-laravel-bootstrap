@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
     Customer Dispute
@@ -21,7 +21,7 @@
                     </tr>
                 @endslot
                 @slot('data')
-                    @foreach ($data as $row)
+                    @foreach ($table as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->id }}</td>
@@ -42,93 +42,74 @@
             @endslot
         @endif
 
-        <form action="{{ route('litigation.outstanding.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('legal.litigation.outstanding.showPost', $data->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Perusahaan" name="company_name"
-                        type="text" required />
+                        type="text" value="{{ $data->company_name }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Penanggung Jawab" name="person_responsible"
-                        required />
+                        value="{{ $data->person_responsible }}" disabled />
 
                     <hr>
 
                     <div class="col-sm-3">
                         <h4>Alamat Agen :</h4>
                     </div>
-                    <x-address label="Agen" name="agent" />
+                    @php
+                        $province = DB::table('provinces')
+                            ->where('id', $data->agent_province)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Agen"
+                        value="{{ ucwords(strtolower($province->name)) }}" disabled />
+                    @php
+                        $regency = DB::table('regencies')
+                            ->where('id', $data->agent_regency)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Agen"
+                        value="{{ ucwords(strtolower($regency->name)) }}" disabled />
+                    @php
+                        $district = DB::table('districts')
+                            ->where('id', $data->agent_district)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Agen"
+                        value="{{ ucwords(strtolower($district->name)) }}" disabled />
+                    @php
+                        $village = DB::table('villages')
+                            ->where('id', $data->agent_village)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Agen"
+                        value="{{ ucwords(strtolower($village->name)) }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Agen"
+                        value="{{ $data->agent_zip_code }}" disabled />
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Agen" disabled>
+                        {{ $data->agent_address }}
+                    </x-textarea>
 
                     <hr>
 
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Outstanding" name="total_outstanding"
-                        required />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Outstanding" name="outstanding_type"
-                        required>
-                        <option value="Customer">Customer</option>
-                        <option value="Agen">Agen</option>
-                    </x-select>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Outstanding" name="outstanding_types"
-                        hidden>
-                        <option value="Penjualan">Penjualan</option>
-                        <option value="COD">COD</option>
-                        <option value="Keduanya">Keduanya</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
-                        name="outstanding_sales" prefix="Rp" hidden />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
-                        prefix="Rp" hidden />
-                    <script>
-                        document.getElementById("outstanding_type").addEventListener("change", handleChange);
+                        value="{{ $data->total_outstanding }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Outstanding" name="total_outstanding"
+                        value="{{ $data->outstanding_type }}" disabled />
 
-                        function handleChange() {
-                            var x = document.getElementById("outstanding_type");
-                            if (x.value === "Agen") {
-                                document.getElementById("outstanding_types1").classList.remove('d-none');
-                                document.getElementById("outstanding_types1").classList.add('d-flex');
-                                document.getElementById("outstanding_types").required = true;
-                            } else {
-                                document.getElementById("outstanding_types1").classList.remove('d-flex');
-                                document.getElementById("outstanding_types1").classList.add('d-none');
-                                document.getElementById("outstanding_types").required = false;
-                                document.getElementById("outstanding_cod1").classList.remove('d-flex');
-                                document.getElementById("outstanding_cod1").classList.add('d-none');
-                                document.getElementById("outstanding_cod").required = false;
-                                document.getElementById("outstanding_sales1").classList.remove('d-flex');
-                                document.getElementById("outstanding_sales1").classList.add('d-none');
-                                document.getElementById("outstanding_sales").required = false;
-                            }
-                        }
-                    </script>
-
-                    <script>
-                        document.getElementById("outstanding_types").addEventListener("change", handleChange);
-
-                        function handleChange() {
-                            var x = document.getElementById("outstanding_types");
-                            if (x.value === "Penjualan") {
-                                document.getElementById("outstanding_sales1").classList.remove('d-none');
-                                document.getElementById("outstanding_sales1").classList.add('d-flex');
-                                document.getElementById("outstanding_sales").required = true;
-                                document.getElementById("outstanding_cod1").classList.remove('d-flex');
-                                document.getElementById("outstanding_cod1").classList.add('d-none');
-                                document.getElementById("outstanding_cod").required = false;
-                            } else if (x.value === "COD") {
-                                document.getElementById("outstanding_cod1").classList.remove('d-none');
-                                document.getElementById("outstanding_cod1").classList.add('d-flex');
-                                document.getElementById("outstanding_cod").required = true;
-                                document.getElementById("outstanding_sales1").classList.remove('d-flex');
-                                document.getElementById("outstanding_sales1").classList.add('d-none');
-                                document.getElementById("outstanding_sales").required = false;
-                            } else {
-                                document.getElementById("outstanding_cod1").classList.remove('d-none');
-                                document.getElementById("outstanding_cod1").classList.add('d-flex');
-                                document.getElementById("outstanding_cod").required = true;
-                                document.getElementById("outstanding_sales1").classList.remove('d-none');
-                                document.getElementById("outstanding_sales1").classList.add('d-flex');
-                                document.getElementById("outstanding_sales").required = true;
-                            }
-                        }
-                    </script>
+                    @if ($data->outstanding_types == 'Penjualan')
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
+                            name="outstanding_sales" prefix="Rp" value="{{ $data->outstanding_sales }}" disabled />
+                    @elseif ($data->outstanding_types == 'COD')
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
+                            prefix="Rp" value="{{ $data->outstanding_cod }}" disabled />
+                    @elseif ($data->outstanding_types == 'Keduanya')
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
+                            name="outstanding_sales" prefix="Rp" value="{{ $data->outstanding_sales }}" disabled />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
+                            prefix="Rp" value="{{ $data->outstanding_cod }}" disabled />
+                    @endif
 
                     <hr>
 
@@ -136,9 +117,9 @@
                         <h4>Periode Outstanding :</h4>
                     </div>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Sejak Kapan" name="outstanding_start"
-                        type="date" required />
+                        type="date" value="{{ $data->outstanding_start }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Sampai Kapan" name="outstanding_end"
-                        type="date" required />
+                        type="date" value="{{ $data->outstanding_end }}" disabled />
                 </div>
             </div>
 
@@ -146,7 +127,9 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <x-textarea label="Kronologis Singkat Kejadian:" name="incident_chronology" required />
+                    <x-textarea label="Kronologis Singkat Kejadian:" name="incident_chronology" disabled>
+                        {{ $data->incident_chronology }}
+                    </x-textarea>
                 </div>
             </div>
 
@@ -158,35 +141,124 @@
                 </div>
                 <div class="col-sm-9">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Disposisi Management*"
-                        name="file_management_disposition" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Akta Pendirian dan Perubahan Terakhir"
-                        name="file_deed_of_incoporation" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_sk_menkumham"
-                        option />
+                        name="file_management_disposition" type="download"
+                        path="{{ route('download.litigation', [substr($data->file_management_disposition, 11)]) }}">Unduh
+                        <i class="fa fa-download"></i>
+                    </x-file>
+                    @if ($data->file_deed_of_incoporation)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Akta Pendirian dan Perubahan Terakhir"
+                            name="file_deed_of_incoporation" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_deed_of_incoporation, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="2. Akta Pendirian dan Perubahan Terakhir" value="Tidak Ada" readOnly />
+                    @endif
+                    @if ($data->file_sk_menkumham)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_sk_menkumham"
+                            type="download"
+                            path="{{ route('download.litigation', [substr($data->file_sk_menkumham, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" value="Tidak Ada"
+                            readOnly />
+                    @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*" name="file_director_id_card"
-                        required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" option required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS"
-                        name="file_business_permit" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
-                        name="file_location_permit" option required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Rekapan Outstanding*"
-                        name="file_outstanding_recap" required />
+                        type="download"
+                        path="{{ route('download.litigation', [substr($data->file_director_id_card, 11)]) }}">Unduh
+                        <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" type="download"
+                        path="{{ route('download.litigation', [substr($data->file_npwp, 11)]) }}">Unduh
+                        <i class="fa fa-download"></i>
+                    </x-file>
+                    @if ($data->file_nib)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_nib, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" value="Tidak Ada" readOnly />
+                    @endif
+                    @if ($data->file_business_permit)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS"
+                            name="file_business_permit" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_business_permit, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                    @if ($data->file_location_permit)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
+                            name="file_location_permit" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_location_permit, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS" value="Tidak Ada"
+                            readOnly />
+                    @endif
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Rekapan Outstanding*" type="download"
+                        name="file_outstanding_recap"
+                        path="{{ route('download.litigation', [substr($data->file_outstanding_recap, 11)]) }}">Unduh
+                        <i class="fa fa-download"></i>
+                    </x-file>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Scan Surat Penagihan*"
-                        name="file_billing_letter" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
-                        name="file_internal_memo" option required />
+                        name="file_billing_letter" type="download"
+                        path="{{ route('download.litigation', [substr($data->file_billing_letter, 11)]) }}">Unduh
+                        <i class="fa fa-download"></i>
+                    </x-file>
+                    @if ($data->file_internal_memo)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
+                            name="file_internal_memo" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_internal_memo, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @else
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
+                            value="Tidak Ada" readOnly />
+                    @endif
                 </div>
             </div>
 
             <hr>
 
             <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Packing List Outstanding"
-                name="outstanding_packing_list" type="text" required />
+                name="outstanding_packing_list" value="{{ $data->outstanding_packing_list }}" type="text" disabled />
+
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Catatan Dari Legal :</h5>
+                </div>
+                <div class="col-sm-9">
+                    @if ($data->file_subpoena_draft)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. File Draft Somasi"
+                            name="file_subpoena_draft" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_subpoena_draft, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
+                    <x-textarea label="Advice untuk User:" name="legal_advice" disabled>{{ $data->legal_advice }}
+                    </x-textarea>
+                </div>
+            </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Submit" buttonClass="btn-danger" />
+                <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
+                <x-button type="submit" name="Reject" value="Reject" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>

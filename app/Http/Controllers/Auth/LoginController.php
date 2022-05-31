@@ -65,7 +65,7 @@ class LoginController extends Controller
             } elseif (auth()->user()->role == 'LITI2') {
                 return to_route('legal-litigation-2.index');
             } elseif (auth()->user()->role == 'LITIMANAGER') {
-                return to_route('legal-manager.index');
+                return to_route('legal-litigation-manager.index');
             } elseif (auth()->user()->role == 'CB') {
                 return redirect()->route('cb-home');
             } elseif (auth()->user()->role == 'USER') {

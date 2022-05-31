@@ -37,6 +37,11 @@
                     'route' => 'legal-litigation-manager.customer-dispute.index',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
+                [
+                    'label' => 'Outstanding',
+                    'route' => 'legal-litigation-manager.outstanding.index',
+                    'style' => 'background: #03a4ed !important; color: #fff !important;',
+                ],
             ];
         @endphp
 

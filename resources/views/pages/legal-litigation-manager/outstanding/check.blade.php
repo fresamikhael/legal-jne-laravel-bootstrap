@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Customer Dispute
+    Outstanding
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('litigation.customer-dispute.show', $row->id) }}"
+                                <a href="{{ route('litigation.outstanding.show', $row->id) }}"
                                     class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
@@ -42,7 +42,7 @@
             @endslot
         @endif
 
-        <form action="{{ route('legal.litigation.outstanding.showPost', $data->id) }}" method="POST"
+        <form action="{{ route('legal-litigation-manager.outstanding.store', $data->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
@@ -243,9 +243,17 @@
                     <h5>Catatan Dari Legal :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. File Draft Somasi"
-                        name="file_subpoena_draft" />
-                    <x-textarea label="Advice untuk User:" name="legal_advice" />
+                    @if ($data->file_subpoena_draft)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. File Draft Somasi"
+                            name="file_subpoena_draft" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_subpoena_draft, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
+                    <x-textarea label="Advice untuk User:" name="legal_advice" disabled>{{ $data->legal_advice }}
+                    </x-textarea>
+                    <x-textarea label="Catatan untuk Legal:" name="legal_manager_advice" />
                 </div>
             </div>
 
