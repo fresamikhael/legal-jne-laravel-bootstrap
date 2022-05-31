@@ -17,45 +17,54 @@ class OutstandingController extends Controller
         return view('pages.user.litigation.outstanding.index', compact('data'));
     }
 
+    public function indexLegal()
+    {
+        $data = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.legal.litigation.outstanding.index', compact('data'));
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
 
         $data['user_id'] = auth()->user()->id;
 
-        if ($request->file('file_pcrf')) {
-            $file = $request->file('file_pcrf');
+        if ($request->file('file_management_disposition')) {
+            $file = $request->file('file_management_disposition');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_pcrf'] = 'Litigation/'.$filename;
+            $data['file_management_disposition'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
-        if ($request->file('file_recapitulation')) {
-            $file = $request->file('file_recapitulation');
+        if ($request->file('file_deed_of_incoporation')) {
+            $file = $request->file('file_deed_of_incoporation');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_recapitulation'] = 'Litigation/'.$filename;
+            $data['file_deed_of_incoporation'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
-        if ($request->file('file_packing_list')) {
-            $file = $request->file('file_packing_list');
+        if ($request->file('file_sk_menkumham')) {
+            $file = $request->file('file_sk_menkumham');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_packing_list'] = 'Litigation/'.$filename;
+            $data['file_sk_menkumham'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
-        if ($request->file('file_billing_proof')) {
-            $file = $request->file('file_billing_proof');
+        if ($request->file('file_director_id_card')) {
+            $file = $request->file('file_director_id_card');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_billing_proof'] = 'Litigation/'.$filename;
+            $data['file_director_id_card'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
-        if ($request->file('file_deed_company')) {
-            $file = $request->file('file_deed_company');
+        if ($request->file('file_npwp')) {
+            $file = $request->file('file_npwp');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_deed_company'] = 'Litigation/'.$filename;
+            $data['file_npwp'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
         if ($request->file('file_nib')) {
@@ -65,15 +74,43 @@ class OutstandingController extends Controller
             $data['file_nib'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
-        if ($request->file('file_other')) {
-            $file = $request->file('file_other');
+        if ($request->file('file_business_permit')) {
+            $file = $request->file('file_business_permit');
             $extension = $file->getClientOriginalExtension();
             $filename = str()->random(40) . '.' . $extension;
-            $data['file_other'] = 'Litigation/'.$filename;
+            $data['file_business_permit'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+        if ($request->file('file_location_permit')) {
+            $file = $request->file('file_location_permit');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_location_permit'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+        if ($request->file('file_outstanding_recap')) {
+            $file = $request->file('file_outstanding_recap');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_outstanding_recap'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+        if ($request->file('file_billing_letter')) {
+            $file = $request->file('file_billing_letter');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_billing_letter'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+        if ($request->file('file_internal_memo')) {
+            $file = $request->file('file_internal_memo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_internal_memo'] = 'Litigation/'.$filename;
             $file->move('Litigation', $filename);
         }
 
-        $outstanding = Outstanding::create($data);
+        Outstanding::create($data);
 
         return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
@@ -83,5 +120,17 @@ class OutstandingController extends Controller
         $ost = Outstanding::where('id', $id)->first();
 
         return view('pages.user.litigation.show-outstanding', compact('ost'));
+    }
+
+    public function showLegal($id)
+    {
+        $table = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Outstanding::where('id', $id)->firstOrFail();
+        return view('pages.legal.litigation.outstanding.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
     }
 }

@@ -1,4 +1,4 @@
-@extends ('layouts.user')
+@extends ('layouts.legal')
 
 @section('title')
     Add Regulasi Normatif
@@ -18,9 +18,10 @@
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name" required></x-input>
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type" required>
-                    @foreach ($type as $item)
-                        <option value="{{ $item->name }}">{{ $item->name }}</option>
-                    @endforeach
+                    <option value="Undang-Undang">Undang-Undang</option>
+                    <option value="Peraturan Pemerintah">Peraturan Pemerintah</option>
+                    <option value="Peraturan Menteri">Peraturan Menteri</option>
+                    <option value="PERDA Provinsi/Kota">PERDA Provinsi/Kota</option>
                 </x-select>
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file" required></x-file>
             </div>

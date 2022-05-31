@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Database
+    Regulasi
 @endsection
 
 @section('content')
@@ -18,19 +18,27 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('database.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan" name="type">
-                                <option value="UU" {{ request('type') == "UU" ? "selected" : "" }} >UU</option>
-                                <option value="PERPU" {{ request('type') == "PERPU" ? "selected" : "" }}>PERPU</option>
-                                <option value="PP" {{ request('type') == "PP" ? "selected" : "" }}>PP</option>
-                                <option value="PERPRES" {{ request('type') == "PERPRES" ? "selected" : "" }}>PERPRES</option>
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
+                                name="type">
+                                <option value="UU" {{ request('type') == 'UU' ? 'selected' : '' }}>UU</option>
+                                <option value="PERPU" {{ request('type') == 'PERPU' ? 'selected' : '' }}>PERPU</option>
+                                <option value="PP" {{ request('type') == 'PP' ? 'selected' : '' }}>PP</option>
+                                <option value="PERPRES" {{ request('type') == 'PERPRES' ? 'selected' : '' }}>PERPRES
+                                </option>
                             </x-select>
-                            <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number" value="{{ request('number') }}"/>
-                            <x-input label="Tahun Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="year" value="{{ request('year') }}"/>
-                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title" value="{{ request('title') }}"/>
+                            <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
+                                value="{{ request('number') }}" />
+                            <x-input label="Tahun Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="year"
+                                value="{{ request('year') }}" />
+                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
+                                value="{{ request('title') }}" />
                             <div class="container">
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Cari</button>
-                                    <a href="{{ route('database.add') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+                                    {{-- @if (auth()->user()->role == 'LEGAL')
+                                        <a href="{{ route('database.add') }}" class="btn btn-primary"><i
+                                                class="fa fa-plus"></i> Tambah</a>
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>
@@ -45,7 +53,8 @@
                     </div>
                     <div class="p-3 border bg-white">
                         <div class="d-flex align-items-center justify-content-end mb-3">
-                            Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari {{ $database->total() }} Data Peraturan
+                            Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
+                            {{ $database->total() }} Data Peraturan
                         </div>
                         <div class="border rounded">
                             <table class="table table-borderless">
@@ -65,12 +74,14 @@
                                                 <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
                                                 <td>{{ $row->year }}</td>
                                                 <td>
-                                                    <a href="{{ route('database.show', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                    <a
+                                                        href="{{ route('database.show', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                 </td>
-                                                <td>{{ Str::limit($row->title, 40, '...')  }}</td>
+                                                <td>{{ Str::limit($row->title, 40, '...') }}</td>
                                                 <td>
                                                     @foreach ($row->file as $file)
-                                                        <a href="{{ asset($file->name) }}" target="_blank" style="font-size: 25px;">
+                                                        <a href="{{ asset($file->name) }}" target="_blank"
+                                                            style="font-size: 25px;">
                                                             <i class="fa-solid fa-file-arrow-down"></i>
                                                         </a>
                                                     @endforeach

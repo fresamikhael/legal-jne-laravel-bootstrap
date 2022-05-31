@@ -27,6 +27,7 @@ use App\Http\Controllers\LegalCorporate\PowerAttorneyController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
+use App\Http\Controllers\Regulation\RegulationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,6 +150,13 @@ Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigati
     })->name('index');
 
     Route::prefix('customer-dispute')->name('customer-dispute.')->controller(CustomerDisputeController::class)->group(function () {
+        Route::get('/', 'indexLegal')->name('index');
+        Route::post('/', 'storeLegal')->name('store');
+        Route::get('/{id}', 'showLegal')->name('show');
+        Route::post('/finish/{id}', 'finishLegal')->name('finish');
+    });
+
+    Route::prefix('outstanding')->name('outstanding.')->controller(OutstandingController::class)->group(function () {
         Route::get('/', 'indexLegal')->name('index');
         Route::post('/', 'storeLegal')->name('store');
         Route::get('/{id}', 'showLegal')->name('show');
@@ -337,6 +345,13 @@ Route::prefix('database')->name('database.')->controller(DatabaseController::cla
     Route::get('detail/{id}', 'show')->name('show');
 });
 
+Route::prefix('legal/database')->name('legal.database.')->controller(DatabaseController::class)->group(function () {
+    Route::get('/index', 'indexLegal')->name('index');
+    Route::get('tambah', 'add')->name('add');
+    Route::post('tambah', 'store')->name('store');
+    Route::get('detail/{id}', 'show')->name('show');
+});
+
 
 
 Route::get('/', function () {
@@ -423,9 +438,9 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
 });
 
 Route::prefix('regulation')->name('regulation.')->group(function () {
-    Route::get('/index', function () {
-        return View('pages.user.regulation.index');
-    })->name('index');
+    Route::get('/index', [RegulationController::class, 'index'])->name('index');
+
+    Route::get('/detail/{id}', [RegulationController::class, 'show'])->name('detail');
 
     Route::get('internal', [InternalController::class, 'index'])->name('internal');
     Route::get('normative', [NormativeController::class, 'index'])->name('normative');
@@ -435,9 +450,9 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
 });
 
 Route::prefix('legal/regulation')->name('legal.regulation.')->group(function () {
-    Route::get('/', function () {
-        return View('pages.legal.regulation.index');
-    })->name('index');
+    Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
+    Route::get('/add', [RegulationController::class, 'add'])->name('add');
+    Route::get('/detail/{id}', [InternalController::class, 'showLegal'])->name('detail');
 
     Route::get('internal', [InternalController::class, 'indexLegal'])->name('internal');
     Route::get('normative', [NormativeController::class, 'indexLegal'])->name('normative');
@@ -458,16 +473,17 @@ Route::prefix('legal/regulation')->name('legal.regulation.')->group(function () 
     Route::get('normative-detail/{id}', [NormativeController::class, 'showLegal'])->name('normative-detail');
 });
 
-Route::get('/statistic', function () {
+Route::get('legal/statistic', function () {
     return view('pages.legal.statistic');
 })->name('statistic');
-
-
-
 
 Route::get('/contact-us', function () {
     return view('pages.user.contact_us');
 })->name('contact-us');
+
+Route::get('legal/contact-us', function () {
+    return view('pages.legal.contact_us');
+})->name('legal.contact-us');
 
 Auth::routes();
 

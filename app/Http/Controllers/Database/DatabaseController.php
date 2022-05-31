@@ -19,6 +19,16 @@ class DatabaseController extends Controller
         return view('pages.user.database.index',compact('database'));
     }
 
+    public function indexLegal()
+    {
+        $database = Database::orderBy('year', 'DESC')
+            ->orderBy('name', 'ASC')
+            ->filter(request(['type', 'name', 'year', 'title']))
+            ->paginate(10);
+
+        return view('pages.legal.database.index',compact('database'));
+    }
+
     public function add()
     {
         return view('pages.user.database.add');

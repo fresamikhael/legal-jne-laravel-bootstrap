@@ -5,21 +5,21 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="{{ route('home') }}" class="logo">
-                        <img src="/images/logo.png" alt="" class="logo" />
+                    <a href="{{ route('legal-home') }}" class="logo">
+                        <img src="/images/logo.jpg" alt="" class="logo" />
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Regulasi</a></li>
+                        <li class="scroll-to-section"><a href="{{ route('legal.regulation.index') }}">Database</a></li>
                         <li class="scroll-to-section"><a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
                         </li>
                         <li class="scroll-to-section">
                             <a href="{{ route('legal.information.index') }}">Informasi</a>
                         </li>
-                        <li class="scroll-to-section"><a href="{{ route('database.index') }}">Database</a></li>
+                        <li class="scroll-to-section"><a href="{{ route('legal.database.index') }}">Regulasi</a></li>
                         <li class="scroll-to-section">
-                            <a href="{{ route('contact-us') }}">Hubungi Kami</a>
+                            <a href="{{ route('legal.contact-us') }}">Hubungi Kami</a>
                         </li>
                         @guest
                             <li class="scroll-to-section">

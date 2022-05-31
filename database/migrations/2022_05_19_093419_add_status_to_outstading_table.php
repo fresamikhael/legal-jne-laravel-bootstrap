@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('outstandings', function (Blueprint $table) {
-            $table->string('status')->after('file_other')->default('PENDING');
+            $table->string('status')->after('file_internal_memo')->default('PENDING');
         });
     }
 

@@ -42,7 +42,7 @@
             @endslot
         @endif
 
-        <form action="{{ route('litigation.customer-dispute.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('litigation.outstanding.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
@@ -67,17 +67,65 @@
                         <option value="Customer">Customer</option>
                         <option value="Agen">Agen</option>
                     </x-select>
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Outstanding" name="outstanding_types"
+                        hidden>
+                        <option value="Penjualan">Penjualan</option>
+                        <option value="COD">COD</option>
+                        <option value="Keduanya">Keduanya</option>
+                    </x-select>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
+                        name="outstanding_sales" prefix="Rp" hidden />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
+                        prefix="Rp" hidden />
                     <script>
                         document.getElementById("outstanding_type").addEventListener("change", handleChange);
 
                         function handleChange() {
                             var x = document.getElementById("outstanding_type");
                             if (x.value === "Agen") {
-                                document.getElementById("causative_factor_others1").style.display = "flex";
-                                document.getElementById("causative_factor_others").required = true;
+                                document.getElementById("outstanding_types1").classList.remove('d-none');
+                                document.getElementById("outstanding_types1").classList.add('d-flex');
+                                document.getElementById("outstanding_types").required = true;
                             } else {
-                                document.getElementById("causative_factor_others1").style.display = "none";
-                                document.getElementById("causative_factor_others").required = false;
+                                document.getElementById("outstanding_types1").classList.remove('d-flex');
+                                document.getElementById("outstanding_types1").classList.add('d-none');
+                                document.getElementById("outstanding_types").required = false;
+                                document.getElementById("outstanding_cod1").classList.remove('d-flex');
+                                document.getElementById("outstanding_cod1").classList.add('d-none');
+                                document.getElementById("outstanding_cod").required = false;
+                                document.getElementById("outstanding_sales1").classList.remove('d-flex');
+                                document.getElementById("outstanding_sales1").classList.add('d-none');
+                                document.getElementById("outstanding_sales").required = false;
+                            }
+                        }
+                    </script>
+
+                    <script>
+                        document.getElementById("outstanding_types").addEventListener("change", handleChange);
+
+                        function handleChange() {
+                            var x = document.getElementById("outstanding_types");
+                            if (x.value === "Penjualan") {
+                                document.getElementById("outstanding_sales1").classList.remove('d-none');
+                                document.getElementById("outstanding_sales1").classList.add('d-flex');
+                                document.getElementById("outstanding_sales").required = true;
+                                document.getElementById("outstanding_cod1").classList.remove('d-flex');
+                                document.getElementById("outstanding_cod1").classList.add('d-none');
+                                document.getElementById("outstanding_cod").required = false;
+                            } else if (x.value === "COD") {
+                                document.getElementById("outstanding_cod1").classList.remove('d-none');
+                                document.getElementById("outstanding_cod1").classList.add('d-flex');
+                                document.getElementById("outstanding_cod").required = true;
+                                document.getElementById("outstanding_sales1").classList.remove('d-flex');
+                                document.getElementById("outstanding_sales1").classList.add('d-none');
+                                document.getElementById("outstanding_sales").required = false;
+                            } else {
+                                document.getElementById("outstanding_cod1").classList.remove('d-none');
+                                document.getElementById("outstanding_cod1").classList.add('d-flex');
+                                document.getElementById("outstanding_cod").required = true;
+                                document.getElementById("outstanding_sales1").classList.remove('d-none');
+                                document.getElementById("outstanding_sales1").classList.add('d-flex');
+                                document.getElementById("outstanding_sales").required = true;
                             }
                         }
                     </script>
@@ -109,25 +157,24 @@
                     <h5>Upload Dokumen :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Disposisi Management*" name="file_connote"
-                        required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Disposisi Management*"
+                        name="file_management_disposition" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Akta Pendirian dan Perubahan Terakhir"
-                        name="file_orion" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_pod" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*"
-                        name="file_customer_case_form" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_destination_chronology"
-                        required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_orion_chronology" option
-                        required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS" name="file_cs_chronology"
+                        name="file_deed_of_incoporation" option />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_sk_menkumham"
                         option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS" name="file_subpoena"
-                        option required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*" name="file_director_id_card"
+                        required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" option required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS"
+                        name="file_business_permit" option />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
+                        name="file_location_permit" option required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Rekapan Outstanding*"
-                        name="file_procuration" required />
+                        name="file_outstanding_recap" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Scan Surat Penagihan*"
-                        name="file_subpoena" required />
+                        name="file_billing_letter" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
                         name="file_internal_memo" option required />
                 </div>
@@ -135,8 +182,8 @@
 
             <hr>
 
-            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Packing List Outstanding" name="outstanding_start"
-                type="text" required />
+            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Packing List Outstanding"
+                name="outstanding_packing_list" placeholder="Masukkan link gdrive" type="text" required />
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />
