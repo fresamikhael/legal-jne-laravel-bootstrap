@@ -27,8 +27,23 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('legal.litigation.outstanding.show', $row->id) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'USER SEND SUBPOENA SIGNATURE')
+                                    <a href="{{ route('legal.litigation.outstanding.progress', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'FINISHED BY USER')
+                                    <a href="{{ route('legal.litigation.outstanding.finish', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER SEND SUBPOENA RESPONSE')
+                                    <a href="{{ route('legal.litigation.outstanding.update', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @elseif ($row->status == 'USER SEND SIGNATURED FINAL AGREEMENT')
+                                    <a href="{{ route('legal.drafting.legal-customer-final', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @else
+                                    <a href="{{ route('legal.litigation.outstanding.show', $row->id) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @endif
+
                             </td>
                         </tr>
                     @endforeach

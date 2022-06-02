@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('outstandings', function (Blueprint $table) {
-            $table->string('legal_manager_advice')->after('legal_advice')->nullable();
+            $table->string('file_delivery_proof')->after('file_subpoena_signature')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('outstandings', function (Blueprint $table) {
-            $table->dropColumn('legal_manager_advice');
+            $table->dropColumn('file_delivery_proof');
         });
     }
 };

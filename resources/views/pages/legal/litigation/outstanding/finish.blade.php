@@ -1,7 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
-    Customer Dispute
+    Outstanding
 @endsection
 
 @section('content')
@@ -42,7 +42,7 @@
             @endslot
         @endif
 
-        <form action="{{ route('litigation.outstanding.show-post', $data->id) }}" method="POST"
+        <form action="{{ route('legal.litigation.outstanding.finish-post', $data->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
@@ -251,10 +251,25 @@
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
-                    <x-textarea label="Advice untuk User:" name="legal_advice" disabled>{{ $data->legal_advice }}
-                    </x-textarea>
+                    <x-textarea label="Advice dari Legal:" name="legal_advice" />
+                    @if ($data->file_subpoena_signature)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Scan Somasi yang Ditandatangani"
+                            name="file_subpoena_signature" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_subpoena_signature, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
+                    @if ($data->file_delivery_proof)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Scan Bukti Pengiriman Dokumen"
+                            name="file_delivery_proof" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_delivery_proof, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
                     @if ($data->file_subpoena_2)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="a. File Somasi II" name="file_subpoena_2"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="a. Somasi II" name="file_subpoena_2"
                             type="download"
                             path="{{ route('download.litigation', [substr($data->file_subpoena_2, 11)]) }}">
                             Unduh
@@ -262,23 +277,53 @@
                         </x-file>
                     @endif
                     @if ($data->file_agreement_draft)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="b. File Draft Kesepakatan"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="b. Draft Kesepakatan"
                             name="file_agreement_draft" type="download"
                             path="{{ route('download.litigation', [substr($data->file_agreement_draft, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="2. Scan Somasi/Surat Kesepakatan yang Ditandatangani" name="file_subpoena_signature"
-                        required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Scan Bukti Pengiriman Dokumen"
-                        name="file_delivery_proof" required />
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Update User :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-textarea label="Update dari User:" name="user_update" disabled>{{ $data->user_update }}
+                    </x-textarea>
+                    @if ($data->file_subpoena_agent_response)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Tanggapan Somasi Agen"
+                            name="file_subpoena_agent_response" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_subpoena_agent_response, 11)]) }}">
+                            Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
+                </div>
+            </div>
+
+            <hr>
+
+            <p>Apabila gugatan pengadilan isi tab dibawah ini dan klik proses</p>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Gugatan Pengadilan :</h5>
+                </div>
+                <div class="col-sm-9">
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Gugatan Pengadilan"
+                        name="file_court_lawsuit" />
                 </div>
             </div>
 
             <div class="d-flex justify-content-end">
-                <x-button type="submit" name="Submit" buttonClass="btn-danger" />
+                <x-button type="submit" name="Proses Gugatan" value="Proses Gugatan" buttonClass="btn-primary me-3" />
+                <x-button type="submit" name="Selesai" value="Selesai" buttonClass="btn-danger" />
             </div>
         </form>
     </x-base>

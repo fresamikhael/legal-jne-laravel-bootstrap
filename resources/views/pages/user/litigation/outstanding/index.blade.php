@@ -27,8 +27,16 @@
                             <td>{{ $row->id }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
-                                <a href="{{ route('litigation.outstanding.show', $row->id) }}"
-                                    class="btn btn-primary">Lihat</a>
+                                @if ($row->status == 'USER SEND SUBPOENA SIGNATURE')
+                                    <a href="{{ route('litigation.outstanding.update', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'PROGRESS SENT BY LEGAL')
+                                    <a href="{{ route('litigation.outstanding.update', [$row->id]) }}"
+                                        class="btn btn-primary">Check</a>
+                                @else
+                                    <a href="{{ route('litigation.outstanding.show', $row->id) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

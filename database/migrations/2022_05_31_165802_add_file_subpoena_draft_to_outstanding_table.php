@@ -27,7 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('outstandings', function (Blueprint $table) {
-            //
+            $table->dropColumn('file_subpoena_draft');
+            $table->dropColumn('legal_advice');
         });
     }
 };

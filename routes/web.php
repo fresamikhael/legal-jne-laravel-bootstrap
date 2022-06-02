@@ -136,6 +136,9 @@ Route::prefix('litigation')->name('litigation.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
         Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}', 'showPost')->name('show-post');
+        Route::get('update/{id}', 'update')->name('update');
+        Route::post('update/{id}', 'updatePost')->name('update-post');
     });
 
     Route::prefix('other')->name('other.')->controller(OtherController::class)->group(function () {
@@ -162,7 +165,12 @@ Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigati
         Route::post('/', 'storeLegal')->name('store');
         Route::get('/{id}', 'showLegal')->name('show');
         Route::post('/{id}', 'showLegalPost')->name('showPost');
-        Route::post('/finish/{id}', 'finishLegal')->name('finish');
+        Route::get('progress/{id}', 'progressLegal')->name('progress');
+        Route::post('progress/{id}', 'progressLegalPost')->name('progress-post');
+        Route::get('update/{id}', 'updateLegal')->name('update');
+        Route::post('update/{id}', 'updateLegalPost')->name('update-post');
+        Route::get('/finish/{id}', 'finishLegal')->name('finish');
+        Route::post('/finish/{id}', 'finishLegalPost')->name('finish-post');
     });
 });
 

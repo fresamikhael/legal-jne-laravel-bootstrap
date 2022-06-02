@@ -127,6 +127,136 @@ class OutstandingController extends Controller
         ]);
     }
 
+    public function showPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $item = Outstanding::findOrFail($id);
+
+        if ($request->file('file_subpoena_signature')) {
+            $file = $request->file('file_subpoena_signature');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_subpoena_signature'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+
+        if ($request->file('file_delivery_proof')) {
+            $file = $request->file('file_delivery_proof');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_delivery_proof'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+
+        $item->update([
+            $data,
+            'file_subpoena_signature' => $data['file_subpoena_signature'],
+            'file_delivery_proof' => $data['file_delivery_proof'],
+            'status' => 'USER SEND SUBPOENA SIGNATURE'
+        ]);
+
+        return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function update($id)
+    {
+        $table = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Outstanding::where('id', $id)->firstOrFail();
+        return view('pages.user.litigation.outstanding.update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function updatePost(Request $request, $id)
+    {
+
+        switch ($request->input('action')) {
+            case 'Selesai':
+                $data = $request->all();
+
+                $item = Outstanding::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'status' => 'FINISHED BY USER']);
+
+                return redirect()->route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Kirim':
+                $data = $request->all();
+
+                $item = Outstanding::findOrFail($id);
+
+                if ($request->file('file_subpoena_agent_response')) {
+                    $file = $request->file('file_subpoena_agent_response');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_subpoena_agent_response'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                $item->update([
+                    $data,
+                    'file_subpoena_agent_response' => $data['file_subpoena_agent_response'],
+                    'user_update' => $data['user_update'],
+                    'status' => 'USER SEND SUBPOENA RESPONSE'
+                ]);
+
+                return redirect()->route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
+    }
+
+    public function updateLegal($id)
+    {
+        $table = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Outstanding::where('id', $id)->firstOrFail();
+        return view('pages.legal.litigation.outstanding.update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function updateLegalPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $item = Outstanding::findOrFail($id);
+
+        if ($request->file('file_subpoena_2')) {
+            $file = $request->file('file_subpoena_2');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_subpoena_2'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+
+        if ($request->file('file_agreement_draft')) {
+            $file = $request->file('file_agreement_draft');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_agreement_draft'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+
+        $item->update([
+            $data,
+            'file_subpoena_2' => $data['file_subpoena_2'],
+            'file_agreement_draft' => $data['file_agreement_draft'],
+            'legal_advice' => $data['legal_advice'],
+            'status' => 'LEGAL SEND SUBPOENA II'
+        ]);
+
+        return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
     public function showLegal($id)
     {
         $table = Outstanding::orderBy('id', 'DESC')
@@ -173,6 +303,92 @@ class OutstandingController extends Controller
                     'file_subpoena_draft' => $data['file_subpoena_draft'],
                     'legal_advice' => $request->legal_advice,
                     'status' => 'APPROVED BY LEGAL'
+                ]);
+
+                return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
+    }
+
+    public function progressLegal($id)
+    {
+        $table = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Outstanding::where('id', $id)->firstOrFail();
+        return view('pages.legal.litigation.outstanding.progress', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function progressLegalPost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $item = Outstanding::findOrFail($id);
+
+        if ($request->file('file_subpoena_signature')) {
+            $file = $request->file('file_subpoena_signature');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str()->random(40) . '.' . $extension;
+            $data['file_subpoena_signature'] = 'Litigation/'.$filename;
+            $file->move('Litigation', $filename);
+        }
+
+        $item->update([
+            $data,
+            'file_subpoena_signature' => $data['file_subpoena_signature'],
+            'status' => 'PROGRESS SENT BY LEGAL'
+        ]);
+
+        return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+    }
+
+    public function finishLegal($id)
+    {
+        $table = Outstanding::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = Outstanding::where('id', $id)->firstOrFail();
+        return view('pages.legal.litigation.outstanding.finish', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function finishLegalPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Selesai':
+                $data = $request->all();
+
+                $item = Outstanding::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'status' => 'FINISHED BY LEGAL']);
+
+                return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Proses Gugatan':
+                $data = $request->all();
+
+                $item = Outstanding::findOrFail($id);
+
+                if ($request->file('file_court_lawsuit')) {
+                    $file = $request->file('file_court_lawsuit');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str()->random(40) . '.' . $extension;
+                    $data['file_court_lawsuit'] = 'Litigation/'.$filename;
+                    $file->move('Litigation', $filename);
+                }
+
+                $item->update([
+                    $data,
+                    'file_court_lawsuit' => $data['file_court_lawsuit'],
+                    'status' => 'COURT LAWSUIT BY LEGAL'
                 ]);
 
                 return redirect()->route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');

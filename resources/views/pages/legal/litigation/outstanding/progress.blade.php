@@ -1,7 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
-    Customer Dispute
+    Outstanding
 @endsection
 
 @section('content')
@@ -42,7 +42,7 @@
             @endslot
         @endif
 
-        <form action="{{ route('litigation.outstanding.show-post', $data->id) }}" method="POST"
+        <form action="{{ route('legal.litigation.outstanding.progress-post', $data->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
@@ -253,27 +253,25 @@
                     @endif
                     <x-textarea label="Advice untuk User:" name="legal_advice" disabled>{{ $data->legal_advice }}
                     </x-textarea>
-                    @if ($data->file_subpoena_2)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="a. File Somasi II" name="file_subpoena_2"
-                            type="download"
-                            path="{{ route('download.litigation', [substr($data->file_subpoena_2, 11)]) }}">
+                    @if ($data->file_subpoena_signature)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Scan Somasi yang Ditandatangani User"
+                            name="file_subpoena_signature" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_subpoena_signature, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
-                    @if ($data->file_agreement_draft)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="b. File Draft Kesepakatan"
-                            name="file_agreement_draft" type="download"
-                            path="{{ route('download.litigation', [substr($data->file_agreement_draft, 11)]) }}">
+                    @if ($data->file_delivery_proof)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Scan Bukti Pengiriman Dokumen"
+                            name="file_delivery_proof" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_delivery_proof, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="2. Scan Somasi/Surat Kesepakatan yang Ditandatangani" name="file_subpoena_signature"
+                        label="4. Upload Progress Scan Somasi yang Ditandatangani" name="file_subpoena_signature"
                         required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Scan Bukti Pengiriman Dokumen"
-                        name="file_delivery_proof" required />
                 </div>
             </div>
 
