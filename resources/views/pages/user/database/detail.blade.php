@@ -1,4 +1,4 @@
-@extends('layouts.legal')
+@extends('layouts.user')
 
 @section('title')
     Detail Peraturan
@@ -64,7 +64,7 @@
                                 <td>{{ $database->valid_date }}</td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-end">Submber</th>
+                                <th scope="row" class="text-end">Sumber</th>
                                 <td>{{ $database->source }}</td>
                             </tr>
                             <tr class="bg-light">

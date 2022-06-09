@@ -354,18 +354,18 @@ Route::prefix('legal/request_document')->name('legal.document_request.')->contro
 
 
 
-Route::prefix('database')->name('database.')->controller(DatabaseController::class)->group(function () {
+Route::prefix('regulation')->name('database.')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'index')->name('index');
     Route::get('tambah', 'add')->name('add');
     Route::post('tambah', 'store')->name('store');
     Route::get('detail/{id}', 'show')->name('show');
 });
 
-Route::prefix('legal/database')->name('legal.database.')->controller(DatabaseController::class)->group(function () {
+Route::prefix('legal/regulation')->name('legal.database.')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'indexLegal')->name('index');
     Route::get('tambah', 'add')->name('add');
     Route::post('tambah', 'store')->name('store');
-    Route::get('detail/{id}', 'show')->name('show');
+    Route::get('detail/{id}', 'legalShow')->name('show');
 });
 
 Route::get('/', function () {
@@ -451,7 +451,7 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
     Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheckPost'])->name('powerattorney-check-post');
 });
 
-Route::prefix('regulation')->name('regulation.')->group(function () {
+Route::prefix('database')->name('regulation.')->group(function () {
     Route::get('/index', [RegulationController::class, 'index'])->name('index');
 
     Route::get('/detail/{id}', [RegulationController::class, 'show'])->name('detail');
@@ -463,7 +463,7 @@ Route::prefix('regulation')->name('regulation.')->group(function () {
     Route::get('normative-detail/{id}', [NormativeController::class, 'show'])->name('normative-detail');
 });
 
-Route::prefix('legal/regulation')->name('legal.regulation.')->group(function () {
+Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
     Route::get('/add', [RegulationController::class, 'add'])->name('add');
     Route::get('/detail/{id}', [InternalController::class, 'showLegal'])->name('detail');

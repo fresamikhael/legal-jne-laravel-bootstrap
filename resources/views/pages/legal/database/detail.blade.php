@@ -1,8 +1,4 @@
-@if (auth()->user()->role == 'USER')
-    @extends('layouts.user')
-@elseif (auth()->user()->role == 'LEGAL')
-    @extends('layouts.legal')
-@endif
+@extends('layouts.legal')
 
 @section('title')
     Detail Peraturan

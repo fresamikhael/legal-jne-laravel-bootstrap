@@ -39,6 +39,38 @@
                                 <th scope="row" class="text-end">Jenis Peraturan</th>
                                 <td>{{ $database->type }}</td>
                             </tr>
+                            <tr>
+                                <th scope="row" class="text-end">Instansi</th>
+                                <td>{{ $database->agency }}</td>
+                            </tr>
+                            <tr class="bg-light">
+                                <th scope="row" class="text-end">Nomor Peraturan</th>
+                                <td>{{ $database->rule_number }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-end">Tahun Peraturan</th>
+                                <td>{{ $database->rule_year }}</td>
+                            </tr>
+                            <tr class="bg-light">
+                                <th scope="row" class="text-end">Tentang</th>
+                                <td>{{ $database->about }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-end">Tgl Ditetapkan</th>
+                                <td>{{ $database->set_date }}</td>
+                            </tr>
+                            <tr class="bg-light">
+                                <th scope="row" class="text-end">Nomor BN</th>
+                                <td>{{ $database->bn_number }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-end">Nomor TBN</th>
+                                <td>{{ $database->tbn_number }}</td>
+                            </tr>
+                            <tr class="bg-light">
+                                <th scope="row" class="text-end">Tgl Diundangkan </th>
+                                <td>{{ $database->promulgation_date }}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>

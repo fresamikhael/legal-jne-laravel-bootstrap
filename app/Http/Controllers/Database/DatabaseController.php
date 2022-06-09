@@ -61,4 +61,12 @@ class DatabaseController extends Controller
 
         return view('pages.user.database.detail', compact('database'));
     }
+
+    public function legalShow($id)
+    {
+        $database = Database::where('id', $id)
+            ->with('file')->first();
+
+        return view('pages.legal.database.detail', compact('database'));
+    }
 }
