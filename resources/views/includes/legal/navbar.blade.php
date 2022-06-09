@@ -12,7 +12,9 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{ route('legal.regulation.index') }}">Database</a></li>
-                        <li class="scroll-to-section"><a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
+                        @if (auth()->user()->role == 'LEGAL')
+                            <li class="scroll-to-section"><a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
+                        @endif
                         </li>
                         <li class="scroll-to-section">
                             <a href="{{ route('legal.information.index') }}">Informasi</a>

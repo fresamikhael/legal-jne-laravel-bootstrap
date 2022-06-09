@@ -1,4 +1,8 @@
-@extends('layouts.user')
+@if (auth()->user()->role == 'USER')
+    @extends('layouts.user')
+@elseif (auth()->user()->role == 'LEGAL')
+    @extends('layouts.legal')
+@endif
 
 @section('title')
     Detail Peraturan
@@ -9,10 +13,10 @@
         <div class="d-flex align-items-center justify-content-between">
             <h2>Detail Peraturan</h2>
         </div>
-        
+
         @if (Session::get('message_success'))
             @slot('alert')
-                <x-alert message="{{ Session::get('message_success') }}" type="success"/>
+                <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
 
@@ -83,7 +87,8 @@
                     </div>
                 </div>
                 <div class="p-3 border bg-white">
-                    <div class="border rounded p-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div class="border rounded p-3"
+                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                         @foreach ($database->file as $file)
                             <a href="{{ asset($file->name) }}" target="_blank">
                                 <i class="fa fa-file-pdf" style="font-size: 100px;"></i>

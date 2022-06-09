@@ -5,22 +5,25 @@
 @endsection
 
 @section('content')
-    <div class="container" style="margin-top: 150px">
+    <div class="container" style="margin-top: 150px; width: 1000px; height: 500px">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-center">{{ __('Selamat Datang') }}</div>
+                    <div class="card-header d-flex justify-content-center"
+                        style="background-color: rgb(245, 51, 51); color: white">
+                        {{ __('Selamat Datang') }}</div>
 
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgb(240, 240, 240)">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            <div class="row mb-3">
-                                <label for="nik" class="col-md-4 col-form-label text-md-end">{{ __('NIK') }}</label>
+                            <div class="row mb-3" style="margin-top: 20px">
+                                <label for="nik" class="col-md-3 col-form-label text-md-end"></label>
 
                                 <div class="col-md-6">
                                     <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror"
-                                        name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus>
+                                        name="nik" placeholder="NIK" value="{{ old('nik') }}" required autocomplete="nik"
+                                        autofocus>
 
                                     @error('nik')
                                         <span class="invalid-feedback" role="alert">
@@ -31,13 +34,12 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-3 col-form-label text-md-end"></label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                        class="form-control @error('password') is-invalid @enderror" placeholder="Password"
+                                        name="password" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -47,30 +49,65 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            {{ __('Ingat Aku') }}
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                <div class="col-md-3 offset-md-3">
+                                    <button type="submit" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-lock-fill me-2" style="margin-top: -5px" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                                        </svg>{{ __('Login') }}</i>
                                     </button>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                            {{ old('remember') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="remember">
+                                            {{ __('Ingat Aku') }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                            {{ old('remember') ? 'checked' : '' }}>
+                                        <a class="btn btn-link" style="margin-top: -7px; margin-left: -13px; color: black"
+                                            href="{{ route('password.request') }}">
+                                            {{ __('Lupa Password?') }}
+                                        </a>
+                                    </div>
+                                    <div class="form-check" style="margin-top: -5px">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                            {{ old('remember') ? 'checked' : '' }}>
+                                        <a class="btn btn-link" style="margin-top: -7px; margin-left: -13px; color: black"
+                                            href="{{ route('password.request') }}">
+                                            {{ __('Lupa Username?') }}
+                                        </a>
+                                    </div>
+                                    {{-- @if (Route::has('password.request'))
+                                        <a class="btn btn-link" style="margin-top: -15px; margin-left: -13px"
+                                            href="{{ route('password.request') }}">
+                                            {{ __('Lupa Password?') }}
                                         </a>
                                     @endif
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" style="margin-top: -20px"
+                                            href="{{ route('password.request') }}">
+                                            {{ __('Lupa Username?') }}
+                                        </a>
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>

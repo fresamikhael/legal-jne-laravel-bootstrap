@@ -41,7 +41,7 @@ use App\Http\Controllers\Regulation\RegulationController;
 |
 */
 
-Route::prefix('drafting')->name('drafting.')->group(function () {
+Route::prefix('drafting')->name('drafting.')->middleware(['isUser'])->group(function () {
     Route::get('/index', function () {
         return View('pages.user.drafting.index');
     })->name('index');
@@ -116,7 +116,7 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('other', [DraftingOtherController::class, 'legalCreate'])->name('legal-other');
 });
 
-Route::prefix('litigation')->name('litigation.')->group(function () {
+Route::prefix('litigation')->name('litigation.')->middleware(['isUser'])->group(function () {
     Route::get('/index', function () {
         return View('pages.user.litigation.index');
     })->name('index');
@@ -248,7 +248,7 @@ Route::prefix('legal/information')->name('legal.information.')->group(function (
     Route::post('qna/create', [InformationController::class, 'qnaStore'])->name('qna-store');
 });
 
-Route::prefix('permit')->name('permit.')->controller(NewPermitController::class)->group(function () {
+Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(NewPermitController::class)->group(function () {
     // Route::get('/', function () {
     //     return View('pages.user.permit.index');
     // })->name('index');
@@ -320,7 +320,7 @@ Route::prefix('legal/permit/perpanjangan-perizinan')->name('legal.perpanjangan.'
 );
 
 
-Route::prefix('request_document')->name('document_request.')->controller(documentRequestController::class)->group(function () {
+Route::prefix('request_document')->name('document_request.')->middleware(['isUser'])->controller(documentRequestController::class)->group(function () {
     // Route::get('/', function () {
     //     return View('pages.user.document_request.index');
     // })->name('index');
@@ -368,8 +368,6 @@ Route::prefix('legal/database')->name('legal.database.')->controller(DatabaseCon
     Route::get('detail/{id}', 'show')->name('show');
 });
 
-
-
 Route::get('/', function () {
     return view('pages.user.index');
 })->name('home');
@@ -395,7 +393,7 @@ Route::prefix('download')->name('download.')->controller(DownloadController::cla
     Route::get('/powerattorney/{path}', 'downloadPowerAttorney')->name('powerattorney');
 });
 
-Route::prefix('legalcorporate')->name('legalcorporate.')->group(function () {
+Route::prefix('legalcorporate')->name('legalcorporate.')->middleware(['isUser'])->group(function () {
     Route::get('/index', function () {
         return View('pages.user.legal-corporate.index');
     })->name('index');

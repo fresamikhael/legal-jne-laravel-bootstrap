@@ -1,4 +1,4 @@
-@extends ('layouts.user')
+@extends ('layouts.legal')
 
 @section('title')
     Detail Internal
