@@ -231,9 +231,9 @@ Route::prefix('legal-litigation-manager')->middleware(['isLitiManager'])->name('
 });
 
 Route::prefix('information')->name('information.')->group(function () {
-    Route::get('/', function () {
-        return View('pages.user.information.index');
-    })->name('index');
+    Route::get('/', [InformationController::class, 'index'])->name('index');
+    Route::get('/{id}', [InformationController::class, 'show'])->name('show');
+
 });
 
 Route::prefix('legal/information')->name('legal.information.')->group(function () {

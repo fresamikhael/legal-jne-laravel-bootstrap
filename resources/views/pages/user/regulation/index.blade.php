@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row g-2">
                 <div class="col-3 pe-4">
-                    <div style="background-color: #fe3f40">
+                    <div style="background-color: #fe3f40; border-radius: 20px 20px 0 0">
                         <div class="col px-4 py-3" style="color: white">
                             <i class="fa-solid fa-align-left"></i>
                             <span>Pencarian</span>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <div style="background-color:#fe3f40">
+                    <div style="background-color:#fe3f40; border-radius: 20px 20px 0 0">
                         <div class="col px-4 py-3" style="color: white">
                             <i class="fa-solid fa-align-left"></i>
                             <span>Data Peraturan</span>
