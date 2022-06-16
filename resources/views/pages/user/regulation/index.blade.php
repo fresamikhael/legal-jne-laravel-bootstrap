@@ -27,7 +27,8 @@
                             @csrf
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="rule_type">
-                                <option value="" {{ request('rule_type') == '' ? 'selected' : '' }}>Semua Jenis</option>
+                                <option value="" {{ request('rule_type') == '' ? 'selected' : '' }}>Semua Jenis
+                                </option>
                                 <option disabled>-----------------------------</option>
                                 <option value="Internal" {{ request('rule_type') == 'Internal' ? 'selected' : '' }}>
                                     Peraturan
