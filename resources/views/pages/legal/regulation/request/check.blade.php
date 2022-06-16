@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
     Permohoman Dokumen
@@ -10,7 +10,7 @@
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
         <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.document_request.checkpost', $data->id) }}">
+            action="{{ route('legal.regulation.request-check-post', $data->id) }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Permohoman Dokumen</h2>
@@ -28,12 +28,21 @@
                 </x-modal-history> --}}
             </div>
             <div class="row mt-3">
-
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-2 col-form-label">Nomor Tiket</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $data->id }}" name="id" disabled />
+                        </div>
+                    </div>
+                </div>
                 <div class="mb-3 row">
                     <label for="id" class="col-sm-2 col-form-label">Tanggal Permohonan</label>
                     <div class="col-sm-10">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $data->created_at }}" name="id" disabled />
+                            <input type="text" class="form-control"
+                                value="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->isoFormat('dddd, D MMMM Y') }}"
+                                name="id" disabled />
                         </div>
                     </div>
                 </div>

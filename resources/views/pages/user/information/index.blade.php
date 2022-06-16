@@ -8,6 +8,13 @@
     <x-base>
         <div class="container">
             <div class="row g-2">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Informasi</li>
+                    </ol>
+                </nav>
                 <div class="col-3 pe-4">
                     <div style="background-color: #3648ec ; border-radius: 20px 20px 0 0">
                         <div class=" col px-4 py-3" style="color: white">
@@ -19,12 +26,16 @@
                         <form action="{{ route('information.index') }}" method="GET">
                             @csrf
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis" name="type">
+                                <option value="" {{ request('type') == '' ? 'selected' : '' }}>Semua Jenis</option>
+                                <option disabled>-----------------------------</option>
                                 <option value="QNA" {{ request('type') == 'QNA' ? 'selected' : '' }}>QnA</option>
                                 <option value="KLINIK HUKUM" {{ request('type') == 'KLINIK HUKUM' ? 'selected' : '' }}>
                                     Klinik Hukum
                                 </option>
                             </x-select>
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Kategori" name="category">
+                                <option value="" {{ request('category') == '' ? 'selected' : '' }}>Semua Kategori</option>
+                                <option disabled>-----------------------------</option>
                                 <option value="BISNIS" {{ request('category') == 'BISNIS' ? 'selected' : '' }}>Bisnis
                                 </option>
                                 <option value="Kekayaan Intelektual"

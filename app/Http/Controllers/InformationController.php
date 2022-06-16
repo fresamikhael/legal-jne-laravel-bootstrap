@@ -17,6 +17,16 @@ class InformationController extends Controller
         return view('pages.user.information.index', compact('database')) ;
     }
 
+    public function indexLegal()
+    {
+        $database = Information::orderBy('created_at', 'DESC')
+            ->orderBy('title', 'ASC')
+            ->filter(request(['type', 'category']))
+            ->paginate(10);
+
+        return view('pages.legal.information.index', compact('database')) ;
+    }
+
     public function show($id)
     {
         $database = Information::where('id', $id)
@@ -25,13 +35,26 @@ class InformationController extends Controller
         return view('pages.user.information.detail', compact('database'));
     }
 
-    public function create()
+    public function showLegal($id)
     {
-        return view('pages.legal.information.create');
+        $database = Information::where('id', $id)
+            ->with('user')->first();
+
+        return view('pages.legal.information.detail', compact('database'));
     }
 
-    public function qnaCreate()
+    public function add()
     {
-        return view('pages.legal.information.qna');
+        return view('pages.legal.information.add');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        $data ['user_id'] = auth()->user()->id;
+
+        Information::create($data);
+
+        return redirect()->route('legal.information.index')->with('message_success', 'Informasi Berhasil Ditambahkan.');
     }
 }

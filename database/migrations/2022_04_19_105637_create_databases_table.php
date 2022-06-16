@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('entity');
             $table->string('number');
             $table->string('year');
-            $table->string('title');
+            $table->string('about');
             $table->date('set_date');
+            $table->string('bn_number');
+            $table->string('tbn_number')->nullable();
             $table->date('promulgated_date');
-            $table->date('valid_date');
-            $table->string('source');
             $table->string('status');
             $table->timestamps();
         });

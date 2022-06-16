@@ -8,6 +8,13 @@
     <x-base>
         <div class="container">
             <div class="row g-2">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Database</li>
+                    </ol>
+                </nav>
                 <div class="col-3 pe-4">
                     <div style="background-color: #fe3f40; border-radius: 20px 20px 0 0">
                         <div class="col px-4 py-3" style="color: white">
@@ -20,6 +27,8 @@
                             @csrf
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="rule_type">
+                                <option value="" {{ request('rule_type') == '' ? 'selected' : '' }}>Semua Jenis</option>
+                                <option disabled>-----------------------------</option>
                                 <option value="Internal" {{ request('rule_type') == 'Internal' ? 'selected' : '' }}>
                                     Peraturan
                                     Internal</option>
@@ -30,6 +39,8 @@
                             </x-select>
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="type">
+                                <option value="" {{ request('type') == '' ? 'selected' : '' }}>Semua Jenis</option>
+                                <option disabled>-----------------------------</option>
                                 <option value="Peraturan Perusahaan"
                                     {{ request('type') == 'Peraturan Perusahaan' ? 'selected' : '' }}>
                                     Peraturan
@@ -63,11 +74,16 @@
                                 value="{{ request('name') }}" />
                             <div class="container">
                                 <div class="row g-2">
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Cari</button>
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i>
+                                        Cari</button>
                                     {{-- @if (auth()->user()->role == 'LEGAL')
                                         <a href="{{ route('legal.regulation.add') }}" class="btn btn-primary"><i
                                                 class="fa fa-plus"></i> Tambah</a>
                                     @endif --}}
+                                    @auth
+                                        <a href="{{ route('regulation.request') }}" class="btn btn-primary"><i
+                                                class="fas fa-file-contract"></i> Ajukan Dokumen</a>
+                                    @endauth
                                 </div>
                             </div>
                         </form>
@@ -86,14 +102,14 @@
                             {{ $database->total() }} Data Peraturan
                         </div>
                         <div class="border rounded">
-                            <table class="table table-borderless">
+                            <table class="table table-bordered">
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col">No</th>
                                         {{-- <th scope="col">Tahun Peraturan</th> --}}
-                                        <th scope="col">Peraturan</th>
+                                        <th scope="col" class="col-3">Peraturan</th>
                                         <th scope="col">Tipe Peraturan</th>
-                                        <th scope="col"></th>
+                                        <th scope="col"><i class="fa-solid fa-download"></i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,16 +118,16 @@
                                             <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
                                                 <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
                                                 <td>
-                                                    <a
+                                                    <a style="color: brown"
                                                         href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
-                                                <td>Peraturan {{ $row->rule_type }}</td>
+                                                <td>{{ $row->about }}</td>
                                                 <td>
                                                     {{-- @dd($row->file) --}}
                                                     {{-- @foreach ($row->file as $file) --}}
                                                     <a href="{{ asset($row->file) }}" target="_blank"
-                                                        style="font-size: 25px;">
+                                                        style="font-size: 25px; color:#fe3f40">
                                                         <i class="fa-solid fa-file-arrow-down"></i>
                                                     </a>
                                                     {{-- @endforeach --}}

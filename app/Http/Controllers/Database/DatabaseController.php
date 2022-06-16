@@ -31,7 +31,7 @@ class DatabaseController extends Controller
 
     public function add()
     {
-        return view('pages.user.database.add');
+        return view('pages.legal.database.add');
     }
 
     public function store(Request $request)

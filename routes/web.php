@@ -232,20 +232,16 @@ Route::prefix('legal-litigation-manager')->middleware(['isLitiManager'])->name('
 
 Route::prefix('information')->name('information.')->group(function () {
     Route::get('/', [InformationController::class, 'index'])->name('index');
-    Route::get('/{id}', [InformationController::class, 'show'])->name('show');
+    Route::get('detail/{id}', [InformationController::class, 'show'])->name('show');
 
 });
 
 Route::prefix('legal/information')->name('legal.information.')->group(function () {
-    Route::get('/', function () {
-        return View('pages.legal.information.index');
-    })->name('index');
+    Route::get('/', [InformationController::class, 'indexLegal'])->name('index');
+    Route::get('detail/{id}', [InformationController::class, 'showLegal'])->name('show');
 
-    Route::get('create', [InformationController::class, 'create'])->name('create');
-    Route::post('create', [InformationController::class, 'store'])->name('store');
-
-    Route::get('qna/create', [InformationController::class, 'qnaCreate'])->name('qna-create');
-    Route::post('qna/create', [InformationController::class, 'qnaStore'])->name('qna-store');
+    Route::get('add', [InformationController::class, 'add'])->name('add');
+    Route::post('add', [InformationController::class, 'store'])->name('store');
 });
 
 Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(NewPermitController::class)->group(function () {
@@ -253,7 +249,7 @@ Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(New
     //     return View('pages.user.permit.index');
     // })->name('index');
 
-    Route::get('/dashboard', 'home');
+    Route::get('/dashboard', 'home')->name('index');
 
     Route::get('perizinan-baru',  'index')->name('newpermit');
     Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
@@ -286,10 +282,6 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
     Route::post('perizinan-baru/update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
     Route::get('perizinan-baru/konfirmasi_skpd/{id}',  'confirm_skpd_legal')->name('confirm_skpd');
     Route::post('perizinan-baru/konfirmasi_skpd/post/{id}',  'confirm_skpd_update_legal')->name('confirm_skpd_update');
-
-
-
-
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
 
 });
@@ -318,7 +310,6 @@ Route::prefix('legal/permit/perpanjangan-perizinan')->name('legal.perpanjangan.'
         Route::post('update_invoice/{id}',  'update_invoice_legal')->name('update_invoice');
     }
 );
-
 
 Route::prefix('request_document')->name('document_request.')->middleware(['isUser'])->controller(documentRequestController::class)->group(function () {
     // Route::get('/', function () {
@@ -351,8 +342,6 @@ Route::prefix('legal/request_document')->name('legal.document_request.')->contro
     Route::post('/update/out/post/{id}', 'update_legal_out_store')->name('updatedoc_out_post');
     Route::post('/update/in/post/{id}', 'update_legal_in_store')->name('updatedoc_in_post');
 });
-
-
 
 Route::prefix('regulation')->name('database.')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'index')->name('index');
@@ -453,6 +442,9 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
 
 Route::prefix('database')->name('regulation.')->group(function () {
     Route::get('/index', [RegulationController::class, 'index'])->name('index');
+    Route::get('/request', [RegulationController::class, 'requestDocument'])->name('request');
+    Route::post('/request',  [RegulationController::class, 'requestDocumentPost'])->name('request-post');
+    Route::get('/request/detail/{id}', [RegulationController::class, 'requestDocumentDetail'])->name('request-detail');
 
     Route::get('/detail/{id}', [RegulationController::class, 'show'])->name('detail');
 
@@ -466,7 +458,16 @@ Route::prefix('database')->name('regulation.')->group(function () {
 Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
     Route::get('/add', [RegulationController::class, 'add'])->name('add');
-    Route::get('/detail/{id}', [InternalController::class, 'showLegal'])->name('detail');
+    Route::get('/detail/{id}', [RegulationController::class, 'showLegal'])->name('detail');
+
+    Route::get('/request', [RegulationController::class,'legalRequestDocument'])->name('request');
+    Route::get('/request/check/{id}', [RegulationController::class, 'legalCheckRequest'])->name('request-check');
+    Route::post('/request/check/post/{id}', [RegulationController::class,'legalCheckRequestPost'])->name('request-check-post');
+    Route::get('/request/detail/{id}', [RegulationController::class, 'legalDetailRequest'])->name('request-detail');
+    Route::post('/request/detail/post/{id}', [RegulationController::class,'legalDetailkRequestPost'])->name('request-detail-post');
+    Route::get('/request/update/{id}', [RegulationController::class, 'legalUpdateRequest'])->name('request-update');
+    Route::post('/request/update/post/{id}', [RegulationController::class,'legalUpdateRequestPost'])->name('request-update-post');
+    Route::post('/request/finish/{id}', [RegulationController::class,'legalFinishRequest'])->name('request-finish');
 
     Route::get('internal', [InternalController::class, 'indexLegal'])->name('internal');
     Route::get('normative', [NormativeController::class, 'indexLegal'])->name('normative');

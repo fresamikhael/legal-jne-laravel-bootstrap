@@ -32,7 +32,13 @@ return new class extends Migration
     public function down()
     {
         Schema::table('regulation', function (Blueprint $table) {
-            //
+            $table->dropColumn('rule_number');
+            $table->dropColumn('rule_year');
+            $table->dropColumn('about');
+            $table->dropColumn('set_date');
+            $table->dropColumn('bn_number');
+            $table->dropColumn('tbn_number');
+            $table->dropColumn('promulgation_date');
         });
     }
 };

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('regulations', function (Blueprint $table) {
-            $table->string('agency')->after('promulgation_date')->nullable();
+            $table->string('status')->after('agency')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('regulations', function (Blueprint $table) {
-            $table->dropColumn('agency');
+            $table->dropColumn('status');
         });
     }
 };

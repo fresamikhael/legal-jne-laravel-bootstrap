@@ -267,7 +267,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('drafting.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                             <div class="hidden-content">
                                 <h4>Drafting</h4>
@@ -280,7 +280,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('litigation.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
                             <div class="hidden-content">
                                 <h4>Litigation</h4>
@@ -293,7 +293,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('permit.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                             <div class="hidden-content">
                                 <h4>Permit</h4>
@@ -306,7 +306,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('legalcorporate.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
                             <div class="hidden-content">
                                 <h4>Legal Corporate</h4>
@@ -319,7 +319,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('document_request.home') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
                             <div class="hidden-content">
                                 <h4>Permohonan Dokumen</h4>

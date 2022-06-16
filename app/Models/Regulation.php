@@ -16,7 +16,17 @@ class Regulation extends Model
         'name',
         'type',
         'file',
-        'rule_type'
+        'rule_type',
+        'rule_number',
+        'rule_year',
+        'about',
+        'set_date',
+        'bn_number',
+        'tbn_number',
+        'privilege',
+        'promulgation_date',
+        'agency',
+        'status'
     ];
 
     protected $guarded = ['id'];

@@ -8,6 +8,13 @@
     <x-base>
         <div class="container">
             <div class="row g-2">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Regulasi</li>
+                    </ol>
+                </nav>
                 <div class="col-3 pe-4">
                     <div style="background-color: #fe3f40">
                         <div class="col px-4 py-3" style="color: white">
@@ -57,14 +64,14 @@
                             {{ $database->total() }} Data Peraturan
                         </div>
                         <div class="border rounded">
-                            <table class="table table-borderless">
+                            <table class="table table-bordered">
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Tahun Peraturan</th>
-                                        <th scope="col">Peraturan</th>
+                                        {{-- <th scope="col">Tahun Peraturan</th> --}}
+                                        <th scope="col" class="col-3">Peraturan</th>
                                         <th scope="col">Tentang</th>
-                                        <th scope="col"></th>
+                                        <th scope="col"><i class="fa-solid fa-download"></i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,16 +79,15 @@
                                         @foreach ($database as $row)
                                             <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
                                                 <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
-                                                <td>{{ $row->year }}</td>
                                                 <td>
-                                                    <a
+                                                    <a style="color: brown"
                                                         href="{{ route('legal.database.show', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                 </td>
-                                                <td>{{ Str::limit($row->title, 40, '...') }}</td>
+                                                <td>{{ $row->about }}</td>
                                                 <td>
                                                     @foreach ($row->file as $file)
                                                         <a href="{{ asset($file->name) }}" target="_blank"
-                                                            style="font-size: 25px;">
+                                                            style="font-size: 25px; color:#fe3f40">
                                                             <i class="fa-solid fa-file-arrow-down"></i>
                                                         </a>
                                                     @endforeach

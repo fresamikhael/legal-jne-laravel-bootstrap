@@ -6,8 +6,13 @@
 
 @section('content')
     <div class="container" style="margin-top: 140px">
-
-        <h1 class="mb-4">Our Information</h1>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Hubungi Kami</li>
+            </ol>
+        </nav>
 
         <div class="d-flex">
             <iframe

@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.auth')
 
 @section('title')
     Login
@@ -9,9 +9,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-center"
-                        style="background-color: rgb(245, 51, 51); color: white">
-                        {{ __('Selamat Datang') }}</div>
+                    <div class="d-flex justify-content-center" style="background-color: rgb(240, 240, 240);">
+                        <img src="{{ url('/images/logo.png') }}" class="mt-4 w-50" alt="">
+                    </div>
 
                     <div class="card-body" style="background-color: rgb(240, 240, 240)">
                         <form method="POST" action="{{ route('login') }}">
@@ -108,6 +108,11 @@
                                             {{ __('Lupa Username?') }}
                                         </a>
                                     @endif --}}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3" style="margin-left: 159px  ;margin-top: -35px">
+                                        <a href="{{ route('home') }}" class="btn btn-primary">Back to home</a>
+                                    </div>
                                 </div>
                             </div>
                         </form>

@@ -159,9 +159,7 @@ class documentRequestController extends Controller
 
                 $item = DocumentRequest::where('id', $id)->firstOrFail();
 
-
                 $item->update($data);
-
 
                 return redirect()->route('legal.document_request.form');
                 break;
