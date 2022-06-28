@@ -29,6 +29,7 @@ use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLiti
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
 use App\Http\Controllers\Misc\ContactUsController;
+use App\Http\Controllers\Misc\StatisticController;
 use App\Http\Controllers\Regulation\RegulationController;
 
 /*
@@ -501,9 +502,7 @@ Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('delete/{id}', [RegulationController::class, 'delete'])->name('delete');
 });
 
-Route::get('legal/statistic', function () {
-    return view('pages.legal.statistic');
-})->name('statistic');
+Route::get('legal/statistic', [StatisticController::class, 'index'])->name('statistic');
 
 Route::get('/contact-us', function () {
     return view('pages.user.contact_us');

@@ -1,7 +1,7 @@
 @extends ('layouts.legal')
 
 @section('title')
-    Regulasi
+    Statistik Pekerjaan
 @endsection
 
 @section('content')
@@ -13,36 +13,45 @@
                     Statistik Pekerjaan</li>
             </ol>
         </nav>
-        <div class="d-flex">
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="2">Jumlah Pengajuan Customer</x-card-no-button>
-            </div>
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="3">Jumlah Pengajuan Vendor & Supplier
-                </x-card-no-button>
-            </div>
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="0">Jumlah Pengajuan Lease</x-card-no-button>
-            </div>
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="4">Jumlah Pengajuan Customer Dispute
-                </x-card-no-button>
-            </div>
-        </div>
-        <div class="d-flex mt-3">
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="5">Jumlah Pengajuan Fraud</x-card-no-button>
-            </div>
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="1">Jumlah Pengajuan Outstanding</x-card-no-button>
-            </div>
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="7">Jumlah Pengajuan Vendor & Supplier
-                </x-card-no-button>
-            </div>
-            <div class="col-lg-3 me-3">
-                <x-card-no-button style="margin-top: 300px" total="9">Jumlah Pengajuan Permit</x-card-no-button>
-            </div>
-        </div>
+        <h2>Statistik Data</h2>
+        <x-table id="dataTables">
+            @slot('header')
+                <tr>
+                    <th>No</th>
+                    <th>Nomor Kasus</th>
+                    <th>SLA Pengerjaan Sampai</th>
+                    <th>Status Terakhir</th>
+                    <th>Aksi</th>
+                </tr>
+            @endslot
+            @slot('data')
+                @foreach ($data as $row)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $row->id }}</td>
+                        @php
+                            $startDate = $row->created_at;
+                            $endDate = $row->created_at->addDays(7);
+                            // $interval = $endDate->diff($startDate);
+                            // $days = $interval->format('%a');
+                            // $invoices = Invoice::whereBetween('due_date', [$startDate, $endDate])->get();
+                        @endphp
+                        <td>{{ $endDate->format('d/m/Y') }}</td>
+                        {{-- <td>{{ $days }}</td> --}}
+                        <td>{{ $row->status }}</td>
+                        <td>
+                            @if ($row->status == 'PENDING')
+                                <a href="{{ route('legal.regulation.request-check', [$row->id]) }}"
+                                    class="btn btn-primary">Check</a>
+                            @elseif ($row->status == 'RETURN')
+                            @else
+                                <a href="{{ route('legal.regulation.request-detail', $row->id) }}"
+                                    class="btn btn-primary">Lihat</a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            @endslot
+        </x-table>
     </div>
 @endsection

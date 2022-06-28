@@ -11,7 +11,7 @@ class CustomerDisputeController extends Controller
 {
     public function index()
     {
-        $data = CustomerDispute::orderBy('id', 'DESC')
+        $data = Database::orderBy('id', 'DESC')
             ->with('user')
             ->get();
 
@@ -28,7 +28,7 @@ class CustomerDisputeController extends Controller
     public function store(Request $request, $id)
     {
         $data = $request->all();
-        
+
         $data['user_id'] = auth()->user()->id;
 
         $cs = Cs::where('form_id', $id)->first();
@@ -145,14 +145,14 @@ class CustomerDisputeController extends Controller
         CustomerDispute::where('id', $id)->update([
             'status' => $data['status']
         ]);
-        
+
         return to_route('cs.customer-dispute.show', [$id])->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 
     public function finish(Request $request, $id)
     {
         $data = $request->all();
-        
+
         $data['user_id'] = auth()->user()->id;
 
         $data['status'] = 'UPDATE BY CS';
@@ -183,10 +183,10 @@ class CustomerDisputeController extends Controller
         CustomerDispute::where('id', $id)->update([
             'status' => $data['status']
         ]);
-        
+
         return to_route('cs.customer-dispute.show', [$id])->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
-    
+
     public function close(Request $request, $id)
     {
         $data = $request->all();
@@ -201,7 +201,7 @@ class CustomerDisputeController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $filename = str()->random(40) . '.' . $extension;
                     $data['file_invoice'] = 'Litigation/'.$filename;
-                    $file->move('Litigation', $filename); 
+                    $file->move('Litigation', $filename);
                 }
 
                 Cs::where('form_id', $id)->update([
@@ -223,14 +223,14 @@ class CustomerDisputeController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $filename = str()->random(40) . '.' . $extension;
                     $data['other_supporting_documents'] = 'Litigation/'.$filename;
-                    $file->move('Litigation', $filename); 
+                    $file->move('Litigation', $filename);
                 }
                 if ($request->file('compensation_offer_nominal')) {
                     $file = $request->file('compensation_offer_nominal');
                     $extension = $file->getClientOriginalExtension();
                     $filename = str()->random(40) . '.' . $extension;
                     $data['compensation_offer_nominal'] = 'Litigation/'.$filename;
-                    $file->move('Litigation', $filename); 
+                    $file->move('Litigation', $filename);
                 }
 
                 Cs::where('form_id', $id)->update([
