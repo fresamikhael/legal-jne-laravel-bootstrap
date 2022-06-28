@@ -25,7 +25,7 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('regulation.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
+                            {{-- <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="rule_type">
                                 <option value="" {{ request('rule_type') == '' ? 'selected' : '' }}>Semua Jenis
                                 </option>
@@ -37,42 +37,13 @@
                                     Peraturan
                                     Normatif
                                 </option>
-                            </x-select>
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
-                                name="type">
-                                <option value="" {{ request('type') == '' ? 'selected' : '' }}>Semua Jenis</option>
-                                <option disabled>-----------------------------</option>
-                                <option value="Peraturan Perusahaan"
-                                    {{ request('type') == 'Peraturan Perusahaan' ? 'selected' : '' }}>
-                                    Peraturan
-                                    Perusahaan</option>
-                                <option value="SK Direksi" {{ request('type') == 'SK Direksi' ? 'selected' : '' }}>
-                                    SK Direksi
-                                </option>
-                                <option value="SE Direksi" {{ request('type') == 'SE Direksi' ? 'selected' : '' }}>
-                                    SE Direksi
-                                </option>
-                                <option value="Internal Memo (IM)"
-                                    {{ request('type') == 'Internal Memo (IM)' ? 'selected' : '' }}>
-                                    Internal Memo (IM)
-                                </option>
-                                <option value="Undang-undang" {{ request('type') == 'Undang-undang' ? 'selected' : '' }}>
-                                    Undang-undang</option>
-                                <option value="Peraturan Pemerintah"
-                                    {{ request('type') == 'Peraturan Pemerintah' ? 'selected' : '' }}>
-                                    Peraturan Pemerintah
-                                </option>
-                                <option value="Peraturan Menteri"
-                                    {{ request('type') == 'Peraturan Menteri' ? 'selected' : '' }}>
-                                    Peraturan Menteri
-                                </option>
-                                <option value="PERDA Provinsi/Kota"
-                                    {{ request('type') == 'PERDA Provinsi/Kota' ? 'selected' : '' }}>
-                                    PERDA Provinsi/Kota
-                                </option>
-                            </x-select>
-                            <x-input label="Nama Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="name"
-                                value="{{ request('name') }}" />
+                            </x-select> --}}
+                            <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
+                                value="{{ request('number') }}" />
+                            <x-input label="Tanggal Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="year"
+                                type="date" value="{{ request('year') }}" />
+                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
+                                value="{{ request('about') }}" />
                             <div class="container">
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i>
@@ -108,7 +79,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         {{-- <th scope="col">Tahun Peraturan</th> --}}
-                                        <th scope="col" class="col-3">Peraturan</th>
+                                        <th scope="col" class="col-3">Dokumen</th>
                                         <th scope="col">Tipe Peraturan</th>
                                         <th scope="col"><i class="fa-solid fa-download"></i></th>
                                     </tr>

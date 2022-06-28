@@ -9,8 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col px-3 py-3" style="background-color: rgb(239, 236, 236); border-radius: 10px;">
-                    <nav style="--bs-breadcrumb-divider: '>'; margin-top: -5px; margin-bottom: -18px"
-                        aria-label="breadcrumb">
+                    <nav style="--bs-breadcrumb-divider: '>'; margin-top: -5px; margin-bottom: -18px" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a>
                             </li>
@@ -42,29 +41,46 @@
                 <div class="p-3 border bg-white">
                     <div class="border rounded">
                         <table class="table table-bordered">
+                            @if ($database->privilege == 'ALL')
+                                <tr class="bg-light">
+                                    <th scope="row" style="width: 30%;" class="text-end">Nama Peraturan</th>
+                                    <td>{{ $database->name }}</td>
+                                </tr>
+                            @else
+                                <tr class="bg-light">
+                                    <th scope="row" style="width: 30%;" class="text-end">Nama Dokumen</th>
+                                    <td>{{ $database->name }}</td>
+                                </tr>
+                            @endif
                             <tr class="bg-light">
-                                <th scope="row" style="width: 30%;" class="text-end">Nama Peraturan</th>
-                                <td>{{ $database->name }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-end">Tipe Peraturan</th>
-                                <td>Peraturan {{ $database->rule_type }}</td>
-                            </tr>
-                            <tr class="bg-light">
-                                <th scope="row" class="text-end">Jenis Peraturan</th>
+                                <th scope="row" class="text-end">Tipe Regulasi</th>
                                 <td>{{ $database->type }}</td>
                             </tr>
+                            @if ($database->privilege == 'ALL')
+                                <tr>
+                                    <th scope="row" class="text-end">Direktorat/Divisi/Departement</th>
+                                    <td>{{ $database->agency }}</td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <th scope="row" class="text-end">Dikeluarkan/Mitra</th>
+                                    <td>{{ $database->agency }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->privilege == 'ALL')
+                                <tr class="bg-light">
+                                    <th scope="row" class="text-end">Nomor Peraturan</th>
+                                    <td>{{ $database->number }}</td>
+                                </tr>
+                            @else
+                                <tr class="bg-light">
+                                    <th scope="row" class="text-end">Nomor Dokumen</th>
+                                    <td>{{ $database->number }}</td>
+                                </tr>
+                            @endif
                             <tr>
-                                <th scope="row" class="text-end">Instansi</th>
-                                <td>{{ $database->agency }}</td>
-                            </tr>
-                            <tr class="bg-light">
-                                <th scope="row" class="text-end">Nomor Peraturan</th>
-                                <td>{{ $database->rule_number }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-end">Tahun Peraturan</th>
-                                <td>{{ $database->rule_year }}</td>
+                                <th scope="row" class="text-end">Tanggal</th>
+                                <td>{{ $database->date }}</td>
                             </tr>
                             <tr class="bg-light">
                                 <th scope="row" class="text-end">Tentang</th>
@@ -73,18 +89,6 @@
                             <tr>
                                 <th scope="row" class="text-end">Tgl Ditetapkan</th>
                                 <td>{{ $database->set_date }}</td>
-                            </tr>
-                            <tr class="bg-light">
-                                <th scope="row" class="text-end">Nomor BN</th>
-                                <td>{{ $database->bn_number }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-end">Nomor TBN</th>
-                                <td>{{ $database->tbn_number }}</td>
-                            </tr>
-                            <tr class="bg-light">
-                                <th scope="row" class="text-end">Tgl Diundangkan </th>
-                                <td>{{ $database->promulgation_date }}</td>
                             </tr>
                         </table>
                     </div>

@@ -27,13 +27,11 @@
                             @csrf
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="type">
-                                <option value="" {{ request('type') == '' ? 'selected' : '' }}>Semua Jenis</option>
-                                <option disabled>-----------------------------</option>
-                                <option value="UU" {{ request('type') == 'UU' ? 'selected' : '' }}>UU</option>
-                                <option value="PERPU" {{ request('type') == 'PERPU' ? 'selected' : '' }}>PERPU</option>
-                                <option value="PP" {{ request('type') == 'PP' ? 'selected' : '' }}>PP</option>
-                                <option value="PERPRES" {{ request('type') == 'PERPRES' ? 'selected' : '' }}>PERPRES
-                                </option>
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    </option>
+                                @endforeach
                             </x-select>
                             <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />

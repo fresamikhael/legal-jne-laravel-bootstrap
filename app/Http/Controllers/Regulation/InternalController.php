@@ -52,8 +52,8 @@ class InternalController extends Controller
 
     public function create()
     {
-        $type = RegulationType::query()->where('type', 'Internal')->get();
-        
+        $type = RegulationType::query()->where('type', 'Umum')->get();
+
         return view('pages.legal.regulation.internal.create', [
             'type' => $type
         ]);
@@ -62,7 +62,7 @@ class InternalController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data ['rule_type'] = 'Internal';
+        $data ['privilege'] = 'ALL';
 
         if ($request->file('file')) {
             $file = $request->file('file');
@@ -74,13 +74,14 @@ class InternalController extends Controller
 
         Regulation::create($data);
 
-        return redirect()->route('legal.regulation.internal-create')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+        return redirect()->route('legal.regulation.internal-create')->with('message_success', 'File berhasil di upload.');
     }
 
     public function edit($id)
     {
         $data = Regulation::where('id', $id)->firstOrFail();
-        $type = RegulationType::query()->where('type', 'Internal')->get();
+        $type = RegulationType::query()->where('type', 'Umum')->get();
+
         return view('pages.legal.regulation.internal.edit', [
             'data' => $data,
             'type' => $type
@@ -89,13 +90,6 @@ class InternalController extends Controller
 
     public function update(Request $request, Regulation $regulation,$id)
     {
-        $request->validate([
-            // 'id' => 'required',
-            'name' => 'required',
-            'type' => 'required',
-            // 'file' => 'required',
-        ]);
-        
         $data = $request->all();
 
         $regulation = Regulation::where('id',$id)->firstOrFail();
@@ -106,15 +100,15 @@ class InternalController extends Controller
             $filename = Str::random(40) . '.' . $extension;
             $data['file'] = 'Regulation/'.$filename;
             $file->move('Regulation', $filename);
-        } 
+        }
         else {
             unset($data['file']);
         }
 
-        
+
         $regulation->update($data);
 
-        return redirect()->route('legal.regulation.internal')->with('message_success','Berhasil memperbaharui data');;
+        return redirect()->route('legal.regulation.index')->with('message_success','Berhasil memperbaharui data');;
     }
 
     public function show($id)

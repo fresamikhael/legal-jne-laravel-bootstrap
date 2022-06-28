@@ -19,7 +19,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('file');
-            $table->string('rule_type');
+            $table->string('number')->nullable();
+            $table->date('date')->nullable();
+            $table->string('about')->nullable();
+            $table->date('set_date')->nullable();
+            $table->string('agency')->nullable();
+            $table->string('status')->nullable();
+            $table->string('privilege')->nullable();
 
             $table->timestamps();
         });

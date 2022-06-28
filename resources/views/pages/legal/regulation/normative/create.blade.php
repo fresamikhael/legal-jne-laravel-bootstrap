@@ -1,7 +1,7 @@
 @extends ('layouts.legal')
 
 @section('title')
-    Add Regulasi Normatif
+    Add Database Khusus
 @endsection
 
 @section('content')
@@ -16,6 +16,9 @@
                             <li class="breadcrumb-item"><a href="{{ route('legal.regulation.index') }}"
                                     style="color:#fe1717">Database</a>
                             </li>
+                            <li class="breadcrumb-item"><a href="{{ route('legal.regulation.add') }}"
+                                    style="color:#fe1717">Khusus</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Tambah</li>
                         </ol>
@@ -28,21 +31,29 @@
                 <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
+        <div class="row">
+            <div class="d-flex justify-content-end">
+                <div class="mt-3">
+                    <a href={{ route('legal.regulation.add-type') }} class="btn btn-primary"><i class="fas fa-edit"></i>
+                        Tipe Regulasi</a>
+                </div>
+            </div>
+        </div>
         <form class="mt-4" method="POST" enctype="multipart/form-data"
             action="{{ route('legal.regulation.normative-post') }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Dokumen" name="name" required>
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type" required>
-                    <option value="Undang-Undang">Undang-Undang</option>
-                    <option value="Peraturan Pemerintah">Peraturan Pemerintah</option>
-                    <option value="Peraturan Menteri">Peraturan Menteri</option>
-                    <option value="PERDA Provinsi/Kota">PERDA Provinsi/Kota</option>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="type" required>
+                    @foreach ($type as $t)
+                        <option value="{{ $t->name }}">{{ $t->name }}</option>
+                    @endforeach
                 </x-select>
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Instansi" name="agency" required />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="rule_number" required />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tahun Peraturan" name="rule_year" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra" name="agency" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" name="number" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date" name="date"
+                    required />
                 {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about" required /> --}}
                 <div class="mb-3 row">
                     <label class="col-sm-5 col-form-label">Tentang</label>
@@ -52,18 +63,9 @@
                 </div>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
                     name="set_date" required />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"
-                    name="promulgation_date" required />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor BN" type="text" name="bn_number"
-                    required />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor TBN" name="tbn_number" />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status" required>
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>
-                </x-select>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Hak Akses Peraturan" name="privilege" required>
-                    <option value="ALL">Semua</option>
-                    <option value="RESTRICTED">Terbatas</option>
                 </x-select>
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file" required></x-file>
             </div>

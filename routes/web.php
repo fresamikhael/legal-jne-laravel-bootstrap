@@ -28,6 +28,7 @@ use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLiti
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
+use App\Http\Controllers\Misc\ContactUsController;
 use App\Http\Controllers\Regulation\RegulationController;
 
 /*
@@ -230,7 +231,7 @@ Route::prefix('legal-litigation-manager')->middleware(['isLitiManager'])->name('
     });
 });
 
-Route::prefix('information')->name('information.')->group(function () {
+Route::prefix('information')->name('information.')->middleware('guest')->group(function () {
     Route::get('/', [InformationController::class, 'index'])->name('index');
     Route::get('detail/{id}', [InformationController::class, 'show'])->name('show');
 
@@ -343,10 +344,9 @@ Route::prefix('legal/request_document')->name('legal.document_request.')->contro
     Route::post('/update/in/post/{id}', 'update_legal_in_store')->name('updatedoc_in_post');
 });
 
-Route::prefix('regulation')->name('database.')->controller(DatabaseController::class)->group(function () {
+Route::prefix('regulation')->name('database.')->middleware('guest')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'index')->name('index');
     Route::get('tambah', 'add')->name('add');
-    Route::post('tambah', 'store')->name('store');
     Route::get('detail/{id}', 'show')->name('show');
 });
 
@@ -354,7 +354,14 @@ Route::prefix('legal/regulation')->name('legal.database.')->controller(DatabaseC
     Route::get('/index', 'indexLegal')->name('index');
     Route::get('tambah', 'add')->name('add');
     Route::post('tambah', 'store')->name('store');
+    Route::get('edit/{id}', 'edit')->name('edit');
+    Route::post('update/{id}', 'update')->name('update');
     Route::get('detail/{id}', 'legalShow')->name('show');
+    Route::get('delete/{id}', 'delete')->name('delete');
+
+    Route::get('add-type', 'addType')->name('add-type');
+    Route::post('add-type/post', 'storeType')->name('store-type');
+    Route::get('delete-type/{id}', 'deleteType')->name('delete-type');
 });
 
 Route::get('/', function () {
@@ -440,7 +447,7 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
     Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheckPost'])->name('powerattorney-check-post');
 });
 
-Route::prefix('database')->name('regulation.')->group(function () {
+Route::prefix('database')->name('regulation.')->middleware('guest')->group(function () {
     Route::get('/index', [RegulationController::class, 'index'])->name('index');
     Route::get('/request', [RegulationController::class, 'requestDocument'])->name('request');
     Route::post('/request',  [RegulationController::class, 'requestDocumentPost'])->name('request-post');
@@ -458,6 +465,7 @@ Route::prefix('database')->name('regulation.')->group(function () {
 Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
     Route::get('/add', [RegulationController::class, 'add'])->name('add');
+
     Route::get('/detail/{id}', [RegulationController::class, 'showLegal'])->name('detail');
 
     Route::get('/request', [RegulationController::class,'legalRequestDocument'])->name('request');
@@ -478,14 +486,19 @@ Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::post('internal-create/post', [InternalController::class, 'store'])->name('internal-post');
     Route::post('normative-create/post', [NormativeController::class, 'store'])->name('normative-post');
 
-    Route::get('internal-edit/{id}', [InternalController::class, 'edit'])->name('internal-edit');
-    Route::post('internal-update/post/{id}', [InternalController::class, 'update'])->name('internal-update');
+    Route::get('public-edit/{id}', [InternalController::class, 'edit'])->name('public-edit');
+    Route::post('public-update/post/{id}', [InternalController::class, 'update'])->name('public-update');
 
-    Route::get('normative-edit/{id}', [NormativeController::class, 'edit'])->name('normative-edit');
-    Route::post('normative-update/post/{id}', [NormativeController::class, 'update'])->name('normative-update');
+    Route::get('special-edit/{id}', [NormativeController::class, 'edit'])->name('special-edit');
+    Route::post('special-update/post/{id}', [NormativeController::class, 'update'])->name('special-update');
 
     Route::get('internal-detail/{id}', [InternalController::class, 'showLegal'])->name('internal-detail');
     Route::get('normative-detail/{id}', [NormativeController::class, 'showLegal'])->name('normative-detail');
+
+    Route::get('add-type', [RegulationController::class, 'addType'])->name('add-type');
+    Route::post('add-type/post', [RegulationController::class, 'storeType'])->name('store-type');
+    Route::get('delete-type/{id}', [RegulationController::class, 'deleteType'])->name('delete-type');
+    Route::get('delete/{id}', [RegulationController::class, 'delete'])->name('delete');
 });
 
 Route::get('legal/statistic', function () {
@@ -496,9 +509,12 @@ Route::get('/contact-us', function () {
     return view('pages.user.contact_us');
 })->name('contact-us');
 
-Route::get('legal/contact-us', function () {
-    return view('pages.legal.contact_us');
-})->name('legal.contact-us');
+Route::get('/contact-us', [ContactUsController::class, 'user'])->middleware('guest')->name('contact-us');
+Route::get('legal/contact-us', [ContactUsController::class, 'index'])->name('legal.contact-us');
+
+Route::get('legal/contact-us/edit', [ContactUsController::class, 'edit'])->name('legal.contact-us-edit');
+
+Route::post('legal/contact-us/store', [ContactUsController::class, 'store'])->name('legal.contact-us-store');
 
 Auth::routes();
 

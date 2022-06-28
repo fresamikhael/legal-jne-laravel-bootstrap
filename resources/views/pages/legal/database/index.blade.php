@@ -8,6 +8,11 @@
     <x-base>
         <div class="container">
             <div class="row g-2">
+                @if (Session::get('message_success'))
+                    @slot('alert')
+                        <x-alert message="{{ Session::get('message_success') }}" type="success" />
+                    @endslot
+                @endif
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a></li>
@@ -25,13 +30,21 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('legal.database.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
+                            {{-- <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="type">
                                 <option value="UU" {{ request('type') == 'UU' ? 'selected' : '' }}>UU</option>
                                 <option value="PERPU" {{ request('type') == 'PERPU' ? 'selected' : '' }}>PERPU</option>
                                 <option value="PP" {{ request('type') == 'PP' ? 'selected' : '' }}>PP</option>
                                 <option value="PERPRES" {{ request('type') == 'PERPRES' ? 'selected' : '' }}>PERPRES
                                 </option>
+                            </x-select> --}}
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
+                                name="type">
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    </option>
+                                @endforeach
                             </x-select>
                             <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
@@ -71,7 +84,7 @@
                                         {{-- <th scope="col">Tahun Peraturan</th> --}}
                                         <th scope="col" class="col-3">Peraturan</th>
                                         <th scope="col">Tentang</th>
-                                        <th scope="col"><i class="fa-solid fa-download"></i></th>
+                                        <th scope="col" class="col-1">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,12 +98,21 @@
                                                 </td>
                                                 <td>{{ $row->about }}</td>
                                                 <td>
-                                                    @foreach ($row->file as $file)
-                                                        <a href="{{ asset($file->name) }}" target="_blank"
-                                                            style="font-size: 25px; color:#fe3f40">
-                                                            <i class="fa-solid fa-file-arrow-down"></i>
-                                                        </a>
-                                                    @endforeach
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            Aksi
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            <li><a class="dropdown-item"
+                                                                    href="{{ route('legal.database.edit', [$row->id]) }}">Ubah</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item"
+                                                                    href="{{ route('legal.database.delete', [$row->id]) }}">Hapus</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

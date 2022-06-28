@@ -16,15 +16,11 @@ class Regulation extends Model
         'name',
         'type',
         'file',
-        'rule_type',
-        'rule_number',
-        'rule_year',
+        'number',
+        'date',
         'about',
         'set_date',
-        'bn_number',
-        'tbn_number',
         'privilege',
-        'promulgation_date',
         'agency',
         'status'
     ];
@@ -37,8 +33,8 @@ class Regulation extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['rule_type'] ?? false, function($query, $rule_type) {
-            return $query->where('rule_type', 'like', '%'.$rule_type.'%');
+        $query->when($filters['privilege'] ?? false, function($query, $privilege) {
+            return $query->where('privilege', 'like', '%'.$privilege.'%');
         });
 
         $query->when($filters['type'] ?? false, function($query, $type) {

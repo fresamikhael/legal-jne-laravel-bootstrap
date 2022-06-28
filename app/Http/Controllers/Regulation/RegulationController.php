@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 use App\Models\DatabaseRequest;
 use App\Models\DatabaseRequestFile;
 use App\Http\Controllers\Controller;
+use App\Models\RegulationType;
 
 class RegulationController extends Controller
 {
     public function index()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['rule_type', 'name', 'type']))
+            ->filter(request(['privilege', 'name', 'type']))
             ->where('privilege', 'ALL')
             ->paginate(10);
 
@@ -25,7 +26,7 @@ class RegulationController extends Controller
     public function indexLegal()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['rule_type', 'name', 'type']))
+            ->filter(request(['privilege', 'name', 'type']))
             ->paginate(10);
 
         return view('pages.legal.regulation.index',compact('database'));
@@ -104,7 +105,7 @@ class RegulationController extends Controller
             $i++;
         }
 
-        return redirect()->route('regulation.request');
+        return redirect()->route('regulation.request')->with('message_success', 'Dokumen berhasil Diajukan!.');
     }
 
     public function requestDocumentDetail($id)
@@ -245,5 +246,39 @@ class RegulationController extends Controller
         $data = DatabaseRequest::get();
 
         return redirect()->route('legal.regulation.request');
+    }
+
+    public function addType()
+    {
+        $table = RegulationType::orderBy('id', 'DESC')->get();
+
+        return view('pages.legal.regulation.type.add', compact('table'));
+    }
+
+    public function storeType(Request $request)
+    {
+        $data = $request->all();
+
+        RegulationType::create($data);
+
+        return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+    }
+
+    public function deleteType($id)
+    {
+        RegulationType::where('id', $id)
+            ->first()
+            ->delete();
+
+        return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di dihapus!.');
+    }
+
+    public function delete($id)
+    {
+        Regulation::where('id', $id)
+            ->first()
+            ->delete();
+
+        return redirect()->route('legal.regulation.index')->with('message_success', 'File berhasil di dihapus!.');;
     }
 }

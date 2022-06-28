@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Permohoman Dokumen
+    Permohonan Dokumen
 @endsection
 
 @section('content')
@@ -32,7 +32,8 @@
                     <label for="id" class="col-sm-2 col-form-label">Nomor Tiket</label>
                     <div class="col-sm-10">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $data->id }}" name="id" disabled />
+                            <input type="text" class="form-control" value="{{ $data->id }}" name="id"
+                                disabled />
                         </div>
                     </div>
                 </div>

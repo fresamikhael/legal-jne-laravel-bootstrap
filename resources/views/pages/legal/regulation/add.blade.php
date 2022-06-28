@@ -5,40 +5,16 @@
 @endsection
 
 @section('content')
-    {{-- @php
-    $banner = [
-        [
-            'src' => 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ferika-production.nos.jkt-1.neo.id%2Fheaders%2F72%2F01%2F172%2F20190305-PackageMedia-Banner-JNE.jpg&f=1&nofb=1',
-        ],
-        [
-            'src' => 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.jne.co.id%2Fcontents%2Fbanner-product-detail-38.jpg&f=1&nofb=1',
-        ],
-        [
-            'src' => 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.jne.co.id%2Fcontents%2Fcsr-banner-6.jpg&f=1&nofb=1',
-        ],
-    ];
-    @endphp
-
-    <x-carousel>
-        @slot('photo')
-            @foreach ($banner as $row)
-                <div class="carousel-item {{ $loop->iteration === 1 ? 'active' : '' }}">
-                    <img style="height: 400px;" src="{{ $row['src'] }}" class="d-block w-100" alt="Banner Photo">
-                </div>
-            @endforeach
-        @endslot
-    </x-carousel> --}}
-
     <x-menu>
         @php
             $menu = [
                 [
-                    'label' => 'Peraturan Internal',
+                    'label' => 'Database Umum',
                     'route' => 'internal-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'Peraturan Normatif',
+                    'label' => 'Database Khusus',
                     'route' => 'normative-create',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
                 ],

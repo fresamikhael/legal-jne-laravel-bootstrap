@@ -10,7 +10,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="d-flex justify-content-center" style="background-color: rgb(240, 240, 240);">
-                        <img src="{{ url('/images/logo.png') }}" class="mt-4 w-50" alt="">
+                        <img src="{{ url('/images/logo.png') }}" class="mt-5 w-50" alt="">
                     </div>
 
                     <div class="card-body" style="background-color: rgb(240, 240, 240)">
@@ -21,9 +21,9 @@
                                 <label for="nik" class="col-md-3 col-form-label text-md-end"></label>
 
                                 <div class="col-md-6">
-                                    <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror"
-                                        name="nik" placeholder="NIK" value="{{ old('nik') }}" required autocomplete="nik"
-                                        autofocus>
+                                    <input id="nik" type="text"
+                                        class="form-control @error('nik') is-invalid @enderror" name="nik"
+                                        placeholder="NIK" value="{{ old('nik') }}" required autocomplete="nik" autofocus>
 
                                     @error('nik')
                                         <span class="invalid-feedback" role="alert">
@@ -65,8 +65,9 @@
                             <div class="row mb-0">
                                 <div class="col-md-3 offset-md-3">
                                     <button type="submit" class="btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-lock-fill me-2" style="margin-top: -5px" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-lock-fill me-2" style="margin-top: -5px"
+                                            viewBox="0 0 16 16">
                                             <path
                                                 d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                                         </svg>{{ __('Login') }}</i>

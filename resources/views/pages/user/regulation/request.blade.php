@@ -1,14 +1,16 @@
 @extends('layouts.user')
 
 @section('title')
-    Permohoman Dokumen
+    Permohonan Dokumen
 @endsection
 
 @section('content')
     <x-base>
-        {{-- @slot('alert')
-      <x-alert message="test" type="danger"></x-alert>
-    @endslot --}}
+        @if (Session::get('message_success'))
+            @slot('alert')
+                <x-alert message="{{ Session::get('message_success') }}" type="success" />
+            @endslot
+        @endif
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
@@ -23,7 +25,7 @@
                 @slot('header')
                     <tr>
                         <th>No</th>
-                        <th>Nomor Kasus</th>
+                        <th>Nomor Tiket</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -203,24 +205,27 @@
             <td>
                 <div class="d-flex justify-content-center my-2">
                     <div class="col-sm-12">
-                        <x-input label="Nama Dokumen" name="document_name[]" labelClass="col-sm-4" fieldClass="col-sm-8">
+                        <x-input label="Nama Dokumen" name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                        </x-input>
+                        <x-input hidden value="Soft Copy" label="Nama Dokumen" name="document_type[]" labelClass="col-sm-4"
+                            fieldClass="col-sm-8">
                         </x-input>
                     </div>
                 </div>
             </td>
-            <td>
+            {{-- <td>
                 <div class="d-flex justify-content-center my-2">
                     <div class="col-sm-12">
                         <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6" fieldClass="col-sm-6"
                             required>
-                            {{-- <option value="" style="display: none" selected>-- Pilih --</option> --}}
+                            <option value="" style="display: none" selected>-- Pilih --</option>
                             <option value="Hard Copy">Hard Copy</option>
                             <option value="Soft Copy">Sof Copy</option>
                         </x-select>
                     </div>
                 </div>
 
-            </td>
+            </td> --}}
             <td>
                 <div class="d-flex justify-content-center my-2">
                     <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>

@@ -8,6 +8,11 @@
     <x-base>
         <div class="container">
             <div class="row g-2">
+                @if (Session::get('message_success'))
+                    @slot('alert')
+                        <x-alert message="{{ Session::get('message_success') }}" type="success" />
+                    @endslot
+                @endif
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a></li>
@@ -25,49 +30,19 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('legal.regulation.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
-                                name="rule_type">
-                                <option value="Internal" {{ request('rule_type') == 'Internal' ? 'selected' : '' }}>
-                                    Peraturan
-                                    Internal</option>
-                                <option value="Normatif" {{ request('rule_type') == 'Normatif' ? 'selected' : '' }}>
-                                    Peraturan
-                                    Normatif
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Jenis Data" name="privilege">
+                                <option value="ALL" {{ request('privilege') == 'ALL' ? 'selected' : '' }}>
+                                    Database Umum</option>
+                                <option value="RESTRICTED" {{ request('privilege') == 'RESTRICTED' ? 'selected' : '' }}>
+                                    Database Khusus
                                 </option>
                             </x-select>
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
-                                name="type">
-                                <option value="Peraturan Perusahaan"
-                                    {{ request('type') == 'Peraturan Perusahaan' ? 'selected' : '' }}>
-                                    Peraturan
-                                    Perusahaan</option>
-                                <option value="SK Direksi" {{ request('type') == 'SK Direksi' ? 'selected' : '' }}>
-                                    SK Direksi
-                                </option>
-                                <option value="SE Direksi" {{ request('type') == 'SE Direksi' ? 'selected' : '' }}>
-                                    SE Direksi
-                                </option>
-                                <option value="Internal Memo (IM)"
-                                    {{ request('type') == 'Internal Memo (IM)' ? 'selected' : '' }}>
-                                    Internal Memo (IM)
-                                </option>
-                                <option value="Undang-undang" {{ request('type') == 'Undang-undang' ? 'selected' : '' }}>
-                                    Undang-undang</option>
-                                <option value="Peraturan Pemerintah"
-                                    {{ request('type') == 'Peraturan Pemerintah' ? 'selected' : '' }}>
-                                    Peraturan Pemerintah
-                                </option>
-                                <option value="Peraturan Menteri"
-                                    {{ request('type') == 'Peraturan Menteri' ? 'selected' : '' }}>
-                                    Peraturan Menteri
-                                </option>
-                                <option value="PERDA Provinsi/Kota"
-                                    {{ request('type') == 'PERDA Provinsi/Kota' ? 'selected' : '' }}>
-                                    PERDA Provinsi/Kota
-                                </option>
-                            </x-select>
-                            <x-input label="Nama Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="name"
-                                value="{{ request('name') }}" />
+                            <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
+                                value="{{ request('number') }}" />
+                            <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" type="date"
+                                name="date" value="{{ request('date') }}" />
+                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
+                                value="{{ request('about') }}" />
                             <div class="container">
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Cari</button>
@@ -100,9 +75,9 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         {{-- <th scope="col">Tahun Peraturan</th> --}}
-                                        <th scope="col" class="col-3">Peraturan</th>
+                                        <th scope="col" class="col-3">Dokumen</th>
                                         <th scope="col">Tentang</th>
-                                        <th scope="col"><i class="fa-solid fa-download"></i></th>
+                                        <th scope="col" class="col-1">Aksi</i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -117,13 +92,27 @@
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
                                                 <td>{{ $row->about }}</td>
                                                 <td>
-                                                    {{-- @dd($row->file) --}}
-                                                    {{-- @foreach ($row->file as $file) --}}
-                                                    <a href="{{ asset($row->file) }}" target="_blank"
-                                                        style="font-size: 25px; color:#fe3f40">
-                                                        <i class="fa-solid fa-file-arrow-down"></i>
-                                                    </a>
-                                                    {{-- @endforeach --}}
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            Aksi
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                            <li>
+                                                                @if ($row->privilege == 'ALL')
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('legal.regulation.public-edit', [$row->id]) }}">Ubah</a>
+                                                                @elseif($row->privilege == 'RESTRICTED')
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('legal.regulation.special-edit', [$row->id]) }}">Ubah</a>
+                                                                @endif
+                                                            </li>
+                                                            <li><a class="dropdown-item"
+                                                                    href="{{ route('legal.regulation.delete', [$row->id]) }}">Hapus</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

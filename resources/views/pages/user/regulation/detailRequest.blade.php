@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Permohoman Dokumen
+    Permohonan Dokumen
 @endsection
 
 @section('content')

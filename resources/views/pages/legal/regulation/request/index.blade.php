@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Database Request
+    Permohonan Dokumen
 @endsection
 
 @section('content')
