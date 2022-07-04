@@ -16,7 +16,7 @@ class DatabaseController extends Controller
     {
         $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
-            ->filter(request(['type', 'number', 'year', 'title']))
+            ->filter(request(['type', 'number', 'year', 'about']))
             ->paginate(10);
         $type = DatabaseType::get();
 

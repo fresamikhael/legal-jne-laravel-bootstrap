@@ -37,8 +37,13 @@
                                 value="{{ request('number') }}" />
                             <x-input label="Tahun Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="year"
                                 value="{{ request('year') }}" />
-                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
-                                value="{{ request('title') }}" />
+                            <label class="col-sm-12">Tentang</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mb-4" value="{{ request('about') }}"
+                                    name="about">
+                            </div>
+                            {{-- <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="about"
+                                value="{{ request('about') }}" /> --}}
                             <div class="container">
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i>

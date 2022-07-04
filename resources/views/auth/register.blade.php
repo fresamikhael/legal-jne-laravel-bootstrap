@@ -1,22 +1,30 @@
-@extends('layouts.user')
+@extends('layouts.auth')
+
+@section('title')
+    Register
+@endsection
 
 @section('content')
     <div class="container" style="margin-top: 150px">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="d-flex justify-content-center" style="background-color: rgb(240, 240, 240);">
+                        <img src="{{ url('/images/logo.png') }}" class="mt-5 w-50" alt="">
+                    </div>
 
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: rgb(240, 240, 240)">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="nik" class="col-md-4 col-form-label text-md-end">{{ __('NIK') }}</label>
+                                <label for="nik"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('NIK') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror"
-                                        name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus>
+                                    <input id="nik" type="text"
+                                        class="form-control @error('nik') is-invalid @enderror" name="nik"
+                                        value="{{ old('nik') }}" required autocomplete="nik" autofocus>
 
                                     @error('nik')
                                         <span class="invalid-feedback" role="alert">
@@ -27,11 +35,13 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -46,8 +56,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -87,9 +98,15 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Daftar') }}
                                     </button>
+                                    <div class="col-md-5 offset-md-3" style="margin-top: -38px">
+                                        <a href="{{ route('home') }}" class="btn btn-primary">Back to home</a>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row">
+
                             </div>
                         </form>
                     </div>

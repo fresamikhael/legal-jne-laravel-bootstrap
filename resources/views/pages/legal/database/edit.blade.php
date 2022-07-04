@@ -65,6 +65,8 @@
                     </div>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan"
                         value="{{ $data->set_date }}" type="date" name="set_date" required />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"
+                        name="promulgated_date" value="{{ $data->promulgated_date }}" required />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
                         <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
                         <option value="" disabled>----------------------------</option>

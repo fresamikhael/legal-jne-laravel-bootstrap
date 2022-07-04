@@ -37,6 +37,13 @@
                                     Database Khusus
                                 </option>
                             </x-select>
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="type">
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    </option>
+                                @endforeach
+                            </x-select>
                             <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
                             <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" type="date"
@@ -74,8 +81,8 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        {{-- <th scope="col">Tahun Peraturan</th> --}}
-                                        <th scope="col" class="col-3">Dokumen</th>
+                                        <th scope="col" class="col-3">Nama Dokumen</th>
+                                        <th scope="col">Nomor</th>
                                         <th scope="col">Tentang</th>
                                         <th scope="col" class="col-1">Aksi</i></th>
                                     </tr>
@@ -90,6 +97,7 @@
                                                         href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
+                                                <td>{{ $row->number }}</td>
                                                 <td>{{ $row->about }}</td>
                                                 <td>
                                                     <div class="dropdown">

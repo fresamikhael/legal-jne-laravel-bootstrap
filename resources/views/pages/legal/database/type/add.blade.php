@@ -13,8 +13,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('legal.regulation.index') }}"
-                                    style="color:#fe1717">Database</a>
+                            <li class="breadcrumb-item"><a href="{{ route('legal.database.index') }}"
+                                    style="color:#fe1717">Regulasi</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Tambah Tipe</li>

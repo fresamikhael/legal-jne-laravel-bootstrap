@@ -13,8 +13,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('legal.regulation.index') }}"
-                                    style="color:#fe1717">Database</a>
+                            <li class="breadcrumb-item"><a href="{{ route('legal.database.index') }}"
+                                    style="color:#fe1717">Regulasi</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Tambah Tipe</li>
@@ -29,8 +29,7 @@
                 @slot('header')
                     <tr>
                         <th>No</th>
-                        <th>Tipe</th>
-                        <th>Jenis</th>
+                        <th>Tipe Regulasi</th>
                         <th>Aksi</th>
                     </tr>
                 @endslot
@@ -41,24 +40,8 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
                             <td>
-                                {{ $row->type }}
-                            </td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Aksi
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li>
-                                            <a class="dropdown-item"
-                                                href="{{ route('legal.regulation.edit-type', [$row->id]) }}">Ubah</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('legal.regulation.delete-type', [$row->id]) }}">Hapus</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a href="{{ route('legal.regulation.delete-type', [$row->id]) }}"
+                                    class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                     @endforeach
@@ -71,21 +54,17 @@
             @endslot
         @endif
         <form class="mt-4" method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.regulation.store-type') }}">
+            action="{{ route('legal.database.update-type', $data->id) }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name"
+                    value="{{ $data->name }}" required>
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Data" name="type" required>
-                    <option value="Umum">Database Umum</option>
-                    <option value="Khusus">Database Khusus</option>
-                </x-select>
             </div>
 
             <div class="d-flex justify-content-end me-4">
                 <x-button type="submit" name="Submit" buttonClass="btn-primary" />
             </div>
         </form>
-
     </x-base>
 @endsection

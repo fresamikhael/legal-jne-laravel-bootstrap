@@ -16,20 +16,26 @@ class RegulationController extends Controller
     public function index()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'name', 'type']))
+            ->filter(request(['privilege', 'name', 'type', 'date', 'about']))
+            // ->where('privilege', 'ALL')
+            ->paginate(10);
+        $all = Regulation::orderBy('name', 'ASC')
+            ->filter(request(['privilege', 'name', 'type', 'date', 'about']))
             ->where('privilege', 'ALL')
             ->paginate(10);
+        $type = RegulationType::get();
 
-        return view('pages.user.regulation.index',compact('database'));
+        return view('pages.user.regulation.index',compact('database', 'type', 'all'));
     }
 
     public function indexLegal()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'name', 'type']))
+            ->filter(request(['privilege', 'name', 'type', 'date', 'about']))
             ->paginate(10);
+        $type = RegulationType::get();
 
-        return view('pages.legal.regulation.index',compact('database'));
+        return view('pages.legal.regulation.index',compact('database', 'type'));
     }
 
     public function add()
@@ -200,7 +206,6 @@ class RegulationController extends Controller
             'data' => $data,
             'user' => $user,
             'file' => $file,
-
         ]);
     }
 
@@ -253,6 +258,25 @@ class RegulationController extends Controller
         $table = RegulationType::orderBy('id', 'DESC')->get();
 
         return view('pages.legal.regulation.type.add', compact('table'));
+    }
+
+    public function editType($id)
+    {
+        $table = RegulationType::orderBy('id', 'DESC')->get();
+        $data = RegulationType::where('id', $id)->first();
+
+        return view('pages.legal.regulation.type.edit', compact('table', 'data'));
+    }
+
+    public function updateType(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $regulation = RegulationType::where('id', $id)->firstOrFail();
+
+        $regulation->update($data);
+
+        return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di edit!.');;
     }
 
     public function storeType(Request $request)

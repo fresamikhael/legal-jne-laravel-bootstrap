@@ -71,12 +71,15 @@
             @endslot
         @endif
         <form class="mt-4" method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.regulation.store-type') }}">
+            action="{{ route('legal.regulation.update-type', $data->id) }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name"
+                    value="{{ $data->name }}" required>
                 </x-input>
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Data" name="type" required>
+                    <option value="{{ $data->type }}" selected>Database {{ $data->type }}</option>
+                    <option disabled>--------------------</option>
                     <option value="Umum">Database Umum</option>
                     <option value="Khusus">Database Khusus</option>
                 </x-select>
@@ -86,6 +89,5 @@
                 <x-button type="submit" name="Submit" buttonClass="btn-primary" />
             </div>
         </form>
-
     </x-base>
 @endsection

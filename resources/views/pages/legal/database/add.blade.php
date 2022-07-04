@@ -63,9 +63,6 @@
                         name="set_date" required />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"
                         name="promulgated_date" required />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor BN" type="text" name="bn_number"
-                        required />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor TBN" name="tbn_number" />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
                         <option value="Aktif">Aktif</option>
                         <option value="Tidak Aktif">Tidak Aktif</option>

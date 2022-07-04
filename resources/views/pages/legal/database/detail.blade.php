@@ -9,8 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col px-3 py-3" style="background-color: rgb(239, 236, 236); border-radius: 10px;">
-                    <nav style="--bs-breadcrumb-divider: '>'; margin-top: -5px; margin-bottom: -18px"
-                        aria-label="breadcrumb">
+                    <nav style="--bs-breadcrumb-divider: '>'; margin-top: -5px; margin-bottom: -18px" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a>
                             </li>
@@ -74,14 +73,6 @@
                             <tr>
                                 <th scope="row" class="text-end">Tanggal Diundangkan</th>
                                 <td>{{ $database->promulgated_date }}</td>
-                            </tr>
-                            <tr class="bg-light">
-                                <th scope="row" class="text-end">Nomor BN</th>
-                                <td>{{ $database->bn_number }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-end">Nomor TBN</th>
-                                <td>{{ $database->tbn_number }}</td>
                             </tr>
                             <tr class="bg-light">
                                 <th scope="row" class="text-end">Status Peraturan</th>

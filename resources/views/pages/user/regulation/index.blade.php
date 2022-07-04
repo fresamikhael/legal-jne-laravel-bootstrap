@@ -38,12 +38,21 @@
                                     Normatif
                                 </option>
                             </x-select> --}}
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="type">
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    </option>
+                                @endforeach
+                            </x-select>
                             <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
-                            <x-input label="Tanggal Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="year"
-                                type="date" value="{{ request('year') }}" />
-                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
-                                value="{{ request('about') }}" />
+                            <x-input label="Tanggal Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
+                                type="date" value="{{ request('date') }}" />
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mb-4" value="{{ request('about') }}"
+                                    name="about">
+                            </div>
                             <div class="container">
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i>
@@ -69,43 +78,142 @@
                         </div>
                     </div>
                     <div class="p-3 border bg-white">
-                        <div class="d-flex align-items-center justify-content-end mb-3">
-                            Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
-                            {{ $database->total() }} Data Peraturan
-                        </div>
+                        @auth
+                            <div class="d-flex align-items-center justify-content-end mb-3">
+                                Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
+                                {{ $database->total() }} Data Peraturan
+                            </div>
+                        @endauth
+                        @guest
+                            <div class="d-flex align-items-center justify-content-end mb-3">
+                                Ditampilkan {{ $all->firstItem() }} - {{ $all->lastItem() }} dari
+                                {{ $all->total() }} Data Peraturan
+                            </div>
+                        @endguest
                         <div class="border rounded">
                             <table class="table table-bordered">
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col">No</th>
                                         {{-- <th scope="col">Tahun Peraturan</th> --}}
-                                        <th scope="col" class="col-3">Dokumen</th>
-                                        <th scope="col">Tipe Peraturan</th>
+                                        <th scope="col" class="col-3">Nama Dokumen</th>
+                                        <th scope="col">Nomor</th>
+                                        <th scope="col">Tentang</th>
                                         <th scope="col"><i class="fa-solid fa-download"></i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if ($database->count() != 0)
-                                        @foreach ($database as $row)
-                                            <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
-                                                <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
-                                                <td>
-                                                    <a style="color: brown"
-                                                        href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
-                                                </td>
-                                                {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
-                                                <td>{{ $row->about }}</td>
-                                                <td>
-                                                    {{-- @dd($row->file) --}}
-                                                    {{-- @foreach ($row->file as $file) --}}
-                                                    <a href="{{ asset($row->file) }}" target="_blank"
-                                                        style="font-size: 25px; color:#fe3f40">
-                                                        <i class="fa-solid fa-file-arrow-down"></i>
-                                                    </a>
-                                                    {{-- @endforeach --}}
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                        @auth
+                                            @foreach ($database as $row)
+                                                <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
+                                                    <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            <a style="color: brown"
+                                                                href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                        @else
+                                                            <a
+                                                                style="color: brown">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                        @endif
+
+                                                    </td>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            {{ $row->number }}
+                                                        @else
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            {{ $row->about }}
+                                                        @else
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            <a href="{{ asset($row->file) }}" target="_blank"
+                                                                style="font-size: 25px; color:#fe3f40">
+                                                                <i class="fa-solid fa-file-arrow-down"></i>
+                                                            </a>
+                                                        @else
+                                                        @endif
+
+                                                    </td>
+                                                    {{-- @guest
+                                                        <td>
+                                                            @if ($row->privilege == 'ALL')
+                                                                <a style="color: brown"
+                                                                    href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                            @elseif($row->privilege == 'RESTRICTED')
+                                                            @endif
+
+                                                        </td>
+                                                        <td>
+                                                            @if ($row->privilege == 'ALL')
+                                                                {{ $row->number }}
+                                                            @else
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($row->privilege == 'ALL')
+                                                                {{ $row->about }}
+                                                            @else
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($row->privilege == 'ALL')
+                                                                <a href="{{ asset($row->file) }}" target="_blank"
+                                                                    style="font-size: 25px; color:#fe3f40">
+                                                                    <i class="fa-solid fa-file-arrow-down"></i>
+                                                                </a>
+                                                            @else
+                                                            @endif
+                                                        </td>
+                                                    @endguest --}}
+                                                </tr>
+                                            @endforeach
+                                        @endauth
+
+                                        @guest
+                                            @foreach ($all as $row)
+                                                <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
+                                                    <th scope="row">{{ $all->firstItem() + $loop->index }}</th>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            <a style="color: brown"
+                                                                href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                        @else
+                                                            <a
+                                                                style="color: brown">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                        @endif
+
+                                                    </td>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            {{ $row->number }}
+                                                        @else
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            {{ $row->about }}
+                                                        @else
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($row->privilege == 'ALL')
+                                                            <a href="{{ asset($row->file) }}" target="_blank"
+                                                                style="font-size: 25px; color:#fe3f40">
+                                                                <i class="fa-solid fa-file-arrow-down"></i>
+                                                            </a>
+                                                        @else
+                                                        @endif
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endguest
                                     @else
                                         <tr>
                                             <th scope="row">Data yang dicari tidak tersedia.</th>

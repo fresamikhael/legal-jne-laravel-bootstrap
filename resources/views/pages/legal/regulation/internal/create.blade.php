@@ -53,7 +53,7 @@
                 </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Direktorat/Divisi/Departement" name="agency"
                     required />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="number" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="number" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Peraturan" name="date" type="date"
                     required />
                 {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about" required /> --}}

@@ -55,7 +55,7 @@
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra"
                     value="{{ $data->agency }}" name="agency" required />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" name="number"
-                    value="{{ $data->number }}" required />
+                    value="{{ $data->number }}" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date" name="date"
                     value="{{ $data->date }}" required />
                 {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about" required /> --}}
@@ -75,7 +75,7 @@
                 </x-select>
                 <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Sebelumnya" type="download"
                     path="{{ asset($data->file) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file" required></x-file>
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file"></x-file>
             </div>
 
             <div class="d-flex justify-content-end me-4">

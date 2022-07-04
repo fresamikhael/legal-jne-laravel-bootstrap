@@ -23,7 +23,8 @@
                                 <div class="col-md-6">
                                     <input id="nik" type="text"
                                         class="form-control @error('nik') is-invalid @enderror" name="nik"
-                                        placeholder="NIK" value="{{ old('nik') }}" required autocomplete="nik" autofocus>
+                                        placeholder="Masukkan NIK Anda (contoh: 1234)" value="{{ old('nik') }}" required
+                                        autocomplete="nik" autofocus>
 
                                     @error('nik')
                                         <span class="invalid-feedback" role="alert">
@@ -38,8 +39,9 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" placeholder="Password"
-                                        name="password" required autocomplete="current-password">
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="Masukkan Password Anda" name="password" required
+                                        autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -113,6 +115,11 @@
                                 <div class="row">
                                     <div class="col-md-3 offset-md-3" style="margin-left: 159px  ;margin-top: -35px">
                                         <a href="{{ route('home') }}" class="btn btn-primary">Back to home</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3" style="margin-left: 159px; margin-top: 10px">
+                                        <a href="{{ route('register') }}" class="btn btn-primary">Daftar Akun</a>
                                     </div>
                                 </div>
                             </div>

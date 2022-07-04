@@ -30,8 +30,8 @@ class Database extends Model
             return $query->where('year', 'like', '%'.$year.'%');
         });
 
-        $query->when($filters['title'] ?? false, function($query, $title) {
-            return $query->where('title', 'like', '%'.$title.'%');
+        $query->when($filters['about'] ?? false, function($query, $about) {
+            return $query->where('about', 'like', '%'.$about.'%');
         });
     }
 

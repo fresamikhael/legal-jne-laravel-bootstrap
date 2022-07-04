@@ -367,7 +367,7 @@ Route::prefix('legal/regulation')->name('legal.database.')->controller(DatabaseC
 
 Route::get('/', function () {
     return view('pages.user.index');
-})->name('home');
+})->middleware('guest')->name('home');
 
 Route::get('/legal', function () {
     return view('pages.legal.index');
@@ -376,6 +376,10 @@ Route::get('/legal', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login-attempt');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -498,11 +502,19 @@ Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
 
     Route::get('add-type', [RegulationController::class, 'addType'])->name('add-type');
     Route::post('add-type/post', [RegulationController::class, 'storeType'])->name('store-type');
+    Route::get('edit-type/{id}', [RegulationController::class, 'editType'])->name('edit-type');
+    Route::post('edit-type/post/{id}', [RegulationController::class, 'updateType'])->name('update-type');
     Route::get('delete-type/{id}', [RegulationController::class, 'deleteType'])->name('delete-type');
     Route::get('delete/{id}', [RegulationController::class, 'delete'])->name('delete');
 });
 
 Route::get('legal/statistic', [StatisticController::class, 'index'])->name('statistic');
+Route::get('legal/statistic/database', [StatisticController::class, 'databaseIndex'])->name('statistic-database');
+Route::get('legal/statistic/drafting', [StatisticController::class, 'draftingIndex'])->name('statistic-drafting');
+Route::get('legal/statistic/litigation', [StatisticController::class, 'litigationIndex'])->name('statistic-litigation');
+Route::get('legal/statistic/permit', [StatisticController::class, 'permitIndex'])->name('statistic-permit');
+Route::get('legal/statistic/corporate', [StatisticController::class, 'corporateIndex'])->name('statistic-corporate');
+Route::get('legal/statistic/request', [StatisticController::class, 'requestIndex'])->name('statistic-request');
 
 Route::get('/contact-us', function () {
     return view('pages.user.contact_us');
