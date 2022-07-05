@@ -13,7 +13,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('legal.database.index') }}"
+                            <li class="breadcrumb-item"><a href="{{ route('legal.user.index') }}"
                                     style="color:#fe1717">User</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">

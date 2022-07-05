@@ -30,6 +30,39 @@
             @endslot
         @endif
 
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Masukkan Data Diri terlebih dahulu sebelum mengakses
+                            database</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Nomor Induk Kewarganegaraan
+                                    (NIK):</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Lokasi Pekerjaan:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row mt-3">
             <div class="col-sm-8">
                 <div style="background-color:#fe3f40">

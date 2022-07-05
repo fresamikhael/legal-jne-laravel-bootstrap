@@ -61,3 +61,8 @@
             console.log(error);
         });
 </script>
+<script>
+    $(document).ready(function() {
+        $("#staticBackdrop").modal('show')
+    });
+</script>
