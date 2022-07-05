@@ -6,10 +6,12 @@ use App\Models\User;
 use App\Models\Regulation;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\RegulationType;
 use App\Models\DatabaseRequest;
 use App\Models\DatabaseRequestFile;
 use App\Http\Controllers\Controller;
-use App\Models\RegulationType;
+use App\Models\DatabasePublicRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class RegulationController extends Controller
 {
@@ -286,6 +288,16 @@ class RegulationController extends Controller
         RegulationType::create($data);
 
         return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+    }
+
+    public function requestPublicPost(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+
+        DatabasePublicRequest::create($data);
+
+        return redirect()->back()->with('status', 'Data berhasil disubmit!');
     }
 
     public function deleteType($id)

@@ -451,6 +451,14 @@ Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(func
     Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
 });
 
+Route::get('/service', function () {
+    return view('pages.user.service.index');
+})->name('service.index');
+
+Route::get('/legal/service', function () {
+    return view('pages.legal.service.index');
+})->name('legal.service.index');
+
 Route::get('/headlegal', function () {
     return view('pages.head-legal.index');
 })->name('headlegal');
@@ -470,6 +478,7 @@ Route::prefix('database')->name('regulation.')->middleware('guest')->group(funct
     Route::get('/index', [RegulationController::class, 'index'])->name('index');
     Route::get('/request', [RegulationController::class, 'requestDocument'])->name('request');
     Route::post('/request',  [RegulationController::class, 'requestDocumentPost'])->name('request-post');
+    Route::post('/request/public',  [RegulationController::class, 'requestPublicPost'])->name('public-request-post');
     Route::get('/request/detail/{id}', [RegulationController::class, 'requestDocumentDetail'])->name('request-detail');
 
     Route::get('/detail/{id}', [RegulationController::class, 'show'])->name('detail');

@@ -99,6 +99,7 @@
                                     fugiat nulla ut quia eum asperiores, iusto natus pariatur
                                     deleniti!
                                 </p>
+                                <a href="#services" class="btn btn-danger">Pengajuan <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -195,7 +196,7 @@
         </div>
     </div>
 
-    <div id="services" class="our-services section">
+    <div id="service" class="our-services section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
@@ -253,7 +254,7 @@
         </div>
     </div>
 
-    <div id="portfolio" class="our-portfolio section">
+    <div id="services" class="our-portfolio section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">

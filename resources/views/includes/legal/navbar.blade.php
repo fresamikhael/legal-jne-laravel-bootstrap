@@ -6,7 +6,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ route('legal-home') }}" class="logo">
-                        <img src="/images/logo.jpg" alt="" class="logo" />
+                        <img src="/images/newlogo.png" alt="" class="logo" />
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -16,6 +16,9 @@
                         @if (auth()->user()->role == 'LEGAL')
                             <li class="scroll-to-section"><a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
                         @endif
+                        </li>
+                        <li class="scroll-to-section">
+                            <a href="{{ route('legal.service.index') }}">Service</a>
                         </li>
                         <li class="scroll-to-section">
                             <a href="{{ route('legal.information.index') }}">Informasi</a>
@@ -42,7 +45,8 @@
                                     {{ auth()->user()->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{{ route('legal.user.index') }}">User Legal</a>
+                                    <li><a class="dropdown-item" href="{{ route('legal.service.index') }}">Manajemen
+                                            User</a>
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                                     <li><a class="dropdown-item disabled" style="display: none" href="#">Another

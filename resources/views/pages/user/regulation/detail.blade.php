@@ -24,9 +24,9 @@
             </div>
         </div>
 
-        @if (Session::get('message_success'))
+        @if (Session::get('status'))
             @slot('alert')
-                <x-alert message="{{ Session::get('message_success') }}" type="success" />
+                <x-alert message="{{ Session::get('status') }}" type="success" />
             @endslot
         @endif
 
@@ -38,27 +38,31 @@
                         <h5 class="modal-title" id="exampleModalLabel">Masukkan Data Diri terlebih dahulu sebelum mengakses
                             database</h5>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form method="POST" enctype="multipart/form-data"
+                        action="{{ route('regulation.public-request-post') }}">
+                        <div class="modal-body">
+                            @csrf
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="name" class="form-control">
+                                <input type="hidden" name="database_id" value="{{ $database->id }}" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Nomor Induk Kewarganegaraan
                                     (NIK):</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="nik" class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Lokasi Pekerjaan:</label>
-                                <input type="text" class="form-control">
+                                <label for="recipient-name" class="col-form-label">Department/Cabang:</label>
+                                <input type="text" name="location" class="form-control">
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit Data</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="btnSave" class="btn btn-primary">Submit
+                                Data</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

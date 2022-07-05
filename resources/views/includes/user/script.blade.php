@@ -32,7 +32,22 @@
     });
 </script>
 <script>
-    $(document).ready(function() {
-        $("#staticBackdrop").modal('show')
+    const text = 'Data berhasil disubmit!';
+
+    if (document.body.textContent.includes(text)) {
+        $(document).ready(function() {
+            $("#staticBackdrop").modal('show')
+        });
+    } else {
+        $(document).ready(function() {
+            $("#staticBackdrop").modal('hide')
+        });
+    }
+</script>
+<script>
+    $('#btnSave').click(function() {
+        setTimeout(function() {
+            $('#staticBackdrop').modal('hide');
+        }, 4000);
     });
 </script>

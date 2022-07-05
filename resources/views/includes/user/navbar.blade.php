@@ -6,12 +6,15 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ route('home') }}" class="logo">
-                        <img src="/images/logo.jpg" alt="" class="logo" />
+                        <img src="/images/newlogo.png" alt="" class="logo" />
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Database</a></li>
+                        <li class="scroll-to-section">
+                            <a href="{{ route('service.index') }}">Service</a>
+                        </li>
                         <li class="scroll-to-section">
                             <a href="{{ route('information.index') }}">Informasi</a>
                         </li>

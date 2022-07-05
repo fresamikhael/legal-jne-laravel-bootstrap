@@ -81,10 +81,10 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        {{-- <th scope="col">Tahun Peraturan</th> --}}
-                                        <th scope="col" class="col-3">Peraturan</th>
+                                        <th scope="col" class="col-3">Nama Dokumen</th>
+                                        <th scope="col">Nomor</th>
                                         <th scope="col">Tentang</th>
-                                        <th scope="col" class="col-1">Aksi</th>
+                                        <th scope="col" class="col-1">Aksi</i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,6 +96,7 @@
                                                     <a style="color: brown"
                                                         href="{{ route('legal.database.show', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                 </td>
+                                                <td>{{ $row->number }}</td>
                                                 <td>{{ $row->about }}</td>
                                                 <td>
                                                     <div class="dropdown">
