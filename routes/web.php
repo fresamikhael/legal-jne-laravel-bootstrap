@@ -1,36 +1,38 @@
 <?php
 
-use App\Http\Controllers\Cs\CustomerDisputeController as CsCustomerDisputeController;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\Drafting\LeaseController;
+use App\Http\Controllers\Misc\ContactUsController;
+use App\Http\Controllers\Misc\StatisticController;
 use App\Http\Controllers\Drafting\VendorController;
 use App\Http\Controllers\Litigation\FraudController;
 use App\Http\Controllers\Litigation\OtherController;
 use App\Http\Controllers\permit\NewPermitController;
 use App\Http\Controllers\Database\DatabaseController;
-use App\Http\Controllers\document_request\documentRequestController;
 use App\Http\Controllers\Drafting\CustomerController;
-use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
-use App\Http\Controllers\InformationController;
 use App\Http\Controllers\permit\ProlongationController;
 use App\Http\Controllers\Regulation\InternalController;
 use App\Http\Controllers\Regulation\NormativeController;
+use App\Http\Controllers\Regulation\RegulationController;
 use App\Http\Controllers\Litigation\OutstandingController;
-use App\Http\Controllers\Litigation\CustomerDisputeController;
-use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\LegalCorporate\LandSellController;
+use App\Http\Controllers\Litigation\CustomerDisputeController;
 use App\Http\Controllers\LegalCorporate\PowerAttorneyController;
+use App\Http\Controllers\document_request\documentRequestController;
+use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
+use App\Http\Controllers\Cs\CustomerDisputeController as CsCustomerDisputeController;
+use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
-use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
-use App\Http\Controllers\Misc\ContactUsController;
-use App\Http\Controllers\Misc\StatisticController;
-use App\Http\Controllers\Regulation\RegulationController;
+use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -365,9 +367,21 @@ Route::prefix('legal/regulation')->name('legal.database.')->controller(DatabaseC
     Route::get('delete-type/{id}', 'deleteType')->name('delete-type');
 });
 
-Route::get('/', function () {
-    return view('pages.user.index');
-})->middleware('guest')->name('home');
+Route::prefix('legal/user')->name('legal.user.')->controller(UserController::class)->group(function () {
+    Route::get('/index', 'index')->name('index');
+    Route::get('tambah', 'add')->name('add');
+    Route::post('tambah', 'store')->name('store');
+    Route::get('edit/{id}', 'edit')->name('edit');
+    Route::post('update/{id}', 'update')->name('update');
+    Route::get('detail/{id}', 'legalShow')->name('show');
+    Route::get('delete/{id}', 'delete')->name('delete');
+
+    Route::get('add-type', 'addType')->name('add-type');
+    Route::post('add-type/post', 'storeType')->name('store-type');
+    Route::get('delete-type/{id}', 'deleteType')->name('delete-type');
+});
+
+Route::get('/', [HomeController::class, 'index'])->middleware('guest')->name('home');
 
 Route::get('/legal', function () {
     return view('pages.legal.index');

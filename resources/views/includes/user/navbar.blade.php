@@ -27,8 +27,19 @@
                             </li>
                         @endguest
                         @auth
-                            <a href="{{ route('logout') }}" style="margin-top: 7px; color: black">Hi,
-                                {{ auth()->user()->name }}</a>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="background: none; color:black; border:none">
+                                    Hi,
+                                    {{ auth()->user()->name }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                                    <li><a class="dropdown-item disabled" style="display: none" href="#">Another
+                                            action</a></li>
+                                </ul>
+                            </div>
                         @endauth
                     </ul>
                     <a class="menu-trigger">
