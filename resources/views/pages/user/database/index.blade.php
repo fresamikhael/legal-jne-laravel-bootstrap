@@ -15,6 +15,7 @@
                             Regulasi</li>
                     </ol>
                 </nav>
+
                 <div class="col-3 pe-4">
                     <div style="background-color: #fe3f40; border-radius: 20px 20px 0 0">
                         <div class="col px-4 py-3" style="color: white">

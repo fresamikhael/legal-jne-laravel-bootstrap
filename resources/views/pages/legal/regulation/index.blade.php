@@ -58,6 +58,8 @@
                                                 class="fa fa-plus"></i> Tambah</a>
                                         <a href="{{ route('legal.regulation.request') }}" class="btn btn-success"><i
                                                 class="fas fa-file-contract"></i> Pengajuan</a>
+                                        <a href="{{ route('legal.regulation.request-index') }}"
+                                            class="btn btn-success"><i class="fas fa-history"></i> Riwayat</a>
                                     @endif
                                 </div>
                             </div>

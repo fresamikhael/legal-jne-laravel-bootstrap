@@ -58,6 +58,8 @@
                                     @if (auth()->user()->role == 'LEGAL')
                                         <a href="{{ route('legal.database.add') }}" class="btn btn-primary"><i
                                                 class="fa fa-plus"></i> Tambah</a>
+                                        <a href="{{ route('legal.database.request-index') }}" class="btn btn-primary"><i
+                                                class="fas fa-history"></i> Riwayat</a>
                                     @endif
                                 </div>
                             </div>

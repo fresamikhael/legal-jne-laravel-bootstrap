@@ -9,8 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="col px-3 py-3" style="background-color: rgb(239, 236, 236); border-radius: 10px;">
-                    <nav style="--bs-breadcrumb-divider: '>'; margin-top: -5px; margin-bottom: -18px"
-                        aria-label="breadcrumb">
+                    <nav style="--bs-breadcrumb-divider: '>'; margin-top: -5px; margin-bottom: -18px" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('database.index') }}"
@@ -25,10 +24,51 @@
             </div>
         </div>
 
-        @if (Session::get('message_success'))
+        @if (Session::get('status'))
             @slot('alert')
-                <x-alert message="{{ Session::get('message_success') }}" type="success" />
+                <x-alert message="{{ Session::get('status') }}" type="success" />
             @endslot
+        @endif
+
+        @if (!Session::get('status'))
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Masukkan Data Diri terlebih dahulu sebelum
+                                mengakses
+                                database</h5>
+                        </div>
+                        <form method="POST" enctype="multipart/form-data"
+                            action="{{ route('database.public-request-post') }}">
+                            <div class="modal-body">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
+                                    <input type="text" name="name" class="form-control">
+                                    <input type="hidden" name="database_id" value="{{ $database->id }}"
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nomor Induk Kewarganegaraan
+                                        (NIK):</label>
+                                    <input type="text" name="nik" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Department/Cabang:</label>
+                                    <input type="text" name="location" class="form-control">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                                <button type="submit" id="btnSave" class="btn btn-primary">Submit
+                                    Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         @endif
 
         <div class="row mt-3">
@@ -74,14 +114,14 @@
                                 <th scope="row" class="text-end">Tanggal Diundangkan</th>
                                 <td>{{ $database->promulgated_date }}</td>
                             </tr>
-                            <tr class="bg-light">
+                            {{-- <tr class="bg-light">
                                 <th scope="row" class="text-end">Nomor BN</th>
                                 <td>{{ $database->bn_number }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="text-end">Nomor TBN</th>
                                 <td>{{ $database->tbn_number }}</td>
-                            </tr>
+                            </tr> --}}
                             <tr class="bg-light">
                                 <th scope="row" class="text-end">Status Peraturan</th>
                                 <td>{{ $database->status }}</td>

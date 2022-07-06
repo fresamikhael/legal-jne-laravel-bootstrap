@@ -351,10 +351,12 @@ Route::prefix('regulation')->name('database.')->middleware('guest')->controller(
     Route::get('/index', 'index')->name('index');
     Route::get('tambah', 'add')->name('add');
     Route::get('detail/{id}', 'show')->name('show');
+    Route::post('/request/public', 'requestPublicPost')->name('public-request-post');
 });
 
 Route::prefix('legal/regulation')->name('legal.database.')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'indexLegal')->name('index');
+    Route::get('/request/index', 'indexRequestLegal')->name('request-index');
     Route::get('tambah', 'add')->name('add');
     Route::post('tambah', 'store')->name('store');
     Route::get('edit/{id}', 'edit')->name('edit');
@@ -492,6 +494,7 @@ Route::prefix('database')->name('regulation.')->middleware('guest')->group(funct
 
 Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
+    Route::get('/request/index', [RegulationController::class, 'indexRequestLegal'])->name('request-index');
     Route::get('/add', [RegulationController::class, 'add'])->name('add');
 
     Route::get('/detail/{id}', [RegulationController::class, 'showLegal'])->name('detail');

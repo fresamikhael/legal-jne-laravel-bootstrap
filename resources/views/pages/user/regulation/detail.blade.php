@@ -20,7 +20,6 @@
                         </ol>
                     </nav>
                 </div>
-
             </div>
         </div>
 
@@ -30,42 +29,46 @@
             @endslot
         @endif
 
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Masukkan Data Diri terlebih dahulu sebelum mengakses
-                            database</h5>
+        @if (!Session::get('status'))
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Masukkan Data Diri terlebih dahulu sebelum
+                                mengakses
+                                database</h5>
+                        </div>
+                        <form method="POST" enctype="multipart/form-data"
+                            action="{{ route('regulation.public-request-post') }}">
+                            <div class="modal-body">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
+                                    <input type="text" name="name" class="form-control">
+                                    <input type="hidden" name="database_id" value="{{ $database->id }}"
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nomor Induk Kewarganegaraan
+                                        (NIK):</label>
+                                    <input type="text" name="nik" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Department/Cabang:</label>
+                                    <input type="text" name="location" class="form-control">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                                <button type="submit" id="btnSave" class="btn btn-primary">Submit
+                                    Data</button>
+                            </div>
+                        </form>
                     </div>
-                    <form method="POST" enctype="multipart/form-data"
-                        action="{{ route('regulation.public-request-post') }}">
-                        <div class="modal-body">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
-                                <input type="text" name="name" class="form-control">
-                                <input type="hidden" name="database_id" value="{{ $database->id }}" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Nomor Induk Kewarganegaraan
-                                    (NIK):</label>
-                                <input type="text" name="nik" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Department/Cabang:</label>
-                                <input type="text" name="location" class="form-control">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" id="btnSave" class="btn btn-primary">Submit
-                                Data</button>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
+        @endif
 
         <div class="row mt-3">
             <div class="col-sm-8">

@@ -9,6 +9,7 @@ use App\Models\DatabaseType;
 use Illuminate\Http\Request;
 use App\Models\RegulationType;
 use App\Http\Controllers\Controller;
+use App\Models\RegulationRequestAccess;
 
 class DatabaseController extends Controller
 {
@@ -33,6 +34,13 @@ class DatabaseController extends Controller
             ->paginate(10);
 
         return view('pages.legal.database.index',compact('database', 'type'));
+    }
+
+    public function indexRequestLegal()
+    {
+        $data = RegulationRequestAccess::with('database')->get();
+
+        return view('pages.legal.database.request',compact('data'));
     }
 
     public function add()
@@ -138,6 +146,20 @@ class DatabaseController extends Controller
         DatabaseType::create($data);
 
         return redirect()->route('legal.database.add-type')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+    }
+
+    public function requestPublicPost(Request $request)
+    {
+        $data = $request->all();
+
+        RegulationRequestAccess::create([
+            'database_id' => $data['database_id'],
+            'name' => $data['name'],
+            'location' => $data['location'],
+            'nik' => $data['nik'],
+        ]);
+
+        return redirect()->back()->with('status', 'Data berhasil disubmit!');
     }
 
     public function deleteType($id)

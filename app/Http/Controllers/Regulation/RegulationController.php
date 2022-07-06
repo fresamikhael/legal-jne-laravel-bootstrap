@@ -40,6 +40,13 @@ class RegulationController extends Controller
         return view('pages.legal.regulation.index',compact('database', 'type'));
     }
 
+    public function indexRequestLegal()
+    {
+        $data = DatabasePublicRequest::with('database')->get();
+
+        return view('pages.legal.regulation.request',compact('data'));
+    }
+
     public function add()
     {
         return view('pages.legal.regulation.add');
