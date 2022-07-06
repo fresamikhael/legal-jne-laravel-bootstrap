@@ -127,17 +127,24 @@
                 <div class="m-4">
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('information.index') }}"
+                            <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('legal.information.index') }}"
                                     style="color:#fe1717">Informasi</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 {{ $database->name }}</li>
                         </ol>
                     </nav>
+                    <div class="col-md-5">
+                        <a class="btn btn-primary" href="{{ route('legal.information.edit', [$database->id]) }}"
+                            style="color:white">Ubah Data</a>
+                        <a class="btn btn-danger" href="{{ route('legal.information.delete', [$database->id]) }}"
+                            style="color:white">Hapus Data</a>
+                    </div>
                     <h1>{{ $database->name }}</h1>
                     <div class="img2"><img src="{{ asset($database->photo) }}" alt=""></div>
                     <h5 class="mt-2">{{ $database->position }} | {{ $database->expertise }} |
-                        {{ $database->location }} | Phone: {{ $database->phone }}
+                        {{ $database->location }} | Phone: {{ $database->phone }} | Email: {{ $database->email }}
                     </h5>
                     <p>{!! $database->description !!}</p>
                 </div>

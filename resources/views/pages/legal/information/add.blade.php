@@ -17,6 +17,7 @@
             <h2>Tambah Data</h2>
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Lengkap" name="name" required></x-input>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email" name="email" required></x-input>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jabatan" name="position" required></x-input>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Spesialis" name="expertise" required></x-input>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departemen/Cabang" name="location" required>

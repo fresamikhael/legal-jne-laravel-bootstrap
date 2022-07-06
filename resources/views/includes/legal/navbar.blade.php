@@ -45,7 +45,7 @@
                                     {{ auth()->user()->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="{{ route('legal.service.index') }}">Manajemen
+                                    <li><a class="dropdown-item" href="{{ route('legal.user.index') }}">Manajemen
                                             User</a>
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>

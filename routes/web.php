@@ -243,9 +243,12 @@ Route::prefix('information')->name('information.')->middleware('guest')->group(f
 Route::prefix('legal/information')->name('legal.information.')->group(function () {
     Route::get('/', [InformationController::class, 'indexLegal'])->name('index');
     Route::get('detail/{id}', [InformationController::class, 'showLegal'])->name('show');
+    Route::get('detail/delete/{id}', [InformationController::class, 'delete'])->name('delete');
 
     Route::get('add', [InformationController::class, 'add'])->name('add');
     Route::post('add', [InformationController::class, 'store'])->name('store');
+    Route::get('edit/{id}', [InformationController::class, 'edit'])->name('edit');
+    Route::post('edit/{id}', [InformationController::class, 'update'])->name('update');
 });
 
 Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(NewPermitController::class)->group(function () {

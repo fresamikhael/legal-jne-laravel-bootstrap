@@ -73,9 +73,16 @@
     <x-base>
         <div class="container">
             <div class="row g-2">
+
+                @if (Session::get('message_success'))
+                    @slot('alert')
+                        <x-alert message="{{ Session::get('message_success') }}" type="success" />
+                    @endslot
+                @endif
+
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('legal-home') }}" style="color:#fe1717">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Informasi</li>
                     </ol>

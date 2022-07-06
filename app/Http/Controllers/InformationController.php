@@ -63,4 +63,39 @@ class InformationController extends Controller
 
         return redirect()->route('legal.information.index')->with('message_success', 'Informasi Berhasil Ditambahkan.');
     }
+
+    public function edit($id)
+    {
+        $data = Information::where('id', $id)->first();
+
+        return view('pages.legal.information.edit', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $regulation = Information::where('id', $id)->firstOrFail();
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['photo'] = 'legalPhoto/' . $filename;
+            $file->move('legalPhoto', $filename);
+        }
+
+        $regulation->update($data);
+
+        return redirect()->route('legal.information.index')->with('message_success', 'Data berhasil di edit!.');
+    }
+
+    public function delete($id)
+    {
+        Information::where('id', $id)
+            ->first()
+            ->delete();
+
+        return redirect()->route('legal.information.index')->with('message_success', 'File berhasil di dihapus!.');;
+    }
 }
