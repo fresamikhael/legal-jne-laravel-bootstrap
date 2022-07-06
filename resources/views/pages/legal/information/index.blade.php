@@ -5,133 +5,115 @@
 @endsection
 
 @section('content')
+    <style>
+        .card {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5 green, blue, alpha);
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 5px;
+        }
+
+        .img1 img {
+            height: 200px;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            width: 100%;
+        }
+
+        .img2 img {
+            position: relative;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 1;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin-top: 40px
+        }
+
+        .card:hover .img2 img {
+            border-color: darkcyan;
+            transition: .7s;
+        }
+
+        .main-text {
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .main-text h2 {
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 20px;
+            margin: 0 0 20px;
+        }
+
+        .main-text p {
+            font-size: 16px;
+            padding: 0 35px;
+        }
+
+        .socials {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .socials i {
+            font-size: 20px;
+            color: #fe1717;
+            padding: 0 10px;
+        }
+
+        .socials i p {
+            text-transform: none;
+            font-size: 13px;
+        }
+    </style>
     <x-base>
         <div class="container">
             <div class="row g-2">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('legal-home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Informasi</li>
                     </ol>
                 </nav>
-                <div class="col-3 pe-4">
-                    <div style="background-color: #3648ec ; border-radius: 20px 20px 0 0">
-                        <div class=" col px-4 py-3" style="color: white">
-                            <i class="fa-solid fa-align-left"></i>
-                            <span>Pencarian</span>
-                        </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="{{ route('legal.information.add') }}" class="btn btn-primary"><i class="fas fa-plus"></i>
+                            Tambah
+                            Data</a>
                     </div>
-                    <div class="p-3 border bg-white">
-                        <form action="{{ route('information.index') }}" method="GET">
-                            @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis" name="type">
-                                {{-- <option value="" {{ request('type') == '' ? 'selected' : '' }}>Semua Jenis</option>
-                                <option disabled>-----------------------------</option> --}}
-                                <option value="QNA" {{ request('type') == 'QNA' ? 'selected' : '' }}>QnA</option>
-                                <option value="KLINIK HUKUM" {{ request('type') == 'KLINIK HUKUM' ? 'selected' : '' }}>
-                                    Klinik Hukum
-                                </option>
-                            </x-select>
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Kategori" name="category">
-                                {{-- <option value="" {{ request('category') == '' ? 'selected' : '' }}>Semua Kategori</option>
-                                <option disabled>-----------------------------</option> --}}
-                                <option value="BISNIS" {{ request('category') == 'BISNIS' ? 'selected' : '' }}>Bisnis
-                                </option>
-                                <option value="Kekayaan Intelektual"
-                                    {{ request('category') == 'Kekayaan Intelektual' ? 'selected' : '' }}>
-                                    Kekayaan Intelektual
-                                </option>
-                            </x-select>
-                            {{-- <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
-                                value="{{ request('number') }}" />
-                            <x-input label="Tahun Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="year"
-                                value="{{ request('year') }}" />
-                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
-                                value="{{ request('title') }}" /> --}}
-                            <div class="container">
-                                <div class="row g-2">
-                                    <button type="submit" class="btn" style="background-color: #3648ec; color:white"><i
-                                            class="fa fa-search" style="color: white"></i> Cari</button>
-                                    <a href={{ route('legal.information.add') }} class="btn btn-primary"><i
-                                            class="fa fa-plus"></i> Tambah</a>
+                </div>
+
+                @foreach ($database as $row)
+                    <div class="col-md-4">
+                        <a href="{{ route('legal.information.show', $row->id) }}" style="color:black">
+                            <div class="card mt-3">
+                                {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
+                                <div class="img2"><img src="{{ asset($row->photo) }}" alt=""></div>
+                                <div class="main-text">
+                                    <h2>{{ $row->name }}</h2>
+                                    <p>{{ $row->position }} | {{ $row->expertise }}
+                                        | {{ $row->location }}</p>
+                                </div>
+                                <div class="socials">
+                                    <i class="fas fa-envelope">
+                                        <p>Email</p>
+                                    </i>
+                                    <i class="fas fa-phone">
+                                        <p>{{ $row->phone }}</p>
+                                    </i>
+                                    {{-- <i class="fa fa-facebook"></i>
+                                <i class="fa fa-facebook"></i> --}}
                                 </div>
                             </div>
-                        </form>
+                        </a>
                     </div>
-                </div>
-                <div class="col-9">
-                    <div style="background-color:#3648ec; border-radius: 20px 20px 0 0">
-                        <div class="col px-4 py-3" style="color: white">
-                            <i class="fa-solid fa-align-left"></i>
-                            <span>Data Informasi</span>
-                        </div>
-                    </div>
-                    <div class="p-3 border bg-white">
-                        <div class="d-flex align-items-center justify-content-end mb-3">
-                            Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
-                            {{ $database->total() }} Data Peraturan
-                        </div>
-                        {{-- <div class="border rounded"> --}}
-                        {{-- <table class="table table-borderless">
-                                <thead class="bg-light">
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Tanggal</th>
-                                        <th scope="col">Kategori</th>
-                                        <th scope="col">Tentang</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($database->count() != 0)
-                                        @foreach ($database as $row)
-                                            <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
-                                                <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
-                                                <td>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->isoFormat('D MMMM Y') }}
-                                                </td>
-                                                <td>{{ Str::limit($row->category, 40, '...') }}</td>
-                                                <td>
-                                                    <a
-                                                        href="{{ route('information.show', [$row->id]) }}">{{ Str::limit($row->title, 40, '...') }}</a>
-                                                </td>
-                                                <td>
-                                                    @foreach ($row->file as $file)
-                                                        <a href="{{ asset($file->name) }}" target="_blank"
-                                                            style="font-size: 25px;">
-                                                            <i class="fa-solid fa-file-arrow-down"></i>
-                                                        </a>
-                                                    @endforeach
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <th scope="row">Data yang dicari tidak tersedia.</th>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table> --}}
-                        @if ($database->count() != 0)
-                            @foreach ($database as $row)
-                                <div class="m-3">
-                                    <h5><a style="color: black"
-                                            href="{{ route('legal.information.show', [$row->id]) }}">{{ $row->title }}</a>
-                                    </h5>
-                                    <p>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->isoFormat('D MMMM Y') }}
-                                        • {{ $row->category }} • {{ $row->type }} • {{ $row->user->name }}
-                                    </p>
-                                    <hr>
-                                </div>
-                            @endforeach
-                        @else
-                            <h5 class="m-3">Data yang dicari tidak tersedia</h5>
-                        @endif
-                        {{-- </div> --}}
-
-                        {{ $database->links('vendor.pagination.custom') }}
-
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </x-base>

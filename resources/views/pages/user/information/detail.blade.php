@@ -5,6 +5,62 @@
 @endsection
 
 @section('content')
+    <style>
+        .card {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5 green, blue, alpha);
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 5px;
+        }
+
+        .img2 img {
+            position: relative;
+            display: block;
+            margin-right: auto;
+            z-index: 1;
+            width: 140px;
+            height: 140px;
+            margin-top: 40px
+        }
+
+        .card:hover .img2 img {
+            border-color: darkcyan;
+            transition: .7s;
+        }
+
+        .main-text {
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .main-text h2 {
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 20px;
+            margin: 0 0 20px;
+        }
+
+        .main-text p {
+            font-size: 16px;
+            padding: 0 35px;
+        }
+
+        .socials {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .socials i {
+            font-size: 20px;
+            color: #fe1717;
+            padding: 0 10px;
+        }
+
+        .socials i p {
+            text-transform: none;
+            font-size: 13px;
+        }
+    </style>
     <x-base>
         @if (Session::get('message_success'))
             @slot('alert')
@@ -71,24 +127,19 @@
                 <div class="m-4">
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a
-                                    href="{{ route('information.index') }}">{{ $database->type }}</a></li>
-                            <li class="breadcrumb-item"><a
-                                    href="{{ route('information.index') }}">{{ $database->category }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color:#fe1717">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('information.index') }}"
+                                    style="color:#fe1717">Informasi</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                {{ Str::limit($database->title, 8, '...') }}</li>
+                                {{ $database->name }}</li>
                         </ol>
                     </nav>
-                    <h1>{{ $database->title }}</h1>
-                    <p>Dibuat oleh {{ $database->user->name }}</p>
-                    <p style="margin-top: -20px">
-                        {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $database->created_at)->isoFormat('dddd, D MMMM Y') }}
-                    </p>
-                    <h3>Pertanyaan</h3>
-                    <p>{{ $database->question }}</p>
-                    <h3>Ulasan Lengkap</h3>
-                    <p>{{ $database->description }}</p>
+                    <h1>{{ $database->name }}</h1>
+                    <div class="img2"><img src="{{ asset($database->photo) }}" alt=""></div>
+                    <h5 class="mt-2">{{ $database->position }} | {{ $database->expertise }} |
+                        {{ $database->location }} | Phone: {{ $database->phone }}
+                    </h5>
+                    <p>{!! $database->description !!}</p>
                 </div>
                 {{-- </div> --}}
                 {{-- </div> --}}

@@ -5,8 +5,8 @@
                 <p>
                     © Copyright 2022 JNE. All Rights Reserved.
 
-                    <br />Design by
-                    <a rel="nofollow" href="https://sakataguna.com">Sakata Guna Kita</a>
+                    {{-- <br />Design by
+                    <a rel="nofollow" href="https://sakataguna.com">Sakata Guna Kita</a> --}}
                 </p>
             </div>
         </div>

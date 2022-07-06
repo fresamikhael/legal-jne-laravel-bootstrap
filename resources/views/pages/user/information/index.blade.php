@@ -81,144 +81,31 @@
                     </ol>
                 </nav>
 
-                <div class="col-md-4">
-                    <a href="" style="color:black">
-                        <div class="card">
-                            {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
-                            <div class="img2"><img src="/images/test-inf.jpg" alt=""></div>
-                            <div class="main-text">
-                                <h2>Norman S. Bissett</h2>
-                                <p>Foreign Legal Consultant | Finance & Projects
-                                    Hadiputranto, Hadinoto & Partners</p>
-                            </div>
-                            <div class="socials">
-                                <i class="fas fa-envelope">
-                                    <p>Email</p>
-                                </i>
-                                <i class="fas fa-phone">
-                                    <p>081921823491</p>
-                                </i>
-                                {{-- <i class="fa fa-facebook"></i>
+                @foreach ($database as $row)
+                    <div class="col-md-4">
+                        <a href="{{ route('information.show', $row->id) }}" style="color:black">
+                            <div class="card">
+                                {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
+                                <div class="img2"><img src="{{ asset($row->photo) }}" alt=""></div>
+                                <div class="main-text">
+                                    <h2>{{ $row->name }}</h2>
+                                    <p>{{ $row->position }} | {{ $row->expertise }}
+                                        | {{ $row->location }}</p>
+                                </div>
+                                <div class="socials">
+                                    <i class="fas fa-envelope">
+                                        <p>Email</p>
+                                    </i>
+                                    <i class="fas fa-phone">
+                                        <p>{{ $row->phone }}</p>
+                                    </i>
+                                    {{-- <i class="fa fa-facebook"></i>
                                 <i class="fa fa-facebook"></i> --}}
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" style="color:black">
-                        <div class="card">
-                            {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
-                            <div class="img2"><img src="/images/test-inf.jpg" alt=""></div>
-                            <div class="main-text">
-                                <h2>Norman S. Bissett</h2>
-                                <p>Foreign Legal Consultant | Finance & Projects
-                                    Hadiputranto, Hadinoto & Partners</p>
-                            </div>
-                            <div class="socials">
-                                <i class="fas fa-envelope">
-                                    <p>Email</p>
-                                </i>
-                                <i class="fas fa-phone">
-                                    <p>081921823491</p>
-                                </i>
-                                {{-- <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i> --}}
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" style="color:black">
-                        <div class="card">
-                            {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
-                            <div class="img2"><img src="/images/test-inf.jpg" alt=""></div>
-                            <div class="main-text">
-                                <h2>Norman S. Bissett</h2>
-                                <p>Foreign Legal Consultant | Finance & Projects
-                                    Hadiputranto, Hadinoto & Partners</p>
-                            </div>
-                            <div class="socials">
-                                <i class="fas fa-envelope">
-                                    <p>Email</p>
-                                </i>
-                                <i class="fas fa-phone">
-                                    <p>081921823491</p>
-                                </i>
-                                {{-- <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i> --}}
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" style="color:black">
-                        <div class="card">
-                            {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
-                            <div class="img2"><img src="/images/test-inf.jpg" alt=""></div>
-                            <div class="main-text">
-                                <h2>Norman S. Bissett</h2>
-                                <p>Foreign Legal Consultant | Finance & Projects
-                                    Hadiputranto, Hadinoto & Partners</p>
-                            </div>
-                            <div class="socials">
-                                <i class="fas fa-envelope">
-                                    <p>Email</p>
-                                </i>
-                                <i class="fas fa-phone">
-                                    <p>081921823491</p>
-                                </i>
-                                {{-- <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i> --}}
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" style="color:black">
-                        <div class="card">
-                            {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
-                            <div class="img2"><img src="/images/test-inf.jpg" alt=""></div>
-                            <div class="main-text">
-                                <h2>Norman S. Bissett</h2>
-                                <p>Foreign Legal Consultant | Finance & Projects
-                                    Hadiputranto, Hadinoto & Partners</p>
-                            </div>
-                            <div class="socials">
-                                <i class="fas fa-envelope">
-                                    <p>Email</p>
-                                </i>
-                                <i class="fas fa-phone">
-                                    <p>081921823491</p>
-                                </i>
-                                {{-- <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i> --}}
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" style="color:black">
-                        <div class="card">
-                            {{-- <div class="img1"><img src="/images/backgroun.jpg" alt=""></div> --}}
-                            <div class="img2"><img src="/images/test-inf.jpg" alt=""></div>
-                            <div class="main-text">
-                                <h2>Norman S. Bissett</h2>
-                                <p>Foreign Legal Consultant | Finance & Projects
-                                    Hadiputranto, Hadinoto & Partners</p>
-                            </div>
-                            <div class="socials">
-                                <i class="fas fa-envelope">
-                                    <p>Email</p>
-                                </i>
-                                <i class="fas fa-phone">
-                                    <p>081921823491</p>
-                                </i>
-                                {{-- <i class="fa fa-facebook"></i>
-                                <i class="fa fa-facebook"></i> --}}
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </x-base>
