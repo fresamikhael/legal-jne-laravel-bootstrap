@@ -1,15 +1,12 @@
-<!-- ***** Header Area Start ***** -->
 <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
                     <a href="{{ route('legal-home') }}" class="logo">
                         <img src="/images/newlogo.png" alt="" class="logo" />
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
+
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="{{ route('legal.regulation.index') }}">Database</a>
                         </li>
@@ -71,4 +68,3 @@
         <span>Selamat Datang di Legal Service Access</span>
     </div>
 </header>
-<!-- ***** Header Area End ***** -->

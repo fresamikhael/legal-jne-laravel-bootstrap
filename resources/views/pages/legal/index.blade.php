@@ -87,24 +87,22 @@
                     <div class="row">
                         <div class="col-lg-6 align-self-center">
                             <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-                                <h6>Welcome to Legal Access JNE</h6>
+                                <h6>{{ $top->t1 }}</h6>
                                 <h2>
-                                    We <em>Connecting</em> Your
-                                    <span>Happiness</span>
+
+                                    <em>{{ $top->t2 }}</em>
                                 </h2>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Incidunt accusamus inventore fugiat illo corporis
-                                    consequatur cupiditate tenetur tempore corrupti. Facilis
-                                    fugiat nulla ut quia eum asperiores, iusto natus pariatur
-                                    deleniti!
+                                    {{ $top->t3 }}
                                 </p>
                                 <a href="#services" class="btn btn-danger">Pengajuan <i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('top-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
+                                        class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                                <img src="{{ url('/images/hero.png') }}" alt="team meeting" />
+                                <img src="{{ asset($top->photo) }}" alt="team meeting" />
                             </div>
                         </div>
                     </div>
@@ -118,8 +116,10 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="left-image wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                        <img src="{{ url('/images/icon-1.png') }}" style="margin-top: -50px" alt="person graphic" />
+                        <img src="{{ asset($middle->photo) }}" style="margin-top: -50px" alt="person graphic" />
                     </div>
+                    <a href="{{ route('middle-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="col-lg-8 align-self-center">
                     <div class="services">
@@ -127,12 +127,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                                     <div class="icon">
-                                        <img src="{{ url('/images/service-icon-01.png') }}" alt="reporting" />
+                                        <img src="{{ asset($middle->p1) }}" alt="reporting" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Drafting</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter
+                                            {{ $middle->t1 }}
                                         </p>
                                     </div>
                                 </div>
@@ -140,12 +140,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
                                     <div class="icon">
-                                        <img src="{{ url('/images/service-icon-02.png') }}" alt="" />
+                                        <img src="{{ asset($middle->p2) }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Litigation</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter
+                                            {{ $middle->t2 }}
                                         </p>
                                     </div>
                                 </div>
@@ -153,12 +153,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
                                     <div class="icon">
-                                        <img src="{{ url('/images/service-icon-03.png') }}" alt="" />
+                                        <img src="{{ asset($middle->p3) }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Permit</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter
+                                            {{ $middle->t3 }}
                                         </p>
                                     </div>
                                 </div>
@@ -166,12 +166,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="1.1s">
                                     <div class="icon">
-                                        <img src="{{ url('/images/service-icon-04.png') }}" alt="" />
+                                        <img src="{{ asset($middle->p4) }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Legal Corporate</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter
+                                            {{ $middle->t4 }}
                                         </p>
                                     </div>
                                 </div>
@@ -179,12 +179,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="1.1s">
                                     <div class="icon">
-                                        <img src="{{ url('/images/service-icon-04.png') }}" alt="" />
+                                        <img src="{{ asset($middle->p5) }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Permohonan Berkas</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, ctetur aoi adipiscing eliter
+                                            {{ $middle->t5 }}
                                         </p>
                                     </div>
                                 </div>
@@ -201,20 +201,19 @@
             <div class="row">
                 <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
                     <div class="left-image">
-                        <img src="{{ url('/images/icon-2.png') }}" style="margin-left: 100px; margin-top: -50px"
+                        <img src="{{ asset($below->photo) }}" style="margin-left: 100px; margin-top: -50px"
                             class="w-50" alt="" />
                     </div>
+                    <a href="{{ route('below-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
                     <div class="section-heading">
                         <h2>
-                            Track your <em>case</em> &amp; <span>Document</span> Realtime
+                            {{ $below->t1 }}
                         </h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
-                            aut? Adipisci accusamus, cum ipsa atque, eius, mollitia
-                            architecto culpa placeat dolorum vitae repudiandae voluptas.
-                            Distinctio et alias accusantium odit itaque.
+                            {{ $below->t2 }}
                         </p>
                     </div>
                     <div class="row">
@@ -268,11 +267,13 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('foot-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
+                            class="fas fa-arrow-right"></i></a>
+                    <a href="{{ route('drafting.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                             <div class="hidden-content">
                                 <h4>Drafting</h4>
-                                <p>Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.</p>
+                                <p>{{ $foot->t1 }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -281,11 +282,11 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('litigation.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
                             <div class="hidden-content">
                                 <h4>Litigation</h4>
-                                <p>Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.</p>
+                                <p>{{ $foot->t2 }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -294,11 +295,11 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('permit.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
                             <div class="hidden-content">
                                 <h4>Permit</h4>
-                                <p>Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.</p>
+                                <p>{{ $foot->t3 }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -307,11 +308,11 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#">
+                    <a href="{{ route('legalcorporate.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
                             <div class="hidden-content">
                                 <h4>Legal Corporate</h4>
-                                <p>Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.</p>
+                                <p>{{ $foot->t4 }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -320,11 +321,11 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a href="{{ route('legal.document_request.form') }}">
+                    <a href="{{ route('document_request.home') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
                             <div class="hidden-content">
                                 <h4>Permohonan Dokumen</h4>
-                                <p>Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.</p>
+                                <p>{{ $foot->t5 }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />

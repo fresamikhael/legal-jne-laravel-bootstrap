@@ -28,6 +28,7 @@ use App\Http\Controllers\document_request\documentRequestController;
 use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
 use App\Http\Controllers\Cs\CustomerDisputeController as CsCustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
+use App\Http\Controllers\LegalHomeController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
@@ -388,9 +389,15 @@ Route::prefix('legal/user')->name('legal.user.')->controller(UserController::cla
 
 Route::get('/', [HomeController::class, 'index'])->middleware('guest')->name('home');
 
-Route::get('/legal', function () {
-    return view('pages.legal.index');
-})->name('legal-home');
+Route::get('/legal', [LegalHomeController::class, 'index'])->middleware('isLegal')->name('legal-home');
+Route::get('/legal/top', [LegalHomeController::class, 'topEdit'])->middleware('isLegal')->name('top-home');
+Route::post('/legal/top', [LegalHomeController::class, 'topStore'])->middleware('isLegal')->name('top-home-store');
+Route::get('/legal/middle', [LegalHomeController::class, 'middleEdit'])->middleware('isLegal')->name('middle-home');
+Route::post('/legal/middle', [LegalHomeController::class, 'middleStore'])->middleware('isLegal')->name('middle-home-store');
+Route::get('/legal/below', [LegalHomeController::class, 'belowEdit'])->middleware('isLegal')->name('below-home');
+Route::post('/legal/below', [LegalHomeController::class, 'belowStore'])->middleware('isLegal')->name('below-home-store');
+Route::get('/legal/foot', [LegalHomeController::class, 'footEdit'])->middleware('isLegal')->name('foot-home');
+Route::post('/legal/foot', [LegalHomeController::class, 'footStore'])->middleware('isLegal')->name('foot-home-store');
 
 Route::get('/login', function () {
     return view('auth.login');
