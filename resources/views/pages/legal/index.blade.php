@@ -97,7 +97,7 @@
                                 </p>
                                 <a href="#services" class="btn btn-danger">Pengajuan <i class="fas fa-arrow-right"></i></a>
                                 <a href="{{ route('top-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
-                                        class="fas fa-arrow-right"></i></a>
+                                        class="fas fa-edit"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -119,7 +119,7 @@
                         <img src="{{ asset($middle->photo) }}" style="margin-top: -50px" alt="person graphic" />
                     </div>
                     <a href="{{ route('middle-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
-                            class="fas fa-arrow-right"></i></a>
+                            class="fas fa-edit"></i></a>
                 </div>
                 <div class="col-lg-8 align-self-center">
                     <div class="services">
@@ -205,7 +205,7 @@
                             class="w-50" alt="" />
                     </div>
                     <a href="{{ route('below-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
-                            class="fas fa-arrow-right"></i></a>
+                            class="fas fa-edit"></i></a>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
                     <div class="section-heading">
@@ -268,7 +268,7 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <a href="{{ route('foot-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
-                            class="fas fa-arrow-right"></i></a>
+                            class="fas fa-edit"></i></a>
                     <a href="{{ route('drafting.index') }}">
                         <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                             <div class="hidden-content">

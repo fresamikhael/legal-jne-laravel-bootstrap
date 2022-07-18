@@ -40,7 +40,7 @@
             Launch static backdrop modal
         </button> --}}
 
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        {{-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- <button data-keyboard="false" type="button" class="btn btn-primary" data-bs-toggle="modal"
             data-bs-target="#exampleModal" data-backdrop="static" data-bs-whatever="@mdo">Open modal for @mdo</button>
 
