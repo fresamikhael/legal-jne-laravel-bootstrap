@@ -18,11 +18,11 @@ class RegulationController extends Controller
     public function index()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'name', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'type', 'date', 'about']))
             // ->where('privilege', 'ALL')
             ->paginate(10);
         $all = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'name', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'type', 'date', 'about']))
             ->where('privilege', 'ALL')
             ->paginate(10);
         $type = RegulationType::get();
@@ -33,7 +33,7 @@ class RegulationController extends Controller
     public function indexLegal()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'name', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'type', 'date', 'about']))
             ->paginate(10);
         $type = RegulationType::get();
 
@@ -294,7 +294,7 @@ class RegulationController extends Controller
 
         RegulationType::create($data);
 
-        return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+        return redirect()->route('legal.regulation.add')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
     }
 
     public function requestPublicPost(Request $request)

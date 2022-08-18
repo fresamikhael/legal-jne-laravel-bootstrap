@@ -81,7 +81,7 @@
     </x-menu> --}}
 
     <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-        <div class="container">
+        <div class="container" style="margin-top: -100px">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -106,6 +106,99 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="services" class="our-portfolio section">
+        <div class="container" style="margin-top: -200px">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <h2>
+                            See What Our Company <em>Offers</em> &amp; What We
+                            <span>Provide</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 mb-3">
+                    <a href="{{ route('foot-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
+                            class="fas fa-edit"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <a href="{{ route('drafting.index') }}">
+                        <div data-wow-duration="1s" data-wow-delay="0.3s">
+                            <div class="hidden-content">
+                                <h4>Drafting</h4>
+                                <p>{{ $foot->t1 }}</p>
+                            </div>
+                            <div class="showed-content">
+                                <img src="{{ url('/images/hero.png') }}" alt="" />
+                                <p>Drafting</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="{{ route('litigation.index') }}">
+                        <div data-wow-duration="1s" data-wow-delay="0.4s">
+                            <div class="hidden-content">
+                                <h4>Litigation</h4>
+                                <p>{{ $foot->t2 }}</p>
+                            </div>
+                            <div class="showed-content">
+                                <img src="{{ url('/images/hero.png') }}" alt="" />
+                                <p>Litigation</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="{{ route('permit.index') }}">
+                        <div data-wow-duration="1s" data-wow-delay="0.5s">
+                            <div class="hidden-content">
+                                <h4>Permit</h4>
+                                <p>{{ $foot->t3 }}</p>
+                            </div>
+                            <div class="showed-content">
+                                <img src="{{ url('/images/hero.png') }}" alt="" />
+                                <p>Permit</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="{{ route('legalcorporate.index') }}">
+                        <div data-wow-duration="1s" data-wow-delay="0.6s">
+                            <div class="hidden-content">
+                                <h4>Legal Corporate</h4>
+                                <p>{{ $foot->t4 }}</p>
+                            </div>
+                            <div class="showed-content">
+                                <img src="{{ url('/images/hero.png') }}" alt="" />
+                                <p>Legal Corporate</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="{{ route('document_request.home') }}">
+                        <div data-wow-duration="1s" data-wow-delay="0.6s">
+                            <div class="hidden-content">
+                                <h4>Permohonan Dokumen</h4>
+                                <p>{{ $foot->t5 }}</p>
+                            </div>
+                            <div class="showed-content">
+                                <img src="{{ url('/images/hero.png') }}" alt="" />
+                                <p>Permohonan Dokumen</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -248,90 +341,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="services" class="our-portfolio section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                        <h2>
-                            See What Our Company <em>Offers</em> &amp; What We
-                            <span>Provide</span>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <a href="{{ route('foot-home') }}" class="btn btn-danger">Ubah Halaman Ini <i
-                            class="fas fa-edit"></i></a>
-                    <a href="{{ route('drafting.index') }}">
-                        <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-                            <div class="hidden-content">
-                                <h4>Drafting</h4>
-                                <p>{{ $foot->t1 }}</p>
-                            </div>
-                            <div class="showed-content">
-                                <img src="{{ url('/images/hero.png') }}" alt="" />
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a href="{{ route('litigation.index') }}">
-                        <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-                            <div class="hidden-content">
-                                <h4>Litigation</h4>
-                                <p>{{ $foot->t2 }}</p>
-                            </div>
-                            <div class="showed-content">
-                                <img src="{{ url('/images/hero.png') }}" alt="" />
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a href="{{ route('permit.index') }}">
-                        <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-                            <div class="hidden-content">
-                                <h4>Permit</h4>
-                                <p>{{ $foot->t3 }}</p>
-                            </div>
-                            <div class="showed-content">
-                                <img src="{{ url('/images/hero.png') }}" alt="" />
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a href="{{ route('legalcorporate.index') }}">
-                        <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-                            <div class="hidden-content">
-                                <h4>Legal Corporate</h4>
-                                <p>{{ $foot->t4 }}</p>
-                            </div>
-                            <div class="showed-content">
-                                <img src="{{ url('/images/hero.png') }}" alt="" />
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a href="{{ route('document_request.home') }}">
-                        <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-                            <div class="hidden-content">
-                                <h4>Permohonan Dokumen</h4>
-                                <p>{{ $foot->t5 }}</p>
-                            </div>
-                            <div class="showed-content">
-                                <img src="{{ url('/images/hero.png') }}" alt="" />
-                            </div>
-                        </div>
-                    </a>
                 </div>
             </div>
         </div>

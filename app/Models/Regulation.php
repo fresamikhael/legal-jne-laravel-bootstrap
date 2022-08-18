@@ -22,7 +22,8 @@ class Regulation extends Model
         'set_date',
         'privilege',
         'agency',
-        'status'
+        'status',
+        'unit'
     ];
 
     protected $guarded = ['id'];
@@ -33,6 +34,10 @@ class Regulation extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        $query->when($filters['unit'] ?? false, function($query, $unit) {
+            return $query->where('unit', 'like', '%'.$unit.'%');
+        });
+
         $query->when($filters['privilege'] ?? false, function($query, $privilege) {
             return $query->where('privilege', 'like', '%'.$privilege.'%');
         });

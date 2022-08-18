@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\LegalHomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\Drafting\LeaseController;
@@ -28,12 +31,10 @@ use App\Http\Controllers\document_request\documentRequestController;
 use App\Http\Controllers\Drafting\OtherController as DraftingOtherController;
 use App\Http\Controllers\Cs\CustomerDisputeController as CsCustomerDisputeController;
 use App\Http\Controllers\Legal\Drafting\CustomerController as DraftingCustomerController;
-use App\Http\Controllers\LegalHomeController;
 use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLitigation1CustomerDisputeController;
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -353,6 +354,8 @@ Route::prefix('legal/request_document')->name('legal.document_request.')->contro
 
 Route::prefix('regulation')->name('database.')->middleware('guest')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'index')->name('index');
+    Route::get('/index?_token=3jETrc685fSwjb69QnJU5WzOFZ0Wvn7vLxoOxgAR&privilege=ALL&type=&number=&year=&title=', 'indexLegal')->name('index-all');
+    Route::get('/index?_token=3jETrc685fSwjb69QnJU5WzOFZ0Wvn7vLxoOxgAR&privilege=RESTRICTED&type=&number=&year=&title=', 'indexLegal')->name('index-internal');
     Route::get('tambah', 'add')->name('add');
     Route::get('detail/{id}', 'show')->name('show');
     Route::post('/request/public', 'requestPublicPost')->name('public-request-post');
@@ -360,6 +363,8 @@ Route::prefix('regulation')->name('database.')->middleware('guest')->controller(
 
 Route::prefix('legal/regulation')->name('legal.database.')->controller(DatabaseController::class)->group(function () {
     Route::get('/index', 'indexLegal')->name('index');
+    Route::get('/index?_token=3jETrc685fSwjb69QnJU5WzOFZ0Wvn7vLxoOxgAR&privilege=ALL&type=&number=&year=&title=', 'indexLegal')->name('index-all');
+    Route::get('/index?_token=3jETrc685fSwjb69QnJU5WzOFZ0Wvn7vLxoOxgAR&privilege=RESTRICTED&type=&number=&year=&title=', 'indexLegal')->name('index-internal');
     Route::get('/request/index', 'indexRequestLegal')->name('request-index');
     Route::get('tambah', 'add')->name('add');
     Route::post('tambah', 'store')->name('store');
@@ -488,6 +493,10 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
 
 Route::prefix('database')->name('regulation.')->middleware('guest')->group(function () {
     Route::get('/index', [RegulationController::class, 'index'])->name('index');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Drafting&number=&date=&about=', [RegulationController::class, 'index'])->name('index-drafting');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Litigation&number=&date=&about=', [RegulationController::class, 'index'])->name('index-litigation');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Permit&number=&date=&about=', [RegulationController::class, 'index'])->name('index-permit');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Corporate&number=&date=&about=', [RegulationController::class, 'index'])->name('index-corporate');
     Route::get('/request', [RegulationController::class, 'requestDocument'])->name('request');
     Route::post('/request',  [RegulationController::class, 'requestDocumentPost'])->name('request-post');
     Route::post('/request/public',  [RegulationController::class, 'requestPublicPost'])->name('public-request-post');
@@ -504,6 +513,10 @@ Route::prefix('database')->name('regulation.')->middleware('guest')->group(funct
 
 Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Drafting&number=&date=&title=', [RegulationController::class, 'index'])->name('index-drafting');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Litigation&number=&date=&title=', [RegulationController::class, 'index'])->name('index-litigation');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Permit&number=&date=&title=', [RegulationController::class, 'index'])->name('index-permit');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Corporate&number=&date=&title=', [RegulationController::class, 'index'])->name('index-corporate');
     Route::get('/request/index', [RegulationController::class, 'indexRequestLegal'])->name('request-index');
     Route::get('/add', [RegulationController::class, 'add'])->name('add');
 
@@ -556,6 +569,9 @@ Route::get('/contact-us', function () {
     return view('pages.user.contact_us');
 })->name('contact-us');
 
+
+Route::get('/faq', [FaqController::class, 'index'])->name('faq-index');
+Route::get('/faq/{id}', [FaqController::class, 'show'])->name('faq-show');
 Route::get('/contact-us', [ContactUsController::class, 'user'])->middleware('guest')->name('contact-us');
 Route::get('legal/contact-us', [ContactUsController::class, 'index'])->name('legal.contact-us');
 

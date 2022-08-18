@@ -50,6 +50,16 @@
                                 <th scope="row" class="text-end">Tipe Peraturan</th>
                                 <td>{{ $database->type }}</td>
                             </tr>
+                            <tr>
+                                <th scope="row" class="text-end">Jenis Peraturan</th>
+                                <td>
+                                    @if ($database->privilege == 'ALL')
+                                        Peraturan Umum
+                                    @else
+                                        Peraturan Internal
+                                    @endif
+                                </td>
+                            </tr>
                             <tr class="bg-light">
                                 <th scope="row" class="text-end">Entitas</th>
                                 <td>{{ $database->entity }}</td>
@@ -78,6 +88,15 @@
                                 <th scope="row" class="text-end">Status Peraturan</th>
                                 <td>{{ $database->status }}</td>
                             </tr>
+                            @if ($database->historical_id)
+                                <tr>
+                                    <th scope="row" class="text-end">Dokumen Sebelumnya</th>
+                                    <td><a style="color: brown"
+                                            href="{{ route('legal.database.show', [$database->historical_id]) }}">Klik
+                                            Disini Untuk Melihat Peraturan</a></td>
+                                </tr>
+                            @else
+                            @endif
                         </table>
                     </div>
                 </div>

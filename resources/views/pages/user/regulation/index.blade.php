@@ -38,18 +38,33 @@
                                     Normatif
                                 </option>
                             </x-select> --}}
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="type">
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Jenis Dokumen" name="type">
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
                                         {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
                                     </option>
                                 @endforeach
                             </x-select>
-                            <x-input label="Nomor Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="unit">
+                                <option value="Drafting" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>
+                                    Drafting
+                                </option>
+                                <option value="Litigation" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>
+                                    Litigation
+                                </option>
+                                <option value="Permit" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>
+                                    Permit
+                                </option>
+                                <option value="Corporate" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>
+                                    Corporate
+                                </option>
+                            </x-select>
+                            <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
-                            <x-input label="Tanggal Peraturan" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
+                            <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
                                 type="date" value="{{ request('date') }}" />
                             <div class="col-sm-12">
+                                <label for="">Tentang</label>
                                 <input type="text" class="form-control mb-4" value="{{ request('about') }}"
                                     name="about">
                             </div>
@@ -113,8 +128,7 @@
                                                             <a style="color: brown"
                                                                 href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                         @else
-                                                            <a
-                                                                style="color: brown">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                            <a style="color: brown">{{ Str::limit($row->name, 40, '...') }}</a>
                                                         @endif
 
                                                     </td>
@@ -184,8 +198,7 @@
                                                             <a style="color: brown"
                                                                 href="{{ route('regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
                                                         @else
-                                                            <a
-                                                                style="color: brown">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                            <a style="color: brown">{{ Str::limit($row->name, 40, '...') }}</a>
                                                         @endif
 
                                                     </td>

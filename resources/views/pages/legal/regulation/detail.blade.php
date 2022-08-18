@@ -90,6 +90,10 @@
                                 <th scope="row" class="text-end">Tgl Ditetapkan</th>
                                 <td>{{ $database->set_date }}</td>
                             </tr>
+                            <tr class="bg-light">
+                                <th scope="row" class="text-end">Unit</th>
+                                <td>{{ $database->unit }}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>

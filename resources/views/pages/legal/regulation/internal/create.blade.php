@@ -63,6 +63,12 @@
                         <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
                     </div>
                 </div>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit" required>
+                    <option value="Drafting">Drafting</option>
+                    <option value="Litigation">Litigation</option>
+                    <option value="Permit">Permit</option>
+                    <option value="Corporate">Corporate</option>
+                </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
                     name="set_date" required />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>

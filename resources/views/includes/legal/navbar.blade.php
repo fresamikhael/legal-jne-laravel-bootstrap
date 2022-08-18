@@ -8,8 +8,34 @@
                     </a>
 
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="{{ route('legal.regulation.index') }}">Database</a>
-                        </li>
+                        {{-- <li class="scroll-to-section"><a href="{{ route('legal.regulation.index') }}">Database</a>
+                        </li> --}}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                                style="background: none; color:black; border:none">
+                                Database
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('legal.regulation.index') }}">Semua
+                                        Dokumen</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('legal.regulation.index-drafting') }}">Drafting</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('legal.regulation.index-litigation') }}">Litigation</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('legal.regulation.index-permit') }}">Permit</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('legal.regulation.index-corporate') }}">Corporate</a>
+                                </li>
+                                <li><a class="dropdown-item disabled" style="display: none" href="#">Another
+                                        action</a></li>
+                            </ul>
+                        </div>
                         @if (auth()->user()->role == 'LEGAL')
                             <li class="scroll-to-section"><a href="{{ route('statistic') }}">Statistik Pekerjaan</a>
                         @endif
@@ -18,9 +44,33 @@
                             <a href="{{ route('legal.service.index') }}">Service</a>
                         </li>
                         <li class="scroll-to-section">
+                            <a href="#">FAQ</a>
+                        </li>
+                        <li class="scroll-to-section">
                             <a href="{{ route('legal.information.index') }}">Informasi</a>
                         </li>
-                        <li class="scroll-to-section"><a href="{{ route('legal.database.index') }}">Regulasi</a></li>
+                        {{-- <li class="scroll-to-section"><a href="{{ route('legal.database.index') }}">Regulasi</a></li> --}}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                                style="background: none; color:black; border:none">
+                                Regulasi
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('legal.database.index') }}">Semua
+                                        Peraturan</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('legal.database.index-all') }}">Peraturan
+                                        Umum</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('legal.database.index-internal') }}">Peraturan
+                                        Internal</a>
+                                </li>
+                                <li><a class="dropdown-item disabled" style="display: none" href="#">Another
+                                        action</a></li>
+                            </ul>
+                        </div>
                         <li class="scroll-to-section">
                             <a href="{{ route('legal.contact-us') }}">Hubungi Kami</a>
                         </li>

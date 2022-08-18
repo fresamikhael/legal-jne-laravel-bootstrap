@@ -8,14 +8,61 @@
                     </a>
 
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Database</a></li>
+                        {{-- <li class="scroll-to-section"><a href="{{ route('regulation.index') }}">Database</a></li> --}}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                                style="background: none; color:black; border:none">
+                                Database
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('regulation.index') }}">Semua Dokumen</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('regulation.index-drafting') }}">Drafting</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('regulation.index-litigation') }}">Litigation</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('regulation.index-permit') }}">Permit</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('regulation.index-corporate') }}">Corporate</a>
+                                </li>
+                                <li><a class="dropdown-item disabled" style="display: none" href="#">Another
+                                        action</a></li>
+                            </ul>
+                        </div>
                         <li class="scroll-to-section">
                             <a href="{{ route('service.index') }}">Service</a>
                         </li>
                         <li class="scroll-to-section">
+                            <a href="{{ route('faq-index') }}">FAQ</a>
+                        </li>
+                        <li class="scroll-to-section">
                             <a href="{{ route('information.index') }}">Informasi</a>
                         </li>
-                        <li class="scroll-to-section"><a href="{{ route('database.index') }}">Regulasi</a></li>
+                        {{-- <li class="scroll-to-section"><a href="{{ route('database.index') }}">Regulasi</a></li> --}}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                                style="background: none; color:black; border:none">
+                                Regulasi
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('database.index') }}">Semua
+                                        Peraturan</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('database.index-all') }}">Peraturan
+                                        Umum</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('database.index-internal') }}">Peraturan
+                                        Internal</a>
+                                </li>
+                                <li><a class="dropdown-item disabled" style="display: none" href="#">Another
+                                        action</a></li>
+                            </ul>
+                        </div>
                         <li class="scroll-to-section">
                             <a href="{{ route('contact-us') }}">Hubungi Kami</a>
                         </li>

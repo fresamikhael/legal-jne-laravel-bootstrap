@@ -17,7 +17,7 @@ class DatabaseController extends Controller
     {
         $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
-            ->filter(request(['type', 'number', 'year', 'about']))
+            ->filter(request(['privilege', 'type', 'number', 'year', 'about']))
             ->paginate(10);
         $type = DatabaseType::get();
 
@@ -30,7 +30,7 @@ class DatabaseController extends Controller
 
         $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
-            ->filter(request(['type', 'name', 'year', 'title']))
+            ->filter(request(['privilege','type', 'name', 'year', 'title']))
             ->paginate(10);
 
         return view('pages.legal.database.index',compact('database', 'type'));
@@ -46,8 +46,9 @@ class DatabaseController extends Controller
     public function add()
     {
         $type = DatabaseType::get();
+        $database = Database::get();
 
-        return view('pages.legal.database.add', compact('type'));
+        return view('pages.legal.database.add', compact('type', 'database'));
     }
 
     public function store(Request $request)
@@ -75,8 +76,9 @@ class DatabaseController extends Controller
         $data = Database::where('id', $id)
             ->with('file')->first();
         $type = DatabaseType::get();
+        $database = Database::get();
 
-        return view('pages.legal.database.edit', compact('data', 'type'));
+        return view('pages.legal.database.edit', compact('data', 'type', 'database'));
     }
 
     public function update(Request $request, $id)
@@ -145,7 +147,7 @@ class DatabaseController extends Controller
 
         DatabaseType::create($data);
 
-        return redirect()->route('legal.database.add-type')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+        return redirect()->route('legal.database.add')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
     }
 
     public function requestPublicPost(Request $request)

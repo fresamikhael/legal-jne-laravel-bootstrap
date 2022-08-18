@@ -67,8 +67,22 @@
                         <option value="Aktif">Aktif</option>
                         <option value="Tidak Aktif">Tidak Aktif</option>
                     </x-select>
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege" required>
+                        <option value="ALL">Peraturan Umum</option>
+                        <option value="RESTRICTED">Peraturan Khusus</option>
+                    </x-select>
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
+                        name="historical_id" required>
+                        @foreach ($database as $d)
+                            <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
+                        @endforeach
+                    </x-select>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file_database[]"
                         multiple />
+                    <div class="d-flex justify-content-end">
+                        <p class="d-flex justify-items-right">*Untuk file dokumen dapat diupload lebih dari satu file</p>
+                    </div>
                 </div>
             </div>
 

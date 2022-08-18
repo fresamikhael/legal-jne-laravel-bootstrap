@@ -18,6 +18,10 @@ class Database extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        $query->when($filters['privilege'] ?? false, function($query, $privilege) {
+            return $query->where('privilege', 'like', '%'.$privilege.'%');
+        });
+
         $query->when($filters['type'] ?? false, function($query, $type) {
             return $query->where('type', 'like', '%'.$type.'%');
         });

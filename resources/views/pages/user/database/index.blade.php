@@ -26,6 +26,13 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('database.index') }}" method="GET">
                             @csrf
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Jenis Dokumen" name="privilege">
+                                <option value="ALL" {{ request('privilege') == 'ALL' ? 'selected' : '' }}>
+                                    Peraturan Umum</option>
+                                <option value="RESTRICTED" {{ request('privilege') == 'RESTRICTED' ? 'selected' : '' }}>
+                                    Peraturan Internal
+                                </option>
+                            </x-select>
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="type">
                                 @foreach ($type as $t)
