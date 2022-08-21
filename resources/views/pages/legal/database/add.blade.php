@@ -73,7 +73,7 @@
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
-                        name="historical_id" required>
+                        name="historical_id">
                         @foreach ($database as $d)
                             <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
                         @endforeach

@@ -114,7 +114,7 @@
                                         <th scope="col" class="col-3">Nama Dokumen</th>
                                         <th scope="col">Nomor</th>
                                         <th scope="col">Tentang</th>
-                                        <th scope="col"><i class="fa-solid fa-download"></i></th>
+                                        {{-- <th scope="col"><i class="fa-solid fa-download"></i></th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,7 +144,7 @@
                                                         @else
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         @if ($row->privilege == 'ALL')
                                                             <a href="{{ asset($row->file) }}" target="_blank"
                                                                 style="font-size: 25px; color:#fe3f40">
@@ -153,7 +153,7 @@
                                                         @else
                                                         @endif
 
-                                                    </td>
+                                                    </td> --}}
                                                     {{-- @guest
                                                         <td>
                                                             @if ($row->privilege == 'ALL')
@@ -214,7 +214,7 @@
                                                         @else
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         @if ($row->privilege == 'ALL')
                                                             <a href="{{ asset($row->file) }}" target="_blank"
                                                                 style="font-size: 25px; color:#fe3f40">
@@ -223,7 +223,7 @@
                                                         @else
                                                         @endif
 
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @endforeach
                                         @endguest

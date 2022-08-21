@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('regulations', function (Blueprint $table) {
             $table->string('id')->unique();
+            // $table->uuid('id')->primary();
 
             $table->string('name');
             $table->string('type');
             $table->string('file');
             $table->string('number')->nullable();
             $table->date('date')->nullable();
-            $table->string('about')->nullable();
+            $table->text('about')->nullable();
             $table->date('set_date')->nullable();
             $table->string('agency')->nullable();
             $table->string('status')->nullable();

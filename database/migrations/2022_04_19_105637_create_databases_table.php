@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('entity');
             $table->string('number');
             $table->string('year');
-            $table->string('about');
+            $table->text('about');
             $table->date('set_date');
             $table->string('bn_number');
             $table->string('tbn_number')->nullable();

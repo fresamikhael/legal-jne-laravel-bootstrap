@@ -44,7 +44,7 @@
                             <a href="{{ route('legal.service.index') }}">Service</a>
                         </li>
                         <li class="scroll-to-section">
-                            <a href="#">FAQ</a>
+                            <a href="{{ route('legal.faq-index') }}">FAQ</a>
                         </li>
                         <li class="scroll-to-section">
                             <a href="{{ route('legal.information.index') }}">Informasi</a>

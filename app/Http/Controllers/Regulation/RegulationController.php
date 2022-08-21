@@ -18,11 +18,11 @@ class RegulationController extends Controller
     public function index()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'date', 'about']))
             // ->where('privilege', 'ALL')
             ->paginate(10);
         $all = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'date', 'about']))
             ->where('privilege', 'ALL')
             ->paginate(10);
         $type = RegulationType::get();
@@ -33,7 +33,7 @@ class RegulationController extends Controller
     public function indexLegal()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number','type', 'date', 'about']))
             ->paginate(10);
         $type = RegulationType::get();
 
@@ -55,18 +55,17 @@ class RegulationController extends Controller
     public function show($id)
     {
         $database = Regulation::where('id', $id)
-            ->first();
+            ->with('data')->first();
 
         return view('pages.user.regulation.detail', compact('database'));
     }
 
     public function showLegal($id)
     {
-        $database = Regulation::where('id', $id)->firstOrFail();
+        $database = Regulation::where('id', $id)
+            ->with('data')->first();
 
-        return view('pages.legal.regulation.detail', [
-            'database' => $database
-        ]);
+        return view('pages.legal.regulation.detail', compact('database'));
     }
 
     public function requestDocument()

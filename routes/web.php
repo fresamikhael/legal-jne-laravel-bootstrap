@@ -570,8 +570,15 @@ Route::get('/contact-us', function () {
 })->name('contact-us');
 
 
-Route::get('/faq', [FaqController::class, 'index'])->name('faq-index');
-Route::get('/faq/{id}', [FaqController::class, 'show'])->name('faq-show');
+Route::get('/faq', [FaqController::class, 'index'])->middleware('guest')->name('faq-index');
+Route::get('/faq/{id}', [FaqController::class, 'show'])->middleware('guest')->name('faq-show');
+Route::get('legal/faq/{id}', [FaqController::class, 'showLegal'])->name('legal.faq-show');
+
+Route::get('legal/faq', [FaqController::class, 'indexLegal'])->name('legal.faq-index');
+Route::get('legal/faq/create', [FaqController::class, 'createLegal'])->name('legal.faq-create');
+Route::post('legal/faq/store', [FaqController::class, 'storeLegal'])->name('legal.faq-store');
+Route::get('legal/faq/{id}', [FaqController::class, 'showLegal'])->name('legal.faq-show');
+
 Route::get('/contact-us', [ContactUsController::class, 'user'])->middleware('guest')->name('contact-us');
 Route::get('legal/contact-us', [ContactUsController::class, 'index'])->name('legal.contact-us');
 

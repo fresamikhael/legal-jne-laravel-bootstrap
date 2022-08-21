@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RegulationType;
 use App\Http\Controllers\Controller;
+use App\Models\RegulationFile;
 use Yajra\DataTables\Facades\DataTables;
 
 class InternalController extends Controller
@@ -61,18 +62,32 @@ class InternalController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data ['privilege'] = 'ALL';
+        // $data = $request->all();
+        // $data ['privilege'] = 'ALL';
+        $database = Regulation::create($request->all());
 
-        if ($request->file('file')) {
-            $file = $request->file('file');
+        // if ($request->file('file')) {
+        //     $file = $request->file('file');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = Str::random(40) . '.' . $extension;
+        //     $data['file'] = 'Regulation/'.$filename;
+        //     $file->move('Regulation', $filename);
+        // }
+
+        $files = $request->file('file_database');
+
+        foreach ($files as $file) {
             $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file'] = 'Regulation/'.$filename;
-            $file->move('Regulation', $filename);
+            $filename = str()->random(40) . '-' . '.' . $extension;
+            $file->move('regulation', $filename);
+
+            RegulationFile::create([
+                'regulation_id' => $database->id,
+                'name' => 'regulation/'.$filename
+            ]);
         }
 
-        Regulation::create($data);
+        // Regulation::create($data);
 
         return redirect()->route('legal.regulation.internal-create')->with('message_success', 'File berhasil di upload.');
     }

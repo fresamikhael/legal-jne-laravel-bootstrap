@@ -51,6 +51,11 @@ class Regulation extends Model
         });
     }
 
+    public function data()
+    {
+        return $this->hasMany(RegulationFile::class, 'regulation_id', 'id');
+    }
+
     public static function boot()
     {
         parent::boot();
