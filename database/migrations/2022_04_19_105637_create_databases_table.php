@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('databases', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('type');
-            $table->string('entity');
-            $table->string('number');
-            $table->string('year');
-            $table->text('about');
-            $table->date('set_date');
-            $table->string('bn_number');
+            $table->string('name')->nullable();
+            $table->string('type')->nullable();
+            $table->string('entity')->nullable();
+            $table->string('number')->nullable();
+            $table->string('year')->nullable();
+            $table->text('about')->nullable();
+            $table->date('set_date')->nullable();
+            $table->string('bn_number')->nullable();
             $table->string('tbn_number')->nullable();
-            $table->date('promulgated_date');
-            $table->string('status');
+            $table->date('promulgated_date')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
