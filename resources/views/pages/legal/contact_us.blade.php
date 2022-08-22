@@ -23,12 +23,12 @@
         <div class="d-flex">
             <div class="col-sm-12">
                 <div class="col-sm-6">
-                    <iframe src="{{ $data->maps }}" width="1115" height="450" style="border:0;" class="mt-3"
+                    <iframe src="{{ $data->maps ?? '' }}" width="1115" height="450" style="border:0;" class="mt-3"
                         allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <div class="row-sm-6 mt-3">
                     <ul class="row-3">
-                        {!! $data->body !!}
+                        {!! $data->body ?? '' !!}
                     </ul>
                 </div>
             </div>

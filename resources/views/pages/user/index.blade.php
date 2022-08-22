@@ -87,20 +87,20 @@
                     <div class="row">
                         <div class="col-lg-6 align-self-center">
                             <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-                                <h6>{{ $top->t1 }}</h6>
+                                <h6>{{ $top->t1 ?? '' }}</h6>
                                 <h2>
 
-                                    <em>{{ $top->t2 }}</em>
+                                    <em>{{ $top->t2 ?? '' }}</em>
                                 </h2>
                                 <p>
-                                    {{ $top->t3 }}
+                                    {{ $top->t3 ?? '' }}
                                 </p>
                                 <a href="#services" class="btn btn-danger">Pengajuan <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                                <img src="{{ asset($top->photo) }}" alt="team meeting" />
+                                <img src="{{ asset($top->photo ?? '') }}" alt="team meeting" />
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                         <div data-wow-duration="1s" data-wow-delay="0.3s">
                             <div class="hidden-content">
                                 <h4>Drafting</h4>
-                                <p>{{ $foot->t1 }}</p>
+                                <p>{{ $foot->t1 ?? '' }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -141,7 +141,7 @@
                         <div data-wow-duration="1s" data-wow-delay="0.4s">
                             <div class="hidden-content">
                                 <h4>Litigation</h4>
-                                <p>{{ $foot->t2 }}</p>
+                                <p>{{ $foot->t2 ?? '' }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -155,7 +155,7 @@
                         <div data-wow-duration="1s" data-wow-delay="0.5s">
                             <div class="hidden-content">
                                 <h4>Permit</h4>
-                                <p>{{ $foot->t3 }}</p>
+                                <p>{{ $foot->t3 ?? '' }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -169,7 +169,7 @@
                         <div data-wow-duration="1s" data-wow-delay="0.6s">
                             <div class="hidden-content">
                                 <h4>Legal Corporate</h4>
-                                <p>{{ $foot->t4 }}</p>
+                                <p>{{ $foot->t4 ?? '' }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -183,7 +183,7 @@
                         <div data-wow-duration="1s" data-wow-delay="0.6s">
                             <div class="hidden-content">
                                 <h4>Permohonan Dokumen</h4>
-                                <p>{{ $foot->t5 }}</p>
+                                <p>{{ $foot->t5 ?? '' }}</p>
                             </div>
                             <div class="showed-content">
                                 <img src="{{ url('/images/hero.png') }}" alt="" />
@@ -201,7 +201,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="left-image wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                        <img src="{{ asset($middle->photo) }}" style="margin-top: -50px" alt="person graphic" />
+                        <img src="{{ asset($middle->photo ?? '') }}" style="margin-top: -50px" alt="person graphic" />
                     </div>
                 </div>
                 <div class="col-lg-8 align-self-center">
@@ -210,12 +210,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                                     <div class="icon">
-                                        <img src="{{ asset($middle->p1) }}" alt="reporting" />
+                                        <img src="{{ asset($middle->p1 ?? '') }}" alt="reporting" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Drafting</h4>
                                         <p>
-                                            {{ $middle->t1 }}
+                                            {{ $middle->t1 ?? '' }}
                                         </p>
                                     </div>
                                 </div>
@@ -223,12 +223,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
                                     <div class="icon">
-                                        <img src="{{ asset($middle->p2) }}" alt="" />
+                                        <img src="{{ asset($middle->p2 ?? '') }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Litigation</h4>
                                         <p>
-                                            {{ $middle->t2 }}
+                                            {{ $middle->t2 ?? '' }}
                                         </p>
                                     </div>
                                 </div>
@@ -236,12 +236,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
                                     <div class="icon">
-                                        <img src="{{ asset($middle->p3) }}" alt="" />
+                                        <img src="{{ asset($middle->p3 ?? '') }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Permit</h4>
                                         <p>
-                                            {{ $middle->t3 }}
+                                            {{ $middle->t3 ?? '' }}
                                         </p>
                                     </div>
                                 </div>
@@ -249,12 +249,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="1.1s">
                                     <div class="icon">
-                                        <img src="{{ asset($middle->p4) }}" alt="" />
+                                        <img src="{{ asset($middle->p4 ?? '') }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Legal Corporate</h4>
                                         <p>
-                                            {{ $middle->t4 }}
+                                            {{ $middle->t4 ?? '' }}
                                         </p>
                                     </div>
                                 </div>
@@ -262,12 +262,12 @@
                             <div class="col-lg-6">
                                 <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="1.1s">
                                     <div class="icon">
-                                        <img src="{{ asset($middle->p5) }}" alt="" />
+                                        <img src="{{ asset($middle->p5 ?? '') }}" alt="" />
                                     </div>
                                     <div class="right-text">
                                         <h4>Permohonan Berkas</h4>
                                         <p>
-                                            {{ $middle->t5 }}
+                                            {{ $middle->t5 ?? '' }}
                                         </p>
                                     </div>
                                 </div>
@@ -284,17 +284,17 @@
             <div class="row">
                 <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
                     <div class="left-image">
-                        <img src="{{ asset($below->photo) }}" style="margin-left: 100px; margin-top: -50px"
+                        <img src="{{ asset($below->photo ?? '') }}" style="margin-left: 100px; margin-top: -50px"
                             class="w-50" alt="" />
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
                     <div class="section-heading">
                         <h2>
-                            {{ $below->t1 }}
+                            {{ $below->t1 ?? '' }}
                         </h2>
                         <p>
-                            {{ $below->t2 }}
+                            {{ $below->t2 ?? '' }}
                         </p>
                     </div>
                     <div class="row">

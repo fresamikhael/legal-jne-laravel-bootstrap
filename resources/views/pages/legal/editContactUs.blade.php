@@ -21,9 +21,9 @@
             @csrf
             <div class="col-sm-12">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Lokasi pada GMaps" name="maps"
-                    value="{{ $data->maps }}" required />
+                    value="{{ $data->maps ?? '' }}" required />
                 <label class="mb-3">Isi Hubungi Kami</label>
-                <textarea name="body" id="editor">{!! $data->body !!}</textarea>
+                <textarea name="body" id="editor">{!! $data->body ?? '' !!}</textarea>
             </div>
 
             <div class="d-flex justify-content-end mt-3">
