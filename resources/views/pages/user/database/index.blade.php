@@ -85,7 +85,7 @@
                                         <th scope="col" class="col-3">Nama Dokumen</th>
                                         <th scope="col">Nomor</th>
                                         <th scope="col">Tentang</th>
-                                        <th scope="col" class="col-1">Aksi</i></th>
+                                        {{-- <th scope="col" class="col-1">Aksi</i></th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,14 +100,14 @@
                                                 </td>
                                                 <td>{{ $row->number }}</td>
                                                 <td>{{ $row->about }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     @foreach ($row->file as $file)
                                                         <a href="{{ asset($file->name) }}" target="_blank"
                                                             style="font-size: 25px; color:#fe3f40">
                                                             <i class="fa-solid fa-file-arrow-down"></i>
                                                         </a>
                                                     @endforeach
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     @else
