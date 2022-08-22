@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('type');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->string('number')->nullable();
             $table->date('date')->nullable();
             $table->text('about')->nullable();
