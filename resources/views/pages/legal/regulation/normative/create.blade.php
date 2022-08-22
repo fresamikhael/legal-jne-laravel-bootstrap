@@ -61,13 +61,20 @@
                         <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
                     </div>
                 </div>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit" required>
+                    <option value="Drafting">Drafting</option>
+                    <option value="Litigation">Litigation</option>
+                    <option value="Permit">Permit</option>
+                    <option value="Corporate">Corporate</option>
+                </x-select>
+                <input type="hidden" name="privilege" value="RESTRICTED">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
                     name="set_date" required />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status" required>
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>
                 </x-select>
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file" required></x-file>
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file_database[]" multiple />
             </div>
 
             <div class="d-flex justify-content-end me-4">
