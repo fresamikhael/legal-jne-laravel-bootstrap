@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2022 at 06:40 AM
+-- Generation Time: Aug 22, 2022 at 08:34 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -213,23 +213,27 @@ CREATE TABLE `databases` (
   `entity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `about` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `about` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `set_date` date NOT NULL,
   `bn_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tbn_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `promulgated_date` date NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `privilege` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `historical_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `databases`
 --
 
-INSERT INTO `databases` (`id`, `name`, `type`, `entity`, `number`, `year`, `about`, `set_date`, `bn_number`, `tbn_number`, `promulgated_date`, `status`, `created_at`, `updated_at`) VALUES
-('c140b22e-62c2-4fa2-8f43-561ce9688839', 'BRIN NO. 9 TAHUN 2022', 'Undang Undang', 'Badan Riset dan Inovasi Nasional', '9', '2022', 'TUGAS, FUNGSI, DAN STRUKTUR ORGANISASI RISET HAYATI DAN LINGKUNGAN', '2022-06-28', '308', NULL, '2022-06-28', 'Aktif', '2022-06-28 05:56:07', '2022-06-29 03:44:39'),
-('c8d5f369-7297-474c-8659-44ee93560760', 'KEMENDIKBUDRISTEK NO. 9 TAHUN 2022', 'Undang Undang', 'KEMENDIKBUDRISTEK NO. 9 TAHUN 2022', '6', '2022', 'EVALUASI SISTEM PENDIDIKAN OLEH PEMERINTAH PUSAT DAN PEMERINTAH DAERAH TERHADAP PENDIDIKAN ANAK USIA DINI, PENDIDIKAN DASAR, DAN PENDIDIKAN MENENGAH', '2022-06-29', '308', NULL, '2022-06-28', 'Aktif', '2022-06-28 05:57:22', '2022-06-29 03:43:02');
+INSERT INTO `databases` (`id`, `name`, `type`, `entity`, `number`, `year`, `about`, `set_date`, `bn_number`, `tbn_number`, `promulgated_date`, `status`, `created_at`, `updated_at`, `privilege`, `historical_id`) VALUES
+('c140b22e-62c2-4fa2-8f43-561ce9688839', 'BRIN NO. 9 TAHUN 2022', 'Undang Undang', 'Badan Riset dan Inovasi Nasional', '9', '2022', 'TUGAS, FUNGSI, DAN STRUKTUR ORGANISASI RISET HAYATI DAN LINGKUNGAN', '2022-06-28', '308', NULL, '2022-06-28', 'Aktif', '2022-06-28 05:56:07', '2022-06-29 03:44:39', 'ALL', NULL),
+('c8d5f369-7297-474c-8659-44ee93560760', 'KEMENDIKBUDRISTEK NO. 9 TAHUN 2022', 'Undang Undang', 'KEMENDIKBUDRISTEK NO. 9 TAHUN 2022', '6', '2022', 'EVALUASI SISTEM PENDIDIKAN OLEH PEMERINTAH PUSAT DAN PEMERINTAH DAERAH TERHADAP PENDIDIKAN ANAK USIA DINI, PENDIDIKAN DASAR, DAN PENDIDIKAN MENENGAH', '2022-06-29', '308', NULL, '2022-06-28', 'Aktif', '2022-06-28 05:57:22', '2022-06-29 03:43:02', 'RESTRICTED', NULL),
+('c97dd128-eb7e-40a3-845b-6143db0e6ea5', 'PERPRES NO. 92 TAHUN 2022', 'Peraturan Presiden', 'Presiden', '92', '2022', 'JENIS DAN BESARAN HAK KEUANGAN DAN FASILITAS LAINNYA BAGI MANAJEMEN EKSEKUTIF KOMITE NASIONAL EKONOMI DAN KEUANGAN SYARIAH', '2022-08-22', NULL, NULL, '2022-08-22', 'Aktif', '2022-08-21 22:25:02', '2022-08-21 22:25:02', 'ALL', 'c140b22e-62c2-4fa2-8f43-561ce9688839'),
+('da4f9640-05ff-4783-8e4d-16fcfc6d7db0', 'PERPRES NO. 92 TAHUN 2022', 'Peraturan Presiden', 'Presiden', '92', '2022', 'PERUBAHAN ATAS PERATURAN MENTERI KEUANGAN NOMOR 56/PMK.010/2022 TENTANG PENETAPAN TARIF BEA MASUK DALAM RANGKA PERSETUJUAN KEMITRAAN EKONOMI KOMPREHENSIF ANTARA REPUBLIK INDONESIA DAN NEGARA-NEGARA EFTA (COMPREHENSIVE ECONOMIC PARTNERSHIP AGREEMENT BETWEEN THE REPUBLIC OF INDONESIA AND THE EFTA STATES)', '2022-08-22', NULL, NULL, '2022-08-22', 'Aktif', '2022-08-21 22:26:24', '2022-08-21 22:26:24', 'RESTRICTED', NULL);
 
 -- --------------------------------------------------------
 
@@ -250,7 +254,10 @@ CREATE TABLE `database_files` (
 
 INSERT INTO `database_files` (`database_id`, `name`, `created_at`, `updated_at`) VALUES
 ('c140b22e-62c2-4fa2-8f43-561ce9688839', 'database/uDpsrkhQ687SXG4TqWwLTMg6Ebc66pJCTRwueOdG-.pdf', '2022-06-28 05:56:07', '2022-06-29 03:44:39'),
-('c8d5f369-7297-474c-8659-44ee93560760', 'database/pXt2kiB24obbbjvDZkIDtA1xub5hpJRS4b7KF6zT-.pdf', '2022-06-28 05:57:22', '2022-06-29 03:43:02');
+('c8d5f369-7297-474c-8659-44ee93560760', 'database/pXt2kiB24obbbjvDZkIDtA1xub5hpJRS4b7KF6zT-.pdf', '2022-06-28 05:57:22', '2022-06-29 03:43:02'),
+('c97dd128-eb7e-40a3-845b-6143db0e6ea5', 'database/OADs0AQcQlY9bqJasF2ljCaIJyTJiKNIC4cYctBF-.pdf', '2022-08-21 22:25:02', '2022-08-21 22:25:02'),
+('c97dd128-eb7e-40a3-845b-6143db0e6ea5', 'database/wF6Gcd7hF7UgfAfK3djNIwP4UFeknRdbQZVnLkhh-.pdf', '2022-08-21 22:25:02', '2022-08-21 22:25:02'),
+('da4f9640-05ff-4783-8e4d-16fcfc6d7db0', 'database/WTXclNyXq6rDJW9yzP1P6jGimIMaXs1ZMLr437mx-.pdf', '2022-08-21 22:26:24', '2022-08-21 22:26:24');
 
 -- --------------------------------------------------------
 
@@ -273,28 +280,8 @@ CREATE TABLE `database_public_requests` (
 --
 
 INSERT INTO `database_public_requests` (`id`, `database_id`, `name`, `nik`, `location`, `created_at`, `updated_at`) VALUES
-(1, 'REG001', 'Fresa', 'Indonesia', 'asd', '2022-07-05 09:57:19', '2022-07-05 09:57:19'),
-(2, 'REG001', 'Mikael', 'Indonesia', 'asd', '2022-07-05 10:00:56', '2022-07-05 10:00:56'),
-(3, 'REG003', 'bocahgemblunk', 'Indonesia', 'asd', '2022-07-05 10:02:40', '2022-07-05 10:02:40'),
-(4, 'REG001', 'Mikael', 'Indonesia', 'asd', '2022-07-05 10:06:00', '2022-07-05 10:06:00'),
-(5, 'REG001', 'Mikael', 'Indonesia', 'asdfasf', '2022-07-05 10:07:52', '2022-07-05 10:07:52'),
-(6, 'REG001', 'bocahgemblunk', 'Indonesia', 'asd', '2022-07-05 10:08:16', '2022-07-05 10:08:16'),
-(7, 'REG001', 'Fresa', 'Indonesia', 'asd', '2022-07-05 10:08:45', '2022-07-05 10:08:45'),
-(8, 'REG001', 'Mikael', 'Indonesia', 'asdf', '2022-07-05 10:09:03', '2022-07-05 10:09:03'),
-(9, 'REG001', 'bocahgemblunk', 'Indonesia', 'asd', '2022-07-05 10:11:07', '2022-07-05 10:11:07'),
-(10, 'REG001', 'nm_admin', 'Indonesia', 'asdf', '2022-07-05 10:13:47', '2022-07-05 10:13:47'),
-(11, 'REG001', 'Fresa', 'Indonesia', 'asdf', '2022-07-05 10:14:59', '2022-07-05 10:14:59'),
-(14, 'REG001', NULL, NULL, NULL, '2022-07-05 10:19:15', '2022-07-05 10:19:15'),
-(15, 'REG003', 'asdf', 'asdf', 'asdf', '2022-07-05 10:21:30', '2022-07-05 10:21:30'),
-(16, 'REG001', NULL, NULL, NULL, '2022-07-05 10:24:24', '2022-07-05 10:24:24'),
-(17, 'REG001', NULL, NULL, NULL, '2022-07-05 10:28:09', '2022-07-05 10:28:09'),
-(18, 'REG001', NULL, NULL, NULL, '2022-07-05 10:28:35', '2022-07-05 10:28:35'),
-(19, 'REG001', 'Fresa', 'Indonesia', 'asd', '2022-07-05 14:00:56', '2022-07-05 14:00:56'),
-(20, 'REG001', 'asdf', 'asdf', 'asdfa', '2022-07-06 04:03:38', '2022-07-06 04:03:38'),
-(21, 'REG001', 'hsbjhdfa', 'kjsddhfas', 'sdfjashdf', '2022-07-06 04:06:42', '2022-07-06 04:06:42'),
-(22, 'REG001', 'adfasdf', 'asdfas', 'asdfasd', '2022-07-06 04:08:52', '2022-07-06 04:08:52'),
-(28, 'REG001', 'asdfas', 'asdfasd', 'asdfasd', '2022-07-06 04:35:40', '2022-07-06 04:35:40'),
-(29, 'REG001', 'Fresa', 'Indonesia', 'asdf', '2022-07-06 09:32:05', '2022-07-06 09:32:05');
+(30, 'REG001', 'asd', 'asd', 'asd', '2022-08-21 22:39:35', '2022-08-21 22:39:35'),
+(31, 'REG001', 'qwer', 'qwer', 'qwer', '2022-08-21 22:40:30', '2022-08-21 22:40:30');
 
 -- --------------------------------------------------------
 
@@ -319,7 +306,8 @@ CREATE TABLE `database_requests` (
 INSERT INTO `database_requests` (`id`, `user_id`, `request_document_reason`, `status`, `note`, `created_at`, `updated_at`) VALUES
 ('DTR001', 'USR002', 'fasdfasdfasd', 'FINISH', NULL, '2022-06-25 05:51:54', '2022-06-28 05:52:47'),
 ('DTR002', 'USR002', 'asdfsdfads', 'IN PROGRESS', NULL, '2022-06-30 06:25:28', '2022-06-28 06:25:28'),
-('DTR003', 'USR002', 'etwertwert', 'PENDING', NULL, '2022-06-26 06:26:04', '2022-06-28 06:26:04');
+('DTR003', 'USR002', 'etwertwert', 'PENDING', NULL, '2022-06-26 06:26:04', '2022-06-28 06:26:04'),
+('DTR004', 'USR002', 'pinjam', 'PENDING', NULL, '2022-08-20 05:14:20', '2022-08-20 05:14:20');
 
 -- --------------------------------------------------------
 
@@ -348,9 +336,9 @@ CREATE TABLE `database_request_files` (
 --
 
 INSERT INTO `database_request_files` (`id`, `document_id`, `document_name`, `document_type`, `document_code`, `file_number`, `doc_out`, `doc_in`, `file_id`, `note`, `status`, `created_at`, `updated_at`) VALUES
-('FDR001', 'DTR001', 'BRIN NO. 9 TAHUN 2022', 'Soft Copy', '1269', '7123', NULL, NULL, 'REG002', 'Access Granted', 'PENDING', '2022-06-28 05:51:54', '2022-06-28 05:52:43'),
 ('FDR002', 'DTR002', 'UU NO. 1 TAHUN 2022', 'Soft Copy', NULL, NULL, NULL, NULL, NULL, NULL, 'PENDING', '2022-06-28 06:25:28', '2022-06-28 06:25:28'),
-('FDR003', 'DTR003', 'KEMENPERIN NO. 9 TAHUN 2022', 'Soft Copy', NULL, NULL, NULL, NULL, NULL, NULL, 'PENDING', '2022-06-28 06:26:04', '2022-06-28 06:26:04');
+('FDR003', 'DTR003', 'KEMENPERIN NO. 9 TAHUN 2022', 'Soft Copy', NULL, NULL, NULL, NULL, NULL, NULL, 'PENDING', '2022-06-28 06:26:04', '2022-06-28 06:26:04'),
+('FDR004', 'DTR004', 'BRIN NO. 9 TAHUN 2022', 'Soft Copy', NULL, NULL, NULL, NULL, NULL, NULL, 'PENDING', '2022-08-20 05:14:20', '2022-08-20 05:14:20');
 
 -- --------------------------------------------------------
 
@@ -371,7 +359,8 @@ CREATE TABLE `database_types` (
 
 INSERT INTO `database_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
 ('DBT001', 'Undang Undang', '2022-06-23 05:59:07', '2022-06-23 05:59:07'),
-('DBT002', 'Peraturan Perusahaan', '2022-06-28 05:57:53', '2022-06-28 05:57:53');
+('DBT002', 'Peraturan Perusahaan', '2022-06-28 05:57:53', '2022-06-28 05:57:53'),
+('DBT003', 'Peraturan Presiden', '2022-08-21 22:21:09', '2022-08-21 22:21:09');
 
 -- --------------------------------------------------------
 
@@ -416,6 +405,28 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq`
+--
+
+CREATE TABLE `faq` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+('FAQ123', 'Cara membuat akun', 'tesst\r\n', NULL, NULL),
+('FAQ124', 'tutor', '<p>tutor</p>', '2022-08-19 07:39:17', '2022-08-19 07:39:17');
 
 -- --------------------------------------------------------
 
@@ -813,7 +824,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (52, '2022_07_07_091822_create_home_top_table', 5),
 (53, '2022_07_07_092834_create_home_middle_table', 6),
 (54, '2022_07_07_092846_create_home_below_table', 6),
-(55, '2022_07_07_092858_create_home_foot_table', 6);
+(55, '2022_07_07_092858_create_home_foot_table', 6),
+(56, '2022_08_15_140524_create_faq_table', 7),
+(57, '2022_08_18_124355_add_privilege_to_databases_table', 8),
+(58, '2022_08_18_151009_add_unit_to_regulations_table', 9),
+(59, '2022_08_22_043644_create_regulation_files_table', 10);
 
 -- --------------------------------------------------------
 
@@ -1079,27 +1094,46 @@ CREATE TABLE `regulations` (
   `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `about` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `about` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `set_date` date DEFAULT NULL,
   `agency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `privilege` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `regulations`
 --
 
-INSERT INTO `regulations` (`id`, `name`, `type`, `file`, `number`, `date`, `about`, `set_date`, `agency`, `status`, `privilege`, `created_at`, `updated_at`) VALUES
-('REG001', 'KEMENHUB NO. PM 7', 'Kementrian Perhubungan', 'Regulation/ddbfdonnkAF1TYpVF8lRrgusEvpiZnR5AeO9EYcg.pdf', 'PM 7', '2022-06-28', 'PENYELENGGARAAN KERETA API KECEPATAN TINGGI', '2022-06-28', 'Kementerian Perhubungan', 'Aktif', 'ALL', '2022-06-28 05:23:55', '2022-06-28 05:24:54'),
-('REG002', 'KEMENKEU NO. 9/PMK.02/2022', 'Peraturan Daerah', 'Regulation/gxIqJflrMKyCa42mD9bgVKxZsFhQkdCP9Huxq0o4.pdf', '2', '2022-06-28', 'JENIS DAN TARIF ATAS JENIS PENERIMAAN NEGARA BUKAN PAJAK KEBUTUHAN MENDESAK ATAS PELAYANAN KEIMIGRASIAN YANG BERLAKU PADA KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA', '2022-06-28', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia', 'Aktif', 'RESTRICTED', '2022-06-28 05:50:12', '2022-06-28 05:50:12'),
-('REG003', 'UU NO. 19 TAHUN 2022', 'Kementrian Perhubungan', 'Regulation/feH86GJUIA2jXUnMChbNVINU3jtHxhPlNM1Zdspx.pdf', NULL, '2019-06-30', 'PERUBAHAN KEDUA ATAS UNDANG-UNDANG NOMOR 30 TAHUN 2002 TENTANG KOMISI PEMBERANTASAN TINDAK PIDANA KORUPSI', '2022-06-30', 'Badan Pengawas Obat dan Makanan', 'Aktif', 'ALL', '2022-06-30 04:25:54', '2022-06-30 08:26:10'),
-('REG004', 'UU NO. 1 TAHUN 2022', 'Peraturan Perusahaan', 'Regulation/fuymQzzaXHwcxFVjfDDVOWMX5bsoLdhtfOyy2hIq.pdf', NULL, '2022-06-30', 'HUBUNGAN KEUANGAN ANTARA PEMERINTAH PUSAT DAN PEMERINTAHAN DAERAH', '2022-06-30', 'Kementerian Perhubungan', 'Aktif', 'RESTRICTED', '2022-06-30 04:26:45', '2022-06-30 08:25:42');
+INSERT INTO `regulations` (`id`, `name`, `type`, `file`, `number`, `date`, `about`, `set_date`, `agency`, `status`, `privilege`, `created_at`, `updated_at`, `unit`) VALUES
+('REG001', 'KEMENKEU NO. 92/PMK.010/2022', 'Kementrian Perhubungan', NULL, '92', '2022-08-22', 'PERUBAHAN ATAS PERATURAN MENTERI KEUANGAN NOMOR 47/PMK.010/2022 TENTANG PENETAPAN TARIF BEA MASUK DALAM RANGKA PERSETUJUAN MENGENAI PERDAGANGAN BARANG DALAM PERSETUJUAN KERANGKA KERJA MENGENAI KERJA SAMA EKONOMI MENYELURUH ANTARA PERHIMPUNAN BANGSA-BANGSA ASIA TENGGARA DAN REPUBLIK INDIA (ASEAN-INDIA FREE TRADE AREA)', '2022-08-22', 'Kementerian Perhubungan', 'Aktif', 'ALL', '2022-08-21 22:12:51', '2022-08-21 22:12:51', 'Litigation');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `regulation_files`
+--
+
+CREATE TABLE `regulation_files` (
+  `regulation_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `regulation_files`
+--
+
+INSERT INTO `regulation_files` (`regulation_id`, `name`, `created_at`, `updated_at`) VALUES
+('REG001', 'regulation/1LTi283AnH3bKL91CCNKVTYocIWbrTlZazAsfjxq-.pdf', '2022-08-21 22:12:51', '2022-08-21 22:12:51'),
+('REG001', 'regulation/bTSNCIMen124VYjLX6ZA9FEN02XeKeP9j8dFU1kv-.pdf', '2022-08-21 22:12:51', '2022-08-21 22:12:51');
 
 -- --------------------------------------------------------
 
@@ -1125,7 +1159,9 @@ INSERT INTO `regulation_requests_access` (`id`, `database_id`, `name`, `nik`, `l
 (1, 'c8d5f369-7297-474c-8659-44ee93560760', 'asdfas', 'asdf', 'asdf', '2022-07-06 04:33:05', '2022-07-06 04:33:05'),
 (2, 'c8d5f369-7297-474c-8659-44ee93560760', 'asdfas', 'asdfa', 'asdfas', '2022-07-06 04:35:01', '2022-07-06 04:35:01'),
 (3, 'c140b22e-62c2-4fa2-8f43-561ce9688839', 'werwerwr', 'asdfa', 'werwer', '2022-07-06 06:00:29', '2022-07-06 06:00:29'),
-(4, 'c140b22e-62c2-4fa2-8f43-561ce9688839', 'Mikael', 'Indonesia', 'asd', '2022-07-06 09:31:53', '2022-07-06 09:31:53');
+(4, 'c140b22e-62c2-4fa2-8f43-561ce9688839', 'Mikael', 'Indonesia', 'asd', '2022-07-06 09:31:53', '2022-07-06 09:31:53'),
+(5, 'c140b22e-62c2-4fa2-8f43-561ce9688839', 'Mikael', 'Indonesia', 'Test', '2022-08-09 03:21:26', '2022-08-09 03:21:26'),
+(6, 'c97dd128-eb7e-40a3-845b-6143db0e6ea5', 'Mikael', 'Indonesia', 'asd', '2022-08-21 22:35:17', '2022-08-21 22:35:17');
 
 -- --------------------------------------------------------
 
@@ -1146,7 +1182,6 @@ CREATE TABLE `regulation_types` (
 --
 
 INSERT INTO `regulation_types` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
-('RET002', 'Peraturan JNE', 'Khusus', '2022-06-23 12:58:54', '2022-07-01 02:44:11'),
 ('RET003', 'Peraturan Perusahaan', 'Khusus', '2022-06-23 13:09:51', '2022-06-23 13:09:51'),
 ('RET004', 'Kementrian Perhubungan', 'Umum', '2022-06-28 05:21:23', '2022-06-28 05:21:23');
 
@@ -1356,6 +1391,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD UNIQUE KEY `faq_id_unique` (`id`);
+
+--
 -- Indexes for table `file_document_request`
 --
 ALTER TABLE `file_document_request`
@@ -1488,6 +1529,12 @@ ALTER TABLE `regulations`
   ADD UNIQUE KEY `regulations_id_unique` (`id`);
 
 --
+-- Indexes for table `regulation_files`
+--
+ALTER TABLE `regulation_files`
+  ADD KEY `regulation_files_regulation_id_foreign` (`regulation_id`);
+
+--
 -- Indexes for table `regulation_requests_access`
 --
 ALTER TABLE `regulation_requests_access`
@@ -1536,7 +1583,7 @@ ALTER TABLE `contact_us`
 -- AUTO_INCREMENT for table `database_public_requests`
 --
 ALTER TABLE `database_public_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1572,7 +1619,7 @@ ALTER TABLE `home_top`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1584,7 +1631,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `regulation_requests_access`
 --
 ALTER TABLE `regulation_requests_access`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -1699,6 +1746,12 @@ ALTER TABLE `power_attorneys`
 --
 ALTER TABLE `regencies`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `regulation_files`
+--
+ALTER TABLE `regulation_files`
+  ADD CONSTRAINT `regulation_files_regulation_id_foreign` FOREIGN KEY (`regulation_id`) REFERENCES `regulations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `regulation_requests_access`
