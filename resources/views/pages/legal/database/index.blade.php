@@ -38,7 +38,7 @@
                                 <option value="PERPRES" {{ request('type') == 'PERPRES' ? 'selected' : '' }}>PERPRES
                                 </option>
                             </x-select> --}}
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Jenis Dokumen" name="privilege">
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="privilege">
                                 <option value="ALL" {{ request('privilege') == 'ALL' ? 'selected' : '' }}>
                                     Peraturan Umum</option>
                                 <option value="RESTRICTED" {{ request('privilege') == 'RESTRICTED' ? 'selected' : '' }}>

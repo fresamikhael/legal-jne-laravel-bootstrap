@@ -40,8 +40,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
                             <td>
-                                <a href="{{ route('legal.regulation.delete-type', [$row->id]) }}"
-                                    class="btn btn-danger">Hapus</a>
+                                <a href="{{ route('legal.database.delete-type', [$row->id]) }}" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                     @endforeach
@@ -53,8 +52,7 @@
                 <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
-        <form class="mt-4" method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.database.store-type') }}">
+        <form class="mt-4" method="POST" enctype="multipart/form-data" action="{{ route('legal.database.store-type') }}">
             @csrf
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name" required>

@@ -38,12 +38,12 @@
                                     Normatif
                                 </option>
                             </x-select> --}}
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Jenis Dokumen" name="privilege">
-                                <option value="ALL" {{ request('privilege') == 'ALL' ? 'selected' : '' }}>
-                                    Database Umum</option>
-                                <option value="RESTRICTED" {{ request('privilege') == 'RESTRICTED' ? 'selected' : '' }}>
-                                    Database Khusus
-                                </option>
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="privilege">
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    </option>
+                                @endforeach
                             </x-select>
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="unit">
                                 <option value="Drafting" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>

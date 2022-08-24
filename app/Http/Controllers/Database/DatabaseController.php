@@ -59,7 +59,8 @@ class DatabaseController extends Controller
 
         foreach ($files as $file) {
             $extension = $file->getClientOriginalExtension();
-            $filename = str()->random(40) . '-' . '.' . $extension;
+            $name = $file->getClientOriginalName();
+            $filename = $name . '.' . $extension;
             $file->move('database', $filename);
 
             DatabaseFile::create([

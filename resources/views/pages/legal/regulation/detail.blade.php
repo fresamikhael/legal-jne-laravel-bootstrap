@@ -110,9 +110,12 @@
                         style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                         {{-- @dd($database->data) --}}
                         @foreach ($database->data as $file)
-                            <a href="{{ asset($file->name) }}" style="color: #fe1717" target="_blank">
-                                <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                            </a>
+                            <div class="row">
+                                <a href="{{ asset($file->name) }}" style="color: #fe1717" target="_blank">
+                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
+                                </a>
+                                <p>{{ Str::substr($file->name, 11) }}</p>
+                            </div>
                         @endforeach
                         {{-- @foreach ($database->file as $file)
                             <a href="{{ asset($database->file) }}" style="color: #fe1717" target="_blank">

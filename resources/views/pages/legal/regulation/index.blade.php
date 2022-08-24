@@ -30,12 +30,12 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('legal.regulation.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Jenis Dokumen" name="privilege">
-                                <option value="ALL" {{ request('privilege') == 'ALL' ? 'selected' : '' }}>
-                                    Database Umum</option>
-                                <option value="RESTRICTED" {{ request('privilege') == 'RESTRICTED' ? 'selected' : '' }}>
-                                    Database Khusus
-                                </option>
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="privilege">
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    </option>
+                                @endforeach
                             </x-select>
                             {{-- <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="type">
                                 @foreach ($type as $t)
@@ -68,8 +68,8 @@
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Cari</button>
                                     @if (auth()->user()->role == 'LEGAL')
-                                        <a href="{{ route('legal.regulation.add') }}" class="btn btn-primary"><i
-                                                class="fa fa-plus"></i> Tambah</a>
+                                        <a href="{{ route('legal.regulation.normative-create') }}"
+                                            class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
                                         <a href="{{ route('legal.regulation.request') }}" class="btn btn-success"><i
                                                 class="fas fa-file-contract"></i> Pengajuan</a>
                                         <a href="{{ route('legal.regulation.request-index') }}" class="btn btn-success"><i

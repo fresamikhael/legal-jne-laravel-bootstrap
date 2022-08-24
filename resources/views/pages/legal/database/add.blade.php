@@ -69,7 +69,7 @@
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege" required>
                         <option value="ALL">Peraturan Umum</option>
-                        <option value="RESTRICTED">Peraturan Khusus</option>
+                        <option value="RESTRICTED">Peraturan Internal</option>
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"

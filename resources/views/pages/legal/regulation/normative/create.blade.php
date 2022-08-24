@@ -35,7 +35,7 @@
             <div class="d-flex justify-content-end">
                 <div class="mt-3">
                     <a href={{ route('legal.regulation.add-type') }} class="btn btn-primary"><i class="fas fa-edit"></i>
-                        Tipe Regulasi</a>
+                        Tipe Dokumen</a>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Dokumen" name="name" required>
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="type" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen" name="type" required>
                     @foreach ($type as $t)
                         <option value="{{ $t->name }}">{{ $t->name }}</option>
                     @endforeach
@@ -68,8 +68,15 @@
                     <option value="Corporate">Corporate</option>
                 </x-select>
                 <input type="hidden" name="privilege" value="RESTRICTED">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
-                    name="set_date" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal" type="date" name="set_date"
+                    value="{{ Carbon\Carbon::today()->toDateString() }}" required />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
+                    label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
+                    name="historical_id">
+                    @foreach ($database as $d)
+                        <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
+                    @endforeach
+                </x-select>
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status" required>
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>

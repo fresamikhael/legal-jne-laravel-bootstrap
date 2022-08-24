@@ -54,10 +54,9 @@ class NormativeController extends Controller
     public function create()
     {
         $type = RegulationType::query()->where('type', 'Khusus')->get();
+        $database = Regulation::get();
 
-        return view('pages.legal.regulation.normative.create',[
-            'type' => $type
-        ]);
+        return view('pages.legal.regulation.normative.create',compact('database', 'type'));
     }
 
     public function store(Request $request)
@@ -76,7 +75,8 @@ class NormativeController extends Controller
 
         foreach ($files as $file) {
             $extension = $file->getClientOriginalExtension();
-            $filename = str()->random(40) . '-' . '.' . $extension;
+            $name = $file->getClientOriginalName();
+            $filename = $name . '.' . $extension;
             $file->move('regulation', $filename);
 
             RegulationFile::create([

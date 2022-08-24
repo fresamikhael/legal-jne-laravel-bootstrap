@@ -25,7 +25,7 @@ class RegulationController extends Controller
             ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'date', 'about']))
             ->where('privilege', 'ALL')
             ->paginate(10);
-        $type = RegulationType::get();
+        $type = RegulationType::query()->where('type', 'Khusus')->get();
 
         return view('pages.user.regulation.index',compact('database', 'type', 'all'));
     }
@@ -35,7 +35,7 @@ class RegulationController extends Controller
         $database = Regulation::orderBy('name', 'ASC')
             ->filter(request(['privilege', 'unit', 'name', 'number','type', 'date', 'about']))
             ->paginate(10);
-        $type = RegulationType::get();
+        $type = RegulationType::query()->where('type', 'Khusus')->get();
 
         return view('pages.legal.regulation.index',compact('database', 'type'));
     }
