@@ -23,7 +23,8 @@ class Regulation extends Model
         'privilege',
         'agency',
         'status',
-        'unit'
+        'unit',
+        'historical_id'
     ];
 
     protected $guarded = ['id'];
@@ -42,8 +43,20 @@ class Regulation extends Model
             return $query->where('privilege', 'like', '%'.$privilege.'%');
         });
 
+        $query->when($filters['number'] ?? false, function($query, $number) {
+            return $query->where('number', 'like', '%'.$number.'%');
+        });
+
         $query->when($filters['type'] ?? false, function($query, $type) {
             return $query->where('type', 'like', '%'.$type.'%');
+        });
+
+        $query->when($filters['date'] ?? false, function($query, $date) {
+            return $query->where('date', 'like', '%'.$date.'%');
+        });
+
+        $query->when($filters['about'] ?? false, function($query, $about) {
+            return $query->where('about', 'like', '%'.$about.'%');
         });
 
         $query->when($filters['name'] ?? false, function($query, $name) {

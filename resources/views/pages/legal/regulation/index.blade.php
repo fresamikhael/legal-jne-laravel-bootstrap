@@ -62,8 +62,11 @@
                                 value="{{ request('number') }}" />
                             <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" type="date"
                                 name="date" value="{{ request('date') }}" />
-                            <x-input label="Tentang" labelClass="col-sm-12" fieldClass="col-sm-12" name="title"
-                                value="{{ request('about') }}" />
+                            <div class="col-sm-12">
+                                <label for="">Tentang</label>
+                                <input type="text" class="form-control mb-4" value="{{ request('about') }}"
+                                    name="about">
+                            </div>
                             <div class="container">
                                 <div class="row g-2">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Cari</button>

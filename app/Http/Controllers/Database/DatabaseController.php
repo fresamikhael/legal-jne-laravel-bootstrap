@@ -17,7 +17,7 @@ class DatabaseController extends Controller
     {
         $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'type', 'number', 'year', 'about']))
+            ->filter(request(['privilege', 'type', 'number', 'year', 'number', 'about']))
             ->paginate(10);
         $type = DatabaseType::get();
 
@@ -30,7 +30,7 @@ class DatabaseController extends Controller
 
         $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
-            ->filter(request(['privilege','type', 'name', 'year', 'title']))
+            ->filter(request(['privilege','type', 'name', 'year', 'number', 'about']))
             ->paginate(10);
 
         return view('pages.legal.database.index',compact('database', 'type'));

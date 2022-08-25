@@ -47,7 +47,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" required>
                                         <input type="hidden" name="database_id" value="{{ $database->id }}"
                                             class="form-control">
                                     </div>
@@ -55,11 +55,11 @@
                                         <label for="recipient-name" class="col-form-label">Nomor Induk Kewarganegaraan
                                             (NIK)
                                             :</label>
-                                        <input type="text" name="nik" class="form-control">
+                                        <input type="text" name="nik" class="form-control" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Department/Cabang:</label>
-                                        <input type="text" name="location" class="form-control">
+                                        <input type="text" name="location" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -129,6 +129,15 @@
                                 <th scope="row" class="text-end">Status Peraturan</th>
                                 <td>{{ $database->status }}</td>
                             </tr>
+                            @if ($database->historical_id)
+                                <tr>
+                                    <th scope="row" class="text-end">Dokumen Sebelumnya</th>
+                                    <td><a style="color: brown"
+                                            href="{{ route('database.show', [$database->historical_id]) }}">Klik
+                                            Disini Untuk Melihat Peraturan</a></td>
+                                </tr>
+                            @else
+                            @endif
                         </table>
                     </div>
                 </div>
@@ -144,9 +153,12 @@
                     <div class="border rounded p-3"
                         style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                         @foreach ($database->file as $file)
-                            <a href="{{ asset($file->name) }}" style="color:#fe1717" target="_blank">
-                                <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                            </a>
+                            <div class="row">
+                                <a href="{{ asset($file->name) }}" style="color: #fe1717" target="_blank">
+                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
+                                </a>
+                                <p>{{ Str::substr($file->name, 9) }}</p>
+                            </div>
                         @endforeach
                     </div>
                 </div>

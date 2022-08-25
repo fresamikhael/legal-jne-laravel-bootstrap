@@ -137,6 +137,15 @@
                                 <th scope="row" class="text-end">Unit</th>
                                 <td>{{ $database->unit }}</td>
                             </tr>
+                            @if ($database->historical_id)
+                                <tr>
+                                    <th scope="row" class="text-end">Dokumen Sebelumnya</th>
+                                    <td><a style="color: brown"
+                                            href="{{ route('database.show', [$database->historical_id]) }}">Klik
+                                            Disini Untuk Melihat Peraturan</a></td>
+                                </tr>
+                            @else
+                            @endif
                         </table>
                     </div>
                 </div>

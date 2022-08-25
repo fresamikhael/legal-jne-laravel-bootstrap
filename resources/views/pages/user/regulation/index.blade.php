@@ -38,7 +38,7 @@
                                     Normatif
                                 </option>
                             </x-select> --}}
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="privilege">
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="type">
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
                                         {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
