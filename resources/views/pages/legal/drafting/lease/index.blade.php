@@ -99,9 +99,9 @@
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
                         name="optional_landlord_name" />
                     <x-address label="Landlord (Optional)" name="optional_landlord" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Hari"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Bulan"
                         name="period_of_time" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Jaminan" prefix="Rp"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Deposit" prefix="Rp"
                         name="guarantee_nominal" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" name="main_branch" />
                 </div>
@@ -125,18 +125,18 @@
                                 label="1. Fotocopy Disposisi Direksi" />
                             <x-input name="file_internal_memo" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="2. Asli Internal Memo Pengajuan Sewa" />
-                            <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="3. Asli Lease Drafting Application Form" />
-                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="4. Fotocopy Kartu Identitas Pemilik Hak" />
+                            <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="3. Asli Lease Drafting Application Form" />
+                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="4. Fotocopy Kartu Identitas Pemilik Hak" />
                             <x-input name="file_npwp_individual" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="5. Copy NPWP" />
                             <x-input name="file_family_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="6. Copy Kartu Keluarga" />
-                            <x-input name="file_marriage_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="7. Copy Akta Nikah" />
-                            <x-input name="file_death_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="8. Copy Akta Kematian" />
+                            <x-input name="file_marriage_certificate" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="7. Copy Akta Nikah" />
+                            <x-input name="file_death_certificate" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="8. Copy Akta Kematian" />
                             <x-input name="file_heir_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="9. Copy Surat Keterangan Ahli Waris" />
                             <x-input name="file_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
@@ -151,14 +151,14 @@
                                 label="14. Fotocopy Kuitansi Pelunasan" />
                             <x-input name="file_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="15. Asli Surat Kuasa" />
-                            <x-input name="file_previous_agreement" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="16. Perjanjian Sewa Sebelumnya" />
-                            <x-input name="file_director_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="17. Surat Kuasa Direksi" />
-                            <x-input name="file_lease_application" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="18. Form Pengajuan Sewa" />
-                            <x-input name="file_lease_eligibility" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="19. Form Kelayakan Sewa" />
+                            <x-input name="file_previous_agreement" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="16. Perjanjian Sewa Sebelumnya" />
+                            <x-input name="file_director_procuration" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="17. Surat Kuasa Direksi" />
+                            <x-input name="file_lease_application" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="18. Form Pengajuan Sewa" />
+                            <x-input name="file_lease_eligibility" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="19. Form Kelayakan Sewa" />
                         </div>
                     </div>
                 @endslot
@@ -169,48 +169,50 @@
                             <h5>Dokumen :</h5>
                         </div>
                         <div class="col-sm-9">
-                            <x-input name="file_director_disposition" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="1. Fotocopy Disposisi Direksi" />
+                            <x-input name="file_director_disposition" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="1. Fotocopy Disposisi Direksi" />
                             <x-input name="file_internal_memo" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="2. Asli Internal Memo Pengajuan Sewa" />
-                            <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="3. Asli Lease Drafting Application Form" />
+                            <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="3. Asli Lease Drafting Application Form" />
                             <x-input name="file_director_id_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="4. Fotocopy KTP Direksi" />
-                            <x-input name="file_deed_of_incorporation" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="5. Fotocopy Akta Pendirian dan Perubahan Terakhir" />
+                            <x-input name="file_deed_of_incorporation" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="5. Fotocopy Akta Pendirian dan Perubahan Terakhir" />
                             <x-input name="file_sk_menkumham" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="6. Fotocopy SK MENKUM-HAM" />
-                            <x-input name="file_siup" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                            {{-- <x-input name="file_siup" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="7. Fotocopy SIUP" />
                             <x-input name="file_tdp" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="8. Fotocopy TDP" />
-                            <x-input name="file_npwp_legal_entity" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="9. Fotocopy NPWP" />
-                            <x-input name="file_skd" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="8. Fotocopy TDP" /> --}}
+                            <x-input name="file_npwp_legal_entity" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="7. Fotocopy NPWP" />
+                            <x-input name="file_nib" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="8. NIB" />
+                            {{-- <x-input name="file_skd" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="10. Fotocopy SKD" />
                             <x-input name="file_skdu" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="11. Fotocopy SKDU" />
+                                label="11. Fotocopy SKDU" /> --}}
                             <x-input name="file_certificate" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="12. Fotocopy Sertifikat/Girik" />
+                                label="9. Fotocopy Sertifikat/Girik" />
                             <x-input name="file_imb" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="13. Fotocopy IMB" />
+                                label="10. Fotocopy IMB" />
                             <x-input name="file_sppt" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="14. Fotocopy SPPT & STTS (PBB)" />
+                                label="11. Fotocopy SPPT & STTS (PBB)" />
                             <x-input name="file_dp_receipt" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="15. Fotocopy Kuitansi DP" />
+                                label="12. Fotocopy Kuitansi DP" />
                             <x-input name="file_payment_imb" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="16. Fotocopy Kuitansi Pelunasan" />
+                                label="13. Fotocopy Kuitansi Pelunasan" />
                             <x-input name="file_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="17. Asli Surat Kuasa" />
-                            <x-input name="file_previous_agreement" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="18. Perjanjian Sewa Sebelumnya" />
-                            <x-input name="file_director_procuration" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="19. Surat Kuasa Direksi" />
-                            <x-input name="file_lease_application" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="20. Form Pengajuan Sewa" />
-                            <x-input name="file_lease_eligibility" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="21. Form Kelayakan Sewa" />
+                                label="14. Asli Surat Kuasa" />
+                            <x-input name="file_previous_agreement" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="15. Perjanjian Sewa Sebelumnya" />
+                            <x-input name="file_director_procuration" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="16. Surat Kuasa Direksi" />
+                            <x-input name="file_lease_application" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="17. Form Pengajuan Sewa" />
+                            <x-input name="file_lease_eligibility" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="18. Form Kelayakan Sewa" />
                         </div>
                     </div>
                 @endslot

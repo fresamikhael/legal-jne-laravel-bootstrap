@@ -76,7 +76,8 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
+                    <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" name="user_id" hidden />
                     <x-address label="Pihak" name="party" />
                 </div>
@@ -118,7 +119,7 @@
                 </div>
             </div>
 
-            <x-lease-type>
+            {{-- <x-lease-type>
                 @slot('individual')
                     <div class="row mt-3">
                         <div class="col-sm-3">
@@ -218,7 +219,7 @@
                         </div>
                     </div>
                 @endslot
-            </x-lease-type>
+            </x-lease-type> --}}
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />

@@ -29,8 +29,7 @@
             @else
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
                     name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }}
-                    {{ $readOnly ? 'readonly' : '' }} />
+                    {{ $required ? 'required' : '' }} {{ $readOnly ? 'readonly' : '' }} />
             @endif
         @endif
     </div>

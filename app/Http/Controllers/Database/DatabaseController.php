@@ -58,9 +58,9 @@ class DatabaseController extends Controller
         $files = $request->file('file_database');
 
         foreach ($files as $file) {
-            $extension = $file->getClientOriginalExtension();
+            // $extension = $file->getClientOriginalExtension();
             $name = $file->getClientOriginalName();
-            $filename = $name . '.' . $extension;
+            $filename = $name;
             $file->move('database', $filename);
 
             DatabaseFile::create([
@@ -92,8 +92,9 @@ class DatabaseController extends Controller
         $files = $request->file('file_database');
 
         foreach ($files as $file) {
-            $extension = $file->getClientOriginalExtension();
-            $filename = str()->random(40) . '-' . '.' . $extension;
+            // $extension = $file->getClientOriginalExtension();
+            $name = $file->getClientOriginalName();
+            $filename = $name;
             $file->move('database', $filename);
 
             DatabaseFile::where('database_id', $id)->update([
