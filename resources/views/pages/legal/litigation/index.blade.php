@@ -21,7 +21,7 @@
                     //       'style' => 'background: #fe3f40 !important; color: #fff !important;',
                     //   ],
                     [
-                        'label' => 'Outstanding',
+                        'label' => 'Others',
                         'route' => 'legal.litigation.outstanding.index',
                         'style' => 'background: #2a2a2a !important; color: #fff !important;',
                     ],

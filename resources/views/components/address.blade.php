@@ -41,7 +41,7 @@
                 <div class="mb-3 row">
                     <label for="{{ $name }}_province" class="col-sm-5 col-form-label">Provinsi {{ $label }}</label>        
                     <div class="col-sm-7">
-                        <select required onChange={ inputProvinceChange } name="{{ $name }}_province" id="{{ $name }}_province" class="form-select" aria-label="Default select example">
+                        <select  onChange={ inputProvinceChange } name="{{ $name }}_province" id="{{ $name }}_province" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
                             @foreach ($province as $row)
                                 <option value="{{$row->id}}">{{ ucwords(strtolower($row->name)) }}</option>
@@ -52,7 +52,7 @@
                 <div class="mb-3 row">
                     <label for="{{ $name }}_regency" class="col-sm-5 col-form-label">Kab/Kota {{ $label }}</label>        
                     <div class="col-sm-7">
-                        <select required onChange={ inputRegencyChange } name="{{ $name }}_regency" id="{{ $name }}_regency" class="form-select" aria-label="Default select example">
+                        <select  onChange={ inputRegencyChange } name="{{ $name }}_regency" id="{{ $name }}_regency" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
                             { regency.map((value, index) => {
                                 return (
@@ -65,7 +65,7 @@
                 <div class="mb-3 row">
                     <label for="{{ $name }}_district" class="col-sm-5 col-form-label">Kecamatan {{ $label }}</label>        
                     <div class="col-sm-7">
-                        <select required onChange={ inputDistrictChange } name="{{ $name }}_district" id="{{ $name }}_district" class="form-select" aria-label="Default select example">
+                        <select  onChange={ inputDistrictChange } name="{{ $name }}_district" id="{{ $name }}_district" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
                             { district.map((value, index) => {
                                 return (
@@ -78,7 +78,7 @@
                 <div class="mb-3 row">
                     <label for="{{ $name }}_village" class="col-sm-5 col-form-label">Kelurahan {{ $label }}</label>        
                     <div class="col-sm-7">
-                        <select required name="{{ $name }}_village" id="{{ $name }}_village" class="form-select" aria-label="Default select example">
+                        <select  name="{{ $name }}_village" id="{{ $name }}_village" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
                             { village.map((value, index) => {
                                 return (
@@ -92,13 +92,13 @@
                     <label for="{{ $name }}_zip_code"
                         class="col-sm-5 col-form-label">Kode Pos {{ $label }}</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="{{ $name }}_zip_code" name="{{ $name }}_zip_code" required/>
+                        <input type="text" class="form-control" id="{{ $name }}_zip_code" name="{{ $name }}_zip_code" />
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="{{ $name }}_address" class="col-sm-5 col-form-label">Alamat {{ $label }}</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" id="{{ $name }}_address" name="{{ $name }}_address" required></textarea>
+                        <textarea class="form-control" id="{{ $name }}_address" name="{{ $name }}_address" ></textarea>
                     </div>
                 </div>
             </React.Fragment>

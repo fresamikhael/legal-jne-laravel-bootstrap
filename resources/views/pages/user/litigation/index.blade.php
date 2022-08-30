@@ -16,7 +16,7 @@
                         'style' => 'background: #03a4ed !important; color: #fff !important;',
                     ],
                     [
-                        'label' => 'Outstanding',
+                        'label' => 'Others',
                         'route' => 'litigation.outstanding.index',
                         'style' => 'background: #fe3f40 !important; color: #fff !important;',
                     ],
