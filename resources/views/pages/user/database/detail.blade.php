@@ -90,6 +90,16 @@
                                 <td>{{ $database->name }}</td>
                             </tr>
                             <tr>
+                                <th scope="row" class="text-end">Jenis Peraturan</th>
+                                <td>
+                                    @if ($database->privilege == 'ALL')
+                                        Peraturan Umum
+                                    @else
+                                        Peraturan Internal
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
                                 <th scope="row" class="text-end">Tipe Peraturan</th>
                                 <td>{{ $database->type }}</td>
                             </tr>

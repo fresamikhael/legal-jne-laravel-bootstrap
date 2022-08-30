@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    Outstanding
+    Others
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <x-button-back />
 
         <div class="d-flex align-items-center justify-content-between">
-            <h2>Outstanding</h2>
+            <h2>Others</h2>
 
             <x-modal-history id="dataTables">
                 @slot('header')
@@ -54,99 +54,21 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Perusahaan" name="company_name"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penggugat" name="company_name"
                         type="text" required />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Penanggung Jawab" name="person_responsible"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Tergugat" name="person_responsible"
                         required />
 
                     <hr>
 
                     <div class="col-sm-3">
-                        <h4>Alamat Agen :</h4>
+                        <h4>Alamat Penggugat/Tergugat :</h4>
                     </div>
                     <x-address label="Agen" name="agent" />
 
-                    <hr>
 
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Outstanding" name="total_outstanding"
-                        required />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Outstanding" name="outstanding_type"
-                        required>
-                        <option value="Customer">Customer</option>
-                        <option value="Agen">Agen</option>
-                    </x-select>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Outstanding" name="outstanding_types"
-                        hidden>
-                        <option value="Penjualan">Penjualan</option>
-                        <option value="COD">COD</option>
-                        <option value="Keduanya">Keduanya</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
-                        name="outstanding_sales" prefix="Rp" hidden />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
-                        prefix="Rp" hidden />
-                    <script>
-                        document.getElementById("outstanding_type").addEventListener("change", handleChange);
 
-                        function handleChange() {
-                            var x = document.getElementById("outstanding_type");
-                            if (x.value === "Agen") {
-                                document.getElementById("outstanding_types1").classList.remove('d-none');
-                                document.getElementById("outstanding_types1").classList.add('d-flex');
-                                document.getElementById("outstanding_types").required = true;
-                            } else {
-                                document.getElementById("outstanding_types1").classList.remove('d-flex');
-                                document.getElementById("outstanding_types1").classList.add('d-none');
-                                document.getElementById("outstanding_types").required = false;
-                                document.getElementById("outstanding_cod1").classList.remove('d-flex');
-                                document.getElementById("outstanding_cod1").classList.add('d-none');
-                                document.getElementById("outstanding_cod").required = false;
-                                document.getElementById("outstanding_sales1").classList.remove('d-flex');
-                                document.getElementById("outstanding_sales1").classList.add('d-none');
-                                document.getElementById("outstanding_sales").required = false;
-                            }
-                        }
-                    </script>
 
-                    <script>
-                        document.getElementById("outstanding_types").addEventListener("change", handleChange);
-
-                        function handleChange() {
-                            var x = document.getElementById("outstanding_types");
-                            if (x.value === "Penjualan") {
-                                document.getElementById("outstanding_sales1").classList.remove('d-none');
-                                document.getElementById("outstanding_sales1").classList.add('d-flex');
-                                document.getElementById("outstanding_sales").required = true;
-                                document.getElementById("outstanding_cod1").classList.remove('d-flex');
-                                document.getElementById("outstanding_cod1").classList.add('d-none');
-                                document.getElementById("outstanding_cod").required = false;
-                            } else if (x.value === "COD") {
-                                document.getElementById("outstanding_cod1").classList.remove('d-none');
-                                document.getElementById("outstanding_cod1").classList.add('d-flex');
-                                document.getElementById("outstanding_cod").required = true;
-                                document.getElementById("outstanding_sales1").classList.remove('d-flex');
-                                document.getElementById("outstanding_sales1").classList.add('d-none');
-                                document.getElementById("outstanding_sales").required = false;
-                            } else {
-                                document.getElementById("outstanding_cod1").classList.remove('d-none');
-                                document.getElementById("outstanding_cod1").classList.add('d-flex');
-                                document.getElementById("outstanding_cod").required = true;
-                                document.getElementById("outstanding_sales1").classList.remove('d-none');
-                                document.getElementById("outstanding_sales1").classList.add('d-flex');
-                                document.getElementById("outstanding_sales").required = true;
-                            }
-                        }
-                    </script>
-
-                    <hr>
-
-                    <div class="col-sm-3">
-                        <h4>Periode Outstanding :</h4>
-                    </div>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Sejak Kapan" name="outstanding_start"
-                        type="date" required />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Sampai Kapan" name="outstanding_end"
-                        type="date" required />
                 </div>
             </div>
 
@@ -166,32 +88,27 @@
                 </div>
                 <div class="col-sm-9">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Disposisi Management*"
-                        name="file_management_disposition" required />
+                        name="file_management_disposition" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Akta Pendirian dan Perubahan Terakhir"
                         name="file_deed_of_incoporation" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_sk_menkumham"
                         option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*" name="file_director_id_card"
-                        required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" option required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS"
-                        name="file_business_permit" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
-                        name="file_location_permit" option required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Rekapan Outstanding*"
-                        name="file_outstanding_recap" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Scan Surat Penagihan*"
-                        name="file_billing_letter" required />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
-                        name="file_internal_memo" option required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*"
+                        name="file_director_id_card" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" option />
+                    <div>
+                        <x-input fieldClass="col-sm-5" placeholder="Dokumen Terkait" type="text" />
+                        <x-file fieldClass="col-sm-7" name="related_document" />
+                    </div>
+
                 </div>
             </div>
 
             <hr>
 
-            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Packing List Outstanding"
-                name="outstanding_packing_list" placeholder="Masukkan link gdrive" type="text" required />
+            <x-input fieldClass="col-sm-12" name="outstanding_packing_list" placeholder="Masukkan link gdrive"
+                type="text" />
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Submit" buttonClass="btn-danger" />

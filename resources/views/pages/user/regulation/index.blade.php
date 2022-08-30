@@ -41,11 +41,14 @@
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="type">
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
-                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }} |
+                                        {{ $total }}
                                     </option>
                                 @endforeach
                             </x-select>
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="unit">
+                            <x-input label="Tahun" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
+                                value="{{ request('date') }}" />
+                            {{-- <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="unit">
                                 <option value="Drafting" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>
                                     Drafting
                                 </option>
@@ -58,7 +61,7 @@
                                 <option value="Corporate" {{ request('unit') == '. {$t->name} .' ? 'selected' : '' }}>
                                     Corporate
                                 </option>
-                            </x-select>
+                            </x-select> --}}
                             <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
                             <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"

@@ -20,7 +20,7 @@
                                     style="color:#fe1717">Khusus</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Tambah</li>
+                                Ubah</li>
                         </ol>
                     </nav>
                 </div>
@@ -52,8 +52,8 @@
                         <option value="{{ $t->name }}">{{ $t->name }}</option>
                     @endforeach
                 </x-select>
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra"
-                    value="{{ $data->agency }}" name="agency" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra" value="{{ $data->agency }}"
+                    name="agency" required />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" name="number"
                     value="{{ $data->number }}" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date" name="date"
@@ -73,9 +73,24 @@
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>
                 </x-select>
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Sebelumnya" type="download"
-                    path="{{ asset($data->file) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
-                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file"></x-file>
+                @foreach ($database->data as $file)
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Sebelumnya" type="download"
+                        path="{{ asset($file->name) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
+                @endforeach
+                @if ($database->historical_id)
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
+                        name="historical_id" required>
+                        @foreach ($relation as $d)
+                            <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
+                        @endforeach
+                    </x-select>
+                @else
+                @endif
+                {{-- <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Sebelumnya" type="download"
+                    path="{{ asset($data->file) }}" blank>Lihat <i class="fa fa-eye"></i></x-file> --}}
+                {{-- <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file"></x-file> --}}
+                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file_database[]" multiple />
             </div>
 
             <div class="d-flex justify-content-end me-4">

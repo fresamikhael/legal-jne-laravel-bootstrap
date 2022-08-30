@@ -74,9 +74,9 @@ class NormativeController extends Controller
         $files = $request->file('file_database');
 
         foreach ($files as $file) {
-            $extension = $file->getClientOriginalExtension();
+            // $extension = $file->getClientOriginalExtension();
             $name = $file->getClientOriginalName();
-            $filename = $name . '.' . $extension;
+            $filename = $name;
             $file->move('regulation', $filename);
 
             RegulationFile::create([
@@ -92,9 +92,15 @@ class NormativeController extends Controller
     {
         $data = Regulation::where('id', $id)->firstOrFail();
         $type = RegulationType::query()->where('type', 'Khusus')->get();
+        $database = Regulation::where('id', $id)
+            ->with('data')->first();
+        $relation = Regulation::get();
+
         return view('pages.legal.regulation.normative.edit', [
             'data' => $data,
-            'type' => $type
+            'type' => $type,
+            'database' => $database,
+            'relation' => $relation
         ]);
     }
 
@@ -104,17 +110,34 @@ class NormativeController extends Controller
 
         $regulation = Regulation::where('id',$id)->firstOrFail();
 
-        if ($request->file('file')) {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file'] = 'Regulation/'.$filename;
-            $file->move('Regulation', $filename);
+        // if ($request->file('file')) {
+        //     $file = $request->file('file');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = Str::random(40) . '.' . $extension;
+        //     $data['file'] = 'Regulation/'.$filename;
+        //     $file->move('Regulation', $filename);
+        // }
+        // else {
+        //     unset($data['file']);
+        // }
+
+        if ($request->file('file_database')) {
+        $files = $request->file('file_database');
+
+        foreach ($files as $file) {
+            // $extension = $file->getClientOriginalExtension();
+            $name = $file->getClientOriginalName();
+            $filename = $name;
+            $file->move('regulation', $filename);
+
+            RegulationFile::where('regulation_id', $id)->update([
+                'name' => 'regulation/'.$filename
+            ]);
+            }
         }
         else {
             unset($data['file']);
         }
-
 
         $regulation->update($data);
 

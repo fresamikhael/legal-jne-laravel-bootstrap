@@ -26,8 +26,9 @@ class RegulationController extends Controller
             ->where('privilege', 'ALL')
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
+        $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
 
-        return view('pages.user.regulation.index',compact('database', 'type', 'all'));
+        return view('pages.user.regulation.index',compact('database', 'type', 'all', 'total'));
     }
 
     public function indexLegal()
@@ -36,8 +37,9 @@ class RegulationController extends Controller
             ->filter(request(['privilege', 'unit', 'name', 'number','type', 'date', 'about']))
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
+        $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
 
-        return view('pages.legal.regulation.index',compact('database', 'type'));
+        return view('pages.legal.regulation.index',compact('database', 'type', 'total'));
     }
 
     public function indexRequestLegal()
