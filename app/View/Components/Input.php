@@ -22,6 +22,8 @@ class Input extends Component
     public $value;
     public $readOnly;
     public $option;
+    public $multiple;
+
 
     /**
      * Create a new component instance.
@@ -45,6 +47,8 @@ class Input extends Component
         $value = null,
         $readOnly = null,
         $option = null,
+        $multiple = null,
+
     )
     {
         $this->inputClass = $inputClass;
@@ -63,6 +67,7 @@ class Input extends Component
         $this->value = $value;
         $this->readOnly = $readOnly;
         $this->option = $option;
+        $this->multiple = $multiple;
     }
 
     /**

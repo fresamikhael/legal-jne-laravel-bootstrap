@@ -70,11 +70,12 @@ return new class extends Migration
             $table->string('file_director_id_card')->nullable();
             $table->string('file_deed_of_incorporation')->nullable();
             $table->string('file_sk_menkumham')->nullable();
-            $table->string('file_siup')->nullable();
-            $table->string('file_tdp')->nullable();
+            // $table->string('file_siup')->nullable();
+            // $table->string('file_tdp')->nullable();
             $table->string('file_npwp_legal_entity')->nullable();
-            $table->string('file_skd')->nullable();
-            $table->string('file_skdu')->nullable();
+            $table->string('file_nib')->nullable();
+            // $table->string('file_skd')->nullable();
+            // $table->string('file_skdu')->nullable();
 
             // Objek Sewa
             $table->string('file_certificate');
@@ -90,10 +91,13 @@ return new class extends Migration
             $table->string('file_lease_application')->nullable();
             $table->string('file_lease_eligibility')->nullable();
 
-            $table->string('sales_name');
-            $table->string('sales_email');
-            $table->string('sales_phone');
-            $table->string('sales_department');
+            $table->string('file_agreement_draft')->nullable();
+            $table->string('file_agreement_signature')->nullable();
+
+            $table->string('sales_name')->nullable();
+            $table->string('sales_email')->nullable();
+            $table->string('sales_phone')->nullable();
+            $table->string('sales_department')->nullable();
 
             $table->string('user_note')->nullable();
             $table->string('cb_note')->nullable();
