@@ -196,6 +196,40 @@ class LandSellController extends Controller
             $file->move('LandSell', $filename);
         }
 
+        if ($request->file('file_power_attorney')) {
+            $file = $request->file('file_power_attorney');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_power_attorney'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
+
+        //{}
+
+        if ($request->file('file_location')) {
+            $file = $request->file('file_location');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_location'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
+
+        if ($request->file('file_coordinate')) {
+            $file = $request->file('file_coordinate');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_coordinate'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
+
+        if ($request->file('file_business_case')) {
+            $file = $request->file('file_business_case');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_business_case'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
+
         if ($request->file('file_appraisal')) {
             $file = $request->file('file_appraisal');
             $extension = $file->getClientOriginalExtension();

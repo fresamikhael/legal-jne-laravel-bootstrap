@@ -55,39 +55,39 @@
                     <hr>
 
                     <div class="col-sm-3">
-                        <h4>Alamat Agen :</h4>
+                        <h4>Alamat Penggugat/Tergugat :</h4>
                     </div>
                     @php
                         $province = DB::table('provinces')
                             ->where('id', $data->agent_province)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Agen"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Penggugat/Tergugat"
                         value="{{ ucwords(strtolower($province->name)) }}" disabled />
                     @php
                         $regency = DB::table('regencies')
                             ->where('id', $data->agent_regency)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Agen"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Penggugat/Tergugat"
                         value="{{ ucwords(strtolower($regency->name)) }}" disabled />
                     @php
                         $district = DB::table('districts')
                             ->where('id', $data->agent_district)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Agen"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Penggugat/Tergugat"
                         value="{{ ucwords(strtolower($district->name)) }}" disabled />
                     @php
                         $village = DB::table('villages')
                             ->where('id', $data->agent_village)
                             ->first();
                     @endphp
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Agen"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Penggugat/Tergugat"
                         value="{{ ucwords(strtolower($village->name)) }}" disabled />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Agen"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Penggugat/Tergugat"
                         value="{{ $data->agent_zip_code }}" disabled />
-                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Agen" disabled>
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Penggugat/Tergugat" disabled>
                         {{ $data->agent_address }}
                     </x-textarea>
 
@@ -146,8 +146,9 @@
                         <i class="fa fa-download"></i>
                     </x-file>
                     @if ($data->file_deed_of_incoporation)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Akta Pendirian dan Perubahan Terakhir"
-                            name="file_deed_of_incoporation" type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="2. Akta Pendirian dan Perubahan Terakhir" name="file_deed_of_incoporation"
+                            type="download"
                             path="{{ route('download.litigation', [substr($data->file_deed_of_incoporation, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
@@ -157,8 +158,8 @@
                             label="2. Akta Pendirian dan Perubahan Terakhir" value="Tidak Ada" readOnly />
                     @endif
                     @if ($data->file_sk_menkumham)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_sk_menkumham"
-                            type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham"
+                            name="file_sk_menkumham" type="download"
                             path="{{ route('download.litigation', [substr($data->file_sk_menkumham, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
@@ -167,23 +168,24 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" value="Tidak Ada"
                             readOnly />
                     @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*" name="file_director_id_card"
-                        type="download"
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*"
+                        name="file_director_id_card" type="download"
                         path="{{ route('download.litigation', [substr($data->file_director_id_card, 11)]) }}">Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" type="download"
-                        path="{{ route('download.litigation', [substr($data->file_npwp, 11)]) }}">Unduh
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp"
+                        type="download" path="{{ route('download.litigation', [substr($data->file_npwp, 11)]) }}">Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
                     @if ($data->file_nib)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" type="download"
-                            path="{{ route('download.litigation', [substr($data->file_nib, 11)]) }}">
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib"
+                            type="download" path="{{ route('download.litigation', [substr($data->file_nib, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
                     @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" value="Tidak Ada" readOnly />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" value="Tidak Ada"
+                            readOnly />
                     @endif
                     @if ($data->file_business_permit)
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS"
@@ -204,8 +206,8 @@
                             <i class="fa fa-download"></i>
                         </x-file>
                     @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS" value="Tidak Ada"
-                            readOnly />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
+                            value="Tidak Ada" readOnly />
                     @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Rekapan Outstanding*" type="download"
                         name="file_outstanding_recap"

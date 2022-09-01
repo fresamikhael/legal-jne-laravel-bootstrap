@@ -71,7 +71,7 @@
                     <div class="col-sm-3">
                         <h4>Alamat Penggugat/Tergugat :</h4>
                     </div>
-                    <x-address label="Agen" name="agent" />
+                    <x-address label="Penggugat/Tergugat" name="agent" />
 
                     <hr>
 
