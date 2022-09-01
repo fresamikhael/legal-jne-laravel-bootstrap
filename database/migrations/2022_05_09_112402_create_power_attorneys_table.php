@@ -18,11 +18,19 @@ return new class extends Migration
             $table->string('user_id');
 
             $table->string('name');
+            $table->string('id_number');
+            $table->string('birth_place');
+            $table->string('birth_date');
+            $table->string('user_province');
+            $table->string('user_regency');
+            $table->string('user_district');
+            $table->string('user_village');
+            $table->string('user_zip_code');
+            $table->text('user_address');
             $table->string('division');
             $table->string('departement');
             $table->string('attorney_purpose');
             $table->string('file_internal_memo');
-            $table->string('file_supporting_document');
             $table->string('file_endorsee_id');
 
             $table->string('user_note')->nullable();

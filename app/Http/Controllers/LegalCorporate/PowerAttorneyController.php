@@ -31,14 +31,6 @@ class PowerAttorneyController extends Controller
             $file->move('PowerAttorney', $filename);
         }
 
-        if ($request->file('file_supporting_document')) {
-            $file = $request->file('file_supporting_document');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_supporting_document'] = 'PowerAttorney/'.$filename;
-            $file->move('PowerAttorney', $filename);
-        }
-
         if ($request->file('file_endorsee_id')) {
             $file = $request->file('file_endorsee_id');
             $extension = $file->getClientOriginalExtension();

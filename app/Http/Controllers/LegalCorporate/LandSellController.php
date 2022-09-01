@@ -23,43 +23,20 @@ class LandSellController extends Controller
     {
         $data = $request->all();
 
-        if ($request->file('file_advice_planning')) {
-            $file = $request->file('file_advice_planning');
+        if ($request->file('file_certificate')) {
+            $file = $request->file('file_certificate');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_advice_planning'] = 'LandSell/'.$filename;
+            $data['file_certificate'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 
-        if ($request->file('file_kjjp')) {
-            $file = $request->file('file_kjjp');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_kjjp'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
 
-        if ($request->file('file_bca')) {
-            $file = $request->file('file_bca');
+        if ($request->file('file_ippt')) {
+            $file = $request->file('file_ippt');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_bca'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
-
-        if ($request->file('file_disposition')) {
-            $file = $request->file('file_disposition');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_disposition'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
-
-        if ($request->file('file_ownership_proof')) {
-            $file = $request->file('file_ownership_proof');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_ownership_proof'] = 'LandSell/'.$filename;
+            $data['file_ippt'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 
@@ -79,23 +56,31 @@ class LandSellController extends Controller
             $file->move('LandSell', $filename);
         }
 
-        if ($request->file('file_im')) {
-            $file = $request->file('file_im');
+        if ($request->file('file_mom')) {
+            $file = $request->file('file_mom');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_im'] = 'LandSell/'.$filename;
+            $data['file_mom'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 
-        if ($request->file('file_purchase')) {
-            $file = $request->file('file_purchase');
+        if ($request->file('file_previous_owner_id')) {
+            $file = $request->file('file_previous_owner_id');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_purchase'] = 'LandSell/'.$filename;
+            $data['file_previous_owner_id'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 
         // {}
+
+        if ($request->file('file_internal_memo')) {
+            $file = $request->file('file_internal_memo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_internal_memo'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
 
         if ($request->file('file_ktp')) {
             $file = $request->file('file_ktp');
@@ -121,19 +106,11 @@ class LandSellController extends Controller
             $file->move('LandSell', $filename);
         }
 
-        if ($request->file('file_kk')) {
-            $file = $request->file('file_kk');
+        if ($request->file('file_ktp_pasutri')) {
+            $file = $request->file('file_ktp_pasutri');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_kk'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
-
-        if ($request->file('file_bpjs')) {
-            $file = $request->file('file_bpjs');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_bpjs'] = 'LandSell/'.$filename;
+            $data['file_ktp_pasutri'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 
@@ -161,15 +138,23 @@ class LandSellController extends Controller
             $file->move('LandSell', $filename);
         }
 
-        if ($request->file('file_heir_npwp')) {
-            $file = $request->file('file_heir_npwp');
+        if ($request->file('file_kk')) {
+            $file = $request->file('file_kk');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_heir_npwp'] = 'LandSell/'.$filename;
+            $data['file_kk'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 
         // {}
+
+        if ($request->file('file_internal_memo_legal')) {
+            $file = $request->file('file_internal_memo_legal');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_internal_memo_legal'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
 
         if ($request->file('file_legal_corp')) {
             $file = $request->file('file_legal_corp');
@@ -211,35 +196,11 @@ class LandSellController extends Controller
             $file->move('LandSell', $filename);
         }
 
-        if ($request->file('file_business_permit')) {
-            $file = $request->file('file_business_permit');
+        if ($request->file('file_appraisal')) {
+            $file = $request->file('file_appraisal');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_business_permit'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
-
-        if ($request->file('file_pb_umku')) {
-            $file = $request->file('file_pb_umku');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_pb_umku'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
-
-        if ($request->file('file_location_permit')) {
-            $file = $request->file('file_location_permit');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_location_permit'] = 'LandSell/'.$filename;
-            $file->move('LandSell', $filename);
-        }
-
-        if ($request->file('file_npwp_card')) {
-            $file = $request->file('file_npwp_card');
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::random(40) . '.' . $extension;
-            $data['file_npwp_card'] = 'LandSell/'.$filename;
+            $data['file_appraisal'] = 'LandSell/'.$filename;
             $file->move('LandSell', $filename);
         }
 

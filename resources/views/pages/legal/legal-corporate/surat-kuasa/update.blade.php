@@ -82,6 +82,45 @@
                 <div class="col-sm-12">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengguna" name="name"
                         value="{{ $data->name }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor KTP" name="id_number"
+                        value="{{ $data->id_number }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tempat Lahir" name="birth_place"
+                        value="{{ $data->birth_place }}" disabled />
+                    <x-input type="date" labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Lahir"
+                        name="birth_date" value="{{ $data->birth_date }}" disabled />
+                    @php
+                        $province = DB::table('provinces')
+                            ->where('id', $data->user_province)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi"
+                        value="{{ ucwords(strtolower($province->name)) }}" disabled />
+                    @php
+                        $regency = DB::table('regencies')
+                            ->where('id', $data->user_regency)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota"
+                        value="{{ ucwords(strtolower($regency->name)) }}" disabled />
+                    @php
+                        $district = DB::table('districts')
+                            ->where('id', $data->user_district)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan"
+                        value="{{ ucwords(strtolower($district->name)) }}" disabled />
+                    @php
+                        $village = DB::table('villages')
+                            ->where('id', $data->user_village)
+                            ->first();
+                    @endphp
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan"
+                        value="{{ ucwords(strtolower($village->name)) }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos"
+                        value="{{ $data->user_zip_code }}" disabled />
+                    <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat" disabled>
+                        {{ $data->user_address }}
+                    </x-textarea>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Divisi/Regional" name="division"
                         value="{{ $data->division }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departement/Cabang Utama" name="departement"
@@ -106,12 +145,8 @@
                         label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" type="download"
                         path="{{ route('download.powerattorney', [substr($data->file_internal_memo, 14)]) }}">Unduh <i
                             class="fa fa-download"></i></x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Dokumen Pendukung*"
-                        name="file_supporting_document" type="download"
-                        path="{{ route('download.powerattorney', [substr($data->file_supporting_document, 14)]) }}">Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. KTP Penerima Kuasa*"
+
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. KTP Penerima Kuasa*"
                         name="file_endorsee_id" type="download"
                         path="{{ route('download.powerattorney', [substr($data->file_endorsee_id, 14)]) }}">Unduh
                         <i class="fa fa-download"></i>
