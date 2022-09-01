@@ -34,9 +34,11 @@
                                     <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
                                         DRAFT</button>
                                 @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
+                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT
+                                        DRAFT</button>
                                 @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
+                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT
+                                        DRAFT</button>
                                 @elseif ($row->status == 'USER SEND SIGNATURED FINAL AGREEMENT')
                                     <button type="button" class="btn btn-success" disabled>USER SEND SIGNATURED FINAL
                                         AGREEMENT</button>
@@ -74,7 +76,7 @@
             @endslot
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.vendor-post') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.legal-vendor-post') }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -201,17 +203,17 @@
                 </div>
                 <div class="col-sm-9">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan*"
-                        name="file_deed_of_company" />
+                        name="file_deed_of_company" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*"
-                        name="file_nib" />
+                        name="file_nib" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)*"
-                        name="file_npwp" />
+                        name="file_npwp" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha*"
-                        name="file_business_permit" />
+                        name="file_business_permit" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS*"
-                        name="file_oss_location" />
+                        name="file_oss_location" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi*"
-                        name="file_director_id_card" />
+                        name="file_director_id_card" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" />
                 </div>
@@ -228,7 +230,8 @@
                     <x-address label="PIC" name="correspondence" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon PIC"
                         name="correspondence_phone" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC" name="correspondence_email" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC"
+                        name="correspondence_email" />
                 </div>
             </div>
 
