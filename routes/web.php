@@ -102,6 +102,8 @@ Route::prefix('legal/drafting')->name('legal.drafting.')->group(function () {
     Route::get('customer/history', [CustomerController::class, 'historyTable'])->name('legal-customer-table');
 
     Route::get('vendor', [VendorController::class, 'legalCreate'])->name('legal-vendor');
+    Route::post('vendor/post', [VendorController::class, 'store'])->name('legal-vendor-post');
+
     Route::get('vendor/check/{id}', [VendorController::class, 'legalCheck'])->name('legal-vendor-check');
     Route::post('vendor/check/{id}', [VendorController::class, 'legalCheckPost'])->name('legal-vendor-check-post');
     Route::get('vendor/update/{id}', [VendorController::class, 'legalUpdate'])->name('legal-vendor-update');

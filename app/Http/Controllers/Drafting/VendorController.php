@@ -184,7 +184,13 @@ class VendorController extends Controller
 
         Vendor::create($data);
 
-        return redirect()->route('drafting.vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        if (auth()->user()->role == 'LEGAL') {
+            return redirect()->route('legal.drafting.legal-vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        } else {
+            return redirect()->route('drafting.vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        }
+
+        // return redirect()->route('drafting.vendor')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
     }
 
     public function userCheck($id)
