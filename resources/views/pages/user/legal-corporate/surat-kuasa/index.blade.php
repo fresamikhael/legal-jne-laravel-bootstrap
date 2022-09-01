@@ -79,7 +79,12 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengguna" name="name" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima Kuasa" name="name" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor KTP" name="id_number" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tempat Lahir" name="birth_place" />
+                    <x-input type="date" labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Lahir"
+                        name="birth_date" />
+                    <x-address label="" name="user" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Divisi/Regional" name="division" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departement/Cabang Utama"
                         name="departement" />
@@ -101,9 +106,7 @@
                 <div class="col-sm-12">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Dokumen Pendukung*"
-                        name="file_supporting_document" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. KTP Penerima Kuasa*"
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. KTP Penerima Kuasa*"
                         name="file_endorsee_id" />
 
                 </div>
