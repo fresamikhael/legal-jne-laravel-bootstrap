@@ -126,11 +126,11 @@ class LeaseController extends Controller
             $file->move('Drafting', $filename);
         }
 
-        if ($request->file('file_siup')) {
-            $file = $request->file('file_siup');
+        if ($request->file('file_nib')) {
+            $file = $request->file('file_nib');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_siup'] = 'Drafting/'.$filename;
+            $data['file_nib'] = 'Drafting/'.$filename;
             $file->move('Drafting', $filename);
         }
 
@@ -249,7 +249,11 @@ class LeaseController extends Controller
 
         Lease::create($data);
 
-        return redirect()->route('drafting.lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        if (auth()->user()->role == 'LEGAL') {
+            return redirect()->route('legal.drafting.legal-lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        } else {
+            return redirect()->route('drafting.lease')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        }
     }
 
     public function legalCheck($id)

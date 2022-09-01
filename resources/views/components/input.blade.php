@@ -4,7 +4,17 @@
             class="{{ $labelClass ? $labelClass : 'col-sm-3' }} col-form-label">{{ $label }}</label>
     @endif
     <div class="{{ $fieldClass ? $fieldClass : 'col-sm-9' }}">
-        @if ($prefix)
+        @if ($option)
+            <div class="d-flex gap-3">
+                <select id="{{ $name . 1 }}" class="form-select">
+                    <option value="" class="d-none">-- Pilih --</option>
+                    <option value="Tidak Ada">Tidak Ada</option>
+                    <option value="Ada">Ada</option>
+                </select>
+                <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
+                    style="display: none; width: 100%;" {{ $multiple ? 'multiple' : '' }} />
+            </div>
+        @elseif ($prefix)
             <div class="input-group">
                 <span class="input-group-text">{{ $prefix }}</span>
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
@@ -34,3 +44,25 @@
         @endif
     </div>
 </div>
+
+{{-- <script>
+    document.getElementById("{{ $name . 1 }}").addEventListener("change", handleChange);
+
+    function handleChange() {
+        var x = document.getElementById("{{ $name . 1 }}");
+        console.log('====================================');
+        console.log(x.value);
+        console.log('====================================');
+        if (x.value === "Ada") {
+            document.getElementById("{{ $name }}").style.display = "flex";
+            document.getElementById("{{ $name }}").required = true;
+            document.getElementById("{{ $name . 1 }}").style.flex = "1";
+            document.getElementById("{{ $name }}").style.flex = "4";
+        } else {
+            document.getElementById("{{ $name }}").style.display = "none";
+            document.getElementById("{{ $name }}").required = false;
+            document.getElementById("{{ $name . 1 }}").style.flex = "4";
+            document.getElementById("{{ $name }}").style.flex = "1";
+        }
+    }
+</script> --}}

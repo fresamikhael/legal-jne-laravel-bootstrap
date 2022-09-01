@@ -88,8 +88,8 @@
                     @endif
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" value="{{ $data->regional }}"
                         disabled />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp" name="rental_value"
-                        value="{{ $data->rental_value }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp"
+                        name="rental_value" value="{{ $data->rental_value }}" disabled />
                     @php
                         $province = DB::table('provinces')
                             ->where('id', $data->rental_object_province)
@@ -127,37 +127,37 @@
                 </div>
                 <div class="col-sm-6">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
-                        name="optional_landlord_name" value="{{ $data->optional_landlord_name }}" disabled />
+                        name="optional_landlord_name" value="{{ $data->optional_landlord_name ?? '' }}" disabled />
                     @php
                         $province = DB::table('provinces')
                             ->where('id', $data->optional_landlord_province)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Landlord (Optional)"
-                        value="{{ ucwords(strtolower($province->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($province->name ?? '')) }}" disabled />
                     @php
                         $regency = DB::table('regencies')
                             ->where('id', $data->optional_landlord_regency)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Landlord (Optional)"
-                        value="{{ ucwords(strtolower($regency->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($regency->name ?? '')) }}" disabled />
                     @php
                         $district = DB::table('districts')
                             ->where('id', $data->optional_landlord_district)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Landlord (Optional)"
-                        value="{{ ucwords(strtolower($district->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($district->name ?? '')) }}" disabled />
                     @php
                         $village = DB::table('villages')
                             ->where('id', $data->optional_landlord_village)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Landlord (Optional)"
-                        value="{{ ucwords(strtolower($village->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($village->name ?? '')) }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Landlord (Optional)"
-                        value="{{ $data->optional_landlord_zip_code }}" disabled />
+                        value="{{ $data->optional_landlord_zip_code ?? '' }}" disabled />
                     <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Landlord (Optional)" disabled>
                         {{ $data->optional_landlord_address }}
                     </x-textarea>
@@ -200,18 +200,20 @@
                             path="{{ route('download.drafting', [substr($data->file_internal_memo, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Asli Lease Drafting Application Form"
-                            name="file_lease_application_form" type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="3. Asli Lease Drafting Application Form" name="file_lease_application_form"
+                            type="download"
                             path="{{ route('download.drafting', [substr($data->file_lease_application_form, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Fotocopy Kartu Identitas Pemilik Hak"
-                            name="file_right_owner_id_card" type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="4. Fotocopy Kartu Identitas Pemilik Hak" name="file_right_owner_id_card"
+                            type="download"
                             path="{{ route('download.drafting', [substr($data->file_right_owner_id_card, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Copy NPWP" name="file_npwp_individual"
-                            type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Copy NPWP"
+                            name="file_npwp_individual" type="download"
                             path="{{ route('download.drafting', [substr($data->file_npwp_individual, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
@@ -289,8 +291,8 @@
                             path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-input type="file" name="file_agreement_signature" labelClass="col-sm-5" fieldClass="col-sm-7"
-                            label="File Perjanjian Ditandatangani" />
+                        <x-input type="file" name="file_agreement_signature" labelClass="col-sm-5"
+                            fieldClass="col-sm-7" label="File Perjanjian Ditandatangani" />
                     </div>
                 @elseif ($data->landlord_type == 'Badan Hukum')
                     <div class="col-sm-9">
@@ -304,8 +306,9 @@
                             path="{{ route('download.drafting', [substr($data->file_internal_memo, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Asli Lease Drafting Application Form"
-                            name="file_lease_application_form" type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="3. Asli Lease Drafting Application Form" name="file_lease_application_form"
+                            type="download"
                             path="{{ route('download.drafting', [substr($data->file_lease_application_form, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
@@ -325,72 +328,76 @@
                             path="{{ route('download.drafting', [substr($data->file_sk_menkumham, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Fotocopy SIUP" name="file_siup"
+                        {{-- <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Fotocopy SIUP" name="file_siup"
                             type="download" path="{{ route('download.drafting', [substr($data->file_siup, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Fotocopy TDP" name="file_tdp"
                             type="download" path="{{ route('download.drafting', [substr($data->file_tdp, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
-                        </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Fotocopy NPWP"
+                        </x-file> --}}
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Fotocopy NPWP"
                             name="file_npwp_legal_entity" type="download"
                             path="{{ route('download.drafting', [substr($data->file_npwp_legal_entity, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Fotocopy SKD" name="file_skd"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. NIB" name="file_nib"
+                            type="download" path="{{ route('download.drafting', [substr($data->file_nib, 9)]) }}">
+                            Unduh <i class="fa fa-download"></i>
+                        </x-file>
+                        {{-- <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Fotocopy SKD" name="file_skd"
                             type="download" path="{{ route('download.drafting', [substr($data->file_skd, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Fotocopy SKDU" name="file_skdu"
                             type="download" path="{{ route('download.drafting', [substr($data->file_skdu, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
-                        </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="12. Fotocopy Sertifikat/Girik"
+                        </x-file> --}}
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Fotocopy Sertifikat/Girik"
                             name="file_certificate" type="download"
                             path="{{ route('download.drafting', [substr($data->file_certificate, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="13. Fotocopy IMB" name="file_imb"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Fotocopy IMB" name="file_imb"
                             type="download" path="{{ route('download.drafting', [substr($data->file_imb, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="14. Fotocopy SPPT & STTS (PBB)"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Fotocopy SPPT & STTS (PBB)"
                             name="file_sppt" type="download"
                             path="{{ route('download.drafting', [substr($data->file_sppt, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="15. Fotocopy Kuitansi DP"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="12. Fotocopy Kuitansi DP"
                             name="file_dp_receipt" type="download"
                             path="{{ route('download.drafting', [substr($data->file_dp_receipt, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="16. Fotocopy Kuitansi Pelunasan"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="13. Fotocopy Kuitansi Pelunasan"
                             name="file_payment_imb" type="download"
                             path="{{ route('download.drafting', [substr($data->file_payment_imb, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="17. Asli Surat Kuasa"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="14. Asli Surat Kuasa"
                             name="file_procuration" type="download"
                             path="{{ route('download.drafting', [substr($data->file_procuration, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="18. Perjanjian Sewa Sebelumnya"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="15. Perjanjian Sewa Sebelumnya"
                             name="file_previous_agreement" type="download"
                             path="{{ route('download.drafting', [substr($data->file_previous_agreement, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="19. Surat Kuasa Direksi"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="16. Surat Kuasa Direksi"
                             name="file_director_procuration" type="download"
                             path="{{ route('download.drafting', [substr($data->file_director_procuration, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="20. Form Pengajuan Sewa"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="17. Form Pengajuan Sewa"
                             name="file_lease_application" type="download"
                             path="{{ route('download.drafting', [substr($data->file_lease_application, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="21. Form Kelayakan Sewa"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="18. Form Kelayakan Sewa"
                             name="file_lease_eligibility" type="download"
                             path="{{ route('download.drafting', [substr($data->file_lease_eligibility, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
@@ -400,8 +407,8 @@
                             path="{{ route('download.drafting', [substr($data->file_agreement_draft, 9)]) }}">
                             Unduh <i class="fa fa-download"></i>
                         </x-file>
-                        <x-input type="file" name="file_agreement_signature" labelClass="col-sm-5" fieldClass="col-sm-7"
-                            label="File Perjanjian Ditandatangani" />
+                        <x-input type="file" name="file_agreement_signature" labelClass="col-sm-5"
+                            fieldClass="col-sm-7" label="File Perjanjian Ditandatangani" />
                     </div>
                 @endif
             </div>
@@ -415,8 +422,8 @@
                 <div class="col-sm-9">
                     <x-input value="{{ $data->sales_name }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama"
                         name="sales_name" readOnly />
-                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Email"
-                        name="sales_email" readOnly />
+                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Email" name="sales_email" readOnly />
                     <x-input value="{{ $data->sales_phone }}" labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="No Telepon" name="sales_phone" readOnly />
                     <x-input value="{{ $data->sales_department }}" labelClass="col-sm-5" fieldClass="col-sm-7"
