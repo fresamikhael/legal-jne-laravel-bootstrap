@@ -64,7 +64,7 @@ return new class extends Migration
             $table->string('file_oss_location')->nullable();
             $table->string('file_director_id_card')->nullable();
             $table->string('file_sk')->nullable();
-            $table->string('file_other');
+            $table->string('file_other')->nullable();
             $table->string('file_internal_memo')->nullable();
 
             $table->string('user_note')->nullable();

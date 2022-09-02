@@ -215,7 +215,7 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi*"
                         name="file_director_id_card" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" option />
                 </div>
             </div>
 

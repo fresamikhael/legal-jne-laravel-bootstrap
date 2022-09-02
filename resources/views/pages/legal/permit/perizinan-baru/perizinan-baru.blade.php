@@ -1,7 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
-    Perizinan baru
+    Permohonan Baru
 @endsection
 
 @section('content')
@@ -9,11 +9,10 @@
         {{-- @slot('alert')
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
-        <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.permit.newpermit-post') }}">
+        <form class="mt-4" method="post" enctype="multipart/form-data" action="{{ route('legal.permit.newpermit-post') }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
-                <h2>Perizinan Baru</h2>
+                <h2>Permohonan Baru</h2>
                 <div class="row">
                     <div class="col-5">
                         <x-modal-history id="dataTables">
@@ -47,7 +46,7 @@
                         </x-modal-history>
                     </div>
 
-                    <div class="col-7">
+                    {{-- <div class="col-7">
                         <x-modal-all-input id="dataTables2">
                             @slot('header')
                                 <tr>
@@ -76,7 +75,7 @@
                                 @endforeach
                             @endslot
                         </x-modal-all-input>
-                    </div>
+                    </div> --}}
                 </div>
 
 
@@ -100,24 +99,150 @@
                     </div>
 
                 </div> --}}
-                <x-select label="Tipe Perizinan" name="permit_type" labelClass="col-sm-2" fieldClass="col-sm-10" required>
-                    {{-- <option value="" style="display: none" selected>-- Pilih --</option> --}}
-                    <option value="Perizinan Reklame">Perizinan Reklame</option>
-                    <option value="Perizinan IMB">Perizinan IMB</option>
-                    <option value="Perizinan SLF">Perizinan SLF</option>
-                    <option value="Perizinan TDG">Perizinan TDG</option>
-                    <option value="OSS">OSS</option>
-                </x-select>
-                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required></x-input>
-                <x-input label="Spesifikasi" name="specification" labelClass="col-sm-2" fieldClass="col-sm-10" required>
+                <x-permit-type>
+                    @slot('imb')
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                                <x-input label="Luas Bangunan" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Luas Tanah" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <label>Dokumen Pendukung :</label>
+                                <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="2. Gambar ME" name="file_me" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="4. Gambar Teknis" name="file_technical" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="5. Foto Gedung Apabila Sudah Berdiri" name="file_building" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" />
+                                <x-input label="6. Dokumen Pendukung Lainnya" name="file_other" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                            </div>
+                        </div>
+                    @endslot
+
+                    @slot('slf')
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                                <x-input label="Luas Bangunan" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Luas Tanah" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <label>Dokumen Pendukung :</label>
+                                <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="2. PKS(Apabila Memakai Vendor) Gambar ME" name="file_me" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" />
+                                <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="4. Gambar Teknis" name="file_technical" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="5. Foto Gedung Apabila Sudah Berdiri" name="file_building" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" />
+                            </div>
+                        </div>
+                    @endslot
+
+                    @slot('reklame')
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Nama Pemilik Reklame" name="location" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis" name="type">
+                                    <option value="Sewa">Sewa*</option>
+                                    <option value="Milik Pribadi">Milik Pribadi</option>
+                                </x-select>
+                                <x-input label="Alamat Pemasangan" name="location" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Judul Reklame" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Ukuran Reklame" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Ketinggian Reklame" name="location" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Jangka Waktu Pemasangan" name="location" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <label>Dokumen Pendukung :</label>
+                                <x-input label="1. Foto Reklame" name="file_disposition" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                <x-input label="2. Surat Pernyataan Reklame" name="file_me" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                <x-input label="3. Gambar Arsitek" name="file_architect" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                <x-input label="4. Dokumen Kepemilikan Gedung" name="file_technical" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                <x-input label="5. PBB Terbaru" name="file_technical" type="file" labelClass="col-sm-4"
+                                    fieldClass="col-sm-8" required />
+                                <x-input label="6. Surat Pernyataan Pemilik Sewa Gedung*" name="file_building" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" />
+                                <x-input label="7. Jika Luas Reklame > 10M2 (Menyertakan TLBBR, IMBBR, IPR)" name="file_other"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                            </div>
+                        </div>
+                    @endslot
+
+                    @slot('oss')
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Nama Cabang/Pusat" name="location" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Alamat Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="RT/RW" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Kelurahan" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Kecamatan" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Kab/Kota" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Provinsi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Kode Pos" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Longtitude" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Longtitude" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Izin yang akan diurus"
+                                    name="type">
+                                    <option value="Izin Lokasi">Izin Lokasi</option>
+                                    <option value="IMB">IMB</option>
+                                    <option value="SLF">SLF</option>
+                                </x-select>
+                                <label>Dokumen Pendukung :</label>
+                                <x-input label="1. Gambar lokasi dalam bentuk polygon (zip) kurang dari 2 Mb"
+                                    name="file_disposition" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
+                                    required />
+                                <x-input label="2. Form Pengajuan Pembuatan Izin Melalui OSS" name="file_me" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                            </div>
+                        </div>
+                    @endslot
+                </x-permit-type>
+                {{-- <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required></x-input>
+                <x-input label="Luas Bangunan" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required>
                 </x-input>
-                {{-- <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10">
-                </x-input> --}}
+                <x-input label="Luas Tanah" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required>
+                </x-input>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="application_reason" placeholder="" id="floatingTextarea2" style="height: 100px"
-                            required></textarea>
+                        <textarea class="form-control" name="application_reason" placeholder="" id="floatingTextarea2"
+                            style="height: 100px" required></textarea>
                     </div>
                 </div>
                 <div class="mt-4 mb-3 row">
@@ -126,15 +251,21 @@
                 <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
                     fieldClass="col-sm-8" required>
                 </x-input>
-                <x-input label="2. Dokumen 1" name="file_document1" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
+                <x-input label="2. Gambar ME" name="file_me" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
                     required>
                 </x-input>
-                <x-input label="3. Dokumen 2" name="file_document2" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
-                    required>
+                <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
+                    fieldClass="col-sm-8" required>
                 </x-input>
-                <x-input label="4. Dokumen 3" name="file_document3" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
-                    required>
+                <x-input label="4. Gambar Teknis" name="file_technical" type="file" labelClass="col-sm-4"
+                    fieldClass="col-sm-8" required>
                 </x-input>
+                <x-input label="5. Foto Gedung Apabila Sudah Berdiri" name="file_building" type="file"
+                    labelClass="col-sm-4" fieldClass="col-sm-8">
+                </x-input>
+                <x-input label="6. Dokumen Pendukung Lainnya" name="file_other" type="file" labelClass="col-sm-4"
+                    fieldClass="col-sm-8" required>
+                </x-input> --}}
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-danger btn-lg px-4 py-2" type="submit"
@@ -146,3 +277,4 @@
 
         {{-- <x-input label="Lokasi"></x-input> --}}
     </x-base>
+@endsection

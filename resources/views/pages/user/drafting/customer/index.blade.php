@@ -74,7 +74,8 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" />
+                    <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Nama Pihak" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" name="user_id" hidden />
                     <x-address label="Pihak" name="party" />
                 </div>
@@ -126,7 +127,7 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
                         name="file_mom" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Form Pengajuan PKS*"
-                        name="file_claim_form" />
+                        name="file_claim_form" required />
                 </div>
             </div>
 
@@ -155,17 +156,17 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan"
                         name="file_deed_of_company" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*"
-                        name="file_nib" />
+                        name="file_nib" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)*"
-                        name="file_npwp" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha" name="file_business_permit"
-                        option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS" name="file_oss_location"
-                        option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi" name="file_director_id_card"
-                        option />
+                        name="file_npwp" required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha"
+                        name="file_business_permit" option />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS"
+                        name="file_oss_location" option />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi"
+                        name="file_director_id_card" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" option />
                 </div>
             </div>
 

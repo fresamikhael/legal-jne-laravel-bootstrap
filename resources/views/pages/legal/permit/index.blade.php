@@ -1,7 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.legal')
 
 @section('title')
-    Litigation
+    Permit
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
             @php
                 $menu = [
                     [
-                        'label' => 'Perizinan Baru',
+                        'label' => 'Permohonan Baru',
                         'route' => 'legal.permit.newpermit',
                         'style' => 'background: #03a4ed !important; color: #fff !important;',
                     ],
