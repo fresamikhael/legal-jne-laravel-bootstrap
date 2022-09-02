@@ -141,15 +141,27 @@
             <div class="row mt-3">
 
                 <div class="col-sm-12">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" type="download"
-                        path="{{ route('download.powerattorney', [substr($data->file_internal_memo, 14)]) }}">Unduh <i
-                            class="fa fa-download"></i></x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. KTP Penerima Kuasa*"
-                        name="file_endorsee_id" type="download"
-                        path="{{ route('download.powerattorney', [substr($data->file_endorsee_id, 14)]) }}">Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
+                    @if ($data->file_internal_memo == null)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" />
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo"
+                            type="download"
+                            path="{{ route('download.powerattorney', [substr($data->file_internal_memo, 14)]) }}">Unduh <i
+                                class="fa fa-download"></i></x-file>
+                    @endif
+
+                    @if ($data->file_endorsee_id == null)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. KTP Penerima Kuasa*"
+                            name="file_endorsee_id" />
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. KTP Penerima Kuasa*"
+                            name="file_endorsee_id" type="download"
+                            path="{{ route('download.powerattorney', [substr($data->file_endorsee_id, 14)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
 
                     @if ($data->file_scan_power_attorneys == null)
                     @else

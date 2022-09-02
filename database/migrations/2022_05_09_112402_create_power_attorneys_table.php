@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('division');
             $table->string('departement');
             $table->string('attorney_purpose');
-            $table->string('file_internal_memo');
-            $table->string('file_endorsee_id');
+            $table->string('file_internal_memo')->nullable();
+            $table->string('file_endorsee_id')->nullable();
 
             $table->string('user_note')->nullable();
             $table->string('cb_note')->nullable();

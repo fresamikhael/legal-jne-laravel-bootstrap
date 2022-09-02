@@ -268,9 +268,17 @@
                         </x-file>
                     @endif
                     <hr>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Foto Lokasi*" name="file_location"
+                        type="download" path="{{ route('download.landsell', [substr($data->file_location, 9)]) }}">Unduh
+                        <i class="fa fa-download"></i>
+                    </x-file>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Titik Koordinat Lokasi*"
+                        name="file_coordinate" type="download"
+                        path="{{ route('download.landsell', [substr($data->file_coordinate, 9)]) }}">Unduh <i
+                            class="fa fa-download"></i></x-file>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Business Case Analysist*"
                         name="file_business_case" type="download"
-                        path="{{ route('download.landsell', [substr($data->file_bca, 9)]) }}">Unduh <i
+                        path="{{ route('download.landsell', [substr($data->file_business_case, 9)]) }}">Unduh <i
                             class="fa fa-download"></i></x-file>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Hasil Appraisal KJPP*"
                         name="file_appraisal" type="download"
