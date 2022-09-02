@@ -57,7 +57,7 @@
         <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.legal-lease-post') }}">
             @csrf
             <div class="row mt-3">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord" name="landlord_name"
                         required />
                     <x-address label="Landlord" name="landlord" />
@@ -98,17 +98,17 @@
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp"
                         name="rental_value" />
                     <x-address label="Objek Sewa" name="rental_object" />
-                </div>
-                <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
-                        name="optional_landlord_name" />
-                    <x-address label="Landlord (Optional)" name="optional_landlord" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Bulan"
                         name="period_of_time" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Deposit" prefix="Rp"
                         name="guarantee_nominal" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" name="main_branch" />
                 </div>
+                {{-- <div class="col-sm-6">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
+                        name="optional_landlord_name" />
+                    <x-address label="Landlord (Optional)" name="optional_landlord" />
+                </div> --}}
             </div>
 
             <div class="row">
@@ -131,8 +131,8 @@
                                 label="2. Asli Internal Memo Pengajuan Sewa*" required />
                             <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5"
                                 fieldClass="col-sm-7" label="3. Asli Lease Drafting Application Form*" required />
-                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5"
-                                fieldClass="col-sm-7" label="4. Fotocopy Kartu Identitas Pemilik Hak*" required />
+                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="4. Fotocopy Kartu Identitas Pemilik Hak*" required />
                             <x-input name="file_npwp_individual" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="5. Copy NPWP*" required />
                             <x-input name="file_family_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"

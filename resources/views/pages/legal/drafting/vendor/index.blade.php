@@ -79,9 +79,9 @@
         <form method="POST" enctype="multipart/form-data" action="{{ route('legal.drafting.legal-vendor-post') }}">
             @csrf
             <div class="row mt-3">
-                <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Pihak Pertama" name="party_name" />
-                    <x-address label="Pihak" name="party" />
+                <div class="col-sm-12">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama" name="party_name" />
+                    <x-address label="" name="party" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nominal Perjanjian" prefix="Rp"
                         name="agreement_nominal" />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Vendor" name="vendor_type">
@@ -120,11 +120,6 @@
                             }
                         }
                     </script>
-                </div>
-                <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)"
-                        name="optional_party_name" />
-                    <x-address label="Pihak (Optional)" name="optional_party" />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
                         <option value="Baru">Baru</option>
                         <option value="Perpanjangan">Perpanjangan</option>
@@ -186,6 +181,12 @@
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu Retensi" postfix="Bulan"
                         name="relation_period" />
                 </div>
+                {{-- <div class="col-sm-6">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama  (Optional)"
+                        name="optional_party_name" />
+                    <x-address label=" (Optional)" name="optional_party" />
+
+                </div> --}}
             </div>
 
             <div class="row">
@@ -223,15 +224,14 @@
 
             <div class="row mt-3">
                 <div class="col-sm-3">
-                    <h5>Korespondensi :</h5>
+                    <h5>Korespondensi Vendor/Supplier :</h5>
                 </div>
                 <div class="col-sm-9">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama PIC" name="correspondence_name" />
-                    <x-address label="PIC" name="correspondence" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon PIC"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama " name="correspondence_name" />
+                    <x-address label="" name="correspondence" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon "
                         name="correspondence_phone" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC"
-                        name="correspondence_email" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email " name="correspondence_email" />
                 </div>
             </div>
 

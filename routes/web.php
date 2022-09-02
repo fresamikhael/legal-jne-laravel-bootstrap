@@ -273,6 +273,7 @@ Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(New
 
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
     Route::get('perpanjangan',  'index')->name('prolongation');
+    Route::post('perpanjangan/post',  'perpanjanganStore')->name('perpanjangan-post');
 });
 
 Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitController::class)->group(function () {
@@ -295,6 +296,8 @@ Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitContro
     Route::post('perizinan-baru/konfirmasi_skpd/post/{id}',  'confirm_skpd_update_legal')->name('confirm_skpd_update');
     // Route::post('perizinan-baru/post', [NewPermitController::class, 'store'])->name('perizinan-baru-post');
 
+    Route::get('perpanjangan',  'index_prolongation')->name('prolongation');
+    Route::post('perpanjangan/post',  'perpanjanganStore')->name('perpanjangan-post');
 });
 
 Route::prefix('permit/perpanjangan-perizinan')->name('perpanjangan.')->controller(ProlongationController::class)->group(
