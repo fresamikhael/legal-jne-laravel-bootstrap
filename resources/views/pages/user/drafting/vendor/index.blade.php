@@ -51,8 +51,7 @@
                                     <a href="{{ route('drafting.vendor-process', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
                                 @else
-                                    <a href="{{ route('drafting.vendor-check', [$row->id]) }}"
-                                        class="btn btn-primary">Lihat</a>
+                                    <a href="{{ route('drafting.vendor-check', [$row->id]) }}" class="btn btn-primary">Lihat</a>
                                 @endif
                             </td>
                         </tr>
@@ -194,19 +193,19 @@
                 </div>
                 <div class="col-sm-9">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan*"
-                        name="file_deed_of_company" />
+                        name="file_deed_of_company" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*"
-                        name="file_nib" />
+                        name="file_nib" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. Nomor Pokok Wajib Pajak (NPWP)*"
-                        name="file_npwp" />
+                        name="file_npwp" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Izin Usaha*"
-                        name="file_business_permit" />
+                        name="file_business_permit" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS*"
-                        name="file_oss_location" />
+                        name="file_oss_location" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi*"
-                        name="file_director_id_card" />
+                        name="file_director_id_card" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" option />
                 </div>
             </div>
 
@@ -221,7 +220,8 @@
                     <x-address label="PIC" name="correspondence" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="No Telepon PIC"
                         name="correspondence_phone" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC" name="correspondence_email" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Email PIC"
+                        name="correspondence_email" />
                 </div>
             </div>
 

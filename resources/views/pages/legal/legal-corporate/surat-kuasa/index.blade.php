@@ -1,4 +1,4 @@
-@extends ('layouts.user')
+@extends ('layouts.legal')
 
 @section('title')
     Surat Kuasa
@@ -43,7 +43,8 @@
                                         <button type="button" class="btn btn-danger" disabled>REJECTED BY HEAD OF LEGAL
                                             DIVISION</button>
                                     @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
-                                        <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED DOCUMENT
+                                        <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED
+                                            DOCUMENT
                                             SENT</button>
                                     @else
                                         <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
