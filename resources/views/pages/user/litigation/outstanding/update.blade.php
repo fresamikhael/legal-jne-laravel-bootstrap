@@ -91,35 +91,6 @@
                         {{ $data->agent_address }}
                     </x-textarea>
 
-                    <hr>
-
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Outstanding" name="total_outstanding"
-                        value="{{ $data->total_outstanding }}" disabled />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Total Outstanding" name="total_outstanding"
-                        value="{{ $data->outstanding_type }}" disabled />
-
-                    @if ($data->outstanding_types == 'Penjualan')
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
-                            name="outstanding_sales" prefix="Rp" value="{{ $data->outstanding_sales }}" disabled />
-                    @elseif ($data->outstanding_types == 'COD')
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
-                            prefix="Rp" value="{{ $data->outstanding_cod }}" disabled />
-                    @elseif ($data->outstanding_types == 'Keduanya')
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding Penjualan"
-                            name="outstanding_sales" prefix="Rp" value="{{ $data->outstanding_sales }}" disabled />
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Outstanding COD" name="outstanding_cod"
-                            prefix="Rp" value="{{ $data->outstanding_cod }}" disabled />
-                    @endif
-
-                    <hr>
-
-                    <div class="col-sm-3">
-                        <h4>Periode Outstanding :</h4>
-                    </div>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Sejak Kapan" name="outstanding_start"
-                        type="date" value="{{ $data->outstanding_start }}" disabled />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Sampai Kapan" name="outstanding_end"
-                        type="date" value="{{ $data->outstanding_end }}" disabled />
                 </div>
             </div>
 
@@ -146,9 +117,8 @@
                         <i class="fa fa-download"></i>
                     </x-file>
                     @if ($data->file_deed_of_incoporation)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                            label="2. Akta Pendirian dan Perubahan Terakhir" name="file_deed_of_incoporation"
-                            type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Akta Pendirian dan Perubahan Terakhir"
+                            name="file_deed_of_incoporation" type="download"
                             path="{{ route('download.litigation', [substr($data->file_deed_of_incoporation, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
@@ -158,8 +128,8 @@
                             label="2. Akta Pendirian dan Perubahan Terakhir" value="Tidak Ada" readOnly />
                     @endif
                     @if ($data->file_sk_menkumham)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham"
-                            name="file_sk_menkumham" type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" name="file_sk_menkumham"
+                            type="download"
                             path="{{ route('download.litigation', [substr($data->file_sk_menkumham, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
@@ -168,18 +138,18 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="3. SK Menkumham" value="Tidak Ada"
                             readOnly />
                     @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*"
-                        name="file_director_id_card" type="download"
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. KTP Direksi*" name="file_director_id_card"
+                        type="download"
                         path="{{ route('download.litigation', [substr($data->file_director_id_card, 11)]) }}">Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp"
-                        type="download" path="{{ route('download.litigation', [substr($data->file_npwp, 11)]) }}">Unduh
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" type="download"
+                        path="{{ route('download.litigation', [substr($data->file_npwp, 11)]) }}">Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
                     @if ($data->file_nib)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib"
-                            type="download" path="{{ route('download.litigation', [substr($data->file_nib, 11)]) }}">
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" type="download"
+                            path="{{ route('download.litigation', [substr($data->file_nib, 11)]) }}">
                             Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
@@ -187,56 +157,13 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" value="Tidak Ada"
                             readOnly />
                     @endif
-                    @if ($data->file_business_permit)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS"
-                            name="file_business_permit" type="download"
-                            path="{{ route('download.litigation', [substr($data->file_business_permit, 11)]) }}">
-                            Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                    @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Izin Usaha/OSS" value="Tidak Ada"
-                            readOnly />
-                    @endif
-                    @if ($data->file_location_permit)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
-                            name="file_location_permit" type="download"
-                            path="{{ route('download.litigation', [substr($data->file_location_permit, 11)]) }}">
-                            Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                    @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Izin Lokasi/OSS"
-                            value="Tidak Ada" readOnly />
-                    @endif
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Rekapan Outstanding*" type="download"
-                        name="file_outstanding_recap"
-                        path="{{ route('download.litigation', [substr($data->file_outstanding_recap, 11)]) }}">Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Scan Surat Penagihan*"
-                        name="file_billing_letter" type="download"
-                        path="{{ route('download.litigation', [substr($data->file_billing_letter, 11)]) }}">Unduh
-                        <i class="fa fa-download"></i>
-                    </x-file>
-                    @if ($data->file_internal_memo)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
-                            name="file_internal_memo" type="download"
-                            path="{{ route('download.litigation', [substr($data->file_internal_memo, 11)]) }}">
-                            Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                    @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="11. Internal Memo Kurang Dokumen"
-                            value="Tidak Ada" readOnly />
-                    @endif
                 </div>
             </div>
 
             <hr>
 
-            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Packing List Outstanding"
-                name="outstanding_packing_list" value="{{ $data->outstanding_packing_list }}" type="text" disabled />
+            <x-input fieldClass="col-sm-12" name="outstanding_packing_list"
+                value="{{ $data->outstanding_packing_list }}" type="text" disabled />
 
             <hr>
 
