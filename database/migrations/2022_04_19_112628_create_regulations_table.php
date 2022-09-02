@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date('set_date')->nullable();
             $table->string('agency')->nullable();
             $table->string('status')->nullable();
+            $table->text('note')->nullable();
             $table->string('privilege')->nullable();
 
             $table->timestamps();

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('bn_number')->nullable();
             $table->string('tbn_number')->nullable();
             $table->date('promulgated_date')->nullable();
+            $table->text('note')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });
