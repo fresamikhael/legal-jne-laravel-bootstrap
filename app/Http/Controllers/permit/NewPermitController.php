@@ -37,7 +37,7 @@ class NewPermitController extends Controller
         $data = Permit::where('user_id', auth()->user()->id)
             ->get();
 
-        return view('pages.user.permit.perpanjangan.perpanjangan', [
+        return view('pages.legal.permit.perpanjangan.perpanjangan', [
             'data' => $data,
 
         ]);

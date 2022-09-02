@@ -30,9 +30,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->id }}</td>
-                                        <td>{{ $row->status }}</td>
+                                        <td>{{ ucfirst(trans($row->permit_model)) }}</td>
                                         <td>
-                                            {{ $row->status }}
                                             @if ($row->status == 'PENDING')
                                                 <a href="{{ route('legal.permit.check', $row->id) }}"
                                                     class="btn btn-primary">Check</a>
