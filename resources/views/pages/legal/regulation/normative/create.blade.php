@@ -68,6 +68,12 @@
                     <option value="Corporate">Corporate</option>
                 </x-select>
                 <input type="hidden" name="privilege" value="RESTRICTED">
+                <div class="col-sm-12">
+                    <label for="">Note terkait dokumen</label>
+                </div>
+                <div class="col-sm-12 mb-3">
+                    <textarea name="note" id="editor"></textarea>
+                </div>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal" type="date" name="set_date"
                     value="{{ Carbon\Carbon::today()->toDateString() }}" required />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7"

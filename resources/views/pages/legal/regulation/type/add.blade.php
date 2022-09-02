@@ -74,12 +74,9 @@
             action="{{ route('legal.regulation.store-type') }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="name" required>
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Data" name="type" required>
-                    <option value="Umum">Database Umum</option>
-                    <option value="Khusus">Database Khusus</option>
-                </x-select>
+                <input type="hidden" name="type" value="Khusus">
             </div>
 
             <div class="d-flex justify-content-end me-4">
