@@ -295,7 +295,7 @@ class RegulationController extends Controller
 
         RegulationType::create($data);
 
-        return redirect()->route('legal.regulation.add')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+        return redirect()->route('legal.regulation.normative-create')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
     }
 
     public function requestPublicPost(Request $request)

@@ -59,6 +59,12 @@
                             <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <label for="">Note terkait dokumen</label>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                        <textarea name="note" id="editor"></textarea>
+                    </div>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
                         name="set_date" required />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"

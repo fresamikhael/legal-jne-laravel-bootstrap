@@ -75,16 +75,11 @@
         <form method="POST" enctype="multipart/form-data" action="{{ route('drafting.other-post') }}">
             @csrf
             <div class="row mt-3">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="Nama Pihak" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" name="user_id" hidden />
                     <x-address label="Pihak" name="party" />
-                </div>
-                <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)"
-                        name="optional_party_name" />
-                    <x-address label="Pihak (Optional)" name="optional_party" />
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
                         <option value="Baru">Baru</option>
                         <option value="Perpanjangan">Perpanjangan</option>
@@ -110,6 +105,11 @@
                     </script>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" name="discount" prefix="%" />
                 </div>
+                {{-- <div class="col-sm-6">
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Optional)"
+                        name="optional_party_name" />
+                    <x-address label="Pihak (Optional)" name="optional_party" />
+                </div> --}}
             </div>
 
             <div class="row">
@@ -225,7 +225,7 @@
 
             <div class="row mt-3">
                 <div class="col-sm-3">
-                    <h5>Kontak Sales/PIC :</h5>
+                    <h5>Kontak Sales :</h5>
                 </div>
                 <div class="col-sm-9">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama" name="sales_name" />

@@ -173,6 +173,24 @@
                     </div>
                 </div>
             </div>
+            @if ($database->note)
+                <div class="col-sm-8 mt-4">
+                    <div style="background-color:#fe3f40">
+                        <div class="col px-4 py-3" style="color: white">
+                            <i class="fa-solid fa-align-left"></i>
+                            <span>Note Terkait Peraturan</span>
+                        </div>
+                    </div>
+                    <div class="p-3 border bg-white">
+                        <div class="border rounded p-3"
+                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                            <ul class="row-3">
+                                {!! $database->note ?? '' !!}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </x-base>
 @endsection

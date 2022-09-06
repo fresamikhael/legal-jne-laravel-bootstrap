@@ -24,6 +24,7 @@ class Regulation extends Model
         'agency',
         'status',
         'unit',
+        'note',
         'historical_id'
     ];
 

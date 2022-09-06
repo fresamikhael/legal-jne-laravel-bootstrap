@@ -31,22 +31,20 @@ class NewPermitController extends Controller
 
         ]);
     }
+    public function index_prolongation()
+    {
+
+        $data = Permit::where('user_id', auth()->user()->id)
+            ->get();
+
+        return view('pages.legal.permit.perpanjangan.perpanjangan', [
+            'data' => $data,
+
+        ]);
+    }
 
     public function store(Request $request)
     {
-
-        // $validatedData = $request->validate([
-        //     'user_id' => 'required',
-        //     'permit_type' => 'required',
-        //     'location' => 'required',
-        //     'specification' => 'required',
-        //     'application_reason' => 'required',
-        //     'file_disposition' => 'required',
-        //     'file_document1' => 'required',
-        //     'file_document2' => 'required',
-        //     'file_document3' => 'required',
-        // ]);
-        // ]);
         $data = $request->all();
 
         if ($request->file('file_disposition')) {
@@ -56,38 +54,105 @@ class NewPermitController extends Controller
             $data['file_disposition'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
-        if ($request->file('file_document1')) {
-            $file = $request->file('file_document1');
+        if ($request->file('file_me')) {
+            $file = $request->file('file_me');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_document1'] = 'Permit/' . $filename;
+            $data['file_me'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
-        if ($request->file('file_document2')) {
-            $file = $request->file('file_document2');
+        if ($request->file('file_architect')) {
+            $file = $request->file('file_architect');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_document2'] = 'Permit/' . $filename;
+            $data['file_architect'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
-        if ($request->file('file_document3')) {
-            $file = $request->file('file_document3');
+        if ($request->file('file_technical')) {
+            $file = $request->file('file_technical');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_document3'] = 'Permit/' . $filename;
+            $data['file_technical'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_building_photo')) {
+            $file = $request->file('file_building_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_building_photo'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_other')) {
+            $file = $request->file('file_other');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_other'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_ads_photo')) {
+            $file = $request->file('file_ads_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_ads_photo'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_statement_letter')) {
+            $file = $request->file('file_statement_letter');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_statement_letter'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_building_ownership')) {
+            $file = $request->file('file_building_ownership');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_building_ownership'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_pbb')) {
+            $file = $request->file('file_pbb');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_pbb'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_ownership_statement')) {
+            $file = $request->file('file_ownership_statement');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_ownership_statement'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_tlbbr')) {
+            $file = $request->file('file_tlbbr');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_tlbbr'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_location_polygon')) {
+            $file = $request->file('file_location_polygon');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_location_polygon'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_oss_form')) {
+            $file = $request->file('file_oss_form');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_oss_form'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
 
         Permit::create($data);
-        $datenow = date('y-m-d', strtotime(Carbon::now()));
-        $mailData = [
-            'title' => 'New permit has been sumbitted',
-            'body' => 'new permit has been sumbitted by ' . auth()->user()->name .  ' '
-        ];
 
-        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
-
-        return redirect()->route('permit.newpermit');
+        if (auth()->user()->role == 'LEGAL') {
+            return redirect()->route('legal.permit.newpermit')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        } else {
+            return redirect()->route('permit.newpermit')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+        }
     }
 
     public function detail($id)
@@ -245,38 +310,250 @@ class NewPermitController extends Controller
             $data['file_disposition'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
-        if ($request->file('file_document1')) {
-            $file = $request->file('file_document1');
+        if ($request->file('file_me')) {
+            $file = $request->file('file_me');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_document1'] = 'Permit/' . $filename;
+            $data['file_me'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
-        if ($request->file('file_document2')) {
-            $file = $request->file('file_document2');
+        if ($request->file('file_architect')) {
+            $file = $request->file('file_architect');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_document2'] = 'Permit/' . $filename;
+            $data['file_architect'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
-        if ($request->file('file_document3')) {
-            $file = $request->file('file_document3');
+        if ($request->file('file_technical')) {
+            $file = $request->file('file_technical');
             $extension = $file->getClientOriginalExtension();
             $filename = Str::random(40) . '.' . $extension;
-            $data['file_document3'] = 'Permit/' . $filename;
+            $data['file_technical'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_building_photo')) {
+            $file = $request->file('file_building_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_building_photo'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_other')) {
+            $file = $request->file('file_other');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_other'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_ads_photo')) {
+            $file = $request->file('file_ads_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_ads_photo'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_statement_letter')) {
+            $file = $request->file('file_statement_letter');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_statement_letter'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_building_ownership')) {
+            $file = $request->file('file_building_ownership');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_building_ownership'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_pbb')) {
+            $file = $request->file('file_pbb');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_pbb'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_ownership_statement')) {
+            $file = $request->file('file_ownership_statement');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_ownership_statement'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_tlbbr')) {
+            $file = $request->file('file_tlbbr');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_tlbbr'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_location_polygon')) {
+            $file = $request->file('file_location_polygon');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_location_polygon'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_oss_form')) {
+            $file = $request->file('file_oss_form');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_oss_form'] = 'Permit/' . $filename;
             $file->move('Permit', $filename);
         }
 
         Permit::create($data);
 
-        $mailData = [
-            'title' => 'New permit has been sumbitted',
-            'body' => 'new permit has been sumbitted by ' . auth()->user()->name .  ' '
-        ];
-
-        Mail::to('ilhambachtiar48@gmail.com')->send(new MailJNE($mailData));
-
         return redirect()->route('legal.permit.newpermit');
+    }
+
+    public function perpanjanganStore(Request $request)
+    {
+
+        // $validatedData = $request->validate([
+        //     'user_id' => 'required',
+        //     'permit_type' => 'required',
+        //     'location' => 'required',
+        //     'specification' => 'required',
+        //     'application_reason' => 'required',
+        //     'file_disposition' => 'required',
+        //     'file_document1' => 'required',
+        //     'file_document2' => 'required',
+        //     'file_document3' => 'required',
+        // ]);
+        // ]);
+        $data = $request->all();
+
+        if ($request->file('file_disposition')) {
+            $file = $request->file('file_disposition');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_disposition'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_me')) {
+            $file = $request->file('file_me');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_me'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_architect')) {
+            $file = $request->file('file_architect');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_architect'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_technical')) {
+            $file = $request->file('file_technical');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_technical'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_building_photo')) {
+            $file = $request->file('file_building_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_building_photo'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_other')) {
+            $file = $request->file('file_other');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_other'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_ads_photo')) {
+            $file = $request->file('file_ads_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_ads_photo'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_statement_letter')) {
+            $file = $request->file('file_statement_letter');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_statement_letter'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_building_ownership')) {
+            $file = $request->file('file_building_ownership');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_building_ownership'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_pbb')) {
+            $file = $request->file('file_pbb');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_pbb'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_ownership_statement')) {
+            $file = $request->file('file_ownership_statement');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_ownership_statement'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_tlbbr')) {
+            $file = $request->file('file_tlbbr');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_tlbbr'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_location_polygon')) {
+            $file = $request->file('file_location_polygon');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_location_polygon'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_oss_form')) {
+            $file = $request->file('file_oss_form');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_oss_form'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_imb')) {
+            $file = $request->file('file_imb');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_imb'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_old_slf')) {
+            $file = $request->file('file_old_slf');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_old_slf'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_payment_proof')) {
+            $file = $request->file('file_payment_proof');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_payment_proof'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+        if ($request->file('file_old_skpd')) {
+            $file = $request->file('file_old_skpd');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_old_skpd'] = 'Permit/' . $filename;
+            $file->move('Permit', $filename);
+        }
+
+        Permit::create($data);
+
+        return redirect()->route('legal.permit.prolongation');
     }
 
     public function check_legal($id)

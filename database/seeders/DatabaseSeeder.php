@@ -96,45 +96,45 @@ class DatabaseSeeder extends Seeder
             User::create($value);
         }
 
-        RegulationType::create([
-            'name' => 'Peraturan Perusahaan',
-            'type' => 'Internal'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'Peraturan Perusahaan',
+        //     'type' => 'Internal'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'SK DIREKSI',
-            'type' => 'Internal'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'SK DIREKSI',
+        //     'type' => 'Internal'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'SE DIREKSI',
-            'type' => 'Internal'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'SE DIREKSI',
+        //     'type' => 'Internal'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'Internal Memo',
-            'type' => 'Internal'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'Internal Memo',
+        //     'type' => 'Internal'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'Undang-Undang',
-            'type' => 'Normatif'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'Undang-Undang',
+        //     'type' => 'Normatif'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'Peraturan Pemerintah',
-            'type' => 'Normatif'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'Peraturan Pemerintah',
+        //     'type' => 'Normatif'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'Peraturan Menteri',
-            'type' => 'Normatif'
-        ]);
+        // RegulationType::create([
+        //     'name' => 'Peraturan Menteri',
+        //     'type' => 'Normatif'
+        // ]);
 
-        RegulationType::create([
-            'name' => 'PERDA Provinsi/Kota',
-            'type' => 'Normatif'
-        ]);
-        
+        // RegulationType::create([
+        //     'name' => 'PERDA Provinsi/Kota',
+        //     'type' => 'Normatif'
+        // ]);
+
     }
 }

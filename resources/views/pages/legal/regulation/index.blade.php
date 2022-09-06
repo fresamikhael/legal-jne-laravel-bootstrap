@@ -36,8 +36,7 @@
                                         $count = $t->count();
                                     @endphp --}}
                                     <option value="{{ $t->name }}"
-                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }} |
-                                        {{ $total }}
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
                                     </option>
                                 @endforeach
                             </x-select>
@@ -93,13 +92,13 @@
                     <div style="background-color:#fe3f40">
                         <div class="col px-4 py-3" style="color: white">
                             <i class="fa-solid fa-align-left"></i>
-                            <span>Data Peraturan</span>
+                            <span>Data Dokumen</span>
                         </div>
                     </div>
                     <div class="p-3 border bg-white">
                         <div class="d-flex align-items-center justify-content-end mb-3">
                             Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
-                            {{ $database->total() }} Data Peraturan
+                            {{ $database->total() }} Data Dokumen
                         </div>
                         <div class="border rounded">
                             <table class="table table-bordered">
