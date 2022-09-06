@@ -65,7 +65,7 @@
             @endslot
         @endif
 
-        <form action="{{ route('litigation.customer-dispute.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('legal.litigation.customer-dispute.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
