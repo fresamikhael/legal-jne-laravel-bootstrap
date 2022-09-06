@@ -2,15 +2,33 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Database extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
 
     protected $table = 'databases';
+
+    protected $fillable = [
+        'name',
+        'type',
+        'entity',
+        'number',
+        'year',
+        'about',
+        'set_date',
+        'bn_number',
+        'tbn_number',
+        'promulgated_date',
+        'note',
+        'status',
+        'privilege',
+        'historical_id'
+    ];
 
     protected $guarded = ['id'];
 
@@ -50,11 +68,11 @@ class Database extends Model
         return $this->hasMany(DatabaseFile::class);
     }
 
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'databases', 'length' => 6, 'prefix' => 'REG', 'reset_on_prefix_change' => true]);
-        });
-    }
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     self::creating(function ($model) {
+    //         $model->id = IdGenerator::generate(['table' => 'databases', 'length' => 6, 'prefix' => 'REG', 'reset_on_prefix_change' => true]);
+    //     });
+    // }
 }

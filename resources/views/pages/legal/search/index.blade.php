@@ -19,19 +19,19 @@
                     </tr>
                 @endslot
                 @slot('data')
-                    @foreach ($data as $row)
+                    @foreach ($join as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->id }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td>{{ $row['name'] }}</td>
+                            <td>{{ $row['status'] }}</td>
                             <td>
-                                @if ($row->status == 'APPROVED BY LEGAL LITIGASI MANAGER')
+                                {{-- @if ($row->status == 'APPROVED BY LEGAL LITIGASI MANAGER')
                                     <a href="{{ route('cs.customer-dispute.show', [$row->id, 'action=finish']) }}"
                                         class="btn btn-primary">Update</a>
                                 @else
                                     <a href="{{ route('cs.customer-dispute.show', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
-                                @endif
+                                @endif --}}
                             </td>
                         </tr>
                     @endforeach

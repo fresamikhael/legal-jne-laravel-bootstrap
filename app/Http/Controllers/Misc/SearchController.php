@@ -12,14 +12,18 @@ class SearchController extends Controller
 {
     public function index()
     {
-        $data = Database::orderBy('id', 'DESC')
+        $regulation = Database::orderBy('id', 'DESC')
             ->with('file')
-            ->get();
+            ->get()->toArray();
 
-        // $data = Regulation::orderBy('id', 'DESC')
-        //     ->with('data')
-        //     ->get();
+        $database = Regulation::orderBy('id', 'DESC')
+            ->with('data')
+            ->get()->toArray();
 
-        return view('pages.legal.search.index', compact('data'));
+        $join = array_merge($regulation,$database);
+
+        // dd($regulation, $database);
+
+        return view('pages.legal.search.index', compact('join'));
     }
 }
