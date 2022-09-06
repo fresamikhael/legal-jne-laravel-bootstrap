@@ -79,20 +79,21 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional" required />
                     <x-address label="" name="user" />
 
                 </div>
                 <div class="col-sm-6">
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Sertifikat" name="ownership_proof">
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Sertifikat" name="ownership_proof"
+                        required>
                         <option value="Hak Guna Bangunan">Hak Guna Bangunan</option>
                         <option value="Hak Guna Usaha">Hak Guna Usaha</option>
                         <option value="Hak Milik">Hak Milik</option>
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Bukti Kepemilikan"
-                        name="ownership_number" />
+                        name="ownership_number" required />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Harga Obyek Jual-Beli" prefix="Rp"
-                        name="agreement_nominal" />
+                        name="agreement_nominal" required />
                 </div>
             </div>
 
@@ -107,16 +108,18 @@
             <div class="row mt-3">
 
                 <div class="col-sm-12">
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Sertifikat*" name="file_certificate" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Sertifikat*" name="file_certificate"
+                        required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. IPPT/IPR" name="file_ippt" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. IMB" name="file_imb" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. SPPT & STTS PBB*" name="file_sppt" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. SPPT & STTS PBB*"
+                        name="file_sppt"required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. MOM Pembelian" name="file_mom" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Identitas Pemilik Sebelumnya*"
-                        name="file_previous_owner_id" />
+                        name="file_previous_owner_id" required />
                     <hr>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Identitas Pemilik/Penjual"
-                        name="identity_type">
+                        name="identity_type" required>
                         <option value="Peorangan/Pribadi">Peorangan/Pribadi</option>
                         <option value="Badan Hukum">Badan Hukum</option>
                     </x-select>
@@ -171,10 +174,10 @@
                                 document.getElementById("file_npwp").required = true;
                                 document.getElementById("file_marriage1").classList.remove('d-none');
                                 document.getElementById("file_marriage1").classList.add('d-flex');
-                                document.getElementById("file_marriage").required = true;
+                                document.getElementById("file_marriage").required = false;
                                 document.getElementById("file_ktp_pasutri1").classList.remove('d-none');
                                 document.getElementById("file_ktp_pasutri1").classList.add('d-flex');
-                                document.getElementById("file_ktp_pasutri").required = true;
+                                document.getElementById("file_ktp_pasutri").required = false;
                                 document.getElementById("file_death_statement1").classList.remove('d-none');
                                 document.getElementById("file_death_statement1").classList.add('d-flex');
                                 document.getElementById("file_death_statement").required = false;
@@ -186,7 +189,7 @@
                                 document.getElementById("file_heir_id").required = false;
                                 document.getElementById("file_kk1").classList.remove('d-none');
                                 document.getElementById("file_kk1").classList.add('d-flex');
-                                document.getElementById("file_kk").required = false;
+                                document.getElementById("file_kk").required = true;
 
                                 document.getElementById("file_internal_memo_legal1").classList.remove('d-flex');
                                 document.getElementById("file_internal_memo_legal1").classList.add('d-none');
@@ -259,18 +262,19 @@
                                 document.getElementById("file_nib").required = true;
                                 document.getElementById("file_power_attorney1").classList.remove('d-none');
                                 document.getElementById("file_power_attorney1").classList.add('d-flex');
-                                document.getElementById("file_power_attorney").required = true;
+                                document.getElementById("file_power_attorney").required = false;
                             }
                         }
                     </script>
                     <hr>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Foto Lokasi*" name="file_location" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Foto Lokasi*" name="file_location"
+                        required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Titik Koordinat Lokasi*"
-                        name="file_coordinate" />
+                        name="file_coordinate" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Business Case Analysist*"
-                        name="file_business_case" />
+                        name="file_business_case" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Hasil Appraisal KJPP*"
-                        name="file_appraisal" />
+                        name="file_appraisal" required />
                 </div>
             </div>
 

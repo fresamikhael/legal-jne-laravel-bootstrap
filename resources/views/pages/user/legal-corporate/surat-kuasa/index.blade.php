@@ -79,15 +79,16 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima Kuasa" name="name" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor KTP" name="id_number" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tempat Lahir" name="birth_place" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penerima Kuasa" name="name"
+                        required />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor KTP" name="id_number" required />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tempat Lahir" name="birth_place" required />
                     <x-input type="date" labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Lahir"
-                        name="birth_date" />
+                        name="birth_date" required />
                     <x-address label="" name="user" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Divisi/Regional" name="division" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departement/Cabang Utama"
-                        name="departement" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Divisi/Regional" name="division" required />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Departement/Cabang Utama" name="departement"
+                        required />
                 </div>
 
             </div>
@@ -95,7 +96,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <x-textarea name="attorney_purpose" label="Tujuan Pembuatan Surat Kuasa" labelClass="col-sm-5"
-                        fieldClass="col-sm-7" />
+                        fieldClass="col-sm-7" required />
                 </div>
             </div>
 
@@ -105,9 +106,9 @@
 
                 <div class="col-sm-12">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" />
+                        label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. KTP Penerima Kuasa*"
-                        name="file_endorsee_id" />
+                        name="file_endorsee_id" required />
 
                 </div>
             </div>

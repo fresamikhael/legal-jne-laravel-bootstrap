@@ -131,8 +131,14 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <x-textarea name="notaris_note" label="Data Notaris dan PPAT" disabled>{{ $data->notaris_note }}
-                    </x-textarea>
+                    @if ($data->notaris_note == null)
+                        <x-textarea name="notaris_note" label="Data Notaris dan PPAT" disabled>-- --
+                        </x-textarea>
+                    @else
+                        <x-textarea name="notaris_note" label="Data Notaris dan PPAT" disabled>{{ $data->notaris_note }}
+                        </x-textarea>
+                    @endif
+
                 </div>
             </div>
 
@@ -145,18 +151,37 @@
                         type="download" path="{{ route('download.landsell', [substr($data->file_certificate, 9)]) }}">Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. IPPT/IPR" name="file_ippt" type="download"
-                        path="{{ route('download.landsell', [substr($data->file_ippt, 9)]) }}">Unduh <i
-                            class="fa fa-download"></i></x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. IMB" name="file_imb" type="download"
-                        path="{{ route('download.landsell', [substr($data->file_imb, 9)]) }}">Unduh <i
-                            class="fa fa-download"></i></x-file>
+                    @if ($data->file_ippt == null)
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="2. IPPT/IPR" name="file_ippt"
+                            value="-- --" disabled />
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. IPPT/IPR" name="file_ippt"
+                            type="download" path="{{ route('download.landsell', [substr($data->file_ippt, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
+
+                    @if ($data->file_imb == null)
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="3. IMB" name="file_imb"
+                            value="-- --" disabled />
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. IMB" name="file_imb"
+                            type="download" path="{{ route('download.landsell', [substr($data->file_imb, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. SPPT & STTS PBB*" name="file_sppt"
                         type="download" path="{{ route('download.landsell', [substr($data->file_sppt, 9)]) }}">Unduh <i
                             class="fa fa-download"></i></x-file>
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. MOM Pembelian" name="file_mom"
-                        type="download" path="{{ route('download.landsell', [substr($data->file_mom, 9)]) }}">Unduh <i
-                            class="fa fa-download"></i></x-file>
+                    @if ($data->file_mom == null)
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="5. MOM Pembelian" name="file_mom"
+                            value="-- --" disabled />
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. MOM Pembelian" name="file_mom"
+                            type="download" path="{{ route('download.landsell', [substr($data->file_mom, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Identitas Pemilik Sebelumnya*"
                         name="file_previous_owner_id" type="download"
                         path="{{ route('download.landsell', [substr($data->file_previous_owner_id, 9)]) }}">Unduh <i
@@ -180,32 +205,61 @@
                             path="{{ route('download.landsell', [substr($data->file_npwp, 9)]) }}">Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="iv. Buku/Akta Nikah"
-                            name="file_marriage" type="download"
-                            path="{{ route('download.landsell', [substr($data->file_marriage, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
+                        @if ($data->file_marriage == null)
+                            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="iv. Buku/Akta Nikah"
+                                name="file_marriage" value="-- --" disabled />
+                        @else
+                            <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="iv. Buku/Akta Nikah" name="file_marriage" type="download"
+                                path="{{ route('download.landsell', [substr($data->file_marriage, 9)]) }}">Unduh
+                                <i class="fa fa-download"></i>
+                            </x-file>
+                        @endif
 
-                        <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="v. KTP Suami/Istri"
-                            name="file_ktp_pasutri" type="download"
-                            path="{{ route('download.landsell', [substr($data->file_ktp_pasutri, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                        <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="vi. Surat Kematian"
-                            name="file_death_statement" type="download"
-                            path="{{ route('download.landsell', [substr($data->file_death_statement, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                        <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                            label="vii. Surat Keterangan Waris/Akta Waris" name="file_legal_heir" type="download"
-                            path="{{ route('download.landsell', [substr($data->file_legal_heir, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
-                        <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="viii. KTP/Ahli Waris"
-                            name="file_heir_id" type="download"
-                            path="{{ route('download.landsell', [substr($data->file_heir_id, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
+                        @if ($data->file_marriage == null)
+                            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="v. KTP Suami/Istri"
+                                name="file_ktp_pasutri" value="-- --" disabled />
+                        @else
+                            <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="v. KTP Suami/Istri" name="file_ktp_pasutri" type="download"
+                                path="{{ route('download.landsell', [substr($data->file_ktp_pasutri, 9)]) }}">Unduh
+                                <i class="fa fa-download"></i>
+                            </x-file>
+                        @endif
+
+                        @if ($data->file_marriage == null)
+                            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="vi. Surat Kematian"
+                                name="file_death_statement" value="-- --" disabled />
+                        @else
+                            <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="vi. Surat Kematian" name="file_death_statement" type="download"
+                                path="{{ route('download.landsell', [substr($data->file_death_statement, 9)]) }}">Unduh
+                                <i class="fa fa-download"></i>
+                            </x-file>
+                        @endif
+
+                        @if ($data->file_marriage == null)
+                            <x-input labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="vii. Surat Keterangan Waris/Akta Waris" name="file_legal_heir" value="-- --"
+                                disabled />
+                        @else
+                            <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="vii. Surat Keterangan Waris/Akta Waris" name="file_legal_heir" type="download"
+                                path="{{ route('download.landsell', [substr($data->file_legal_heir, 9)]) }}">Unduh
+                                <i class="fa fa-download"></i>
+                            </x-file>
+                        @endif
+
+                        @if ($data->file_marriage == null)
+                            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="viii. KTP/Ahli Waris"
+                                name="file_heir_id" value="-- --" disabled />
+                        @else
+                            <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                label="viii. KTP/Ahli Waris" name="file_heir_id" type="download"
+                                path="{{ route('download.landsell', [substr($data->file_heir_id, 9)]) }}">Unduh
+                                <i class="fa fa-download"></i>
+                            </x-file>
+                        @endif
                         <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="ix. KK*"
                             name="file_kk" type="download"
                             path="{{ route('download.landsell', [substr($data->file_kk, 9)]) }}">Unduh
@@ -276,15 +330,21 @@
                             path="{{ route('download.landsell', [substr($data->file_nib, 9)]) }}">Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
-                        <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="vii. Surat Kuasa"
-                            name="file_power_attorney" type="download"
-                            path="{{ route('download.landsell', [substr($data->file_power_attorney, 9)]) }}">Unduh
-                            <i class="fa fa-download"></i>
-                        </x-file>
+                        @if ($data->file_power_attorney == null)
+                            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="vii. Surat Kuasa"
+                                name="file_power_attorney" value="-- --" disabled />
+                        @else
+                            <x-file type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="vii. Surat Kuasa"
+                                name="file_power_attorney" type="download"
+                                path="{{ route('download.landsell', [substr($data->file_power_attorney, 9)]) }}">Unduh
+                                <i class="fa fa-download"></i>
+                            </x-file>
+                        @endif
                     @endif
                     <hr>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Foto Lokasi*" name="file_location"
-                        type="download" path="{{ route('download.landsell', [substr($data->file_location, 9)]) }}">Unduh
+                        type="download" path="{{ route('download.landsell', [substr($data->file_location, 9)]) }}">
+                        Unduh
                         <i class="fa fa-download"></i>
                     </x-file>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Titik Koordinat Lokasi*"

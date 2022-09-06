@@ -27,13 +27,13 @@ return new class extends Migration
             $table->string('ownership_proof');
             $table->string('ownership_number');
             $table->string('agreement_nominal');
-            $table->string('notaris_note');
-            $table->string('file_certificate');
-            $table->string('file_ippt');
-            $table->string('file_imb');
-            $table->string('file_sppt');
-            $table->string('file_mom');
-            $table->string('file_previous_owner_id');
+            $table->string('notaris_note')->nullable();
+            $table->string('file_certificate')->nullable();
+            $table->string('file_ippt')->nullable();
+            $table->string('file_imb')->nullable();
+            $table->string('file_sppt')->nullable();
+            $table->string('file_mom')->nullable();
+            $table->string('file_previous_owner_id')->nullable();
 
             $table->string('identity_type');
 
