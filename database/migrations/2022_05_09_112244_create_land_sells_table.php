@@ -63,7 +63,8 @@ return new class extends Migration
             $table->string('user_note')->nullable();
             $table->string('cb_note')->nullable();
 
-            $table->string('file_sale_agreement_draft_')->nullable();
+            $table->string('file_transaction_deed')->nullable();
+            $table->string('file_transaction_certificate')->nullable();
             $table->string('status')->default('PENDING');
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

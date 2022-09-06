@@ -27,40 +27,16 @@
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
                                     <button type="button" class="btn btn-warning" disabled>APPROVED BY LEGAL
                                         CORPORATES</button>
-                                @elseif ($row->status == 'RETURNED BY USER')
-                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
-                                @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
-                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
-                                        CORPORATES</button>
-                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
-                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY HEAD OF LEGAL
-                                        DIVISION</button>
-                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
-                                    <button type="button" class="btn btn-danger" disabled>REJECTED BY HEAD OF LEGAL
-                                        DIVISION</button>
-                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
-                                    <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED
-                                        DOCUMENT
-                                        SENT</button>
                                 @else
                                     <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
                                 @endif
                             </td>
                             <td>
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
-                                    <a href="{{ route('legal.legalcorporate.landsell-check', [$row->id]) }}"
+                                    <a href="{{ route('headlegal.legalcorporate.landsell-check', [$row->id]) }}"
                                         class="btn btn-danger">Update</a>
-                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
-                                    <a href="{{ route('legal.legalcorporate.landsell-update', [$row->id]) }}"
-                                        class="btn btn-danger">Update</a>
-                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
-                                    <a href="{{ route('legal.legalcorporate.landsell-final', [$row->id]) }}"
-                                        class="btn btn-primary">Lihat</a>
-                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
-                                    <a href="{{ route('legal.legalcorporate.landsell-final', [$row->id]) }}"
-                                        class="btn btn-primary">Lihat</a>
                                 @else
-                                    <a href="{{ route('legal.legalcorporate.landsell-check', [$row->id]) }}"
+                                    <a href="{{ route('headlegal.legalcorporate.landsell-check', [$row->id]) }}"
                                         class="btn btn-danger">Update</a>
                                 @endif
                             </td>
@@ -77,7 +53,7 @@
         @endif
 
         <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.legalcorporate.landsell-check-post', $data->id) }}">
+            action="{{ route('headlegal.legalcorporate.landsell-check-post', $data->id) }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -126,7 +102,8 @@
                         name="ownership_number" value="{{ $data->ownership_number }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai/Harga Pembelian" prefix="Rp"
                         name="agreement_nominal" value="{{ $data->agreement_nominal }}" disabled />
-
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Mekanisme Pembayaran" name="payment_type"
+                        value="{{ $data->payment_type }}" disabled />
 
                 </div>
             </div>
@@ -308,7 +285,7 @@
             <hr>
 
 
-            <div class="col-sm-12 mb-3">
+            {{-- <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Legal Corporate</label>
                 <textarea class="form-control" name="cb_note" id="" cols="30" rows="10"></textarea>
             </div>
@@ -316,7 +293,7 @@
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan untuk Legal Corporate</label>
                 <textarea class="form-control" name="user_note" id="" cols="30" rows="10" disabled>{{ $data->user_note }}</textarea>
-            </div>
+            </div> --}}
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />

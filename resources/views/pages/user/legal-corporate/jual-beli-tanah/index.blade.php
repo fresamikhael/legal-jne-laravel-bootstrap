@@ -25,13 +25,22 @@
                             <td>{{ $row->id }}</td>
                             <td>
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
-                                    <button type="button" class="btn btn-success" disabled>APPROVED BY LEGAL CORPORATES</button>
+                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY LEGAL
+                                        CORPORATES</button>
                                 @elseif ($row->status == 'RETURNED BY USER')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
                                 @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
-                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL CORPORATES</button>
-                                @elseif ($row->status == 'REJECTED')
-                                    <button type="button" class="btn btn-danger" disabled>REJECTED</button>
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
+                                        CORPORATES</button>
+                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
+                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY HEAD OF LEGAL
+                                        DIVISION</button>
+                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
+                                    <button type="button" class="btn btn-danger" disabled>REJECTED BY HEAD OF LEGAL
+                                        DIVISION</button>
+                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED DOCUMENT
+                                        SENT</button>
                                 @else
                                     <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
                                 @endif
@@ -40,7 +49,13 @@
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
                                     <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
-                                @elseif ($row->status == 'REJECTED')
+                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
+                                    <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
+                                    <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
                                     <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
                                 @else
@@ -110,8 +125,8 @@
                         name="file_internal_memo" hidden />
                     <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="ii. KTP*" name="file_ktp"
                         hidden />
-                    <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="iii. NPWP*" name="file_npwp"
-                        hidden />
+                    <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="iii. NPWP*"
+                        name="file_npwp" hidden />
                     <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="iv. Buku/Akta Nikah"
                         name="file_marriage" hidden />
                     <x-input type="file" labelClass="col-sm-5" fieldClass="col-sm-7" label="v. KTP Suami/Istri"
