@@ -98,8 +98,8 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" option />
                     <div>
-                        <x-input fieldClass="col-sm-5" placeholder="Dokumen Terkait" type="text" />
-                        <x-file fieldClass="col-sm-7" name="related_document" />
+                        <input type="text" class="col-sm-5">
+                        <input type="file" class="col-sm-7">
                     </div>
 
                 </div>

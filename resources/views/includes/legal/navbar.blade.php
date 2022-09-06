@@ -74,6 +74,12 @@
                         <li class="scroll-to-section">
                             <a href="{{ route('legal.contact-us') }}">Hubungi Kami</a>
                         </li>
+                        <li class="scroll-to-section">
+                            <a href="{{ route('legal.search') }}"><i class="fas fa-search"></i></a>
+                        </li>
+                        {{-- <li class="scroll-to-section">
+                            <a href=""></a>
+                        </li> --}}
                         @guest
                             <li class="scroll-to-section">
                                 <div class="main-red-button">

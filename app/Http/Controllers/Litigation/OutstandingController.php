@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Litigation;
 
 use App\Http\Controllers\Controller;
+use App\Models\OptionalFile;
 use App\Models\Outstanding;
 use Illuminate\Http\Request;
 
@@ -110,9 +111,31 @@ class OutstandingController extends Controller
             $file->move('Litigation', $filename);
         }
 
-        Outstanding::create($data);
 
-        return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+        $test = Outstanding::create($data);
+
+        $files = $request->file('optional_file');
+
+        foreach ($files as $file) {
+            // $extension = $file->getClientOriginalExtension();
+            $name = $file->getClientOriginalName();
+            $filename = $name;
+            $file->move('optional', $filename);
+
+            OptionalFile::create([
+                'document_id' => $test->id,
+                'name' => $request->optional_name,
+                'file' => 'optional/'.$filename
+            ]);
+        }
+
+        if (auth()->user()->role == 'LEGAL') {
+            return to_route('legal.litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+        } else {
+            return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+        }
+
+        // return to_route('litigation.outstanding.index')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
     }
 
     public function show($id)

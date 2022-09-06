@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Database extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory;
+
+    protected $table = 'databases';
 
     protected $guarded = ['id'];
 
@@ -46,5 +48,13 @@ class Database extends Model
     public function file()
     {
         return $this->hasMany(DatabaseFile::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'databases', 'length' => 6, 'prefix' => 'REG', 'reset_on_prefix_change' => true]);
+        });
     }
 }

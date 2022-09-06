@@ -57,7 +57,7 @@
             @endslot
         @endif
 
-        <form action="{{ route('litigation.outstanding.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('legal.litigation.outstanding.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
@@ -103,9 +103,14 @@
                         name="file_director_id_card" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP*" name="file_npwp" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file_nib" option />
-                    <div>
-                        <x-input fieldClass="col-sm-5" placeholder="Dokumen Terkait" type="text" />
-                        <x-file fieldClass="col-sm-7" name="related_document" />
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="Masukkan Dokumen Lainnya"
+                                name="optional_name">
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="file" class="form-control" name="optional_file[]" multiple>
+                        </div>
                     </div>
                 </div>
             </div>

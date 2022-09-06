@@ -35,6 +35,7 @@ use App\Http\Controllers\LegalLitigation1\CustomerDisputeController as LegalLiti
 use App\Http\Controllers\LegalLitigation2\CustomerDisputeController as LegalLitigation2CustomerDisputeController;
 use App\Http\Controllers\LegalLitigationManager\OutstandingController as LegalLitigationManagerOutstandingController;
 use App\Http\Controllers\LegalLitigationManager\CustomerDisputeController as LegalLitigationManagerCustomerDisputeController;
+use App\Http\Controllers\Misc\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -170,7 +171,7 @@ Route::prefix('legal/litigation')->middleware(['isLegal'])->name('legal.litigati
 
     Route::prefix('outstanding')->name('outstanding.')->controller(OutstandingController::class)->group(function () {
         Route::get('/', 'indexLegal')->name('index');
-        Route::post('/', 'storeLegal')->name('store');
+        Route::post('/', 'store')->name('store');
         Route::get('/{id}', 'showLegal')->name('show');
         Route::post('/{id}', 'showLegalPost')->name('showPost');
         Route::get('progress/{id}', 'progressLegal')->name('progress');
@@ -586,6 +587,7 @@ Route::get('legal/faq/{id}', [FaqController::class, 'showLegal'])->name('legal.f
 
 Route::get('/contact-us', [ContactUsController::class, 'user'])->middleware('guest')->name('contact-us');
 Route::get('legal/contact-us', [ContactUsController::class, 'index'])->name('legal.contact-us');
+Route::get('legal/search', [SearchController::class, 'index'])->name('legal.search');
 
 Route::get('legal/contact-us/edit', [ContactUsController::class, 'edit'])->name('legal.contact-us-edit');
 

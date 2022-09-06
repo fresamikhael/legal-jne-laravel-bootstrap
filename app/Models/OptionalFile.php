@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OptionalDrafting extends Model
+class OptionalFile extends Model
 {
     use HasFactory;
 
-    protected $table = 'optional_drafting';
+    protected $table = 'optional_file';
 
     protected $fillable = [
-        'drafting_id',
+        'document_id',
         'name',
         'file',
     ];
 
-    public function lease()
+    public function outstanding()
     {
-        return $this->belongsTo(Lease::class);
+        return $this->belongsTo(Outstanding::class);
     }
 }

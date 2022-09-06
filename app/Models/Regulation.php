@@ -74,7 +74,7 @@ class Regulation extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'regulations', 'length' => 6, 'prefix' => 'REG', 'reset_on_prefix_change' => true]);
+            $model->id = IdGenerator::generate(['table' => 'regulations', 'length' => 6, 'prefix' => 'DB', 'reset_on_prefix_change' => true]);
         });
     }
 }
