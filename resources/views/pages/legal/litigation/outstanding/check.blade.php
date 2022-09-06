@@ -157,6 +157,10 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" value="Tidak Ada"
                             readOnly />
                     @endif
+                    @foreach ($data->file as $file)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="{{ $file->name }}" type="download"
+                            path="{{ asset($file->file) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
+                    @endforeach
                 </div>
             </div>
 

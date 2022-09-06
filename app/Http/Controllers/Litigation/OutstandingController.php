@@ -141,7 +141,7 @@ class OutstandingController extends Controller
     public function show($id)
     {
         $table = Outstanding::orderBy('id', 'DESC')
-            ->with('user')
+            ->with('user', 'file')
             ->get();
         $data = Outstanding::where('id', $id)->firstOrFail();
         return view('pages.user.litigation.outstanding.check', [

@@ -28,4 +28,9 @@ class Outstanding extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function file()
+    {
+        return $this->hasMany(OptionalFile::class, 'document_id', 'id');
+    }
 }
