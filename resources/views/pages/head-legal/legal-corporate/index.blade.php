@@ -11,6 +11,11 @@
             @php
                 $menu = [
                     [
+                        'label' => 'Jual Beli Tanah & Bangunan',
+                        'route' => 'headlegal.legalcorporate.landsell',
+                        'style' => 'background: #03a4ed !important; color: #fff !important;',
+                    ],
+                    [
                         'label' => 'Surat Kuasa',
                         'route' => 'headlegal.legalcorporate.powerattorney',
                         'style' => 'background: #fe3f40 !important; color: #fff !important;',

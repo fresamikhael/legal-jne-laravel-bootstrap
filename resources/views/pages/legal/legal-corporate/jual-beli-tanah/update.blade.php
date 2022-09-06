@@ -39,8 +39,7 @@
                                     <button type="button" class="btn btn-danger" disabled>REJECTED BY HEAD OF LEGAL
                                         DIVISION</button>
                                 @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
-                                    <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED
-                                        DOCUMENT
+                                    <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED DOCUMENT
                                         SENT</button>
                                 @else
                                     <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
@@ -77,7 +76,7 @@
         @endif
 
         <form method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.legalcorporate.landsell-check-post', $data->id) }}">
+            action="{{ route('legal.legalcorporate.landsell-update-post', $data->id) }}">
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
@@ -126,7 +125,8 @@
                         name="ownership_number" value="{{ $data->ownership_number }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai/Harga Pembelian" prefix="Rp"
                         name="agreement_nominal" value="{{ $data->agreement_nominal }}" disabled />
-
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Mekanisme Pembayaran" name="payment_type"
+                        value="{{ $data->payment_type }}" disabled />
 
                 </div>
             </div>
@@ -302,25 +302,31 @@
                         path="{{ route('download.landsell', [substr($data->file_appraisal, 9)]) }}">Unduh <i
                             class="fa fa-download"></i></x-file>
 
+                    <hr>
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Scan Akta Jual Beli"
+                        name="file_transaction_deed" />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Scan Sertifikat Jual Beli"
+                        name="file_transaction_certificate" />
                 </div>
             </div>
 
             <hr>
 
 
-            <div class="col-sm-12 mb-3">
+            <div class="col-sm-12
+                        mb-3">
                 <label for="">Catatan dari Legal Corporate</label>
                 <textarea class="form-control" name="cb_note" id="" cols="30" rows="10"></textarea>
             </div>
 
-            <div class="col-sm-12 mb-3">
+            {{-- <div class="col-sm-12 mb-3">
                 <label for="">Catatan untuk Legal Corporate</label>
                 <textarea class="form-control" name="user_note" id="" cols="30" rows="10" disabled>{{ $data->user_note }}</textarea>
-            </div>
+            </div> --}}
 
             <div class="d-flex justify-content-end">
                 <x-button type="submit" name="Approve" value="Approve" buttonClass="btn-primary me-3" />
-                <x-button type="submit" name="Revisi" value="Reject" buttonClass="btn-danger" />
+                {{-- <x-button type="submit" name="Revisi" value="Reject" buttonClass="btn-danger" /> --}}
             </div>
         </form>
     </x-base>

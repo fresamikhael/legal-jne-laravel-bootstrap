@@ -470,6 +470,9 @@ Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(func
     Route::get('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdate'])->name('powerattorney-update');
     Route::post('powerattorney/update/{id}', [PowerAttorneyController::class, 'legalUpdatePost'])->name('powerattorney-update-post');
 
+    Route::get('landsell/update/{id}', [LandSellController::class, 'legalUpdate'])->name('landsell-update');
+    Route::post('landsell/update/{id}', [LandSellController::class, 'legalUpdatePost'])->name('landsell-update-post');
+
     Route::get('landsell/final/{id}', [LandSellController::class, 'legalFinal'])->name('landsell-final');
     Route::get('powerattorney/final/{id}', [PowerAttorneyController::class, 'legalFinal'])->name('powerattorney-final');
 });
@@ -495,6 +498,11 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
 
     Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheck'])->name('powerattorney-check');
     Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'headlegalCheckPost'])->name('powerattorney-check-post');
+
+    Route::get('landsell', [LandSellController::class, 'headlegalIndex'])->name('landsell');
+
+    Route::get('landsell/check/{id}', [LandSellController::class, 'headlegalCheck'])->name('landsell-check');
+    Route::post('landsell/check/{id}', [LandSellController::class, 'headlegalCheckPost'])->name('landsell-check-post');
 });
 
 Route::prefix('database')->name('regulation.')->middleware('guest')->group(function () {

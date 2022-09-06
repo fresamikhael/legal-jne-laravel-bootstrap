@@ -311,19 +311,12 @@ class LandSellController extends Controller
             case 'Approve':
                 $data = $request->all();
 
-                if ($request->file('file_sale_agreement_draft_')) {
-                    $file = $request->file('file_sale_agreement_draft_');
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = Str::random(40) . '.' . $extension;
-                    $data['file_sale_agreement_draft_'] = 'LandSell/'.$filename;
-                    $file->move('LandSell', $filename);
-                }
+        
 
                 $item = LandSell::findOrFail($id);
 
                 $item->update([
                     $data,
-                    'file_sale_agreement_draft_' => $data['file_sale_agreement_draft_'],
                     'cb_note' => $request->cb_note,
                     'status' => 'APPROVED BY LEGAL CORPORATES'
                 ]);
@@ -331,6 +324,51 @@ class LandSellController extends Controller
                 return redirect()->route('legal.legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
                 break;
         }
+    }
+
+    public function legalUpdate($id)
+    {
+        $table = LandSell::orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::where('id', $id)->firstOrFail();
+        return view('pages.legal.legal-corporate.jual-beli-tanah.update', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function legalUpdatePost(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_transaction_deed')) {
+            $file = $request->file('file_transaction_deed');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_transaction_deed'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
+
+        if ($request->file('file_transaction_certificate')) {
+            $file = $request->file('file_transaction_certificate');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_transaction_certificate'] = 'LandSell/'.$filename;
+            $file->move('LandSell', $filename);
+        }
+
+        $item = LandSell::findOrFail($id);
+
+        $item->update([
+            $data,
+            'file_transaction_deed' => $data['file_transaction_deed'],
+            'file_transaction_certificate' => $data['file_transaction_certificate'],
+            'cb_note' => $request->cb_note,
+            'status' => 'APPROVED WITH SCANNED DOCUMENT SENT'
+        ]);
+
+        return redirect()->route('legal.legalcorporate.landsell')->with('message_success', 'Terima kasih, Dokumen berhasil dikirim');
     }
 
     public function userFinal($id)
@@ -355,5 +393,59 @@ class LandSellController extends Controller
             'data' => $data,
             'table' => $table
         ]);
+    }
+
+    public function headlegalIndex()
+    {
+        $data = LandSell::where('status', 'APPROVED BY LEGAL CORPORATES')->orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+
+        return view('pages.head-legal.legal-corporate.jual-beli-tanah.index', compact('data'));
+    }
+
+    public function headlegalCheck($id)
+    {
+        $table = LandSell::where('status', 'APPROVED BY LEGAL CORPORATES')->orderBy('id', 'DESC')
+            ->with('user')
+            ->get();
+        $data = LandSell::where('id', $id)->firstOrFail();
+        return view('pages.head-legal.legal-corporate.jual-beli-tanah.check', [
+            'data' => $data,
+            'table' => $table
+        ]);
+    }
+
+    public function headlegalCheckPost(Request $request, $id)
+    {
+        switch ($request->input('action')) {
+            case 'Reject':
+                $data = $request->all();
+
+                $item = LandSell::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'REJECTED BY HEAD OF LEGAL DIVISION']);
+
+                return redirect()->route('headlegal.legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+
+            case 'Approve':
+
+                $data = $request->all();
+
+                $item = LandSell::findOrFail($id);
+
+                $item->update([
+                    $data,
+                    'cb_note' => $request->cb_note,
+                    'status' => 'APPROVED BY HEAD OF LEGAL DIVISION'
+                ]);
+
+                return redirect()->route('headlegal.legalcorporate.landsell')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. Mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu.');
+                break;
+        }
     }
 }

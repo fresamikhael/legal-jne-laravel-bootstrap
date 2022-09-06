@@ -25,13 +25,22 @@
                             <td>{{ $row->id }}</td>
                             <td>
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
-                                    <button type="button" class="btn btn-success" disabled>APPROVED BY LEGAL CORPORATES</button>
+                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY LEGAL
+                                        CORPORATES</button>
                                 @elseif ($row->status == 'RETURNED BY USER')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY USER</button>
                                 @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
-                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL CORPORATES</button>
-                                @elseif ($row->status == 'REJECTED')
-                                    <button type="button" class="btn btn-danger" disabled>REJECTED</button>
+                                    <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
+                                        CORPORATES</button>
+                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
+                                    <button type="button" class="btn btn-warning" disabled>APPROVED BY HEAD OF LEGAL
+                                        DIVISION</button>
+                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
+                                    <button type="button" class="btn btn-danger" disabled>REJECTED BY HEAD OF LEGAL
+                                        DIVISION</button>
+                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
+                                    <button type="button" class="btn btn-success" disabled>APPROVED WITH SCANNED DOCUMENT
+                                        SENT</button>
                                 @else
                                     <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
                                 @endif
@@ -40,7 +49,13 @@
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
                                     <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
-                                @elseif ($row->status == 'REJECTED')
+                                @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
+                                    <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'REJECTED BY HEAD OF LEGAL DIVISION')
+                                    <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
+                                        class="btn btn-primary">Lihat</a>
+                                @elseif ($row->status == 'APPROVED WITH SCANNED DOCUMENT SENT')
                                     <a href="{{ route('legalcorporate.landsell-final', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
                                 @else
@@ -65,8 +80,8 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pengguna" name="name"
-                        value="{{ $data->name }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional"
+                        value="{{ $data->regional }}" disabled />
                     @php
                         $province = DB::table('provinces')
                             ->where('id', $data->user_province)
@@ -288,12 +303,21 @@
                             class="fa fa-download"></i></x-file>
                     <hr>
 
-                    @if ($data->file_sale_agreement_draft_ == null)
+                    @if ($data->file_transaction_deed == null)
                     @else
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                            label="Draft Kesepakatan/Pengikatan Jual Beli" name="file_sale_agreement_draft_"
-                            type="download"
-                            path="{{ route('download.landsell', [substr($data->file_sale_agreement_draft_, 9)]) }}">Unduh
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Scan Akta Jual Beli"
+                            name="file_transaction_deed" type="download"
+                            path="{{ route('download.landsell', [substr($data->file_transaction_deed, 9)]) }}">Unduh
+                            <i class="fa fa-download"></i>
+                        </x-file>
+                    @endif
+
+                    @if ($data->file_transaction_certificate == null)
+                    @else
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Scan Sertifikat Jual Beli"
+                            name="file_transaction_certificate" type="download"
+                            path="{{ route('download.landsell', [substr($data->file_transaction_certificate, 9)]) }}">
+                            Unduh
                             <i class="fa fa-download"></i>
                         </x-file>
                     @endif
