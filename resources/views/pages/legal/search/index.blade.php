@@ -6,16 +6,16 @@
 
 @section('content')
     <x-base>
-        <h2>Search</h2>
+        <h2>Pencarian Dokumen</h2>
 
         <div class="mt-3">
             <x-table id="dataTables">
                 @slot('header')
                     <tr>
                         <th>No</th>
-                        <th>Nomor Kasus</th>
+                        <th>Nama Dokumen</th>
+                        <th>Tipe</th>
                         <th>Status</th>
-                        <th>Aksi</th>
                     </tr>
                 @endslot
                 @slot('data')
@@ -23,16 +23,17 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row['name'] }}</td>
+                            <td>{{ $row['type'] }}</td>
                             <td>{{ $row['status'] }}</td>
-                            <td>
-                                {{-- @if ($row->status == 'APPROVED BY LEGAL LITIGASI MANAGER')
+                            {{-- <td>
+                                @if ($row->status == 'APPROVED BY LEGAL LITIGASI MANAGER')
                                     <a href="{{ route('cs.customer-dispute.show', [$row->id, 'action=finish']) }}"
                                         class="btn btn-primary">Update</a>
                                 @else
                                     <a href="{{ route('cs.customer-dispute.show', [$row->id]) }}"
                                         class="btn btn-primary">Lihat</a>
-                                @endif --}}
-                            </td>
+                                @endif
+                            </td> --}}
                         </tr>
                     @endforeach
                 @endslot

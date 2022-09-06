@@ -26,14 +26,14 @@ return new class extends Migration
             $table->string('agent_zip_code');
             $table->text('agent_address');
 
-            $table->string('total_outstanding');
-            $table->string('outstanding_type');
+            $table->string('total_outstanding')->nullable();
+            $table->string('outstanding_type')->nullable();
             $table->string('outstanding_types')->nullable();
             $table->string('outstanding_sales')->nullable();
             $table->string('outstanding_cod')->nullable();
-            $table->date('outstanding_start');
-            $table->date('outstanding_end');
-            $table->text('incident_chronology');
+            $table->date('outstanding_start')->nullable();
+            $table->date('outstanding_end')->nullable();
+            $table->text('incident_chronology')->nullable();
 
             $table->string('file_management_disposition')->nullable();
             $table->string('file_deed_of_incoporation')->nullable();
