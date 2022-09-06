@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Customer Dispute
+    Others
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <x-button-back />
 
         <div class="d-flex align-items-center justify-content-between">
-            <h2>Outstanding</h2>
+            <h2>Others</h2>
 
             <x-modal-history id="dataTables">
                 @slot('header')
@@ -47,9 +47,9 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Perusahaan" name="company_name"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Penggugat" name="company_name"
                         type="text" value="{{ $data->company_name }}" disabled />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Penanggung Jawab" name="person_responsible"
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Terggugat" name="person_responsible"
                         value="{{ $data->person_responsible }}" disabled />
 
                     <hr>
@@ -157,13 +157,17 @@
                         <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" value="Tidak Ada"
                             readOnly />
                     @endif
+                    @foreach ($data->file as $file)
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="{{ $file->name }}" type="download"
+                            path="{{ asset($file->file) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
+                    @endforeach
                 </div>
             </div>
 
             <hr>
 
-            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Packing List Outstanding"
-                name="outstanding_packing_list" value="{{ $data->outstanding_packing_list }}" type="text" disabled />
+            <x-input fieldClass="col-sm-12" name="outstanding_packing_list"
+                value="{{ $data->outstanding_packing_list }}" type="text" disabled />
 
             <hr>
 
