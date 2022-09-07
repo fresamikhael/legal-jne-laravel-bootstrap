@@ -32,11 +32,9 @@
                             @csrf
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="privilege">
                                 @foreach ($type as $t)
-                                    {{-- @php
-                                        $count = $t->count();
-                                    @endphp --}}
                                     <option value="{{ $t->name }}"
-                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>
+                                        {{ $t->name . ' ' . '(' . $allData[$t->name] . ')' }}
                                     </option>
                                 @endforeach
                             </x-select>
