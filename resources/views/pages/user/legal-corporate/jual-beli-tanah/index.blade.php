@@ -112,8 +112,8 @@
                         required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. IPPT/IPR" name="file_ippt" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. IMB" name="file_imb" />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. SPPT & STTS PBB*"
-                        name="file_sppt"required />
+                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. SPPT & STTS PBB*" name="file_sppt"
+                        required />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. MOM Pembelian" name="file_mom" />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Identitas Pemilik Sebelumnya*"
                         name="file_previous_owner_id" required />

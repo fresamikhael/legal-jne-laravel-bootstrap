@@ -549,6 +549,34 @@ Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('normative', [NormativeController::class, 'indexLegal'])->name('normative');
 
     Route::get('internal-create', [InternalController::class, 'create'])->name('internal-create');
+
+    Route::get('corporate-create', [RegulationController::class, 'createCorporate'])->name('corporate-create');
+    Route::get('company-legal-create', [RegulationController::class, 'createCompanyLegal'])->name('company-legal-create');
+    Route::get('company-asset-create', [RegulationController::class, 'createCompanyAsset'])->name('company-asset-create');
+    Route::get('partner-data-create', [RegulationController::class, 'createPartnerData'])->name('partner-data-create');
+    Route::get('sk-comms-create', [RegulationController::class, 'createSkBoardComms'])->name('sk-comms-create');
+    Route::get('sk-comms-director-create', [RegulationController::class, 'createSkBoardCommsDirector'])->name('sk-comms-director-create');
+    Route::get('sk-director-create', [RegulationController::class, 'createSkDirector'])->name('sk-director-create');
+    Route::get('se-director-create', [RegulationController::class, 'createSeDirector'])->name('se-director-create');
+    Route::get('association-create', [RegulationController::class, 'createAssociation'])->name('association-create');
+    Route::get('share-certificate-create', [RegulationController::class, 'createShareCertificate'])->name('share-certificate-create');
+    Route::get('power-of-attorney-create', [RegulationController::class, 'createPowerOfAttorney'])->name('power-of-attorney-create');
+
+    Route::get('permit-create', [RegulationController::class, 'createPermit'])->name('permit-create');
+    Route::get('ads-permit-create', [RegulationController::class, 'createAdsPermit'])->name('ads-permit-create');
+    Route::get('env-permit-create', [RegulationController::class, 'createEnvPermit'])->name('env-permit-create');
+    Route::get('k3-permit-create', [RegulationController::class, 'createK3Permit'])->name('k3-permit-create');
+    Route::get('disnaker-create', [RegulationController::class, 'createDisnakerPermit'])->name('disnaker-create');
+
+    Route::get('drafting-create', [RegulationController::class, 'createDrafting'])->name('drafting-create');
+    Route::get('lease-create', [RegulationController::class, 'createLease'])->name('lease-create');
+    Route::get('supplier-create', [RegulationController::class, 'createSupplier'])->name('supplier-create');
+    Route::get('customer-create', [RegulationController::class, 'createCustomer'])->name('customer-create');
+    Route::get('other-create', [RegulationController::class, 'createOther'])->name('other-create');
+    Route::get('agency-create', [RegulationController::class, 'createAgency'])->name('agency-create');
+
+    Route::get('litigation-create', [RegulationController::class, 'createLitigation'])->name('litigation-create');
+
     Route::get('normative-create', [NormativeController::class, 'create'])->name('normative-create');
 
     Route::post('internal-create/post', [InternalController::class, 'store'])->name('internal-post');
