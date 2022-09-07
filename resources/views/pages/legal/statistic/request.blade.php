@@ -25,7 +25,7 @@
                     <th>No</th>
                     <th>Nomor Tiket</th>
                     <th>Nama Kasus</th>
-                    <th>Status Terakhir</th>
+                    <th>Status</th>
                 </tr>
             @endslot
             @slot('data')
