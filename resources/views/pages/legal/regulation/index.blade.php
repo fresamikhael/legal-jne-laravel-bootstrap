@@ -78,6 +78,8 @@
                                     @if (auth()->user()->role == 'LEGAL')
                                         <a href="{{ route('legal.regulation.normative-create') }}"
                                             class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+                                        <a href="{{ route('legal.regulation.add') }}" class="btn btn-primary"><i
+                                                class="fa fa-plus"></i> Dokumen Khusus</a>
                                         <a href="{{ route('legal.regulation.request') }}" class="btn btn-success"><i
                                                 class="fas fa-file-contract"></i> Pengajuan</a>
                                         <a href="{{ route('legal.regulation.request-index') }}" class="btn btn-success"><i

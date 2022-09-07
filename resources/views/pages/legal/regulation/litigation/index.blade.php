@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Home
+    Create Permit
 @endsection
 
 @section('content')
@@ -9,24 +9,14 @@
         @php
             $menu = [
                 [
-                    'label' => 'Corporate',
-                    'route' => 'corporate-create',
+                    'label' => 'Gugatan',
+                    'route' => '#',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'Permit',
-                    'route' => 'permit-create',
+                    'label' => 'Somasi',
+                    'route' => '#',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'Perjanjian (Drafting)',
-                    'route' => 'drafting-create',
-                    'style' => 'background: #03a4ed !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'Litigasi',
-                    'route' => 'litigation-create',
-                    'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
             ];
         @endphp

@@ -325,4 +325,124 @@ class RegulationController extends Controller
 
         return redirect()->route('legal.regulation.index')->with('message_success', 'File berhasil di dihapus!.');;
     }
+
+    public function createCorporate()
+    {
+        return view('pages.legal.regulation.corporate.index');
+    }
+
+    public function createCompanyLegal()
+    {
+        return view('pages.legal.regulation.corporate.companyLegality.index');
+    }
+
+    public function createCompanyAsset()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.index');
+    }
+
+    public function createPartnerData()
+    {
+        return view('pages.legal.regulation.corporate.partnerData.index');
+    }
+
+    public function createSkBoardComms()
+    {
+        return view('pages.legal.regulation.corporate.skBoardComms.index');
+    }
+
+    public function createSkBoardCommsDirector()
+    {
+        return view('pages.legal.regulation.corporate.skBoardCommsDirector.index');
+    }
+
+    public function createSkDirector()
+    {
+        return view('pages.legal.regulation.corporate.skDirector.index');
+    }
+
+    public function createSeDirector()
+    {
+        return view('pages.legal.regulation.corporate.seDirector.index');
+    }
+
+    public function createInternalMemoDirector()
+    {
+        return view('pages.legal.regulation.corporate.internalMemoDirector.index');
+    }
+
+    public function createShareCertificate()
+    {
+        return view('pages.legal.regulation.corporate.shareCertificate.index');
+    }
+
+    public function createPowerOfAttorney()
+    {
+        return view('pages.legal.regulation.corporate.powerOfAttorney.index');
+    }
+
+    public function createAssociation()
+    {
+        return view('pages.legal.regulation.corporate.association.index');
+    }
+
+    public function createPermit()
+    {
+        return view('pages.legal.regulation.permit.index');
+    }
+
+    public function createAdsPermit()
+    {
+        return view('pages.legal.regulation.permit.advertisingPermit.index');
+    }
+
+    public function createEnvPermit()
+    {
+        return view('pages.legal.regulation.permit.environmentalPermit.index');
+    }
+
+    public function createK3Permit()
+    {
+        return view('pages.legal.regulation.permit.k3permit.index');
+    }
+
+    public function createDisnakerPermit()
+    {
+        return view('pages.legal.regulation.permit.disnaker.index');
+    }
+
+    public function createDrafting()
+    {
+        return view('pages.legal.regulation.drafting.index');
+    }
+
+    public function createLease()
+    {
+        return view('pages.legal.regulation.drafting.lease.index');
+    }
+
+    public function createSupplier()
+    {
+        return view('pages.legal.regulation.drafting.supplierVendor.index');
+    }
+
+    public function createCustomer()
+    {
+        return view('pages.legal.regulation.drafting.customer.index');
+    }
+
+    public function createOther()
+    {
+        return view('pages.legal.regulation.drafting.others.index');
+    }
+
+    public function createAgency()
+    {
+        return view('pages.legal.regulation.drafting.agency.index');
+    }
+
+    public function createLitigation()
+    {
+        return view('pages.legal.regulation.litigation.index');
+    }
 }

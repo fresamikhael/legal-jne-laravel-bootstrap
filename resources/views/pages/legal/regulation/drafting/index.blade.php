@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Home
+    Create Drafting
 @endsection
 
 @section('content')
@@ -9,23 +9,28 @@
         @php
             $menu = [
                 [
-                    'label' => 'Corporate',
-                    'route' => 'corporate-create',
+                    'label' => 'Sewa Menyewa',
+                    'route' => 'lease-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'Permit',
-                    'route' => 'permit-create',
+                    'label' => 'Supplier/Vendor',
+                    'route' => 'supplier-create',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'Perjanjian (Drafting)',
-                    'route' => 'drafting-create',
+                    'label' => 'Customer',
+                    'route' => 'customer-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'Litigasi',
-                    'route' => 'litigation-create',
+                    'label' => 'Others',
+                    'route' => 'other-create',
+                    'style' => 'background: #2a2a2a !important; color: #fff !important;',
+                ],
+                [
+                    'label' => 'Keagenan',
+                    'route' => 'agency-create',
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
             ];
