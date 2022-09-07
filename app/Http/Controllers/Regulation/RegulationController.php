@@ -33,13 +33,14 @@ class RegulationController extends Controller
 
     public function indexLegal()
     {
+        $allData = Regulation::all()->countBy('type');
         $database = Regulation::orderBy('name', 'ASC')
             ->filter(request(['privilege', 'unit', 'name', 'number','type', 'date', 'about']))
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
         $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
 
-        return view('pages.legal.regulation.index',compact('database', 'type', 'total'));
+        return view('pages.legal.regulation.index',compact('database', 'type', 'total','allData'));
     }
 
     public function indexRequestLegal()
