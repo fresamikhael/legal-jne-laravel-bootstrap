@@ -36,6 +36,8 @@
                 <div class="mt-3">
                     <a href={{ route('legal.regulation.add-type') }} class="btn btn-primary"><i class="fas fa-edit"></i>
                         Tipe Dokumen</a>
+                    <a href={{ route('legal.regulation.add-unit') }} class="btn btn-primary"><i class="fas fa-edit"></i>
+                        Unit</a>
                 </div>
             </div>
         </div>
@@ -50,6 +52,35 @@
                         <option value="{{ $t->name }}">{{ $t->name }}</option>
                     @endforeach
                 </x-select>
+                {{-- <div class="form-group row">
+                    <label for="inputGender" class="col-sm-2 col-form-label">Tipe Dokumen</label>
+                    <div class="col-sm-3">
+                        <select class="custom-select @error('type_id') is-invalid @enderror" id="inputType" name="type">
+                            <option selected hidden disabled>Select Type</option>
+                            @foreach ($type as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('type_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputGender" class="col-sm-2 col-form-label">Office</label>
+                    <div class="col-sm-3">
+                        <select class="custom-select @error('unit_id') is-invalid @enderror" id="unit" name="unit_id">
+
+                        </select>
+                        @error('unit_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div> --}}
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra" name="agency" required />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" name="number" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date" name="date"
@@ -96,4 +127,51 @@
         </form>
 
     </x-base>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> --}}
+    <script>
+        $(document).ready(function() {
+            $('#inputType').on('change', function(e) {
+                var typeID = $(this).val();
+                var url = '{{ route('getunit', ':id') }}'
+                url = url.replace(':id', typeID);
+                if (typeID) {
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        enctype: 'multipart/form-data',
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        // headers: {
+                        //     'X-CSRF-Token': '{{ csrf_token() }}',
+                        // },
+
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#unit').empty();
+                                $('#unit').append(
+                                    '<option  hidden selected disabled>Choose unit</option>'
+                                );
+                                $.each(data, function(key, unit) {
+                                    $('select[name="unit_id"]').append(
+                                        '<option value="' + unit.id + '">' +
+                                        unit
+                                        .name + '</option>');
+                                });
+                            } else {
+                                $('#unit').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#unit').empty();
+                }
+            });
+        });
+    </script>
 @endsection

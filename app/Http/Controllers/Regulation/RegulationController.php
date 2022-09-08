@@ -7,6 +7,7 @@ use App\Models\Regulation;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RegulationType;
+use App\Models\RegulationUnit;
 use App\Models\DatabaseRequest;
 use App\Models\DatabaseRequestFile;
 use App\Http\Controllers\Controller;
@@ -316,6 +317,24 @@ class RegulationController extends Controller
             ->delete();
 
         return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di dihapus!.');
+    }
+
+    public function addUnit()
+    {
+        $types = RegulationType::all();
+        $units = RegulationUnit::all();
+        $table = RegulationUnit::orderBy('id', 'DESC')->get();
+
+        return view('pages.legal.regulation.unit.add', compact('table', 'types', 'units'));
+    }
+
+    public function storeUnit(Request $request)
+    {
+        $data = $request->all();
+
+        RegulationUnit::create($data);
+
+        return redirect()->route('legal.regulation.normative-create')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
     }
 
     public function delete($id)

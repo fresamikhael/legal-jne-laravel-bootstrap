@@ -39,8 +39,8 @@
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-textarea label="Tentang" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                     </div>

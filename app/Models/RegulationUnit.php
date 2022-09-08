@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class RegulationType extends Model
+class RegulationUnit extends Model
 {
     use HasFactory;
-
-    protected $table = 'regulation_types';
 
     protected $guarded = ['id'];
 
@@ -22,12 +20,12 @@ class RegulationType extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'regulation_types', 'length' => 6, 'prefix' => 'RET', 'reset_on_prefix_change' => true]);
+            $model->id = IdGenerator::generate(['table' => 'regulation_units', 'length' => 6, 'prefix' => 'REU', 'reset_on_prefix_change' => true]);
         });
     }
 
-    public function unit()
+    public function type()
     {
-        return $this->hasMany(RegulationUnit::class, 'type_id', 'id');
+        return $this->belongsTo(RegulationType::class, 'type_id', 'id');
     }
 }

@@ -597,6 +597,10 @@ Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::post('edit-type/post/{id}', [RegulationController::class, 'updateType'])->name('update-type');
     Route::get('delete-type/{id}', [RegulationController::class, 'deleteType'])->name('delete-type');
     Route::get('delete/{id}', [RegulationController::class, 'delete'])->name('delete');
+
+    Route::get('add-unit', [RegulationController::class, 'addUnit'])->name('add-unit');
+    Route::post('add-unit/post', [RegulationController::class, 'storeUnit'])->name('store-unit');
+
 });
 
 Route::get('legal/statistic', [StatisticController::class, 'index'])->name('statistic');
@@ -628,6 +632,11 @@ Route::get('legal/search', [SearchController::class, 'index'])->name('legal.sear
 Route::get('legal/contact-us/edit', [ContactUsController::class, 'edit'])->name('legal.contact-us-edit');
 
 Route::post('legal/contact-us/store', [ContactUsController::class, 'store'])->name('legal.contact-us-store');
+
+Route::get('getUnit/{id}', function ($id) {
+    $unit = App\Models\RegulationUnit::where('type_id', $id)->get();
+    return response()->json($unit);
+})->name('getunit');
 
 Auth::routes();
 

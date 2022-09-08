@@ -43,7 +43,8 @@
                         <option value="Agen">Agen</option>
                     </x-select>
                     <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                    <x-input label="Tanggal" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                    <x-input type="date" label="Tanggal" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        required />
                     <x-input label="Jangka Waktu" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                     <x-input label="Nama Cabang Utama" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />

@@ -38,6 +38,14 @@
                                     </option>
                                 @endforeach
                             </x-select>
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="privilege">
+                                @foreach ($type as $t)
+                                    <option value="{{ $t->name }}"
+                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>
+                                        {{ $t->name . ' ' . '(' . $allData[$t->name] . ')' }}
+                                    </option>
+                                @endforeach
+                            </x-select>
                             <x-input label="Tahun" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
                                 value="{{ request('date') }}" />
                             {{-- <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="type">
@@ -63,7 +71,7 @@
                             </x-select> --}}
                             <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
-                            <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" type="date"
+                            <x-input label="Tahun" labelClass="col-sm-12" fieldClass="col-sm-12" type="date"
                                 name="date" value="{{ request('date') }}" />
                             <div class="col-sm-12">
                                 <label for="">Tentang</label>

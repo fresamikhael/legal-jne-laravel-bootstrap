@@ -61,8 +61,8 @@
                         </x-select>
                         <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Tanggal Penerbitan" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Tanggal Penerbitan" name="surface_area" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Masa Berlaku" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                     </div>

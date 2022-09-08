@@ -40,8 +40,8 @@
                     <div class="col-sm-12">
                         <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Tanggal" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Tanggal" name="surface_area" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Judul Perjanjian" name="application_reason" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
                         <x-input label="Isi" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"

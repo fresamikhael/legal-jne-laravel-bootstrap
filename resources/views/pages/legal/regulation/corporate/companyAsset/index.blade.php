@@ -49,7 +49,7 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal Sertipikat" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal Sertipikat" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Luas Tanah" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
@@ -77,7 +77,7 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal Sertipikat" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal Sertipikat" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Luas Tanah" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
@@ -116,8 +116,8 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
@@ -133,8 +133,8 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
@@ -150,8 +150,8 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Nilai Transaksi" name="surface_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="PPAT" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -169,8 +169,8 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Nilai Transaksi" name="surface_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Notaris" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -188,8 +188,8 @@
                             <div class="col-sm-12">
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Nilai Transaksi" name="surface_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Notaris" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
