@@ -38,17 +38,17 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
-                        <x-input label="WLTK" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Disnaker" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input label="WLTK" name="wltk" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="BPJS Ketenagakerjaan" name="bpjs" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="BPJS Ketenagakerjaan" name="surface_area" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
-                        <x-input label="Peraturan Perusahaan" name="application_reason" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
-                        <x-input label="LKS Bipartit" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="Peraturan Perusahaan" name="pp" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="P2K3" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="SMK3" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="LKS Bipartit" name="lks" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
+                        <x-input label="P2K3" name="p2k3" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="SMK3" name="smk3" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                     </div>
                 </div>
             </div>

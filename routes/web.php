@@ -559,6 +559,7 @@ Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('sk-director-create', [RegulationController::class, 'createSkDirector'])->name('sk-director-create');
     Route::get('se-director-create', [RegulationController::class, 'createSeDirector'])->name('se-director-create');
     Route::get('association-create', [RegulationController::class, 'createAssociation'])->name('association-create');
+    Route::get('internal-memo-director-create', [RegulationController::class, 'createInternalMemoDirector'])->name('internal-memo-director-create');
     Route::get('share-certificate-create', [RegulationController::class, 'createShareCertificate'])->name('share-certificate-create');
     Route::get('power-of-attorney-create', [RegulationController::class, 'createPowerOfAttorney'])->name('power-of-attorney-create');
 

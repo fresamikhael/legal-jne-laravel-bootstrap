@@ -37,21 +37,24 @@
             @csrf
             <div class="row mt-4">
                 <div class="row mt-3">
-                    <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Tipe Dokumen" name="unit" required>
+                    <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                    <x-input value="Keagenan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                    <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Tipe Dokumen" name="agent_type" required>
                         <option value="Cabang Utama">Cabang Utama</option>
                         <option value="Cabang">Cabang</option>
                         <option value="Agen">Agen</option>
                     </x-select>
                     <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                    <x-input type="date" label="Tanggal" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />
-                    <x-input label="Jangka Waktu" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                    <x-input label="Nama Cabang Utama" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />
-                    <x-input label="Nama Mitra" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                    <x-input label="Wilayah Kerja" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    <x-input label="Nama Cabang Utama" name="branch_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />
-                    <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    <x-input label="Nama Mitra" name="partner_name" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                    <x-input label="Wilayah Kerja" name="working_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        required />
+                    <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />
                 </div>
             </div>

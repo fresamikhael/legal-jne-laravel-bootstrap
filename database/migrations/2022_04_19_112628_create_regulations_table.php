@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('id')->unique();
             // $table->uuid('id')->primary();
 
-            $table->string('name');
-            $table->string('type');
+            $table->string('name')->nullable();
+            $table->string('type')->nullable();
             $table->string('file')->nullable();
             $table->string('number')->nullable();
             $table->date('date')->nullable();

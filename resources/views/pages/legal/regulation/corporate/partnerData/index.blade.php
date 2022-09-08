@@ -47,26 +47,27 @@
                     @slot('budget')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Cabang Utama Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Judul Akta" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Judul Akta" name="title_deed" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nama Notaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nama Direksi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nama Notaris" name="notary_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Masa Jabatan Direksi" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Nama Direksi" name="director_name" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Masa Jabatan Direksi" name="comms_term_arr" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nama Dewan Komisaris" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nama Dewan Komisaris" name="comms_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Masa Jabatan Komisaris" name="application_reason" labelClass="col-sm-2"
+                                <x-input label="Masa Jabatan Komisaris" name="comms_term" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Susunan Pemegang Saham" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Susunan Pemegang Saham" name="comms_arr" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Masa Jabatan Komisaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Isi Akta" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Isi Akta" name="body" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -75,10 +76,13 @@
                     @slot('ham')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Cabang Utama SK Hukum dan Ham" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jenis SK" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Jenis SK" name="sk_type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -87,10 +91,15 @@
                     @slot('director')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP" name="ads_size" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                                <x-input label="NPWP" name="ads_height" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Utama Identitas Direksi" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP" name="ktp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="application_reason" labelClass="col-sm-2"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" type="file" required />
                             </div>
                         </div>
@@ -99,11 +108,15 @@
                     @slot('commissioner')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP" name="branch_village" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Utama Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP" name="ktp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="NPWP" name="branch_district" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="branch_postal_code" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -112,11 +125,15 @@
                     @slot('share')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP/Anggaran Dasar" name="branch_village" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Utama Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP/Anggaran Dasar" name="ktp" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="NPWP" name="branch_district" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="branch_postal_code" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -125,9 +142,13 @@
                     @slot('npwp')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Utama NPWP" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -136,11 +157,15 @@
                     @slot('nib')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Utama NIB" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="KBLI" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="KBLI" name="kbli" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -149,28 +174,30 @@
                     @slot('budget1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Judul Akta" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Judul Akta" name="title_deed" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nama Notaris" name="application_reason" labelClass="col-sm-2"
+                                <x-input label="Nama Notaris" name="notary_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nama Direksi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nama Direksi" name="director_name" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Masa Jabatan Direksi" name="comms_term_arr" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Nama Dewan Komisaris" name="comms_name" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Masa Jabatan Komisaris" name="comms_term" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Susunan Pemegang Saham" name="comms_arr" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Isi Akta" name="body" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Masa Jabatan Direksi" name="building_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nama Dewan Komisaris" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Masa Jabatan Komisaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Susunan Pemegang Saham" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Masa Jabatan Komisaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Isi Akta" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
                             </div>
                         </div>
                     @endslot
@@ -178,11 +205,15 @@
                     @slot('ham1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang SK Hukum dan Ham" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jenis SK" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Jenis SK" name="sk_type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -191,11 +222,15 @@
                     @slot('director1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP" name="ads_size" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Identitas Direksi" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP" name="ktp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="NPWP" name="ads_height" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="application_reason" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" type="file" required />
                             </div>
                         </div>
@@ -204,11 +239,15 @@
                     @slot('commissioner1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP" name="branch_village" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP" name="ktp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="NPWP" name="branch_district" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="branch_postal_code" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -217,11 +256,15 @@
                     @slot('share1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP/Anggaran Dasar" name="branch_village" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP/Anggaran Dasar" name="ktp" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="NPWP" name="branch_district" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="branch_postal_code" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -230,9 +273,13 @@
                     @slot('npwp1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang NPWP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -241,6 +288,10 @@
                     @slot('nib1')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Cabang NIB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
@@ -254,32 +305,30 @@
                     @slot('budget2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Tanggal" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Judul Akta" name="title_deed" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Judul Akta" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nama Notaris" name="notary_name" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Nama Direksi" name="director_name" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Masa Jabatan Direksi" name="comms_term_arr" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Nama Dewan Komisaris" name="comms_name" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Masa Jabatan Komisaris" name="comms_term" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Susunan Pemegang Saham" name="comms_arr" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Isi Akta" name="body" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nama Notaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nama Direksi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Masa Jabatan Direksi" name="building_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nama Dewan Komisaris" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Masa Jabatan Komisaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Susunan Pemegang Saham" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Masa Jabatan Komisaris" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <div class="col-sm-12">
-                                    <label for="">Isi Akta</label>
-                                </div>
-                                <div class="col-sm-12 mb-3">
-                                    <textarea name="note" id="editor"></textarea>
-                                </div>
                             </div>
                         </div>
                     @endslot
@@ -287,11 +336,15 @@
                     @slot('ham2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen SK Hukum dan Ham" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jenis SK" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Jenis SK" name="sk_type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -300,11 +353,15 @@
                     @slot('director2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP" name="ads_size" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen Identitas Direksi" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP" name="ktp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="NPWP" name="ads_height" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="application_reason" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" type="file" required />
                             </div>
                         </div>
@@ -313,11 +370,15 @@
                     @slot('commissioner2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP" name="branch_village" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP" name="ktp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="NPWP" name="branch_district" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="branch_postal_code" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -326,11 +387,15 @@
                     @slot('share2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="KTP/Anggaran Dasar" name="branch_village" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="KTP/Anggaran Dasar" name="ktp" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="NPWP" name="branch_district" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NPWP" name="npwp" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="file" label="Pas Foto" name="branch_postal_code" labelClass="col-sm-2"
+                                <x-input type="file" label="Pas Foto" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -339,9 +404,13 @@
                     @slot('npwp2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen NPWP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -350,6 +419,10 @@
                     @slot('nib2')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Agen NIB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
                                 <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"

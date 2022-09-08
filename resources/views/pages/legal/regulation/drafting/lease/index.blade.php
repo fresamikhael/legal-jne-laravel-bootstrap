@@ -38,28 +38,25 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
-                        <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
-                        <x-input type="date" label="Tanggal Penerbitan" name="surface_area" labelClass="col-sm-2"
+                        <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Sewa Menyewa" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
-                        <x-input label="Jangka Waktu" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Landlord" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
-                        <x-input label="Nilai Sewa" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
-                        <x-input label="Jangka Waktu" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="Landlord" name="landlord" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Nilai Sewa" name="rental_value" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                         <label for="">Lokasi</label>
-                        <x-input label="Provinsi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Kab/Kota" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Kecamatan" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Desa/Kel" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Jalan/Nama Gedung" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Jalan" name="address" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Nama Notaris" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Nama Notaris" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
-                        <x-input label="Others" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Others" name="other" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                     </div>
                 </div>
             </div>

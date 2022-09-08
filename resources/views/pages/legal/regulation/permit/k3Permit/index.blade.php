@@ -45,6 +45,7 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
+                        <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit" required>
                             <option value="Penangkal Petir">Penangkal Petir</option>
                             <option value="HT">HT</option>
@@ -59,11 +60,10 @@
                             <option value="Hydrant">Hydrant</option>
                             <option value="Tera">Tera</option>
                         </x-select>
-                        <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
-                        <x-input type="date" label="Tanggal Penerbitan" name="surface_area" labelClass="col-sm-2"
+                        <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
-                        <x-input label="Masa Berlaku" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                     </div>
                 </div>
