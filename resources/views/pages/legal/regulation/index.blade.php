@@ -124,7 +124,7 @@
                                     if (x.value === "Perjanjian") {
                                         document.getElementById("dropperjanjian1").classList.remove('d-none');
                                         document.getElementById("dropperjanjian1").classList.add('d-flex');
-                                        document.getElementById("dropperjanjian").required = true;
+                                        document.getElementById("dropperjanjian").required = false;
 
                                         document.getElementById("dropperizinan1").classList.remove('d-flex');
                                         document.getElementById("dropperizinan1").classList.add('d-none');
@@ -144,7 +144,7 @@
 
                                         document.getElementById("dropperizinan1").classList.remove('d-none');
                                         document.getElementById("dropperizinan1").classList.add('d-flex');
-                                        document.getElementById("dropperizinan").required = true;
+                                        document.getElementById("dropperizinan").required = false;
 
                                         document.getElementById("droplitigasi1").classList.remove('d-flex');
                                         document.getElementById("droplitigasi1").classList.add('d-none');
@@ -164,7 +164,7 @@
 
                                         document.getElementById("droplitigasi1").classList.remove('d-none');
                                         document.getElementById("droplitigasi1").classList.add('d-flex');
-                                        document.getElementById("droplitigasi").required = true;
+                                        document.getElementById("droplitigasi").required = false;
 
                                         document.getElementById("dropcorporate1").classList.remove('d-flex');
                                         document.getElementById("dropcorporate1").classList.add('d-none');
@@ -184,7 +184,7 @@
 
                                         document.getElementById("dropcorporate1").classList.remove('d-none');
                                         document.getElementById("dropcorporate1").classList.add('d-flex');
-                                        document.getElementById("dropcorporate").required = true;
+                                        document.getElementById("dropcorporate").required = false;
                                     } else {
                                         document.getElementById("dropperjanjian1").classList.remove('d-flex');
                                         document.getElementById("dropperjanjian1").classList.add('d-none');
