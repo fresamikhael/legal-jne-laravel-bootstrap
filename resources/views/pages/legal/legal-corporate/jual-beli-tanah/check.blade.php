@@ -32,6 +32,9 @@
                                 @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
                                         CORPORATES</button>
+                                @elseif ($row->status == 'SENT BY LEGAL CORPORATES')
+                                    <button type="button" class="btn btn-warning" disabled>SENT BY LEGAL
+                                        CORPORATES</button>
                                 @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
                                     <button type="button" class="btn btn-warning" disabled>APPROVED BY HEAD OF LEGAL
                                         DIVISION</button>
@@ -48,6 +51,9 @@
                             </td>
                             <td>
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <a href="{{ route('legal.legalcorporate.landsell-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @elseif ($row->status == 'SENT BY LEGAL CORPORATES')
                                     <a href="{{ route('legal.legalcorporate.landsell-check', [$row->id]) }}"
                                         class="btn btn-danger">Update</a>
                                 @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')

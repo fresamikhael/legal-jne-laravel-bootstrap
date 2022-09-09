@@ -31,12 +31,18 @@
                                     @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
                                         <button type="button" class="btn btn-warning" disabled>APPROVED BY LEGAL
                                             CORPORATES</button>
+                                    @elseif ($row->status == 'SENT BY LEGAL CORPORATES')
+                                        <button type="button" class="btn btn-warning" disabled>SENT BY LEGAL
+                                            CORPORATES</button>
                                     @else
                                         <button type="button" class="btn btn-warning" disabled>Pengajuan Diproses</button>
                                     @endif
                                 </td>
                                 <td>
                                     @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                        <a href="{{ route('headlegal.legalcorporate.powerattorney-check', [$row->id]) }}"
+                                            class="btn btn-danger">Update</a>
+                                    @elseif ($row->status == 'SENT BY LEGAL CORPORATES')
                                         <a href="{{ route('headlegal.legalcorporate.powerattorney-check', [$row->id]) }}"
                                             class="btn btn-danger">Update</a>
                                     @else

@@ -458,8 +458,8 @@ Route::prefix('legal/legalcorporate')->name('legal.legalcorporate.')->group(func
 
     Route::get('landsell', [LandSellController::class, 'legalIndex'])->name('landsell');
     Route::get('powerattorney', [PowerAttorneyController::class, 'legalIndex'])->name('powerattorney');
-    Route::post('landsell/post', [LandSellController::class, 'store'])->name('landsell-post');
-    Route::post('powerattorney/post', [PowerAttorneyController::class, 'store'])->name('powerattorney-post');
+    Route::post('landsell/post', [LandSellController::class, 'storeLegal'])->name('landsell-post');
+    Route::post('powerattorney/post', [PowerAttorneyController::class, 'storeLegal'])->name('powerattorney-post');
 
     Route::get('powerattorney/check/{id}', [PowerAttorneyController::class, 'legalCheck'])->name('powerattorney-check');
     Route::post('powerattorney/check/{id}', [PowerAttorneyController::class, 'legalCheckPost'])->name('powerattorney-check-post');
