@@ -167,7 +167,7 @@
                             @endif
                             @if ($database->address)
                                 <tr>
-                                    <th scope="row" class="text-end">Jalan</th>
+                                    <th scope="row" class="text-end">Alamat</th>
                                     <td>{{ $database->address }}</td>
                                 </tr>
                             @endif
@@ -379,12 +379,6 @@
                                 <tr>
                                     <th scope="row" class="text-end">KBLI</th>
                                     <td>{{ $database->kbli }}</td>
-                                </tr>
-                            @endif
-                            @if ($database->ttl)
-                                <tr>
-                                    <th scope="row" class="text-end">Tempat, Tanggal Lahir</th>
-                                    <td>{{ $database->ttl }}</td>
                                 </tr>
                             @endif
                             @if ($database->ttl)

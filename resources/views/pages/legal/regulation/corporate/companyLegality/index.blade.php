@@ -233,6 +233,158 @@
                         </div>
                     @endslot
                 </x-corporate-type>
+
+                <table class="table table-borderless" id="dynamicTable">
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-start my-2">
+                                <div class="col-sm-12">
+                                    <x-input label="Nama Direksi" name="document_name[]" labelClass="col-sm-3"
+                                        fieldClass="col-sm-9">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <button type="button" name="add" id="add"
+                                    class="btn btn-success ">Tambah</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-borderless" id="dynamicTable1">
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-start my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Masa Jabatan Direksi dan Susunan Pemegang Saham"
+                                        label="Masa Jabatan Direksi Susunan Pemegang Saham dan jumlah saham"
+                                        name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                                    </x-input>
+                                    {{-- <x-input hidden value="Soft Copy" label="Nama Dokumen" name="document_type[]"
+                                        labelClass="col-sm-4" fieldClass="col-sm-8">
+                                    </x-input> --}}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                                        fieldClass="col-sm-9">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <button type="button" name="add1" id="add1"
+                                    class="btn btn-success ">Tambah</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-borderless" id="dynamicTable2">
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-start my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Nama Dewan Komisaris Susunan Pemegang Saham"
+                                        label="Nama Dewan Komisaris Susunan Pemegang Saham dan Jumlah Saham"
+                                        name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                                    </x-input>
+                                    <x-input hidden value="Soft Copy" label="Nama Dokumen" name="document_type[]"
+                                        labelClass="col-sm-4" fieldClass="col-sm-8">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                                        fieldClass="col-sm-9">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <button type="button" name="add2" id="add2"
+                                    class="btn btn-success ">Tambah</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-borderless" id="dynamicTable3">
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-start my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Masa Jabatan Komisaris Susunan Pemegang Saham"
+                                        label="Masa Jabatan Komisaris Susunan Pemegang Saham dan jumlah saham"
+                                        name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                                    </x-input>
+                                    <x-input hidden value="Soft Copy" label="Nama Dokumen" name="document_type[]"
+                                        labelClass="col-sm-4" fieldClass="col-sm-8">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                                        fieldClass="col-sm-9">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <button type="button" name="add3" id="add3"
+                                    class="btn btn-success ">Tambah</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table table-borderless" id="dynamicTable4">
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-start my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Susunan Pemegang Saham"
+                                        label="Susunan Pemegang Saham dan jumlah saham" name="document_name[]"
+                                        labelClass="col-sm-3" fieldClass="col-sm-9">
+                                    </x-input>
+                                    <x-input hidden value="Soft Copy" label="Nama Dokumen" name="document_type[]"
+                                        labelClass="col-sm-4" fieldClass="col-sm-8">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <div class="col-sm-12">
+                                    <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                                        fieldClass="col-sm-9">
+                                    </x-input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end my-2">
+                                <button type="button" name="add4" id="add4"
+                                    class="btn btn-success ">Tambah</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <div class="d-flex justify-content-end me-4">
@@ -242,3 +394,230 @@
 
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script>
+        document.getElementById("corporate_type").addEventListener("change", handleChange);
+
+        function handleChange() {
+            var x = document.getElementById("corporate_type");
+            if (x.value === "Anggaran dasar perusahaan") {
+                document.getElementById("dynamicTable1").classList.remove('d-none');
+                document.getElementById("dynamicTable1").classList.add('d-flex');
+                document.getElementById("dynamicTable").required = true;
+            } else {
+                document.getElementById("dynamicTable1").classList.remove('d-flex');
+                document.getElementById("dynamicTable1").classList.add('d-none');
+                document.getElementById("dynamicTable").required = false;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#dataTables').DataTable({
+                paging: false,
+                searching: false,
+                retrieve: true,
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                ajax: "{{ route('permit.newpermit') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        "className": "text-center"
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        "className": "text-center",
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+
+        });
+        var i = 0;
+
+        $("#add").click(function() {
+
+            ++i;
+
+            $("#dynamicTable").append($("#test").html());
+        });
+
+        $("#add1").click(function() {
+
+            ++i;
+
+            $("#dynamicTable1").append($("#test1").html());
+        });
+
+        $("#add2").click(function() {
+
+            ++i;
+
+            $("#dynamicTable2").append($("#test2").html());
+        });
+
+        $("#add3").click(function() {
+
+            ++i;
+
+            $("#dynamicTable3").append($("#test3").html());
+        });
+
+        $("#add4").click(function() {
+
+            ++i;
+
+            $("#dynamicTable4").append($("#test4").html());
+        });
+        // var form_tags = document.getElementById('form')
+        // $(document).on('click', '#remove', function() {
+        //     // $(this).parents('tr').remove();
+        //     if (form_tags.length > 2) {
+        //         form_tags.removeChild();
+        //     }
+        // });
+        $(document).on('click', '.remove-tr', function() {
+            $(this).parents('tr').remove();
+        });
+    </script>
+    <script type="text/html" id="test">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-start my-2">
+                    <div class="col-sm-12">
+                        <x-input label="Nama Direksi" name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script type="text/html" id="test1">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-start my-2">
+                    <div class="col-sm-12">
+                        <x-input placeholder="Masa Jabatan Komisaris Susunan Pemegang Saham"
+                            label="Masa Jabatan Komisaris Susunan Pemegang Saham dan jumlah saham"
+                            name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <div class="col-sm-12">
+                        <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                            fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script type="text/html" id="test2">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-start my-2">
+                    <div class="col-sm-12">
+                        <x-input placeholder="Nama Dewan Komisaris Susunan Pemegang Saham"
+                            label="Nama Dewan Komisaris Susunan Pemegang Saham dan Jumlah Saham"
+                            name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <div class="col-sm-12">
+                        <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                            fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script type="text/html" id="test3">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-start my-2">
+                    <div class="col-sm-12">
+                        <x-input label="Masa Jabatan Komisaris Susunan Pemegang Saham dan jumlah saham" name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            {{-- <td>
+                <div class="d-flex justify-content-center my-2">
+                    <div class="col-sm-12">
+                        <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6" fieldClass="col-sm-6"
+                            required>
+                            <option value="" style="display: none" selected>-- Pilih --</option>
+                            <option value="Hard Copy">Hard Copy</option>
+                            <option value="Soft Copy">Sof Copy</option>
+                        </x-select>
+                    </div>
+                </div>
+            </td> --}}
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script type="text/html" id="test4">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-start my-2">
+                    <div class="col-sm-12">
+                        <x-input placeholder="Susunan Pemegang Saham"
+                            label="Susunan Pemegang Saham dan jumlah saham" name="document_name[]"
+                            labelClass="col-sm-3" fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <div class="col-sm-12">
+                        <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
+                            fieldClass="col-sm-9">
+                        </x-input>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-end my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+@endpush
