@@ -39,9 +39,11 @@
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
-                        <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Asosiasi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required />
+                        <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                     </div>
                 </div>

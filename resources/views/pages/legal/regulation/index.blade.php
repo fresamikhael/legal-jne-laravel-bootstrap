@@ -286,7 +286,9 @@
                                                 <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
                                                 <td>
                                                     <a style="color: brown"
-                                                        href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->name, 40, '...') }}</a>
+                                                        href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->type, 40, '...') }}
+                                                        No {{ $row->number }} Tahun
+                                                        {{ date('Y', strtotime($row->date)) }}</a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
                                                 <td>{{ $row->number }}</td>

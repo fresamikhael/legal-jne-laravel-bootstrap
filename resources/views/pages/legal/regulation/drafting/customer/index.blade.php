@@ -38,30 +38,29 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
-                        <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Customer" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input type="date" label="Tanggal" name="surface_area" labelClass="col-sm-2"
+                        <x-input label="Judul Perjanjian" name="agreement_title" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
-                        <x-input label="Judul Perjanjian" name="application_reason" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
-                        <x-input label="Isi" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input label="Isi" name="body" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Jangka Waktu" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
-                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis Perjanjian" name="unit"
-                            required>
+                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis Perjanjian"
+                            name="agreement_type" required>
                             <option value="Ecommerce">Ecommerce</option>
                             <option value="Fullfilment">Fullfilment</option>
                             <option value="Delivery">Delivery</option>
                         </x-select>
-                        <x-input label="Nama Customer" name="application_reason" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
-                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="unit" required>
+                        <x-input label="Nama Customer" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required />
+                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user" required>
                             <option value="Kantor Pusat">Kantor Pusat</option>
                             <option value="Cabang Utama">Cabang Utama</option>
                         </x-select>
-                        <x-input label="Others" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input label="Others" name="other" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                     </div>
                 </div>
             </div>

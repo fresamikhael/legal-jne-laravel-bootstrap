@@ -48,27 +48,27 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <label for="">Lokasi</label>
-                                <x-input label="Provinsi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="SKPD" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kab/Kota" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kecamatan" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Desa/Kel" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jalan/Nama Gedung" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Ukuran" name="application_reason" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Nilai Pajak" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input type="file" label="Foto Reklame" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Teks Reklame" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                                <x-input label="Nilai Pajak" name="tax_value" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input type="file" label="Foto Reklame" name="ads_photo" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Teks Reklame" name="ads_text" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -78,23 +78,25 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <label for="">Lokasi</label>
-                                <x-input label="Provinsi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="TLBBR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kab/Kota" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kecamatan" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Desa/Kel" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jalan/Nama Gedung" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Ukuran" name="application_reason" labelClass="col-sm-2"
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input type="file" label="Gambar" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -104,23 +106,27 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <label for="">Lokasi</label>
-                                <x-input label="Provinsi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="IPR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kab/Kota" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kecamatan" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Desa/Kel" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jalan/Nama Gedung" name="number" labelClass="col-sm-2"
+                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Ukuran" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input type="file" label="Gambar" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -130,23 +136,27 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <label for="">Lokasi</label>
-                                <x-input label="Provinsi" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="IMBBR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kab/Kota" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kecamatan" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Desa/Kel" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jalan/Nama Gedung" name="number" labelClass="col-sm-2"
+                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nomor" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Ukuran" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input type="file" label="Gambar" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>

@@ -26,19 +26,13 @@
                 </div>
             </div>
         </div>
+
         @if (Session::get('message_success'))
             @slot('alert')
                 <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
-        <div class="row">
-            <div class="d-flex justify-content-end">
-                <div class="mt-3">
-                    <a href={{ route('legal.regulation.add-type') }} class="btn btn-primary"><i class="fas fa-edit"></i>
-                        Tipe Dokumen</a>
-                </div>
-            </div>
-        </div>
+
         <form class="mt-4" method="POST" enctype="multipart/form-data"
             action="{{ route('legal.regulation.normative-post') }}">
             @csrf
@@ -47,26 +41,28 @@
                     @slot('sertipikathgb')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Sertipikat HGB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal Sertipikat" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal Sertipikat" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Luas Tanah" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <label for="">Obyek Tanah</label>
-                                <x-input label="Provinsi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kab/Kota" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kecamatan" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Desa/Kel" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jalan" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Jalan" name="address" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jangka Waktu" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Nomor Surat Ukur" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -75,24 +71,27 @@
                     @slot('sertipikathm')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Sertipikat HM" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal Sertipikat" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal Sertipikat" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Luas Tanah" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <label for="">Obyek Tanah</label>
-                                <x-input label="Provinsi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kab/Kota" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Kecamatan" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Desa/Kel" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jalan" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Jalan" name="address" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nomor Surat Ukur" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -101,11 +100,15 @@
                     @slot('pbb')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="NOP" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="PBB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="NOP" name="nop" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="NJOP" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="NJOP" name="njop" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nilai PBB" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nilai PBB" name="pbb" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -114,15 +117,19 @@
                     @slot('imb')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="IMB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Retribusi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Retribusi" name="retribution" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                             </div>
                         </div>
@@ -131,15 +138,19 @@
                     @slot('slf')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="SLF" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Masa Berlaku" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -148,17 +159,21 @@
                     @slot('akta')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Akta Jual Beli" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nilai Transaksi" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nilai Transaksi" name="transaction_value" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="PPAT" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="PPAT" name="ppat" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nama Penjual" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -167,17 +182,21 @@
                     @slot('ppjb')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="PPJB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nilai Transaksi" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nilai Transaksi" name="transaction_value" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Notaris" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Notaris" name="notary_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nama Penjual" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -186,17 +205,21 @@
                     @slot('aph')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="APH" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input type="date" label="Tanggal" name="building_area" labelClass="col-sm-2"
+                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Nilai Transaksi" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nilai Transaksi" name="transaction_value" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Notaris" name="building_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Notaris" name="notary_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Lokasi" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nama Penjual" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -205,19 +228,23 @@
                     @slot('vehicle')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor Polisi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Kendaraan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input label="Nomor Polisi" name="nopol" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Nomor BPKB" name="building_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nomor Mesin" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nomor Rangka" name="building_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Jenis Kendaraan" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nomor STNK" name="surface_area" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                <x-input label="Nomor BPKB" name="nobpkb" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jangka Waktu STNK" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Nomor Mesin" name="nomes" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Nomor Rangka" name="norangka" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Jenis Kendaraan" name="vehicle_type" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input label="Nomor STNK" name="nostnk" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
+                                <x-input label="Jangka Waktu STNK" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -226,11 +253,15 @@
                     @slot('hkihm')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Hak Kekayaan Intelektual Hak Merek" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Gambar Logo/Merek" name="surface_area" labelClass="col-sm-2"
+                                <x-input type="file" label="Gambar Logo/Merek" name="logo_file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -239,12 +270,16 @@
                     @slot('hkihc')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Hak Kekayaan Intelektual Hak Cipta" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Isi Ciptaan" name="surface_area" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
+                                <x-input label="Isi Ciptaan" name="content" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                             </div>
                         </div>
                     @endslot
@@ -252,11 +287,15 @@
                     @slot('hkidi')
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <x-input label="Nomor Sertipikat" name="location" labelClass="col-sm-2"
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Hak Kekayaan Intelektual Desain Industri" name="unit"
+                                    labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="building_area" labelClass="col-sm-2"
+                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jenis Desain" name="surface_area" labelClass="col-sm-2"
+                                <x-input label="Jenis Desain" name="design_type" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
