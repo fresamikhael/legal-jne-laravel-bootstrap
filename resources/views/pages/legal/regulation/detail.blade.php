@@ -42,7 +42,7 @@
                     <div class="border rounded">
                         <table class="table table-bordered">
                             @if ($database->privilege == 'ALL')
-                                <tr class="bg-light">
+                                <tr class="">
                                     <th scope="row" style="width: 30%;" class="text-end">Nama Peraturan</th>
                                     <td>{{ Str::limit($database->type, 40, '...') }}
                                         No {{ $database->number }} Tahun
@@ -50,7 +50,7 @@
                                     </td>
                                 </tr>
                             @else
-                                <tr class="bg-light">
+                                <tr class="">
                                     <th scope="row" style="width: 30%;" class="text-end">Nama Dokumen</th>
                                     <td>{{ Str::limit($database->type, 40, '...') }}
                                         No {{ $database->number }} Tahun
@@ -59,13 +59,13 @@
                                 </tr>
                             @endif
                             @if ($database->type)
-                                <tr class="bg-light">
+                                <tr class="">
                                     <th scope="row" class="text-end">Tipe Dokumen</th>
                                     <td>{{ $database->type }}</td>
                                 </tr>
                             @endif
                             @if ($database->unit)
-                                <tr class="bg-light">
+                                <tr class="">
                                     <th scope="row" class="text-end">Unit</th>
                                     <td>{{ $database->unit }}</td>
                                 </tr>
@@ -85,12 +85,12 @@
                             @endif
                             @if ($database->number)
                                 @if ($database->privilege == 'ALL')
-                                    <tr class="bg-light">
+                                    <tr class="">
                                         <th scope="row" class="text-end">Nomor Peraturan</th>
                                         <td>{{ $database->number }}</td>
                                     </tr>
                                 @else
-                                    <tr class="bg-light">
+                                    <tr class="">
                                         <th scope="row" class="text-end">Nomor Dokumen</th>
                                         <td>{{ $database->number }}</td>
                                     </tr>
@@ -103,7 +103,7 @@
                                 </tr>
                             @endif
                             @if ($database->about)
-                                <tr class="bg-light">
+                                <tr class="">
                                     <th scope="row" class="text-end">Tentang</th>
                                     <td>{{ $database->about }}</td>
                                 </tr>
@@ -324,19 +324,19 @@
                             @if ($database->director_name1)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Direksi</th>
-                                    <td>{{ $database->director_name }}</td>
+                                    <td>{{ $database->director_name1 }}</td>
                                 </tr>
                             @endif
                             @if ($database->director_name2)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Direksi</th>
-                                    <td>{{ $database->director_name }}</td>
+                                    <td>{{ $database->director_name2 }}</td>
                                 </tr>
                             @endif
                             @if ($database->director_name3)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Direksi</th>
-                                    <td>{{ $database->director_name }}</td>
+                                    <td>{{ $database->director_name3 }}</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term_arr)
@@ -348,19 +348,19 @@
                             @if ($database->comms_term_arr1)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Direksi</th>
-                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share1 }})</td>
+                                    <td>{{ $database->comms_term_arr1 }} ({{ $database->comms_term_arr_share1 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term_arr2)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Direksi</th>
-                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share2 }})</td>
+                                    <td>{{ $database->comms_term_arr2 }} ({{ $database->comms_term_arr_share2 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term_arr3)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Direksi</th>
-                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share3 }})</td>
+                                    <td>{{ $database->comms_term_arr3 }} ({{ $database->comms_term_arr_share3 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_name)
@@ -372,67 +372,67 @@
                             @if ($database->comms_name1)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Komisaris</th>
-                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share1 }})</td>
+                                    <td>{{ $database->comms_name1 }} ({{ $database->comms_name_share1 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_name2)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Komisaris</th>
-                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share2 }})</td>
+                                    <td>{{ $database->comms_name2 }} ({{ $database->comms_name_share2 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_name3)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Komisaris</th>
-                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share3 }})</td>
+                                    <td>{{ $database->comms_name3 }} ({{ $database->comms_name_share3 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
-                                    <td>{{ $database->comms_term }}</td>
+                                    <td>{{ $database->comms_term }} ({{ $database->comms_term_share }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term1)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
-                                    <td>{{ $database->comms_term }}</td>
+                                    <td>{{ $database->comms_term1 }} ({{ $database->comms_term_share1 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term2)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
-                                    <td>{{ $database->comms_term }}</td>
+                                    <td>{{ $database->comms_term2 }} ({{ $database->comms_term_share2 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term3)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
-                                    <td>{{ $database->comms_term }}</td>
+                                    <td>{{ $database->comms_term3 }} ({{ $database->comms_term_share3 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_arr)
                                 <tr>
                                     <th scope="row" class="text-end">Susunan Pemegang Saham</th>
-                                    <td>{{ $database->comms_arr }}</td>
+                                    <td>{{ $database->comms_arr }} ({{ $database->comms_arr_share }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_arr1)
                                 <tr>
                                     <th scope="row" class="text-end">Susunan Pemegang Saham</th>
-                                    <td>{{ $database->comms_arr }}</td>
+                                    <td>{{ $database->comms_arr1 }} ({{ $database->comms_arr_share1 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_arr2)
                                 <tr>
                                     <th scope="row" class="text-end">Susunan Pemegang Saham</th>
-                                    <td>{{ $database->comms_arr }}</td>
+                                    <td>{{ $database->comms_arr2 }} ({{ $database->comms_arr_share2 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_arr3)
                                 <tr>
                                     <th scope="row" class="text-end">Susunan Pemegang Saham</th>
-                                    <td>{{ $database->comms_arr }}</td>
+                                    <td>{{ $database->comms_arr3 }} ({{ $database->comms_arr_share3 }})</td>
                                 </tr>
                             @endif
                             @if ($database->sk_type)
