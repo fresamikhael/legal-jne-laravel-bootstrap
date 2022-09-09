@@ -32,6 +32,9 @@
                                 @elseif ($row->status == 'RETURNED BY LEGAL CORPORATES')
                                     <button type="button" class="btn btn-warning" disabled>RETURNED BY LEGAL
                                         CORPORATES</button>
+                                @elseif ($row->status == 'SENT BY LEGAL CORPORATES')
+                                    <button type="button" class="btn btn-warning" disabled>SENT BY LEGAL
+                                        CORPORATES</button>
                                 @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
                                     <button type="button" class="btn btn-warning" disabled>APPROVED BY HEAD OF LEGAL
                                         DIVISION</button>
@@ -47,6 +50,9 @@
                             </td>
                             <td>
                                 @if ($row->status == 'APPROVED BY LEGAL CORPORATES')
+                                    <a href="{{ route('legal.legalcorporate.powerattorney-check', [$row->id]) }}"
+                                        class="btn btn-danger">Update</a>
+                                @elseif ($row->status == 'SENT BY LEGAL CORPORATES')
                                     <a href="{{ route('legal.legalcorporate.powerattorney-check', [$row->id]) }}"
                                         class="btn btn-danger">Update</a>
                                 @elseif ($row->status == 'APPROVED BY HEAD OF LEGAL DIVISION')
@@ -142,7 +148,8 @@
 
                 <div class="col-sm-12">
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo" type="download"
+                        label="1. Internal Memo Permohonan Surat Kuasa ke Legal*" name="file_internal_memo"
+                        type="download"
                         path="{{ route('download.powerattorney', [substr($data->file_internal_memo, 14)]) }}">Unduh <i
                             class="fa fa-download"></i></x-file>
 

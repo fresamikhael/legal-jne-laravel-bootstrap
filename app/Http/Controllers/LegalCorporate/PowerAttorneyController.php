@@ -11,7 +11,7 @@ class PowerAttorneyController extends Controller
 {
     public function index()
     {
-        $table = PowerAttorney::orderBy('id', 'DESC')
+        $table = PowerAttorney::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')
             ->with('user')
             ->get();
         $data = PowerAttorney::query()->where('id', auth()->user()->id);
@@ -55,9 +55,36 @@ class PowerAttorneyController extends Controller
         return view('pages.legal.legal-corporate.surat-kuasa.index', compact('data'));
     }
 
+    public function storeLegal(Request $request)
+    {
+        $data = $request->all();
+
+        if ($request->file('file_internal_memo')) {
+            $file = $request->file('file_internal_memo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_internal_memo'] = 'PowerAttorney/'.$filename;
+            $file->move('PowerAttorney', $filename);
+        }
+
+        if ($request->file('file_endorsee_id')) {
+            $file = $request->file('file_endorsee_id');
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::random(40) . '.' . $extension;
+            $data['file_endorsee_id'] = 'PowerAttorney/'.$filename;
+            $file->move('PowerAttorney', $filename);
+        }
+
+        $data['user_id'] = auth()->user()->id;
+
+        PowerAttorney::create($data);
+
+        return redirect()->route('legal.legalcorporate.powerattorney')->with('message_success', 'Terima kasih atas pengajuan yang telah disampaikan. mohon untuk menunggu dikarenakan akan kami cek terlebih dahulu, mohon untuk dapat memeriksa pengajuan secara berkala.');
+    }
+
     public function userCheck($id)
     {
-        $table = PowerAttorney::orderBy('id', 'DESC')
+        $table = PowerAttorney::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')
             ->with('user')
             ->get();
         $data = PowerAttorney::where('id', $id)->firstOrFail();
@@ -135,6 +162,7 @@ class PowerAttorneyController extends Controller
         }
     }
 
+
     public function legalUpdate($id)
     {
         $table = PowerAttorney::orderBy('id', 'DESC')
@@ -173,7 +201,7 @@ class PowerAttorneyController extends Controller
 
     public function userFinal($id)
     {
-        $table = PowerAttorney::orderBy('id', 'DESC')
+        $table = PowerAttorney::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')
             ->with('user')
             ->get();
         $data = PowerAttorney::where('id', $id)->firstOrFail();
@@ -197,7 +225,7 @@ class PowerAttorneyController extends Controller
 
     public function headlegalIndex()
     {
-        $data = PowerAttorney::where('status', 'APPROVED BY LEGAL CORPORATES')->orderBy('id', 'DESC')
+        $data = PowerAttorney::where('status', 'APPROVED BY LEGAL CORPORATES')->orWhere('status', 'SENT BY LEGAL CORPORATES')->orderBy('id', 'DESC')
             ->with('user')
             ->get();
 
@@ -206,7 +234,7 @@ class PowerAttorneyController extends Controller
 
     public function headlegalCheck($id)
     {
-        $table = PowerAttorney::where('status', 'APPROVED BY LEGAL CORPORATES')->orderBy('id', 'DESC')
+        $table = PowerAttorney::where('status', 'APPROVED BY LEGAL CORPORATES')->orWhere('status', 'SENT BY LEGAL CORPORATES')->orderBy('id', 'DESC')
             ->with('user')
             ->get();
         $data = PowerAttorney::where('id', $id)->firstOrFail();
