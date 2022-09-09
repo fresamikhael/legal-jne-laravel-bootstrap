@@ -26,19 +26,13 @@
                 </div>
             </div>
         </div>
+
         @if (Session::get('message_success'))
             @slot('alert')
                 <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
-        <div class="row">
-            <div class="d-flex justify-content-end">
-                <div class="mt-3">
-                    <a href={{ route('legal.regulation.add-type') }} class="btn btn-primary"><i class="fas fa-edit"></i>
-                        Tipe Dokumen</a>
-                </div>
-            </div>
-        </div>
+
         <form class="mt-4" method="POST" enctype="multipart/form-data"
             action="{{ route('legal.regulation.normative-post') }}">
             @csrf
