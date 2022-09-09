@@ -43,8 +43,8 @@
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                         <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
-                        <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Landlord" name="landlord" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                         <x-input label="Nilai Sewa" name="rental_value" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />

@@ -47,8 +47,8 @@
                         <x-input label="Judul Perjanjian" name="agreement_title" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
                         <x-input label="Isi" name="body" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Nama Supplier/Vendor" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                         <x-input label="Jenis Vendor" name="agreement_type" labelClass="col-sm-2" fieldClass="col-sm-10"

@@ -60,8 +60,8 @@
                                 <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Jalan" name="address" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
@@ -244,7 +244,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Nomor STNK" name="nostnk" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
-                                <x-input label="Jangka Waktu STNK" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu STNK" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                             </div>
                         </div>
@@ -259,7 +259,7 @@
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input type="file" label="Gambar Logo/Merek" name="logo_file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
@@ -276,7 +276,7 @@
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Isi Ciptaan" name="content" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
@@ -293,7 +293,7 @@
                                     labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Jenis Desain" name="design_type" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />

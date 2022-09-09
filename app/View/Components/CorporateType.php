@@ -20,8 +20,6 @@ class CorporateType extends Component
         $npwp = null,
         $nib = null,
         $sipp = null,
-        $name = null,
-        $hidden = null,
     )
     {
         $this->budget = $budget;
@@ -32,8 +30,6 @@ class CorporateType extends Component
         $this->npwp = $npwp;
         $this->nib = $nib;
         $this->sipp = $sipp;
-        $this->name = $name;
-        $this->hidden = $hidden;
     }
 
     /**

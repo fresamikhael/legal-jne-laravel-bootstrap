@@ -46,8 +46,8 @@
                         <x-input label="Judul Perjanjian" name="agreement_title" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required />
                         <x-input label="Isi" name="body" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                        <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis Perjanjian"
                             name="agreement_type" required>
                             <option value="Ecommerce">Ecommerce</option>

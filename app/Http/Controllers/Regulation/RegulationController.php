@@ -28,8 +28,9 @@ class RegulationController extends Controller
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
         $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
+        $allData = Regulation::all()->countBy('type');
 
-        return view('pages.user.regulation.index',compact('database', 'type', 'all', 'total'));
+        return view('pages.user.regulation.index',compact('database', 'type', 'all', 'total', 'allData'));
     }
 
     public function indexLegal()

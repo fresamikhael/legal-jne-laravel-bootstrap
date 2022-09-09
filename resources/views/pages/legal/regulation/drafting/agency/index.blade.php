@@ -47,8 +47,8 @@
                     <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                     <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />
-                    <x-input label="Jangka Waktu" name="time_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                        required />
+                    <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                        fieldClass="col-sm-10" required />
                     <x-input label="Nama Cabang Utama" name="branch_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                         required />
                     <x-input label="Nama Mitra" name="partner_name" labelClass="col-sm-2" fieldClass="col-sm-10" required />

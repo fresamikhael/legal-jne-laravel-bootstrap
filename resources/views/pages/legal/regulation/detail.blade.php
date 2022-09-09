@@ -321,16 +321,70 @@
                                     <td>{{ $database->director_name }}</td>
                                 </tr>
                             @endif
+                            @if ($database->director_name1)
+                                <tr>
+                                    <th scope="row" class="text-end">Nama Direksi</th>
+                                    <td>{{ $database->director_name }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->director_name2)
+                                <tr>
+                                    <th scope="row" class="text-end">Nama Direksi</th>
+                                    <td>{{ $database->director_name }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->director_name3)
+                                <tr>
+                                    <th scope="row" class="text-end">Nama Direksi</th>
+                                    <td>{{ $database->director_name }}</td>
+                                </tr>
+                            @endif
                             @if ($database->comms_term_arr)
                                 <tr>
                                     <th scope="row" class="text-end">Masa Jabatan Direksi</th>
-                                    <td>{{ $database->comms_term_arr }}</td>
+                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share }})</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_term_arr1)
+                                <tr>
+                                    <th scope="row" class="text-end">Masa Jabatan Direksi</th>
+                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share1 }})</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_term_arr2)
+                                <tr>
+                                    <th scope="row" class="text-end">Masa Jabatan Direksi</th>
+                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share2 }})</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_term_arr3)
+                                <tr>
+                                    <th scope="row" class="text-end">Masa Jabatan Direksi</th>
+                                    <td>{{ $database->comms_term_arr }} ({{ $database->comms_term_arr_share3 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_name)
                                 <tr>
                                     <th scope="row" class="text-end">Nama Komisaris</th>
-                                    <td>{{ $database->comms_name }}</td>
+                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share }})</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_name1)
+                                <tr>
+                                    <th scope="row" class="text-end">Nama Komisaris</th>
+                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share1 }})</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_name2)
+                                <tr>
+                                    <th scope="row" class="text-end">Nama Komisaris</th>
+                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share2 }})</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_name3)
+                                <tr>
+                                    <th scope="row" class="text-end">Nama Komisaris</th>
+                                    <td>{{ $database->comms_name }} ({{ $database->comms_name_share3 }})</td>
                                 </tr>
                             @endif
                             @if ($database->comms_term)
@@ -339,7 +393,43 @@
                                     <td>{{ $database->comms_term }}</td>
                                 </tr>
                             @endif
+                            @if ($database->comms_term1)
+                                <tr>
+                                    <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
+                                    <td>{{ $database->comms_term }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_term2)
+                                <tr>
+                                    <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
+                                    <td>{{ $database->comms_term }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_term3)
+                                <tr>
+                                    <th scope="row" class="text-end">Masa Jabatan Komisaris</th>
+                                    <td>{{ $database->comms_term }}</td>
+                                </tr>
+                            @endif
                             @if ($database->comms_arr)
+                                <tr>
+                                    <th scope="row" class="text-end">Susunan Pemegang Saham</th>
+                                    <td>{{ $database->comms_arr }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_arr1)
+                                <tr>
+                                    <th scope="row" class="text-end">Susunan Pemegang Saham</th>
+                                    <td>{{ $database->comms_arr }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_arr2)
+                                <tr>
+                                    <th scope="row" class="text-end">Susunan Pemegang Saham</th>
+                                    <td>{{ $database->comms_arr }}</td>
+                                </tr>
+                            @endif
+                            @if ($database->comms_arr3)
                                 <tr>
                                     <th scope="row" class="text-end">Susunan Pemegang Saham</th>
                                     <td>{{ $database->comms_arr }}</td>
@@ -566,7 +656,8 @@
                         @endif
                         @if ($database->passport_photo)
                             <div class="row">
-                                <a href="{{ asset($database->passport_photo) }}" style="color: #fe1717" target="_blank">
+                                <a href="{{ asset($database->passport_photo) }}" style="color: #fe1717"
+                                    target="_blank">
                                     <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
                                 </a>
                                 <p>{{ Str::substr($database->passport_photo, 11) }}</p>
