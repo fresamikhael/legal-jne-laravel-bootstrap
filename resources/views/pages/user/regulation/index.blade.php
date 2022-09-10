@@ -112,10 +112,10 @@
                             </x-select>
 
                             <script>
-                                document.getElementById("privilege").addEventListener("change", handleChange);
+                                document.getElementById("type").addEventListener("change", handleChange);
 
                                 function handleChange() {
-                                    var x = document.getElementById("privilege");
+                                    var x = document.getElementById("type");
                                     if (x.value === "Perjanjian") {
                                         document.getElementById("dropperjanjian1").classList.remove('d-none');
                                         document.getElementById("dropperjanjian1").classList.add('d-flex');
@@ -215,8 +215,8 @@
                             </x-select> --}}
                             <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
-                            <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
-                                type="date" value="{{ request('date') }}" />
+                            <x-input label="Tanggal" labelClass="col-sm-12" fieldClass="col-sm-12" name="agency"
+                                value="{{ request('agency') }}" />
                             <div class="col-sm-12">
                                 <label for="">Tentang</label>
                                 <input type="text" class="form-control mb-4" value="{{ request('about') }}"
@@ -243,20 +243,60 @@
                     <div style="background-color:#fe3f40; border-radius: 20px 20px 0 0">
                         <div class="col px-4 py-3" style="color: white">
                             <i class="fa-solid fa-align-left"></i>
-                            <span>Data Peraturan</span>
+                            <span>
+                                @if (request('type'))
+                                    Data {{ request('type') }}
+                                @elseif(request('agency'))
+                                    Data pada Tahun {{ request('agency') }}
+                                @elseif(request('number'))
+                                    Data dengan nomor {{ request('number') }}
+                                @elseif(request('unit'))
+                                    Data dengan nomor {{ request('unit') }}
+                                @elseif(request('about'))
+                                    Data tentang {{ request('about') }}
+                                @else
+                                    Data Dokumen
+                                @endif
+                            </span>
                         </div>
                     </div>
                     <div class="p-3 border bg-white">
                         @auth
                             <div class="d-flex align-items-center justify-content-end mb-3">
                                 Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
-                                {{ $database->total() }} Data Peraturan
+                                {{ $database->total() }}
+                                @if (request('type'))
+                                    Data {{ request('type') }}
+                                @elseif(request('agency'))
+                                    Data pada Tahun {{ request('agency') }}
+                                @elseif(request('number'))
+                                    Data dengan nomor {{ request('number') }}
+                                @elseif(request('unit'))
+                                    Data dengan nomor {{ request('unit') }}
+                                @elseif(request('about'))
+                                    Data tentang {{ request('about') }}
+                                @else
+                                    Data Dokumen
+                                @endif
                             </div>
                         @endauth
                         @guest
                             <div class="d-flex align-items-center justify-content-end mb-3">
                                 Ditampilkan {{ $all->firstItem() }} - {{ $all->lastItem() }} dari
-                                {{ $all->total() }} Data Peraturan
+                                {{ $all->total() }}
+                                @if (request('type'))
+                                    Data {{ request('type') }}
+                                @elseif(request('agency'))
+                                    Data pada Tahun {{ request('agency') }}
+                                @elseif(request('number'))
+                                    Data dengan nomor {{ request('number') }}
+                                @elseif(request('unit'))
+                                    Data dengan nomor {{ request('unit') }}
+                                @elseif(request('about'))
+                                    Data tentang {{ request('about') }}
+                                @else
+                                    Data Dokumen
+                                @endif
                             </div>
                         @endguest
                         <div class="border rounded">
