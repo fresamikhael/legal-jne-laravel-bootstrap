@@ -158,6 +158,7 @@
                                     labelClass="col-sm-2" fieldClass="col-sm-10" required /> --}}
                                 <x-input label="Isi Akta" name="body" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -175,6 +176,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Jenis SK" name="sk_type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -210,6 +212,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input type="file" label="Pas Foto" name="file_database" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -245,6 +248,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input type="file" label="Pas Foto" name="file_database" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -280,6 +284,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input type="file" label="Pas Foto" name="file_database" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -295,6 +300,7 @@
                                     required />
                                 <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -312,6 +318,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="KBLI" name="kbli" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -327,6 +334,7 @@
                                     required />
                                 <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot

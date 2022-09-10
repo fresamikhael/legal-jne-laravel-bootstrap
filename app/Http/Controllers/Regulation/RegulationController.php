@@ -19,11 +19,11 @@ class RegulationController extends Controller
     public function index()
     {
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about']))
             // ->where('privilege', 'ALL')
             ->paginate(10);
         $all = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about']))
             ->where('privilege', 'ALL')
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
@@ -37,7 +37,7 @@ class RegulationController extends Controller
     {
         $allData = Regulation::all()->countBy('type');
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'number','type', 'date', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number','type', 'agency', 'about']))
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
         $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();

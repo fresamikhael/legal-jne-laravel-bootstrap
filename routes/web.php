@@ -507,10 +507,10 @@ Route::prefix('headlegal/legalcorporate')->name('headlegal.legalcorporate.')->gr
 
 Route::prefix('database')->name('regulation.')->middleware('guest')->group(function () {
     Route::get('/index', [RegulationController::class, 'index'])->name('index');
-    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Drafting&number=&date=&about=', [RegulationController::class, 'index'])->name('index-drafting');
-    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Litigation&number=&date=&about=', [RegulationController::class, 'index'])->name('index-litigation');
-    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Permit&number=&date=&about=', [RegulationController::class, 'index'])->name('index-permit');
-    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&unit=Corporate&number=&date=&about=', [RegulationController::class, 'index'])->name('index-corporate');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&type=Perjanjian&number=&date=&about=', [RegulationController::class, 'index'])->name('index-drafting');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&type=Litigasi&number=&date=&about=', [RegulationController::class, 'index'])->name('index-litigation');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&type=Perizinan&number=&date=&about=', [RegulationController::class, 'index'])->name('index-permit');
+    Route::get('/index?_token=Gjc9TMwUYKV7Pvw7F036HtvHakVE0bIl96epNYdH&type=&type=Corporate&number=&date=&about=', [RegulationController::class, 'index'])->name('index-corporate');
     Route::get('/request', [RegulationController::class, 'requestDocument'])->name('request');
     Route::post('/request',  [RegulationController::class, 'requestDocumentPost'])->name('request-post');
     Route::post('/request/public',  [RegulationController::class, 'requestPublicPost'])->name('public-request-post');
@@ -527,10 +527,10 @@ Route::prefix('database')->name('regulation.')->middleware('guest')->group(funct
 
 Route::prefix('legal/database')->name('legal.regulation.')->group(function () {
     Route::get('/', [RegulationController::class, 'indexLegal'])->name('index');
-    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Drafting&number=&date=&title=', [RegulationController::class, 'index'])->name('index-drafting');
-    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Litigation&number=&date=&title=', [RegulationController::class, 'index'])->name('index-litigation');
-    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Permit&number=&date=&title=', [RegulationController::class, 'index'])->name('index-permit');
-    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&unit=Corporate&number=&date=&title=', [RegulationController::class, 'index'])->name('index-corporate');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&type=Perjanjian&number=&date=&title=', [RegulationController::class, 'index'])->name('index-drafting');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&type=Litigasi&number=&date=&title=', [RegulationController::class, 'index'])->name('index-litigation');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&type=Perizinan&number=&date=&title=', [RegulationController::class, 'index'])->name('index-permit');
+    Route::get('?_token=M08lAA6HOXA9qftoHxjiYvfv9Y24TvC9KzQE0680&privilege=&type=Corporate&number=&date=&title=', [RegulationController::class, 'index'])->name('index-corporate');
     Route::get('/request/index', [RegulationController::class, 'indexRequestLegal'])->name('request-index');
     Route::get('/add', [RegulationController::class, 'add'])->name('add');
 

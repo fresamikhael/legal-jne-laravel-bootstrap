@@ -30,7 +30,7 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('legal.regulation.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="privilege">
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="type">
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
                                         {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>
@@ -117,10 +117,10 @@
                             </x-select>
 
                             <script>
-                                document.getElementById("privilege").addEventListener("change", handleChange);
+                                document.getElementById("type").addEventListener("change", handleChange);
 
                                 function handleChange() {
-                                    var x = document.getElementById("privilege");
+                                    var x = document.getElementById("type");
                                     if (x.value === "Perjanjian") {
                                         document.getElementById("dropperjanjian1").classList.remove('d-none');
                                         document.getElementById("dropperjanjian1").classList.add('d-flex');
@@ -205,8 +205,6 @@
                                 }
                             </script>
 
-                            <x-input label="Tahun" labelClass="col-sm-12" fieldClass="col-sm-12" name="date"
-                                value="{{ request('date') }}" />
                             {{-- <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="type">
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
@@ -230,8 +228,8 @@
                             </x-select> --}}
                             <x-input label="Nomor" labelClass="col-sm-12" fieldClass="col-sm-12" name="number"
                                 value="{{ request('number') }}" />
-                            <x-input label="Tahun" labelClass="col-sm-12" fieldClass="col-sm-12" type="date"
-                                name="date" value="{{ request('date') }}" />
+                            <x-input label="Tahun" labelClass="col-sm-12" fieldClass="col-sm-12" type="agency"
+                                name="agency" value="{{ request('agency') }}" />
                             <div class="col-sm-12">
                                 <label for="">Tentang</label>
                                 <input type="text" class="form-control mb-4" value="{{ request('about') }}"
@@ -242,10 +240,10 @@
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i>
                                         Cari</button>
                                     @if (auth()->user()->role == 'LEGAL')
-                                        <a href="{{ route('legal.regulation.normative-create') }}"
-                                            class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+                                        {{-- <a href="{{ route('legal.regulation.normative-create') }}"
+                                            class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a> --}}
                                         <a href="{{ route('legal.regulation.add') }}" class="btn btn-primary"><i
-                                                class="fa fa-plus"></i> Dokumen Khusus</a>
+                                                class="fa fa-plus"></i> Tambah</a>
                                         <a href="{{ route('legal.regulation.request') }}" class="btn btn-success"><i
                                                 class="fas fa-file-contract"></i> Pengajuan</a>
                                         <a href="{{ route('legal.regulation.request-index') }}"
@@ -260,13 +258,40 @@
                     <div style="background-color:#fe3f40">
                         <div class="col px-4 py-3" style="color: white">
                             <i class="fa-solid fa-align-left"></i>
-                            <span>Data Dokumen</span>
+                            <span>
+                                @if (request('type'))
+                                    Data {{ request('type') }}
+                                @elseif(request('agency'))
+                                    Data pada Tahun {{ request('agency') }}
+                                @elseif(request('number'))
+                                    Data dengan nomor {{ request('number') }}
+                                @elseif(request('unit'))
+                                    Data dengan nomor {{ request('unit') }}
+                                @elseif(request('about'))
+                                    Data tentang {{ request('about') }}
+                                @else
+                                    Data Dokumen
+                                @endif
+                            </span>
                         </div>
                     </div>
                     <div class="p-3 border bg-white">
                         <div class="d-flex align-items-center justify-content-end mb-3">
                             Ditampilkan {{ $database->firstItem() }} - {{ $database->lastItem() }} dari
-                            {{ $database->total() }} Data Dokumen
+                            {{ $database->total() }}
+                            @if (request('type'))
+                                Data {{ request('type') }}
+                            @elseif(request('agency'))
+                                Data pada Tahun {{ request('agency') }}
+                            @elseif(request('number'))
+                                Data dengan nomor {{ request('number') }}
+                            @elseif(request('unit'))
+                                Data dengan nomor {{ request('unit') }}
+                            @elseif(request('about'))
+                                Data tentang {{ request('about') }}
+                            @else
+                                Data Dokumen
+                            @endif
                         </div>
                         <div class="border rounded">
                             <table class="table table-bordered">
@@ -287,8 +312,17 @@
                                                 <td>
                                                     <a style="color: brown"
                                                         href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->type, 40, '...') }}
-                                                        No {{ $row->number }} Tahun
-                                                        {{ date('Y', strtotime($row->date)) }}</a>
+                                                        @if ($row->number)
+                                                            No {{ $row->number }}
+                                                        @endif
+                                                        @if ($row->nopol)
+                                                            No Polisi {{ $row->nopol }}
+                                                        @endif
+                                                        @if ($row->date)
+                                                            Tahun
+                                                            {{ date('Y', strtotime($row->date)) }}
+                                                        @endif
+                                                    </a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
                                                 <td>{{ $row->number }}</td>

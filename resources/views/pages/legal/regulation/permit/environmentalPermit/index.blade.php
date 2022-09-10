@@ -65,6 +65,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -91,6 +92,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -119,6 +121,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot

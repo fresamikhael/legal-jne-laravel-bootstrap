@@ -158,8 +158,8 @@ class Regulation extends Model
             return $query->where('type', 'like', '%'.$type.'%');
         });
 
-        $query->when($filters['date'] ?? false, function($query, $date) {
-            return $query->where('date', 'like', '%'.$date.'%');
+        $query->when($filters['agency'] ?? false, function($query, $agency) {
+            return $query->where('agency', 'like', '%'.$agency.'%');
         });
 
         $query->when($filters['about'] ?? false, function($query, $about) {

@@ -70,6 +70,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Teks Reklame" name="ads_text" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -98,6 +99,7 @@
                                     required />
                                 <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -128,6 +130,7 @@
                                     required />
                                 <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -158,6 +161,7 @@
                                     required />
                                 <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot

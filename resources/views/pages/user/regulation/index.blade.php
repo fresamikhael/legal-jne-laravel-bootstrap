@@ -25,7 +25,7 @@
                     <div class="p-3 border bg-white">
                         <form action="{{ route('regulation.index') }}" method="GET">
                             @csrf
-                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="privilege">
+                            <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="type">
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
                                         {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>

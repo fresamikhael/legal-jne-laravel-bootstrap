@@ -50,6 +50,7 @@
                                 <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
                             </div>
                         </div>
+                        <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>
             </div>

@@ -43,7 +43,13 @@
                         <x-input value="SK Direksi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-textarea label="Tentang" name="about" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Tentang</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
+                            </div>
+                        </div>
+                        <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>
             </div>

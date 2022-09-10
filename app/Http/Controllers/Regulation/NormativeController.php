@@ -63,7 +63,9 @@ class NormativeController extends Controller
     public function store(Request $request)
     {
         $database = $request->all();
+        $database['agency'] = Carbon::createFromFormat('Y-m-d', $request->input('date'))->format('Y');
 
+        // dd($database['agency']);
         $dir = 'regulation/';
 
         if ($request->file('ktp_photo')) {

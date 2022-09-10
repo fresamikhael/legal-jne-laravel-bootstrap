@@ -64,6 +64,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -93,6 +94,7 @@
                                     required />
                                 <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -110,6 +112,7 @@
                                     required />
                                 <x-input label="Nilai PBB" name="pbb" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -131,6 +134,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Retribusi" name="retribution" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -152,6 +156,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -175,6 +180,7 @@
                                     required />
                                 <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -198,6 +204,7 @@
                                     required />
                                 <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -221,6 +228,7 @@
                                     required />
                                 <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -246,6 +254,7 @@
                                     required />
                                 <x-input type="date" label="Jangka Waktu STNK" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -263,6 +272,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input type="file" label="Gambar Logo/Merek" name="logo_file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -280,6 +290,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Isi Ciptaan" name="content" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot
@@ -297,6 +308,7 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Jenis Desain" name="design_type" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
                     @endslot

@@ -49,6 +49,7 @@
                             required />
                         <x-input label="P2K3" name="p2k3" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                         <x-input label="SMK3" name="smk3" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>
             </div>

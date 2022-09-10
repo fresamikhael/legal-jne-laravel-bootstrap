@@ -57,6 +57,7 @@
                         <x-input label="Nama Notaris" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                         <x-input label="Others" name="other" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>
             </div>
