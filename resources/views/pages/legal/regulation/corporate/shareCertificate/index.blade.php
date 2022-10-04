@@ -44,7 +44,8 @@
                             hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Nama Pemegang Saham" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required />
                         <x-input label="Jumlah Saham" name="share_amount" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />

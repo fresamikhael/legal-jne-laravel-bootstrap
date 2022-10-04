@@ -159,7 +159,8 @@
                             <div class="col-sm-12">
                                 <x-input label="Nama Pemilik Reklame" name="owner_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis" name="ads_type">
+                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Status Gedung"
+                                    name="ads_type">
                                     <option value="Sewa">Sewa*</option>
                                     <option value="Milik Pribadi">Milik Pribadi</option>
                                 </x-select>
@@ -215,16 +216,12 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Longtitude" name="branch_longtitude" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Longtitude" name="branch_latitude" labelClass="col-sm-2"
+                                <x-input label="Latitude" name="branch_latitude" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Izin yang akan diurus"
-                                    name="permit_process">
-                                    <option value="Izin Lokasi">Izin Lokasi</option>
-                                    <option value="IMB">IMB</option>
-                                    <option value="SLF">SLF</option>
-                                </x-select>
+                                <x-input label="Izin yang akan diurus" name="application_reason" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <label>Dokumen Pendukung :</label>
                                 <x-input label="1. Gambar lokasi dalam bentuk polygon (zip) kurang dari 2 Mb"
                                     name="file_location_polygon" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"

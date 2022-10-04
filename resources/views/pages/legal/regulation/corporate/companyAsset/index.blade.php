@@ -154,7 +154,7 @@
                                     required />
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
@@ -266,7 +266,7 @@
                                     hidden />
                                 <x-input value="Hak Kekayaan Intelektual Hak Merek" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
-                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
+                                <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
@@ -284,12 +284,12 @@
                                     hidden />
                                 <x-input value="Hak Kekayaan Intelektual Hak Cipta" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
-                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
+                                <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Isi Ciptaan" name="content" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
+                                <x-input type="file" label="Isi Ciptaan" name="content" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -302,11 +302,11 @@
                                     hidden />
                                 <x-input value="Hak Kekayaan Intelektual Desain Industri" name="unit"
                                     labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
+                                <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-input label="Jenis Desain" name="design_type" labelClass="col-sm-2"
+                                <x-input type="file" label="Jenis Desain" name="design_type" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>

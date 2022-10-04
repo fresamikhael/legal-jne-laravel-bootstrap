@@ -89,7 +89,7 @@
                             <div class="col-sm-12">
                                 <x-input label="Nama Pemilik Reklame" name="owner_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
-                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis" name="ads_type">
+                                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Status Gedung" name="ads_type">
                                     <option value="Sewa">Sewa</option>
                                     <option value="Milik Pribadi">Milik Pribadi</option>
                                 </x-select>

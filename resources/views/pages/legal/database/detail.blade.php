@@ -61,7 +61,7 @@
                                 </td>
                             </tr>
                             <tr class="bg-light">
-                                <th scope="row" class="text-end">Entitas</th>
+                                <th scope="row" class="text-end">Instansi</th>
                                 <td>{{ $database->entity }}</td>
                             </tr>
                             <tr>

@@ -38,6 +38,8 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
+                        <x-input label="Nama Asosiasi" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required />
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
                         <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Asosiasi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />

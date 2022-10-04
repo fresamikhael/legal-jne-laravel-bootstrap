@@ -29,11 +29,6 @@
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'SK Dewan Komisaris dan Direksi',
-                    'route' => 'sk-comms-director-create',
-                    'style' => 'background: #03a4ed !important; color: #fff !important;',
-                ],
-                [
                     'label' => 'SK Direksi',
                     'route' => 'sk-director-create',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',

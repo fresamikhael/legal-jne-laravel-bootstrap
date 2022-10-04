@@ -34,9 +34,11 @@
                                     <button type="button" class="btn btn-success" disabled>CONTRACT BUSINESS SEND AGREEMENT
                                         DRAFT</button>
                                 @elseif ($row->status == 'USER RETURNED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT DRAFT</button>
+                                    <button type="button" class="btn btn-warning" disabled>USER RETURNED AGREEMENT
+                                        DRAFT</button>
                                 @elseif ($row->status == 'USER APPROVED AGREEMENT DRAFT')
-                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT DRAFT</button>
+                                    <button type="button" class="btn btn-success" disabled>USER APPROVED AGREEMENT
+                                        DRAFT</button>
                                 @else
                                     <button type="button" class="btn btn-danger" disabled>Pengajuan Ditolak</button>
                                 @endif
@@ -65,8 +67,8 @@
 
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak"
-                        value="{{ $data->party_name }}" disabled />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak" value="{{ $data->party_name }}"
+                        disabled />
                     @php
                         $province = DB::table('provinces')
                             ->where('id', $data->party_province)
@@ -103,39 +105,39 @@
                 </div>
                 <div class="col-sm-6">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Pihak (Opsional)"
-                        value="{{ $data->optional_party_name }}" disabled />
+                        value="{{ $data->optional_party_name ?? '' }}" disabled />
                     @php
                         $province = DB::table('provinces')
                             ->where('id', $data->optional_party_province)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Provinsi Pihak (Opsional)"
-                        value="{{ ucwords(strtolower($province->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($province->name ?? '')) }}" disabled />
                     @php
                         $regency = DB::table('regencies')
                             ->where('id', $data->optional_party_regency)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kab/Kota Pihak (Opsional)"
-                        value="{{ ucwords(strtolower($regency->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($regency->name ?? '')) }}" disabled />
                     @php
                         $district = DB::table('districts')
                             ->where('id', $data->optional_party_district)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kecamatan Pihak (Opsional)"
-                        value="{{ ucwords(strtolower($district->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($district->name ?? '')) }}" disabled />
                     @php
                         $village = DB::table('villages')
                             ->where('id', $data->optional_party_village)
                             ->first();
                     @endphp
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kelurahan Pihak (Opsional)"
-                        value="{{ ucwords(strtolower($village->name)) }}" disabled />
+                        value="{{ ucwords(strtolower($village->name ?? '')) }}" disabled />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Kode Pos Pihak (Opsional)"
-                        value="{{ $data->optional_party_zip_code }}" disabled />
+                        value="{{ $data->optional_party_zip_code ?? '' }}" disabled />
                     <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Alamat Pihak (Opsional)" disabled>
-                        {{ $data->optional_party_address }}
+                        {{ $data->optional_party_address ?? '' }}
                     </x-textarea>
                     <x-input value="{{ $data->type }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis"
                         name="type" disabled />
@@ -168,13 +170,13 @@
                 </div>
                 <div class="col-sm-9">
                     @if ($data->file_mom)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
-                            name="file_mom" type="download"
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="1. MOM/Penawaran Kesepakatan Para Pihak" name="file_mom" type="download"
                             path="{{ route('download.drafting', [substr($data->file_mom, 9)]) }}">Unduh <i
                                 class="fa fa-download"></i></x-file>
                     @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="1. MOM/Penawaran Kesepakatan Para Pihak"
-                            value="Tidak Ada" readOnly />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7"
+                            label="1. MOM/Penawaran Kesepakatan Para Pihak" value="Tidak Ada" readOnly />
                     @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Form Pengajuan PKS*"
                         name="file_claim_form" type="download"
@@ -215,8 +217,8 @@
                         <div class="col-sm-7">
                             <div class="input-group">
                                 <input type="text" class="form-control"
-                                    value="{{ App\Models\Regency::find($data->correspondence_regency)->name }}" name="id"
-                                    disabled />
+                                    value="{{ App\Models\Regency::find($data->correspondence_regency)->name }}"
+                                    name="id" disabled />
                             </div>
                         </div>
                     </div>
@@ -235,8 +237,8 @@
                         <div class="col-sm-7">
                             <div class="input-group">
                                 <input type="text" class="form-control"
-                                    value="{{ App\Models\Village::find($data->correspondence_village)->name }}" name="id"
-                                    disabled />
+                                    value="{{ App\Models\Village::find($data->correspondence_village)->name }}"
+                                    name="id" disabled />
                             </div>
                         </div>
                     </div>
@@ -278,8 +280,8 @@
                             path="{{ route('download.drafting', [substr($data->file_deed_of_company, 9)]) }}">Unduh <i
                                 class="fa fa-download"></i></x-file>
                     @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan" value="Tidak Ada"
-                            readOnly />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="1. Akta Perusahaan"
+                            value="Tidak Ada" readOnly />
                     @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Nomor Induk Berusaha (NIB)*"
                         name="file_nib" type="download"
@@ -306,8 +308,8 @@
                             path="{{ route('download.drafting', [substr($data->file_oss_location, 9)]) }}">Unduh <i
                                 class="fa fa-download"></i></x-file>
                     @else
-                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS" value="Tidak Ada"
-                            readOnly />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Izin Lokasi OSS"
+                            value="Tidak Ada" readOnly />
                     @endif
                     @if ($data->file_director_id_card)
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi"
@@ -354,8 +356,8 @@
                 <div class="col-sm-9">
                     <x-input value="{{ $data->sales_name }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama"
                         name="sales_name" readOnly />
-                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7" label="Email"
-                        name="sales_email" readOnly />
+                    <x-input value="{{ $data->sales_email }}" labelClass="col-sm-5" fieldClass="col-sm-7"
+                        label="Email" name="sales_email" readOnly />
                     <x-input value="{{ $data->sales_phone }}" labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="No Telepon" name="sales_phone" readOnly />
                     <x-input value="{{ $data->sales_department }}" labelClass="col-sm-5" fieldClass="col-sm-7"
@@ -370,8 +372,7 @@
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan untuk Contract Business</label>
-                <textarea class="form-control" name="user_note" id="" cols="30" rows="10"
-                    disabled>{{ $data->user_note }}</textarea>
+                <textarea class="form-control" name="user_note" id="" cols="30" rows="10" disabled>{{ $data->user_note }}</textarea>
             </div>
 
             <div class="d-flex justify-content-end">

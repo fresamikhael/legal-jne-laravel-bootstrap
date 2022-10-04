@@ -17,18 +17,9 @@
         <div class="row">
             <div class="card m-1" style="width: 17rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Statistik Database</h5>
-                    <p class="card-text">Berisi statistik pekerjaan yang berhubungan dengan menu database</p>
-                    <a href="{{ route('statistic-database') }}" class="btn btn-primary">Lihat <i
-                            class="fas fa-eye"></i></a>
-                </div>
-            </div>
-            <div class="card m-1" style="width: 17rem;">
-                <div class="card-body">
                     <h5 class="card-title">Statistik Drafting</h5>
                     <p class="card-text">Berisi statistik pekerjaan yang berhubungan dengan menu Drafting</p>
-                    <a href="{{ route('statistic-drafting') }}" class="btn btn-primary">Lihat <i
-                            class="fas fa-eye"></i></a>
+                    <a href="{{ route('statistic-drafting') }}" class="btn btn-primary">Lihat <i class="fas fa-eye"></i></a>
                 </div>
             </div>
             <div class="card m-1" style="width: 17rem;">
@@ -58,8 +49,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Statistik Pengajuan Berkas</h5>
                     <p class="card-text">Berisi statistik pekerjaan yang berhubungan dengan menu Pengajuan Berkas</p>
-                    <a href="{{ route('statistic-request') }}" class="btn btn-primary">Lihat <i
-                            class="fas fa-eye"></i></a>
+                    <a href="{{ route('statistic-request') }}" class="btn btn-primary">Lihat <i class="fas fa-eye"></i></a>
                 </div>
             </div>
         </div>
