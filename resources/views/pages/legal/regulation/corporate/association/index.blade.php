@@ -45,8 +45,10 @@
                         <x-input value="Asosiasi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
+                        <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>

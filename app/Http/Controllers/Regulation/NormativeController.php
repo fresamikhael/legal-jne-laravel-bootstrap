@@ -68,6 +68,24 @@ class NormativeController extends Controller
         // dd($database['agency']);
         $dir = 'regulation/';
 
+        if ($request->file('file')) {
+            $file = $request->file('file');
+            $name = $file->getClientOriginalName();
+            // $extension = $file->getClientOriginalExtension();
+            $filename = $name;
+            $database['file'] = $dir.$filename;
+            $file->move('regulation/', $filename);
+        }
+
+        if ($request->file('other_file')) {
+            $file = $request->file('other_file');
+            $name = $file->getClientOriginalName();
+            // $extension = $file->getClientOriginalExtension();
+            $filename = $name;
+            $database['other_file'] = $dir.$filename;
+            $file->move('regulation/', $filename);
+        }
+
         if ($request->file('ktp_photo')) {
             $file = $request->file('ktp_photo');
             $name = $file->getClientOriginalName();

@@ -715,6 +715,22 @@
                                 <p>{{ Str::substr($database->logo_file, 11) }}</p>
                             </div>
                         @endif
+                        @if ($database->file)
+                            <div class="row">
+                                <a href="{{ asset($database->file) }}" style="color: #fe1717" target="_blank">
+                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
+                                </a>
+                                <p>{{ Str::substr($database->file, 11) }}</p>
+                            </div>
+                        @endif
+                        @if ($database->other_file)
+                            <div class="row">
+                                <a href="{{ asset($database->other_file) }}" style="color: #fe1717" target="_blank">
+                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
+                                </a>
+                                <p>{{ Str::substr($database->other_file, 11) }}</p>
+                            </div>
+                        @endif
                         {{-- @foreach ($database->file as $file)
                             <a href="{{ asset($database->file) }}" style="color: #fe1717" target="_blank">
                                 <i class="fa fa-file-pdf" style="font-size: 100px;"></i>

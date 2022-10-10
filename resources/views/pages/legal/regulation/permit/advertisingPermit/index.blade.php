@@ -70,6 +70,8 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Teks Reklame" name="ads_text" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -79,8 +81,10 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <label for="">Lokasi</label>
-                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input value="TLBBR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="TLBBR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
                                 <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -98,6 +102,8 @@
                                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
@@ -130,6 +136,8 @@
                                     required />
                                 <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -160,6 +168,8 @@
                                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input type="file" label="Gambar" name="photo" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>

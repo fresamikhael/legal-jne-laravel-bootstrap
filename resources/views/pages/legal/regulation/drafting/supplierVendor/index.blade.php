@@ -51,13 +51,22 @@
                             fieldClass="col-sm-10" required />
                         <x-input label="Nama Supplier/Vendor" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
                             required />
-                        <x-input label="Jenis Vendor" name="agreement_type" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        {{-- <x-input label="Jenis Vendor" name="agreement_type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required /> --}}
+                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Jenis Vendor" name="agreement_type"
+                            required>
+                            <option value="Kontraktor Building">Kontraktor Building</option>
+                            <option value="Jasa Perizinan">Jasa Perizinan</option>
+                            <option value="Kendaraan">Kendaraan</option>
+                            <option value="Perawatan">Perawatan</option>
+                            <option value="Others">Others</option>
+                        </x-select>
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user" required>
                             <option value="Kantor Pusat">Kantor Pusat</option>
                             <option value="Cabang Utama">Cabang Utama</option>
                         </x-select>
-                        <x-input label="Others" name="other" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>

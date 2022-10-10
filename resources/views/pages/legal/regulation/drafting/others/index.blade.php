@@ -60,7 +60,8 @@
                             <option value="Kantor Pusat">Kantor Pusat</option>
                             <option value="Cabang Utama">Cabang Utama</option>
                         </x-select>
-                        <x-input label="Others" name="other" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" required />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>

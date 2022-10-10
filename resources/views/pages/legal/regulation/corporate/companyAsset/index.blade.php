@@ -64,6 +64,8 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -94,6 +96,8 @@
                                     required />
                                 <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -112,6 +116,8 @@
                                     required />
                                 <x-input label="Nilai PBB" name="pbb" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -134,6 +140,8 @@
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Retribusi" name="retribution" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -155,6 +163,8 @@
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
@@ -180,6 +190,8 @@
                                     required />
                                 <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -204,6 +216,8 @@
                                     required />
                                 <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
                         </div>
@@ -227,6 +241,8 @@
                                 <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input label="Nama Penjual" name="seller_name" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
@@ -253,6 +269,8 @@
                                 <x-input label="Nomor STNK" name="nostnk" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     required />
                                 <x-input type="date" label="Jangka Waktu STNK" name="time_period" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" required />
+                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" required />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             </div>
