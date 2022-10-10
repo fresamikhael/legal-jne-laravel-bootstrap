@@ -112,6 +112,8 @@
                             <input type="file" class="form-control" name="optional_file[]" multiple>
                         </div>
                     </div>
+                    <p>*Dokumen lainnya dapat diisi lebih dari 1 file, dan dapat menulis nama file didalam text-box</p>
+                    <p style="margin-top: -19px">*Pisahkan file satu dengan lainnya menggunakan tanda koma</p>
                 </div>
             </div>
 
