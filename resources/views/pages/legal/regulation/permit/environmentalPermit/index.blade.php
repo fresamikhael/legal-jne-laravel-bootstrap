@@ -47,6 +47,8 @@
                     @slot('ukl')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <label for="">Lokasi</label>
                                 <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input value="UKL/UPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
@@ -75,6 +77,8 @@
                     @slot('amdal')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <label for="">Lokasi</label>
                                 <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input value="AMDAL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
@@ -102,6 +106,8 @@
                     @slot('sppl')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <label for="">Lokasi</label>
                                 <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />

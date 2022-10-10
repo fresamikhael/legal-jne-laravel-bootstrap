@@ -40,6 +40,8 @@
                     @slot('budget')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input value="Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
@@ -86,7 +88,8 @@
                                 {{-- <x-input label="Masa Jabatan Direksi Susunan Pemegang Saham dan jumlah saham"
                                     name="comms_term_arr" labelClass="col-sm-2" fieldClass="col-sm-10" required /> --}}
                                 <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for="">Nama Dewan Komisaris Susunan Pemegang Saham dan
+                                    <label class="col-sm-2 mt-1" for="">Nama Dewan Komisaris Susunan Pemegang Saham
+                                        dan
                                         Jumlah Saham</label>
                                     <input name="comms_name" class="form-control mx-1" placeholder="Masukkan Nama Dewan" />
                                     <input name="comms_name1" class="form-control mx-1"placeholder="Masukkan Nama Dewan" />
@@ -166,6 +169,8 @@
                     @slot('minister')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="SK Menteri Hukum dan Ham" name="unit" labelClass="col-sm-2"
@@ -184,6 +189,8 @@
                     @slot('director')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="Identitas Direksi" name="unit" labelClass="col-sm-2"
@@ -220,6 +227,8 @@
                     @slot('commissioner')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
@@ -256,6 +265,8 @@
                     @slot('share')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
@@ -292,6 +303,8 @@
                     @slot('npwp')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="NPWP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -308,6 +321,8 @@
                     @slot('nib')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="NIB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -326,6 +341,8 @@
                     @slot('sipp')
                         <div class="row mt-3">
                             <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input value="SIPP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"

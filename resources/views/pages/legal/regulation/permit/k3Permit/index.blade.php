@@ -39,6 +39,8 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
+                        <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required />
                         <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit" required>
                             <option value="Penangkal Petir">Penangkal Petir</option>

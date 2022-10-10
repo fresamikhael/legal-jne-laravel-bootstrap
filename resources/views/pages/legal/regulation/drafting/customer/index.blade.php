@@ -38,6 +38,8 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
+                        <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            required />
                         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Customer" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />

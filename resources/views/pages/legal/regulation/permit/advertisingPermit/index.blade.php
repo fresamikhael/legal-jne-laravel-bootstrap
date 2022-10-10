@@ -48,6 +48,8 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <label for="">Lokasi</label>
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    required />
                                 <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input value="SKPD" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
