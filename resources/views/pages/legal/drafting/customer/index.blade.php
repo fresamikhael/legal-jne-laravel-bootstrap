@@ -80,33 +80,48 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama " />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama " name="user_id" hidden />
-                    <x-address label="" name="party" />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
-                        <option value="Baru">Baru</option>
-                        <option value="Perpanjangan">Perpanjangan</option>
-                        <option value="Addendum">Addendum</option>
-                        <option value="Pembaharuan">Pembaharuan</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Addendum Ke" name="addendum_to" hidden />
-                    <script>
-                        document.getElementById("type").addEventListener("change", handleChange);
+                    <table class="table table-borderless" id="dynamicTable">
+                        <tr>
+                            <td>
+                                <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                    label="Nama " />
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama " name="user_id" hidden />
+                                <x-address label="" name="party" />
+                                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
+                                    <option value="Baru">Baru</option>
+                                    <option value="Perpanjangan">Perpanjangan</option>
+                                    <option value="Addendum">Addendum</option>
+                                    <option value="Pembaharuan">Pembaharuan</option>
+                                </x-select>
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Addendum Ke" name="addendum_to"
+                                    hidden />
+                                <script>
+                                    document.getElementById("type").addEventListener("change", handleChange);
 
-                        function handleChange() {
-                            var x = document.getElementById("type");
-                            if (x.value === "Addendum") {
-                                document.getElementById("addendum_to1").classList.remove('d-none');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
-                                document.getElementById("addendum_to").required = true;
-                            } else {
-                                document.getElementById("addendum_to1").classList.remove('d-flex');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
-                                document.getElementById("addendum_to").required = false;
-                            }
-                        }
-                    </script>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" name="discount" prefix="%" />
+                                    function handleChange() {
+                                        var x = document.getElementById("type");
+                                        if (x.value === "Addendum") {
+                                            document.getElementById("addendum_to1").classList.remove('d-none');
+                                            document.getElementById("addendum_to1").classList.add('d-flex');
+                                            document.getElementById("addendum_to").required = true;
+                                        } else {
+                                            document.getElementById("addendum_to1").classList.remove('d-flex');
+                                            document.getElementById("addendum_to1").classList.add('d-flex');
+                                            document.getElementById("addendum_to").required = false;
+                                        }
+                                    }
+                                </script>
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" name="discount"
+                                    prefix="%" />
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center my-2">
+                                    {{-- <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Remove</button> --}}
+                                    <button type="button" name="add" id="add" class="btn btn-success ">+</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 {{-- <div class="col-sm-6">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama  (Optional)"
@@ -171,7 +186,21 @@
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. KTP Direksi"
                         name="file_director_id_card" option />
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Surat Kuasa" name="file_sk" option />
-                    <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain" name="file_other" option />
+                    <table class="table table-borderless" id="others">
+                        <tr>
+                            <td>
+                                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain"
+                                    name="file_other" />
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center my-2">
+                                    {{-- <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Remove</button> --}}
+                                    <button type="button" name="tambah" id="tambah"
+                                        class="btn btn-success ">+</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
@@ -196,3 +225,124 @@
         </form>
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script type="text/javascript">
+        var i = 0;
+
+        $("#add").click(function() {
+
+            ++i;
+
+
+            $("#dynamicTable").append($("#test").html());
+        });
+
+        $("#tambah").click(function() {
+
+            ++i;
+
+
+            $("#others").append($("#other").html());
+        });
+        // var form_tags = document.getElementById('form')
+        // $(document).on('click', '#remove', function() {
+        //     // $(this).parents('tr').remove();
+        //     if (form_tags.length > 2) {
+        //         form_tags.removeChild();
+        //     }
+        // });
+        $(document).on('click', '.remove-tr', function() {
+            $(this).parents('tr').remove();
+        });
+    </script>
+
+    <script type="text/html" id="test">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+                        <x-input name="party_name" type="text" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                    label="Nama (Opsional)" />
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama " name="user_id" hidden />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+                        <x-input label="Provinsi" name="province" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                    required />
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+
+                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                    required />
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+
+                                <x-input label="Kecamatan" name="district" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                    required />
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+
+                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-5" fieldClass="col-sm-7"
+                                    required />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+
+                                <x-input label="Jalan" name="address" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+                        <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
+                            <option value="Baru">Baru</option>
+                            <option value="Perpanjangan">Perpanjangan</option>
+                            <option value="Addendum">Addendum</option>
+                            <option value="Pembaharuan">Pembaharuan</option>
+                        </x-select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+                        <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Discount" name="discount"
+                                    prefix="%" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">-</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script type="text/html" id="other">
+        <tr>
+            <td>
+                <div class="d-flex justify-content-center ">
+                    <div class="col-sm-12">
+                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen Lainnya"
+                                    name="file_other" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center my-2">
+                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">-</button>
+                </div>
+            </td>
+        </tr>
+    </script>
+@endpush

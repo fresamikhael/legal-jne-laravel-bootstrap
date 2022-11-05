@@ -58,51 +58,67 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord" name="landlord_name"
-                        required />
-                    <x-address label="Landlord" name="landlord" />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
-                        <option value="Baru">Baru</option>
-                        <option value="Perpanjangan">Perpanjangan</option>
-                        <option value="Addendum">Addendum</option>
-                        <option value="Pembaharuan">Pembaharuan</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Addendum Ke" name="addendum_to" hidden />
-                    <script>
-                        document.getElementById("type").addEventListener("change", handleChange);
+                    <table class="table table-borderless" id="dynamicTable">
+                        <tr>
+                            <td>
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord"
+                                    name="landlord_name" required />
+                                <x-address label="Landlord" name="landlord" />
+                                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
+                                    <option value="Baru">Baru</option>
+                                    <option value="Perpanjangan">Perpanjangan</option>
+                                    <option value="Addendum">Addendum</option>
+                                    <option value="Pembaharuan">Pembaharuan</option>
+                                </x-select>
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Addendum Ke" name="addendum_to"
+                                    hidden />
+                                <script>
+                                    document.getElementById("type").addEventListener("change", handleChange);
 
-                        function handleChange() {
-                            var x = document.getElementById("type");
-                            if (x.value === "Addendum") {
-                                document.getElementById("addendum_to1").classList.remove('d-none');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
-                                document.getElementById("addendum_to").required = true;
-                            } else {
-                                document.getElementById("addendum_to1").classList.remove('d-flex');
-                                document.getElementById("addendum_to1").classList.add('d-flex');
-                                document.getElementById("addendum_to").required = false;
-                            }
-                        }
-                    </script>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional">
-                        <option value="Jakarta">Jakarta</option>
-                        <option value="Bodetabekarcil">Bodetabekarcil</option>
-                        <option value="Jawa Barat">Jawa Barat</option>
-                        <option value="Jawa Tengah & DIY">Jawa Tengah & DIY</option>
-                        <option value="JTBNN">JTBNN</option>
-                        <option value="Sumatera Bagian Utara">Sumatera Bagian Utara</option>
-                        <option value="Sumatera Bagian Selatan">Sumatera Bagian Selatan</option>
-                        <option value="Kalimantan">Kalimantan</option>
-                        <option value="Sulampapua">Sulampapua</option>
-                    </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp"
-                        name="rental_value" />
-                    <x-address label="Objek Sewa" name="rental_object" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Bulan"
-                        name="period_of_time" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Deposit" prefix="Rp"
-                        name="guarantee_nominal" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" name="main_branch" />
+                                    function handleChange() {
+                                        var x = document.getElementById("type");
+                                        if (x.value === "Addendum") {
+                                            document.getElementById("addendum_to1").classList.remove('d-none');
+                                            document.getElementById("addendum_to1").classList.add('d-flex');
+                                            document.getElementById("addendum_to").required = true;
+                                        } else {
+                                            document.getElementById("addendum_to1").classList.remove('d-flex');
+                                            document.getElementById("addendum_to1").classList.add('d-flex');
+                                            document.getElementById("addendum_to").required = false;
+                                        }
+                                    }
+                                </script>
+                                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional">
+                                    <option value="Jakarta">Jakarta</option>
+                                    <option value="Bodetabekarcil">Bodetabekarcil</option>
+                                    <option value="Jawa Barat">Jawa Barat</option>
+                                    <option value="Jawa Tengah & DIY">Jawa Tengah & DIY</option>
+                                    <option value="JTBNN">JTBNN</option>
+                                    <option value="Sumatera Bagian Utara">Sumatera Bagian Utara</option>
+                                    <option value="Sumatera Bagian Selatan">Sumatera Bagian Selatan</option>
+                                    <option value="Kalimantan">Kalimantan</option>
+                                    <option value="Sulampapua">Sulampapua</option>
+                                </x-select>
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nilai Sewa" prefix="Rp"
+                                    name="rental_value" />
+                                <x-address label="Objek Sewa" name="rental_object" />
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Bulan"
+                                    name="period_of_time" />
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Deposit" prefix="Rp"
+                                    name="guarantee_nominal" />
+                                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama"
+                                    name="main_branch" />
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center my-2">
+                                    {{-- <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Remove</button> --}}
+                                    <button type="button" name="add" id="add" class="btn btn-success ">+</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
                 </div>
                 {{-- <div class="col-sm-6">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Optional)"
@@ -131,8 +147,8 @@
                                 label="2. Asli Internal Memo Pengajuan Sewa*" required />
                             <x-input name="file_lease_application_form" type="file" labelClass="col-sm-5"
                                 fieldClass="col-sm-7" label="3. Asli Lease Drafting Application Form*" required />
-                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
-                                label="4. Fotocopy Kartu Identitas Pemilik Hak*" required />
+                            <x-input name="file_right_owner_id_card" type="file" labelClass="col-sm-5"
+                                fieldClass="col-sm-7" label="4. Fotocopy Kartu Identitas Pemilik Hak*" required />
                             <x-input name="file_npwp_individual" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
                                 label="5. Copy NPWP*" required />
                             <x-input name="file_family_card" type="file" labelClass="col-sm-5" fieldClass="col-sm-7"
@@ -230,3 +246,172 @@
         </form>
     </x-base>
 @endsection
+
+@push('addon-script')
+    <script type="text/javascript">
+        var i = 0;
+
+        $("#add").click(function() {
+
+            ++i;
+
+
+            $("#dynamicTable").append($("#test").html());
+        });
+        // var form_tags = document.getElementById('form')
+        // $(document).on('click', '#remove', function() {
+        //     // $(this).parents('tr').remove();
+        //     if (form_tags.length > 2) {
+        //         form_tags.removeChild();
+        //     }
+        // });
+        $(document).on('click', '.remove-tr', function() {
+            $(this).parents('tr').remove();
+        });
+    </script>
+
+    <script type="text/html" id="test">
+        <tr>
+            <td>
+
+
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Landlord (Opsional)" name="landlord_name" required />
+            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama " name="user_id" hidden />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+            <x-input label="Provinsi" name="province" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Kab/Kota" name="regency" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Kecamatan" name="district" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Desa/Kel" name="village" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Jalan" name="address" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+            <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="type">
+                <option value="Baru">Baru</option>
+                <option value="Perpanjangan">Perpanjangan</option>
+                <option value="Addendum">Addendum</option>
+                <option value="Pembaharuan">Pembaharuan</option>
+            </x-select>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+            <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Regional" name="regional">
+        <option value="Jakarta">Jakarta</option>
+        <option value="Bodetabekarcil">Bodetabekarcil</option>
+        <option value="Jawa Barat">Jawa Barat</option>
+        <option value="Jawa Tengah & DIY">Jawa Tengah & DIY</option>
+        <option value="JTBNN">JTBNN</option>
+        <option value="Sumatera Bagian Utara">Sumatera Bagian Utara</option>
+        <option value="Sumatera Bagian Selatan">Sumatera Bagian Selatan</option>
+        <option value="Kalimantan">Kalimantan</option>
+        <option value="Sulampapua">Sulampapua</option>
+    </x-select>
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+            <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Vendor" name="vendor_type">
+                <option value="Contractor Building">Contractor Building</option>
+                <option value="Jasa Perizinan">Jasa Perizinan</option>
+                <option value="Kendaraan">Kendaraan</option>
+                <option value="Peralatan">Peralatan</option>
+                <option value="KSO">KSO</option>
+                <option value="Outsourcing">Outsourcing</option>
+                <option value="Sistem IT">Sistem IT</option>
+                <option value="Others">Others</option>
+            </x-select>
+
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+            <x-input label="Provinsi" name="province" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Kab/Kota" name="regency" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Kecamatan" name="district" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Desa/Kel" name="village" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input label="Jalan" name="address" labelClass="col-sm-5" fieldClass="col-sm-7" required />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Jangka Waktu" postfix="Bulan" name="period_of_time" />
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Deposit" prefix="Rp" name="guarantee_nominal" />
+        </div>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12">
+
+            <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Cabang Utama" name="main_branch" />
+        </div>
+    </div>
+    </td>
+    <td>
+        <div class="d-flex justify-content-center my-2">
+            <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">-</button>
+        </div>
+    </td>
+    </tr>
+    </script>
+@endpush

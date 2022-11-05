@@ -22,9 +22,13 @@
                     @foreach ($join as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row['name'] }}</td>
+                            <td>{{ $row['title'] }}</td>
                             <td>{{ $row['type'] }}</td>
-                            <td>{{ $row['status'] }}</td>
+                            <td>
+                                @if ($row['status'] == 0)
+                                    Aktif
+                                @endif
+                            </td>
                             {{-- <td>
                                 @if ($row->status == 'APPROVED BY LEGAL LITIGASI MANAGER')
                                     <a href="{{ route('cs.customer-dispute.show', [$row->id, 'action=finish']) }}"

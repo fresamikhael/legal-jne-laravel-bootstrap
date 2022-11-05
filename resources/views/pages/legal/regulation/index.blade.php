@@ -311,17 +311,7 @@
                                                 <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
                                                 <td>
                                                     <a style="color: brown"
-                                                        href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->type, 40, '...') }}
-                                                        @if ($row->number)
-                                                            No {{ $row->number }}
-                                                        @endif
-                                                        @if ($row->nopol)
-                                                            No Polisi {{ $row->nopol }}
-                                                        @endif
-                                                        @if ($row->date)
-                                                            Tahun
-                                                            {{ date('Y', strtotime($row->date)) }}
-                                                        @endif
+                                                        href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->title, 40, '...') }}
                                                     </a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}

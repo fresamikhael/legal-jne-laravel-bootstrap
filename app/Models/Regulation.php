@@ -14,6 +14,7 @@ class Regulation extends Model
 
     protected $fillable = [
         'name',
+        'title',
         'type',
         'file',
         'number',

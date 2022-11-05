@@ -466,4 +466,54 @@ class RegulationController extends Controller
     {
         return view('pages.legal.regulation.litigation.index');
     }
+
+    public function createHGB()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.hgb');
+    }
+
+    public function createHM()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.hm');
+    }
+
+    public function createPBB()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.pbb');
+    }
+
+    public function createIMB()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.imb');
+    }
+
+    public function createSLF()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.slf');
+    }
+
+    public function createAkta()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.akta');
+    }
+
+    public function createPPJB()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.ppjb');
+    }
+
+    public function createAPH()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.aph');
+    }
+
+    public function createVehichle()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.vehicle');
+    }
+
+    public function createHKI()
+    {
+        return view('pages.legal.regulation.corporate.companyAsset.hki');
+    }
 }
