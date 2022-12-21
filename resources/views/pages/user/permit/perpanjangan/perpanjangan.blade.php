@@ -30,15 +30,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->id }}</td>
                                         <td>{{ $row->status }}</td>
-                                        <td>
-                                            {{ $row->status }}
-                                            @if ($row->status == 'PENDING')
-                                                <a href="{{ route('legal.permit.check', $row->id) }}"
-                                                    class="btn btn-primary">Check</a>
-                                            @else
-                                                <a href="{{ route('legal.permit.detail', $row->id) }}"
-                                                    class="btn btn-primary">Lihat</a>
-                                            @endif
+                                        <td><a href="{{ route('perpanjangan.detail', $row->id) }}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach

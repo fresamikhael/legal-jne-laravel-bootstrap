@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\Province;
 
 class PermitType extends Component
 {
@@ -35,6 +36,7 @@ class PermitType extends Component
      */
     public function render()
     {
-        return view('components.permit-type');
+        $province = Province::orderBy('name', 'ASC')->get();
+        return view('components.permit-type', compact('province'));
     }
 }

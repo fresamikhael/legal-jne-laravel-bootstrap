@@ -44,17 +44,13 @@
                             @if ($database->privilege == 'ALL')
                                 <tr class="">
                                     <th scope="row" style="width: 30%;" class="text-end">Nama Peraturan</th>
-                                    <td>{{ Str::limit($database->type, 40, '...') }}
-                                        No {{ $database->number }} Tahun
-                                        {{ date('Y', strtotime($database->date)) }}
+                                    <td>{{ Str::limit($database->title, 40, '...') }}
                                     </td>
                                 </tr>
                             @else
                                 <tr class="">
                                     <th scope="row" style="width: 30%;" class="text-end">Nama Dokumen</th>
-                                    <td>{{ Str::limit($database->type, 40, '...') }}
-                                        No {{ $database->number }} Tahun
-                                        {{ date('Y', strtotime($database->date)) }}
+                                    <td>{{ Str::limit($database->title, 40, '...') }}
                                     </td>
                                 </tr>
                             @endif

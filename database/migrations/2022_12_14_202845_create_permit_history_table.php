@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('regulations', function (Blueprint $table) {
-            $table->text('comms_name_file')->nullable();
-            $table->text('comms_term_file')->nullable();
-            $table->text('comms_arr_file')->nullable();
-            $table->text('comms_term_arr_file')->nullable();
+        Schema::create('permit_history', function (Blueprint $table) {
+            $table->string('id')->unique();
+            $table->string('permit_id')->nullable();
+            $table->string('status')->nullable();
+            $table->string('user_submited')->nullable();
+            $table->text('notes')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('regulations', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('permit_history');
     }
 };

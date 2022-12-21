@@ -12,3 +12,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/public/Permit
+/public/Litigation
+/public/legalPhoto
+/public/LandSell
+/public/Drafting
+/public/document_request

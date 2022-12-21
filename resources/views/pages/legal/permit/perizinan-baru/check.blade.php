@@ -33,7 +33,8 @@
                     <label for="id" class="col-sm-2 col-form-label">No Kasus</label>
                     <div class="col-sm-10">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $permit->id }}" name="id" disabled />
+                            <input type="text" class="form-control" value="{{ $permit->id }}" name="id"
+                                disabled />
                             {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
@@ -43,8 +44,8 @@
                     <label for="permit_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
                     <div class="col-sm-10">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $permit->permit_type }}"
-                                name="permit_type" disabled />
+                            <input type="text" class="form-control" value="{{ $permit->permit_type }}" name="permit_type"
+                                disabled />
                             {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
@@ -78,66 +79,309 @@
                 <div class="mt-4 mb-3 row">
                     <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
                 </div>
-                <div class="mb-3 row">
-                    <label for="specification" class="col-sm-4 col-form-label">1. Disposisi</label>
+                @php
+                    $no = 0;
+                @endphp
+                @if ($permit->file_disposition != null)
+                    <div class="mb-3 row">
+                        @php
+                            $no += 1;
+                        @endphp
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Disposisi</label>
 
-                    <div class="col-sm-8">
-                        <a href="{{ route('download.permit', substr($permit->file_disposition, 7)) }}"
-                            style="font-size:24px ">
-                            <div
-                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Unduh
-                                <i class="fa fa-download"></i>
-                            </div>
-                        </a>
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_disposition, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
 
+                        </div>
                     </div>
-                </div>
+                @endif
 
-                <div class="mb-3 row">
-                    <label for="specification" class="col-sm-4 col-form-label">2. Dokumen 1</label>
-                    <div class="col-sm-8">
-                        <a href="{{ route('download.permit', substr($permit->file_document1, 7)) }}"
-                            style="font-size:24px ">
-                            <div
-                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Unduh
-                                <i class="fa fa-download"></i>
-                            </div>
-                        </a>
+                @if ($permit->file_me != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar ME</label>
 
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_me, 7)) }}" style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
                     </div>
-                </div>
+                @endif
 
-                <div class="mb-3 row">
-                    <label for="specification" class="col-sm-4 col-form-label">3. Dokumen 2</label>
-                    <div class="col-sm-8">
-                        <a href="{{ route('download.permit', substr($permit->file_document2, 7)) }}"
-                            style="font-size:24px ">
-                            <div
-                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Unduh
-                                <i class="fa fa-download"></i>
-                            </div>
-                        </a>
+                @if ($permit->file_architect != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar Arsitek</label>
 
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_architect, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
                     </div>
-                </div>
+                @endif
 
-                <div class="mb-3 row">
-                    <label for="specification" class="col-sm-4 col-form-label">4. Dokumen 3</label>
-                    <div class="col-sm-8">
-                        <a href="{{ route('download.permit', substr($permit->file_document3, 7)) }}"
-                            style="font-size:24px ">
-                            <div
-                                class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Unduh
-                                <i class="fa fa-download"></i>
-                            </div>
-                        </a>
+                @if ($permit->file_technical != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar Teknis</label>
 
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_technical, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
                     </div>
-                </div>
+                @endif
+
+                @if ($permit->file_building_photo != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Foto Gedung</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_building_photo, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_other != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Dokumen Pendukung
+                            Lainnya</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_other, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_ads_photo != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Foto Reklame</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_ads_photo, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_statement_letter != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Surat Pernyataan
+                            Reklame</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_statement_letter, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_building_ownership != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Dokumen Kepemilikan
+                            Gedung</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_building_ownership, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_pbb != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. PBB Terbaru</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_pbb, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_ownership_statement != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Surat Pernyataan Pemilik
+                            Sewa
+                            Gedung</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_ownership_statement, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_tlbbr != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. TLBBR, IMBRR, IPR</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_tlbbr, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_location_polygon != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar Lokasi Dalam Bentuk
+                            Polygon</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_location_polygon, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
+
+                @if ($permit->file_oss_form != null)
+                    @php
+                        $no += 1;
+                    @endphp
+                    <div class="mb-3 row">
+                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Form Pengajuan Pembuatan
+                            Izin
+                            Melalui OSS</label>
+
+                        <div class="col-sm-8">
+                            <a href="{{ route('download.permit', substr($permit->file_oss_form, 7)) }}"
+                                style="font-size:24px ">
+                                <div
+                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    Unduh
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                @endif
 
                 <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
@@ -159,7 +403,8 @@
                             <button type="submit" class="btn btn-danger" name="action" value="return">Return</button>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
+                            <button type="submit" class="btn btn-primary" name="action"
+                                value="approve">Approve</button>
                         </div>
                     </div>
                 </div>

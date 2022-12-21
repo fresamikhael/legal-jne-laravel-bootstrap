@@ -34,7 +34,7 @@
                                 @foreach ($type as $t)
                                     <option value="{{ $t->name }}"
                                         {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>
-                                        {{ $t->name . ' ' . '(' . $allData[$t->name] . ')' }}
+                                        {{ $t->name ?? '' . ' ' . '(' . $allData[$t->name] . ')' }}
                                     </option>
                                 @endforeach
                             </x-select>

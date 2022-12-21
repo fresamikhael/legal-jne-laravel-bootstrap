@@ -451,11 +451,6 @@
                     </div>
                 </div>
             </td>
-            <td>
-                <div class="d-flex justify-content-center my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">-</button>
-                </div>
-            </td>
         </tr>
     </script>
 @endpush

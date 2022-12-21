@@ -262,7 +262,6 @@ Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(New
     // })->name('index');
 
     Route::get('/dashboard', 'home')->name('index');
-
     Route::get('perizinan-baru',  'index')->name('newpermit');
     Route::post('perizinan-baru/post',  'store')->name('newpermit-post');
     Route::get('perizinan-baru/detail/{id}',  'detail')->name('detail');
@@ -278,9 +277,7 @@ Route::prefix('permit')->name('permit.')->middleware(['isUser'])->controller(New
 });
 
 Route::prefix('legal/permit')->name('legal.permit.')->controller(NewPermitController::class)->group(function () {
-    Route::get('/', function () {
-        return View('pages.legal.permit.index');
-    })->name('index');
+    Route::get('/','legal_index')->name('index');
 
     Route::get('perizinan-baru',  'index_legal')->name('newpermit');
     Route::post('perizinan-baru/post',  'store_legal')->name('newpermit-post');
@@ -485,6 +482,14 @@ Route::get('/legal/service', function () {
     return view('pages.legal.service.index');
 })->name('legal.service.index');
 
+Route::get('/legal/permit/newPermit', function () {
+    return view('pages.legal.permit.perizinan-baru.newPermit');
+})->name('legal.permit.newPermit');
+
+Route::get('/legal/permit/extendPermit', function () {
+    return view('pages.legal.permit.perizinan-baru.extendPermit');
+})->name('legal.permit.extendPermit');
+
 Route::get('/headlegal', function () {
     return view('pages.head-legal.index');
 })->name('headlegal');
@@ -620,6 +625,14 @@ Route::get('/contact-us', function () {
 Route::get('/faq', [FaqController::class, 'index'])->middleware('guest')->name('faq-index');
 Route::get('/faq/{id}', [FaqController::class, 'show'])->middleware('guest')->name('faq-show');
 Route::get('legal/faq/{id}', [FaqController::class, 'showLegal'])->name('legal.faq-show');
+
+Route::get('/legal/permit/imb', [NewPermitController::class, 'imb'])->name('newPermit.imb');
+Route::get('/legal/permit/slf', [NewPermitController::class, 'slf'])->name('newPermit.slf');
+Route::get('/legal/permit/oss', [NewPermitController::class, 'oss'])->name('newPermit.oss');
+Route::get('/legal/permit/reklame', [NewPermitController::class, 'reklame'])->name('newPermit.reklame');
+
+Route::get('/legal/extend/slf', [NewPermitController::class, 'extendslf'])->name('extend.slf');
+Route::get('/legal/extend/reklame', [NewPermitController::class, 'extendreklame'])->name('extend.reklame');
 
 Route::get('legal/faq', [FaqController::class, 'indexLegal'])->name('legal.faq-index');
 Route::get('legal/faq/create', [FaqController::class, 'createLegal'])->name('legal.faq-create');

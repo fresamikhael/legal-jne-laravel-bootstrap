@@ -30,15 +30,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->id }}</td>
                                         <td>{{ $row->status }}</td>
-                                        <td>
-                                            {{ $row->status }}
-                                            @if ($row->status == 'PENDING')
-                                                <a href="{{ route('legal.permit.check', $row->id) }}"
-                                                    class="btn btn-primary">Check</a>
-                                            @else
-                                                <a href="{{ route('legal.permit.detail', $row->id) }}"
-                                                    class="btn btn-primary">Lihat</a>
-                                            @endif
+                                        <td><a href="{{ route('permit.detail', $row->id) }}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -195,42 +187,9 @@
                         </div>
                     @endslot
 
-                    @slot('oss')
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <x-input label="Nama Cabang/Pusat" name="branch_name" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Alamat Lokasi" name="branch_location" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="RT/RW" name="branch_rt" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kelurahan" name="branch_village" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Kecamatan" name="branch_district" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Kab/Kota" name="branch_regency" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Provinsi" name="branch_province" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Kode Pos" name="branch_postal_code" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Longtitude" name="branch_longtitude" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Latitude" name="branch_latitude" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Izin yang akan diurus" name="application_reason" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <label>Dokumen Pendukung :</label>
-                                <x-input label="1. Gambar lokasi dalam bentuk polygon (zip) kurang dari 2 Mb"
-                                    name="file_location_polygon" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
-                                    required />
-                                <x-input label="2. Form Pengajuan Pembuatan Izin Melalui OSS" name="file_oss_form"
-                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required />
-                            </div>
-                        </div>
-                    @endslot
+                    {{-- @slot('oss')
+                    code on permit type component
+                    @endslot --}}
                 </x-permit-type>
                 {{-- <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required></x-input>
                 <x-input label="Luas Bangunan" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" required>

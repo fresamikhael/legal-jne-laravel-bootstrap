@@ -189,7 +189,7 @@
                     <table class="table table-borderless" id="others">
                         <tr>
                             <td>
-                                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Lain-lain"
+                                <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen Lainnya"
                                     name="file_other" />
                             </td>
                             <td>
@@ -233,7 +233,6 @@
         $("#add").click(function() {
 
             ++i;
-
 
             $("#dynamicTable").append($("#test").html());
         });
@@ -338,11 +337,7 @@
                     </div>
                 </div>
             </td>
-            <td>
-                <div class="d-flex justify-content-center my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">-</button>
-                </div>
-            </td>
+
         </tr>
     </script>
 @endpush

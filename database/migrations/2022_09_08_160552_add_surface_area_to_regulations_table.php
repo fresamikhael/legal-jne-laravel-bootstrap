@@ -14,24 +14,24 @@ return new class extends Migration
     public function up()
     {
         Schema::table('regulations', function (Blueprint $table) {
-            $table->string('surface_area', 50)->nullable();
-            $table->string('measure_number', 50)->nullable();
-            $table->string('nop', 50)->nullable();
-            $table->string('njop', 50)->nullable();
-            $table->string('pbb', 50)->nullable();
-            $table->string('retribution', 50)->nullable();
-            $table->string('location', 50)->nullable();
-            $table->string('transaction_value', 50)->nullable();
-            $table->string('ppat', 50)->nullable();
-            $table->string('seller_name', 50)->nullable();
-            $table->string('nopol', 50)->nullable();
-            $table->string('nobpkb', 50)->nullable();
-            $table->string('nomes', 50)->nullable();
-            $table->string('vehicle_type', 50)->nullable();
-            $table->string('nostnk', 50)->nullable();
-            $table->string('logo_file', 255)->nullable();
-            $table->string('content', 50)->nullable();
-            $table->string('design_type', 50)->nullable();
+            $table->text('surface_area', 50)->nullable();
+            $table->text('measure_number', 50)->nullable();
+            $table->text('nop', 50)->nullable();
+            $table->text('njop', 50)->nullable();
+            $table->text('pbb', 50)->nullable();
+            $table->text('retribution', 50)->nullable();
+            $table->text('location', 50)->nullable();
+            $table->text('transaction_value', 50)->nullable();
+            $table->text('ppat', 50)->nullable();
+            $table->text('seller_name', 50)->nullable();
+            $table->text('nopol', 50)->nullable();
+            $table->text('nobpkb', 50)->nullable();
+            $table->text('nomes', 50)->nullable();
+            $table->text('vehicle_type', 50)->nullable();
+            $table->text('nostnk', 50)->nullable();
+            $table->text('logo_file', 255)->nullable();
+            $table->text('content', 50)->nullable();
+            $table->text('design_type', 50)->nullable();
         });
     }
 
