@@ -60,7 +60,7 @@
                                     <td>{{ $row->user_submited }}</td>
                                     <td>{{ strtoupper($row->status) }}</td>
                                     <td>
-                                        @if ($row->history->to_level == 'LEGAL')
+                                        @if ( isset($row->history) && $row->history->to_level == 'LEGAL')
                                             <a href="{{ route('legal.permit.check', $row->id) }}" class="btn btn-primary">Check</a>
                                         @else
                                             <a href="{{ route('legal.permit.detail', $row->id) }}" class="btn btn-info">Lihat</a>
