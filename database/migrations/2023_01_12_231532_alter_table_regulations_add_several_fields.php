@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('regulations', function (Blueprint $table) {
-            $table->string('title')->nullable();
             $table->bigInteger('modal_dasar')->nullable();
             $table->bigInteger('modal_disetor')->nullable();
             $table->string('code')->nullable();
