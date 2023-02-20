@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('regulations', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('filepath')->nullable();
-        // });
+        Schema::table('regulation_files', function (Blueprint $table) {
+            $table->id();
+            $table->string('filepath')->nullable();
+        });
+        
         Schema::table('regulations', function (Blueprint $table) {
             $table->dropColumn('director_name1');
             $table->dropColumn('director_name2');
