@@ -90,6 +90,30 @@ class DatabaseSeeder extends Seeder
                 'email' => 'sana@jne.co.id',
                 'password' => bcrypt('kepala'),
             ],
+            [
+                'id' => 'USR010',
+                'name' => 'Tono',
+                'nik' => '0123',
+                'role' => 'HEADUSER',
+                'email' => 'tono@jne.co.id',
+                'password' => bcrypt('tono'),
+            ],
+            [
+                'id' => 'USR011',
+                'name' => 'Puji',
+                'nik' => '01234',
+                'role' => 'HEADDEPT',
+                'email' => 'puji@jne.co.id',
+                'password' => bcrypt('puji'),
+            ],
+            [
+                'id' => 'USR012',
+                'name' => 'Joker',
+                'nik' => '01235',
+                'role' => 'HEADDIV',
+                'email' => 'joker@jne.co.id',
+                'password' => bcrypt('joker'),
+            ],
         ];
 
         foreach ($user as $key => $value) {

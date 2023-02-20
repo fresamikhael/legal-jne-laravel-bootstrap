@@ -43,9 +43,9 @@
             @csrf
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Dokumen" name="name"
-                    value="{{ $data->name }}" required>
+                    value="{{ $data->name }}">
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="type" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="type">
                     <option value="{{ $data->type }}" selected>{{ $data->type }}</option>
                     <option value="" disabled>----------------------------</option>
                     @foreach ($type as $t)
@@ -53,21 +53,21 @@
                     @endforeach
                 </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra" value="{{ $data->agency }}"
-                    name="agency" required />
+                    name="agency" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" name="number"
                     value="{{ $data->number }}" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date" name="date"
-                    value="{{ $data->date }}" required />
-                {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about" required /> --}}
+                    value="{{ $data->date }}" />
+                {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about"  /> --}}
                 <div class="mb-3 row">
                     <label class="col-sm-5 col-form-label">Tentang</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required>{{ $data->about }}</textarea>
+                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px">{{ $data->about }}</textarea>
                     </div>
                 </div>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
-                    name="set_date" value="{{ $data->set_date }}" required />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status" required>
+                    name="set_date" value="{{ $data->set_date }}" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status">
                     <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
                     <option value="" disabled>----------------------------</option>
                     <option value="Aktif">Aktif</option>
@@ -80,7 +80,7 @@
                 @if ($database->historical_id)
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
                         label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
-                        name="historical_id" required>
+                        name="historical_id">
                         @foreach ($relation as $d)
                             <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
                         @endforeach

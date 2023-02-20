@@ -6,491 +6,383 @@
 
 @section('content')
     <x-base>
-        {{-- @slot('alert')
-      <x-alert message="test" type="danger"></x-alert>
-    @endslot --}}
-        <form class="mt-4" method="post" enctype="multipart/form-data"
-            action="{{ route('legal.permit.check-post', $permit->id, $permit->user_id) }}">
-            @csrf
-            <div class="d-flex align-items-center justify-content-between">
-                <h2>Perizinan Baru</h2>
-                {{-- <x-modal-history>
-                    @slot('data')
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a href="" class="btn btn-primary">Lihat</a>
-                            </td>
-                        </tr>
-                    @endslot
-                </x-modal-history> --}}
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Perizinan Baru</h2>
+        </div>
+        <div class="row mt-3">
+            <div class="mb-3 row">
+                <label for="id" class="col-sm-2 col-form-label">No Pengajuan</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ $permit->id }}" name="id" disabled />
+                    </div>
+                </div>
             </div>
-            <div class="row mt-3">
-
-                <div class="mb-3 row">
-                    <label for="id" class="col-sm-2 col-form-label">No Kasus</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $permit->id }}" name="id"
-                                disabled />
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
+            <div class="mb-3 row">
+                <label for="permit_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="{{ $permit->permit_type }}" name="permit_type"
+                            disabled />
                     </div>
                 </div>
-                @if ($permit->expired != null)
-                    <div class="mb-3 row">
-                        <label for="permit_type" class="col-sm-2 col-form-label">Expired</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $permit->expired }}" name="permit_type"
-                                    disabled />
-                                {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                <div class="mb-3 row">
-                    <label for="permit_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
-                    <div class="col-sm-10">
-                        <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $permit->permit_type }}" name="permit_type"
-                                disabled />
-                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
-                        </div>
-                    </div>
-                </div>
+            </div>
+            @if ($permit->permit_type == 'IMB' || $permit->permit_type == 'SLF')
                 <div class="mb-3 row">
                     <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                     <div class="col-sm-10">
                         <div class="input-group">
                             <input type="text" class="form-control" value="{{ $permit->location }}" name="location"
                                 disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="building_area" class="col-sm-2 col-form-label">Luas Bangunan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->building_area }}"
+                                name="building_area" disabled />
                             {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="specification" class="col-sm-2 col-form-label">Spesifikasi</label>
+                    <label for="surface_area" class="col-sm-2 col-form-label">Luas Tanah</label>
                     <div class="col-sm-10">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{ $permit->specification }}"
-                                name="specification" disabled />
+                            <input type="text" class="form-control" value="{{ $permit->surface_area }}"
+                                name="surface_area" disabled />
                             {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                         </div>
                     </div>
                 </div>
-
-
-
-                {{-- <x-input label="Alasan Permohonan" name="application_reason" value="{{ $permit->location }}"
-                    labelClass="col-sm-2" fieldClass="col-sm-10" read-only>
-                </x-input> --}}
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="floatingTextarea2" style="height: 100px" readonly>{{ $permit->application_reason }}</textarea>
                     </div>
                 </div>
-                <div class="mt-4 mb-3 row">
-                    <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
+            @endif
+
+            @if ($permit->permit_type == 'Reklame')
+                <div class="mb-3 row">
+                    <label for="owner_name" class="col-sm-2 col-form-label">Nama Pemilik Reklame</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->owner_name }}" name="owner_name"
+                                disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
                 </div>
-                @php
-                    $no = 0;
-                @endphp
-                @if ($permit->file_disposition != null)
-                    <div class="mb-3 row">
+                <div class="mb-3 row">
+                    <label for="ads_type" class="col-sm-2 col-form-label">Status Gedung</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->ads_type }}" name="ads_type"
+                                disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="address" class="col-sm-2 col-form-label">Alamat Pemasangan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->address }}" name="address"
+                                disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ads_title" class="col-sm-2 col-form-label">Judul Reklame</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->ads_title }}" name="ads_title"
+                                disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ads_size" class="col-sm-2 col-form-label">Ukuran Reklame</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->ads_size }}" name="ads_size"
+                                disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ads_height" class="col-sm-2 col-form-label">Ketinggian Reklame</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->ads_height }}"
+                                name="ads_height" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ads_period" class="col-sm-2 col-form-label">Jangka Waktu Pemasangan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->ads_period }}"
+                                name="ads_period" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="application_reason" class="col-sm-2 col-form-label">Alasan Permohonan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->application_reason }}"
+                                name="application_reason" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if ($permit->permit_type == 'OSS')
+                <div class="mb-3 row">
+                    <label for="branch_name" class="col-sm-2 col-form-label">Nama Cabang/Pusat</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->branch_name }}"
+                                name="branch_name" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_province" class="col-sm-2 col-form-label">Provinsi</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            @php
+                                $province = DB::table('provinces')
+                                    ->where('id', $permit->branch_province)
+                                    ->first();
+                            @endphp
+                            <input type="text" class="form-control" value="{{ $province->name }}"
+                                name="branch_province" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="application_reason" class="col-sm-2 col-form-label">Kab/Kota</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            @php
+                                $regencies = DB::table('regencies')
+                                    ->where('id', $permit->branch_regency)
+                                    ->first();
+                            @endphp
+                            <input type="text" class="form-control" value="{{ $regencies->name }}"
+                                name="application_reason" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_district" class="col-sm-2 col-form-label">Kecamatan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            @php
+                                $district = DB::table('districts')
+                                    ->where('id', $permit->branch_district)
+                                    ->first();
+                            @endphp
+                            <input type="text" class="form-control" value="{{ $district->name }}"
+                                name="branch_district" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_village" class="col-sm-2 col-form-label">Kelurahan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            @php
+                                $village = DB::table('villages')
+                                    ->where('id', $permit->branch_village)
+                                    ->first();
+                            @endphp
+                            <input type="text" class="form-control" value="{{ $village->name }}"
+                                name="branch_village" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_location" class="col-sm-2 col-form-label">Alamat Lokasi</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->branch_location }}"
+                                name="branch_location" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_rt" class="col-sm-2 col-form-label">RT/RW</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->branch_rt }}"
+                                name="branch_rt" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_postal_code" class="col-sm-2 col-form-label">Kode Pos</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->branch_postal_code }}"
+                                name="branch_postal_code" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_longtitude" class="col-sm-2 col-form-label">Longitude</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->branch_longtitude }}"
+                                name="branch_longtitude" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="branch_latitude" class="col-sm-2 col-form-label">Latitude</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->branch_latitude }}"
+                                name="branch_latitude" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="application_reason" class="col-sm-2 col-form-label">Alasan Permohonan</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->application_reason }}"
+                                name="application_reason" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="permit_process" class="col-sm-2 col-form-label">Izin yang akan diurus</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->permit_process }}"
+                                name="permit_process" disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <div class="mt-4 mb-3 row">
+                <label class="col-sm-2 col-form-label">Dokumen Pendukung :</label>
+            </div>
+            @foreach ($permitFile as $key => $items)
+                <div class="mb-3 row">
+                    <label for="specification" class="col-sm-4 col-form-label">{{ $key + 1 }}.
+                        {{ $items->field_name }}</label>
+                    <div class="col-sm-8">
                         @php
-                            $no += 1;
+                            $file = explode(',', $items->filepath);
                         @endphp
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Disposisi</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_disposition, 7)) }}"
-                                style="font-size:24px ">
+                        @foreach ($file as $key => $item)
+                            <a href="{{ route('download.permit', substr($item, 7)) }}" style="font-size:24px ">
                                 <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
+                                    class="col-sm-1 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    File {{ $key + 1 }}
                                 </div>
                             </a>
-
-                        </div>
+                        @endforeach
                     </div>
-                @endif
+                </div>
+            @endforeach
 
-                @if ($permit->file_me != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar ME</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_me, 7)) }}" style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_architect != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar Arsitek</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_architect, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_technical != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar Teknis</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_technical, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_building_photo != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Foto Gedung</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_building_photo, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_other != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Dokumen Pendukung
-                            Lainnya</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_other, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_ads_photo != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Foto Reklame</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_ads_photo, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_statement_letter != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Surat Pernyataan
-                            Reklame</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_statement_letter, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_building_ownership != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Dokumen Kepemilikan
-                            Gedung</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_building_ownership, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_pbb != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. PBB Terbaru</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_pbb, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_ownership_statement != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Surat Pernyataan Pemilik
-                            Sewa
-                            Gedung</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_ownership_statement, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_tlbbr != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. TLBBR, IMBRR, IPR</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_tlbbr, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_location_polygon != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Gambar Lokasi Dalam Bentuk
-                            Polygon</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_location_polygon, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->file_oss_form != null)
-                    @php
-                        $no += 1;
-                    @endphp
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label"><?= $no ?>. Form Pengajuan Pembuatan
-                            Izin
-                            Melalui OSS</label>
-
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->file_oss_form, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                @if ($permit->latest_skpd != null)
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label">5. SKPD Terupdate</label>
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->latest_skpd, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-                @if ($permit->proof_of_payment != null)
-                    <div class="mb-3 row">
-                        <label for="specification" class="col-sm-4 col-form-label">6. Bukti Pembayaran</label>
-                        <div class="col-sm-8">
-                            <a href="{{ route('download.permit', substr($permit->proof_of_payment, 7)) }}"
-                                style="font-size:24px ">
-                                <div
-                                    class="col-sm-12 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Unduh
-                                    <i class="fa fa-download"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                @endif
-
-                <div class="col">
-                    @if ($permit->note == null)
-                        <label class="col-sm-2 col-form-label">Note</label>
-                        <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                                    style="height: 100px" disabled>Tidak ada</textarea>
-                            </div>
-                        </div>
-                    @else
-                        <label class="col-sm-2 col-form-label">Note</label>
-                        <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
-                                    style="height: 100px" disabled>{{ $permit->note }}</textarea>
-                            </div>
-                        </div>
-                    @endif
-
-                    <label for="id" class="col-sm-2 col-form-label">Status</label>
+            <div class="col">
+                @if ($permit->note == null)
+                    <label class="col-sm-2 col-form-label">Note</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
+                            <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px" disabled>Tidak ada</textarea>
+                        </div>
+                    </div>
+                @else
+                    <label class="col-sm-2 col-form-label">Note</label>
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px" disabled>{{ $permit->note }}</textarea>
+                        </div>
+                    </div>
+                @endif
+
+                <label for="id" class="col-sm-2 col-form-label">Status</label>
+                <div class="mb-3 row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ $permit->status }}" name="id"
+                                disabled />
+                            {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
+                        </div>
+                    </div>
+                </div>
+                @if ($permit->extend != null)
+                    <label for="id" class="col-sm-2 col-form-label">Perpanjang</label>
+                    <div class="mb-3 row">
+                        <div class="col-sm-6">
                             <div class="input-group">
-                                <input type="text" class="form-control" value="{{ $permit->status }}" name="id"
+                                <input type="text" class="form-control" value="{{ $permit->extend }}" name="id"
                                     disabled />
                                 {{-- <span class="input-group-text">{{ $postfix }}</span> --}}
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
+            </div>
 
-                <div class="col">
-                    <label for="id" class="col-sm-6 col-form-label">History Perizinan Baru</label>
-                    <div class="mb-3 row">
-                        <div class="col-sm-12">
-                            <x-table id="dataTables">
-                                @slot('header')
+            <div class="col">
+                <label for="id" class="col-sm-6 col-form-label">History Perizinan Baru</label>
+                <div class="mb-3 row">
+                    <div class="col-sm-12">
+                        <x-table id="dataTables">
+                            @slot('header')
+                                <tr>
+                                    <th>No</th>
+                                    <th>Status</th>
+                                    <th>User Submited</th>
+                                    <th>Notes</th>
+                                    <th>Created At</th>
+                                </tr>
+                            @endslot
+                            @slot('data')
+                                @foreach ($permitHistory as $row)
                                     <tr>
-                                        <th>No</th>
-                                        <th>Status</th>
-                                        <th>User Submited</th>
-                                        <th>Notes</th>
-                                        <th>Created At</th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ strtoupper($row->status) }}</td>
+                                        <td>{{ $row->user_submited }}</td>
+                                        <td>{{ $row->notes }}</td>
+                                        <td>{{ $row->created_at }}</td>
                                     </tr>
-                                @endslot
-                                @slot('data')
-                                    @foreach ($permitHistory as $row)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ strtoupper($row->status) }}</td>
-                                            <td>{{ $row->user_submited }}</td>
-                                            <td>{{ $row->notes }}</td>
-                                            <td>{{ $row->created_at }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endslot
-                            </x-table>
-                        </div>
+                                @endforeach
+                            @endslot
+                        </x-table>
                     </div>
                 </div>
                 @if ($permit->extend == 'Tidak')
@@ -503,7 +395,7 @@
                     </div>
                 @endif
 
-                @if ($permit->status == 'IN PROGRESS' && $permit->latest_skpd == null)
+                @if ($permit->status == 'IN PROGRESS' && $permit->latest_skpd == null && $permit->permit_type == 'Reklame')
                     <div class="mb-3 row">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{ route('legal.permit.upload_skpd', $permit->id) }}"
@@ -535,18 +427,7 @@
                         </div>
                     </div>
                 @endif
-
-
-                {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button value="return" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"
-                        style="background-color:#fe3f40">return</button>
-                    <button value="approve" name="action" class="btn btn-danger btn-lg px-4 py-2" type="submit"
-                        style="background-color:#fe3f40">approve</button>
-                </div> --}}
             </div>
-        </form>
-
-
-        {{-- <x-input label="Lokasi"></x-input> --}}
+        </div>
     </x-base>
 @endsection

@@ -42,7 +42,7 @@
                         @slot('header')
                             <tr>
                                 <th>No</th>
-                                <th>No Register</th>
+                                <th>No Pengajuan</th>
                                 <th>Tipe Permit</th>
                                 <th>Permit Model</th>
                                 <th>User Submited</th>
@@ -60,7 +60,7 @@
                                     <td>{{ $row->user_submited }}</td>
                                     <td>{{ strtoupper($row->status) }}</td>
                                     <td>
-                                        @if ($row->status == 'PENDING')
+                                        @if ($row->history->to_level == 'LEGAL')
                                             <a href="{{ route('legal.permit.check', $row->id) }}" class="btn btn-primary">Check</a>
                                         @else
                                             <a href="{{ route('legal.permit.detail', $row->id) }}" class="btn btn-info">Lihat</a>

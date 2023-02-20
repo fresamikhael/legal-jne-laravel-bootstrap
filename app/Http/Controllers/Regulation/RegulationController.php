@@ -12,6 +12,7 @@ use App\Models\DatabaseRequest;
 use App\Models\DatabaseRequestFile;
 use App\Http\Controllers\Controller;
 use App\Models\DatabasePublicRequest;
+use App\Models\RegulationFile;
 use Illuminate\Support\Facades\Redirect;
 
 class RegulationController extends Controller
@@ -30,26 +31,26 @@ class RegulationController extends Controller
         $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
         $allData = Regulation::all()->countBy('type');
 
-        return view('pages.user.regulation.index',compact('database', 'type', 'all', 'total', 'allData'));
+        return view('pages.user.regulation.index', compact('database', 'type', 'all', 'total', 'allData'));
     }
 
     public function indexLegal()
     {
         $allData = Regulation::all()->countBy('type');
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'number','type', 'agency', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about']))
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
         $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
 
-        return view('pages.legal.regulation.index',compact('database', 'type', 'total','allData'));
+        return view('pages.legal.regulation.index', compact('database', 'type', 'total', 'allData'));
     }
 
     public function indexRequestLegal()
     {
         $data = DatabasePublicRequest::with('database')->get();
 
-        return view('pages.legal.regulation.request',compact('data'));
+        return view('pages.legal.regulation.request', compact('data'));
     }
 
     public function add()
@@ -62,6 +63,7 @@ class RegulationController extends Controller
         $database = Regulation::where('id', $id)
             ->with('data')->first();
 
+
         return view('pages.user.regulation.detail', compact('database'));
     }
 
@@ -69,8 +71,9 @@ class RegulationController extends Controller
     {
         $database = Regulation::where('id', $id)
             ->with('data')->first();
+        $dataFile = RegulationFile::where('regulation_id', $id)->get();
 
-        return view('pages.legal.regulation.detail', compact('database'));
+        return view('pages.legal.regulation.detail', compact('database', 'dataFile'));
     }
 
     public function requestDocument()
@@ -183,7 +186,7 @@ class RegulationController extends Controller
                 $item->update($data);
 
                 return redirect()->route('legal.regulation.request');
-            break;
+                break;
 
             case 'approve':
                 $data['status'] = 'IN PROGRESS';
@@ -193,7 +196,7 @@ class RegulationController extends Controller
                 $item->update($data);
 
                 return redirect()->route('legal.regulation.request');
-            break;
+                break;
         }
     }
 
@@ -424,7 +427,7 @@ class RegulationController extends Controller
 
     public function createK3Permit()
     {
-        return view('pages.legal.regulation.permit.k3permit.index');
+        return view('pages.legal.regulation.permit.k3Permit.index');
     }
 
     public function createDisnakerPermit()

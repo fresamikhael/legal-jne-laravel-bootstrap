@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Province;
 use Illuminate\View\Component;
 
 class AssetType extends Component
@@ -47,6 +48,7 @@ class AssetType extends Component
      */
     public function render()
     {
-        return view('components.asset-type');
+        $province = Province::orderBy('name', 'ASC')->get();
+        return view('components.asset-type', compact('province'));
     }
 }

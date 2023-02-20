@@ -45,9 +45,9 @@
             action="{{ route('legal.regulation.normative-post') }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Dokumen" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Dokumen" name="name">
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen" name="type" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Dokumen" name="type">
                     @foreach ($type as $t)
                         <option value="{{ $t->name }}">{{ $t->name }}</option>
                     @endforeach
@@ -81,18 +81,18 @@
                         @enderror
                     </div>
                 </div> --}}
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra" name="agency" required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Dikeluarkan/Mitra" name="agency" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Dokumen" name="number" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date" name="date"
-                    required />
-                {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about" required /> --}}
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Dokumen" type="date"
+                    name="date" />
+                {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about"  /> --}}
                 <div class="mb-3 row">
                     <label class="col-sm-5 col-form-label">Tentang</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
+                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
                 </div>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit">
                     <option value="Drafting">Drafting</option>
                     <option value="Litigation">Litigation</option>
                     <option value="Permit">Permit</option>
@@ -106,7 +106,7 @@
                     <textarea name="note" id="editor"></textarea>
                 </div>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal" type="date" name="set_date"
-                    value="{{ Carbon\Carbon::today()->toDateString() }}" required />
+                    value="{{ Carbon\Carbon::today()->toDateString() }}" />
                 <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
                     label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
                     name="historical_id">
@@ -114,7 +114,7 @@
                         <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
                     @endforeach
                 </x-select>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Dokumen" name="status">
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>
                 </x-select>

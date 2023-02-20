@@ -127,6 +127,9 @@
                         <option value="LITI2">Legal Litigasi 2</option>
                         <option value="CD">Contract Business</option>
                         <option value="HEADLEGAL">Kepala Legal</option>
+                        <option value="HEADUSER">Kepala User</option>
+                        <option value="HEADDEPT">Kepala Departemen</option>
+                        <option value="HEADDIV">Kepala Divisi</option>
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Induk Kewarganegaraan(NIK)"
                         name="nik" required />

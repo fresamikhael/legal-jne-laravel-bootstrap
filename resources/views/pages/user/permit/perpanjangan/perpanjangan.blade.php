@@ -9,6 +9,11 @@
         {{-- @slot('alert')
       <x-alert message="test" type="danger"></x-alert>
     @endslot --}}
+        @if (Session::get('message_success'))
+            @slot('alert')
+                <x-alert message="{{ Session::get('message_success') }}" type="success" />
+            @endslot
+        @endif
         <form class="mt-4" method="post" enctype="multipart/form-data" action="{{ route('permit.perpanjangan-post') }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
@@ -19,7 +24,7 @@
                             @slot('header')
                                 <tr>
                                     <th>No</th>
-                                    <th>Nomor Kasus</th>
+                                    <th>Nomor Pengajuan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -30,7 +35,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->id }}</td>
                                         <td>{{ $row->status }}</td>
-                                        <td><a href="{{ route('perpanjangan.detail', $row->id) }}" class="btn btn-primary">Detail</a>
+                                        <td><a href="{{ route('perpanjangan.detail', $row->id) }}"
+                                                class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -60,19 +66,21 @@
                                     fieldClass="col-sm-10" required />
                                 <label>Dokumen Pendukung :</label>
                                 <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" required />
+                                    fieldClass="col-sm-8" required accept="application/pdf" />
                                 <x-input label="2. Gambar ME" name="file_me" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" />
+                                    fieldClass="col-sm-8" accept="application/pdf" />
                                 <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" required />
+                                    fieldClass="col-sm-8" required accept="application/pdf" />
                                 <x-input label="4. Gambar Teknis" name="file_technical" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" required />
+                                    fieldClass="col-sm-8" required accept="application/pdf" />
                                 <x-input label="5. Foto Gedung" name="file_building_photo" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" />
+                                    fieldClass="col-sm-8" accept="application/pdf" />
                                 <x-input label="6. IMB" name="file_imb" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" required />
+                                    fieldClass="col-sm-8" required accept="application/pdf" />
                                 <x-input label="7. Dokumen SLF Lama" name="file_old_slf" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" />
+                                    fieldClass="col-sm-8" accept="application/pdf" />
+                                <x-input label="8. Dokumen Pendukung Lainnya" name="file_other[]" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required multiple accept="application/pdf" />
                             </div>
                         </div>
                     @endslot
@@ -98,13 +106,16 @@
                                     fieldClass="col-sm-10" required />
                                 <label>Dokumen Pendukung :</label>
                                 <x-input label="1. Foto Reklame" name="file_ads_photo" type="file" labelClass="col-sm-4"
-                                    fieldClass="col-sm-8" required />
+                                    fieldClass="col-sm-8" required accept="application/pdf" />
                                 <x-input label="2. Jika Luas Reklame > 10M2 (Menyertakan TLBBR, IMBBR, IPR)" name="file_tlbbr"
-                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required
+                                    accept="application/pdf" />
                                 <x-input label="3. Bukti Pembayaran Tahun Lalu" name="file_payment_proof" type="file"
-                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required accept="application/pdf" />
                                 <x-input label="4. SKPD Tahun Lalu" name="file_old_skpd" type="file"
-                                    labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required accept="application/pdf" />
+                                <x-input label="5. Dokumen Pendukung Lainnya" name="file_other[]" type="file"
+                                    labelClass="col-sm-4" fieldClass="col-sm-8" required multiple accept="application/pdf" />
                             </div>
                         </div>
                     @endslot

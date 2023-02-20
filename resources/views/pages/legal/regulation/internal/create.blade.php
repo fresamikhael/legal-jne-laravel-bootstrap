@@ -44,35 +44,34 @@
             action="{{ route('legal.regulation.internal-post') }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name">
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type">
                     @foreach ($type as $t)
                         <option value="{{ $t->name }}">{{ $t->name }}</option>
                     @endforeach
                 </x-select>
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Direktorat/Divisi/Departement" name="agency"
-                    required />
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Direktorat/Divisi/Departement" name="agency" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="number" />
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Peraturan" name="date" type="date"
-                    required />
-                {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about" required /> --}}
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Peraturan" name="date"
+                    type="date" />
+                {{-- <x-textarea labelClass="col-sm-5" fieldClass="col-sm-7" label="Tentang" name="about"  /> --}}
                 <div class="mb-3 row">
                     <label class="col-sm-5 col-form-label">Tentang</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
+                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
                 </div>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit">
                     <option value="Drafting">Drafting</option>
                     <option value="Litigation">Litigation</option>
                     <option value="Permit">Permit</option>
                     <option value="Corporate">Corporate</option>
                 </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
-                    name="set_date" required />
+                    name="set_date" />
                 <input type="hidden" name="privilege" value="ALL">
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status">
                     <option value="Aktif">Aktif</option>
                     <option value="Tidak Aktif">Tidak Aktif</option>
                 </x-select>

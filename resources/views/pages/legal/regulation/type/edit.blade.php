@@ -75,9 +75,9 @@
             @csrf
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name"
-                    value="{{ $data->name }}" required>
+                    value="{{ $data->name }}">
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Data" name="type" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Data" name="type">
                     <option value="{{ $data->type }}" selected>Database {{ $data->type }}</option>
                     <option disabled>--------------------</option>
                     <option value="Umum">Database Umum</option>

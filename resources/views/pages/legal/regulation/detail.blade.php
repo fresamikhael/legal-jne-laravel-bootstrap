@@ -54,6 +54,12 @@
                                     </td>
                                 </tr>
                             @endif
+                            @if ($database->code)
+                                <tr class="">
+                                    <th scope="row" class="text-end">Kode Dokumen</th>
+                                    <td>{{ $database->code }}</td>
+                                </tr>
+                            @endif
                             @if ($database->type)
                                 <tr class="">
                                     <th scope="row" class="text-end">Tipe Dokumen</th>
@@ -140,25 +146,45 @@
                             @if ($database->province)
                                 <tr>
                                     <th scope="row" class="text-end">Provinsi</th>
-                                    <td>{{ $database->province }}</td>
+                                    @php
+                                        $province = DB::table('provinces')
+                                            ->where('id', $database->province)
+                                            ->first();
+                                    @endphp
+                                    <td>{{ $province->name }}</td>
                                 </tr>
                             @endif
                             @if ($database->regency)
                                 <tr>
                                     <th scope="row" class="text-end">Kab/Kota</th>
-                                    <td>{{ $database->regency }}</td>
+                                    @php
+                                        $regency = DB::table('regencies')
+                                            ->where('id', $database->regency)
+                                            ->first();
+                                    @endphp
+                                    <td>{{ $regency->name }}</td>
                                 </tr>
                             @endif
                             @if ($database->district)
                                 <tr>
                                     <th scope="row" class="text-end">Kecamatan</th>
-                                    <td>{{ $database->district }}</td>
+                                    @php
+                                        $district = DB::table('districts')
+                                            ->where('id', $database->district)
+                                            ->first();
+                                    @endphp
+                                    <td>{{ $district->name }}</td>
                                 </tr>
                             @endif
                             @if ($database->village)
                                 <tr>
                                     <th scope="row" class="text-end">Kelurahan</th>
-                                    <td>{{ $database->village }}</td>
+                                    @php
+                                        $village = DB::table('villages')
+                                            ->where('id', $database->village)
+                                            ->first();
+                                    @endphp
+                                    <td>{{ $village->name }}</td>
                                 </tr>
                             @endif
                             @if ($database->address)
@@ -602,147 +628,15 @@
                     <div class="border rounded p-3"
                         style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                         {{-- @dd($database->data) --}}
-                        @foreach ($database->data as $file)
+                        @foreach ($dataFile as $file)
                             <div class="row">
-                                <a href="{{ asset($file->name) }}" style="color: #fe1717" target="_blank">
+                                <a href="{{ asset($file->filepath) }}" style="color: #fe1717" target="_blank">
                                     <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
                                 </a>
-                                <p>{{ Str::substr($file->name, 11) }}</p>
+                                <p style="word-break: break-all">
+                                    {{ $file->name }} - {{ Str::substr($file->filepath, 11) }}</p>
                             </div>
                         @endforeach
-                        @if ($database->ads_photo)
-                            <div class="row">
-                                <a href="{{ asset($database->ads_photo) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->ads_photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->photo)
-                            <div class="row">
-                                <a href="{{ asset($database->photo) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->ktp_photo)
-                            <div class="row">
-                                <a href="{{ asset($database->ktp_photo) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->ktp_photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->npwp_photo)
-                            <div class="row">
-                                <a href="{{ asset($database->npwp_photo) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->npwp_photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->kk_photo)
-                            <div class="row">
-                                <a href="{{ asset($database->kk_photo) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->kk_photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->passport_photo)
-                            <div class="row">
-                                <a href="{{ asset($database->passport_photo) }}" style="color: #fe1717"
-                                    target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->passport_photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->pas_photo)
-                            <div class="row">
-                                <a href="{{ asset($database->pas_photo) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->pas_photo, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->comms_name_file)
-                            <div class="row">
-                                <a href="{{ asset($database->comms_name_file) }}" style="color: #fe1717"
-                                    target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->comms_name_file, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->comms_term_file)
-                            <div class="row">
-                                <a href="{{ asset($database->comms_term_file) }}" style="color: #fe1717"
-                                    target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->comms_term_file, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->comms_arr_file)
-                            <div class="row">
-                                <a href="{{ asset($database->comms_arr_file) }}" style="color: #fe1717"
-                                    target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->comms_arr_file, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->comms_term_arr_file)
-                            <div class="row">
-                                <a href="{{ asset($database->comms_term_arr_file) }}" style="color: #fe1717"
-                                    target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->comms_term_arr_file, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->logo_file)
-                            <div class="row">
-                                <a href="{{ asset($database->logo_file) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->logo_file, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->file)
-                            <div class="row">
-                                <a href="{{ asset($database->file) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->file, 11) }}</p>
-                            </div>
-                        @endif
-                        @if ($database->other_file)
-                            <div class="row">
-                                <a href="{{ asset($database->other_file) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                <p>{{ Str::substr($database->other_file, 11) }}</p>
-                            </div>
-                        @endif
-                        {{-- @foreach ($database->file as $file)
-                            <a href="{{ asset($database->file) }}" style="color: #fe1717" target="_blank">
-                                <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                            </a>
-                        @endforeach --}}
-                        {{-- @if (is_array($database->file) || is_object($database->file))
-                            {
-                            @foreach ($database->file as $file)
-                                {
-                                <a href="{{ asset($database->file) }}" style="color: #fe1717" target="_blank">
-                                    <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
-                                </a>
-                                }
-                            @endforeach
-                            }
-                        @endif --}}
                     </div>
                 </div>
             </div>

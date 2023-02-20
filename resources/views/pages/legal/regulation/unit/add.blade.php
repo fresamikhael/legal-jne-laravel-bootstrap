@@ -74,12 +74,12 @@
             action="{{ route('legal.regulation.store-unit') }}">
             @csrf
             <div class="row mt-4">
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Dokumen" name="type_id" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Dokumen" name="type_id">
                     @foreach ($types as $t)
                         <option value="{{ $t->id }}">{{ $t->name }}</option>
                     @endforeach
                 </x-select>
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Unit" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Unit" name="name">
                 </x-input>
             </div>
 

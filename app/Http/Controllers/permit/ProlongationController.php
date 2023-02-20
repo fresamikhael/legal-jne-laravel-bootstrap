@@ -18,7 +18,7 @@ class ProlongationController extends Controller
     public function index()
     {
         $data = Permit::where('check_expired', 'TRUE')
-            ->where('receipt', null)
+            ->orWhere('permit_model', 'perpanjangan')
             ->get();
         return view('pages.user.permit.perpanjangan.perpanjangan', [
             'data' => $data,
@@ -346,7 +346,6 @@ class ProlongationController extends Controller
         // foreach ($dataLegal as $key => $value) {
         //     Mail::to($value->email)->send(new MailJNE($mailData));
         // }
-
 
         return redirect()->route('legal.permit');
     }

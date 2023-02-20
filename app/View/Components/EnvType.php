@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Province;
 use Illuminate\View\Component;
 
 class EnvType extends Component
@@ -29,6 +30,7 @@ class EnvType extends Component
      */
     public function render()
     {
-        return view('components.env-type');
+        $province = Province::orderBy('name', 'ASC')->get();
+        return view('components.env-type', compact('province'));
     }
 }

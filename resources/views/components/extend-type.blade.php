@@ -7,9 +7,9 @@
         return (
             <React.Fragment>
                 <div class="mb-3 row">
-                    <label for="extend_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
+                    <label for="permit_type" class="col-sm-2 col-form-label">Tipe Perizinan</label>
                     <div class="col-sm-10">
-                        <select onChange={ (e) => setType(e.target.value) } required name="extend_type" id="extend_type" class="form-select" aria-label="Default select example">
+                        <select onChange={ (e) => setType(e.target.value) } required name="permit_type" id="permit_type" class="form-select" aria-label="Default select example">
                             <option class="d-none">-- Pilih --</option>
                             <option value="SLF">SLF</option>
                             <option value="Reklame">Reklame</option>

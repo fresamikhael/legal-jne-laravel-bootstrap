@@ -74,7 +74,7 @@
             action="{{ route('legal.regulation.store-type') }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Dokumen" name="name">
                 </x-input>
                 <input type="hidden" name="type" value="Khusus">
             </div>

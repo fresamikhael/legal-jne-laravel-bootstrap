@@ -15,13 +15,23 @@
                     style="display: none; width: 100%;" {{ $multiple ? 'multiple' : '' }} />
             </div>
         @elseif ($prefix)
-            <div class="input-group">
-                <span class="input-group-text">{{ $prefix }}</span>
-                <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
-                    name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }} value="{{ $value ? $value : '' }}"
-                    {{ $readOnly ? 'readonly' : '' }} />
-            </div>
+            @if ($value)
+                <div class="input-group">
+                    <span class="input-group-text">{{ $prefix }}</span>
+                    <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
+                        name="{{ $name }}" placeholder="{{ $placeholder }}"
+                        {{ $disabled ? 'disabled' : '' }} {{ $required ? 'required' : '' }}
+                        {{ $readOnly ? 'readonly' : '' }} value="{{ $value ? $value : '' }}" />
+                </div>
+            @else
+                <div class="input-group">
+                    <span class="input-group-text">{{ $prefix }}</span>
+                    <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
+                        name="{{ $name }}" placeholder="{{ $placeholder }}"
+                        {{ $disabled ? 'disabled' : '' }} {{ $required ? 'required' : '' }}
+                        {{ $readOnly ? 'readonly' : '' }} />
+                </div>
+            @endif
         @elseif ($postfix)
             <div class="input-group">
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
@@ -30,6 +40,11 @@
                     {{ $readOnly ? 'readonly' : '' }} />
                 <span class="input-group-text">{{ $postfix }}</span>
             </div>
+        @elseif ($accept)
+            <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
+                name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
+                {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }} {{ $readOnly ? 'readonly' : '' }}
+                accept="{{ $accept ? $accept : '' }}" />
         @else
             @if ($value)
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
@@ -39,7 +54,8 @@
             @else
                 <input type="{{ $type ? $type : 'text' }}" class="form-control" id="{{ $name }}"
                     name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $disabled ? 'disabled' : '' }}
-                    {{ $required ? 'required' : '' }} {{ $readOnly ? 'readonly' : '' }} />
+                    {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }}
+                    {{ $readOnly ? 'readonly' : '' }} />
             @endif
         @endif
     </div>

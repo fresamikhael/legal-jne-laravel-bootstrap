@@ -125,14 +125,19 @@
                                 fieldClass="col-sm-10" required />
                             <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" required />
-                            <x-input label="Izin yang akan diurus" name="application_reason" labelClass="col-sm-2"
+                            <x-input label="Izin yang akan diurus" name="permit_process" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" required />
                             <label>Dokumen Pendukung :</label>
                             <x-input label="1. Gambar lokasi dalam bentuk polygon (zip) kurang dari 2 Mb"
                                 name="file_location_polygon" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
-                                required />
+                                required accept="application/pdf" />
                             <x-input label="2. Form Pengajuan Pembuatan Izin Melalui OSS" name="file_oss_form"
-                                type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                                type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required accept="application/pdf" />
+                            <x-input label="3. Dokumen Pendukung Lainnya" name="file_other[]" type="file"
+                                labelClass="col-sm-4" fieldClass="col-sm-8" required multiple/>
+                                <input type="hidden" name="fieldname[]" value="Gambar lokasi dalam bentuk polygon (zip) kurang dari 2 Mb" />
+                                <input type="hidden" name="fieldname[]" value="Form Pengajuan Pembuatan Izin Melalui OSS" />
+                                <input type="hidden" name="fieldname[]" value="Dokumen Pendukung Lainnya" />
                         </div>
                     </div>
                 ) : "" }

@@ -19,7 +19,7 @@
                             @slot('header')
                                 <tr>
                                     <th>No</th>
-                                    <th>No Register</th>
+                                    <th>No Pengajuan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>

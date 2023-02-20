@@ -39,10 +39,10 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
-                        <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
-                            required />
+                        <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                        <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit" required>
+                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit">
                             <option value="Penangkal Petir">Penangkal Petir</option>
                             <option value="HT">HT</option>
                             <option value="Bejana Tekan">Bejana Tekan</option>
@@ -56,13 +56,13 @@
                             <option value="Hydrant">Hydrant</option>
                             <option value="Tera">Tera</option>
                         </x-select>
-                        <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
+                        <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
+                            fieldClass="col-sm-10" />
                         <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
-                        <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" required />
+                            fieldClass="col-sm-10" />
+                        <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" multiple />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     </div>
                 </div>

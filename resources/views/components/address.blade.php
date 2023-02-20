@@ -39,7 +39,7 @@
         return (
             <React.Fragment>
                 <div class="mb-3 row">
-                    <label for="{{ $name }}_province" class="col-sm-5 col-form-label">Provinsi {{ $label }}</label>        
+                    <label for="{{ $name }}_province" class="col-sm-5 col-form-label">Provinsi {{ $label }}</label>
                     <div class="col-sm-7">
                         <select  onChange={ inputProvinceChange } name="{{ $name }}_province" id="{{ $name }}_province" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="{{ $name }}_regency" class="col-sm-5 col-form-label">Kab/Kota {{ $label }}</label>        
+                    <label for="{{ $name }}_regency" class="col-sm-5 col-form-label">Kab/Kota {{ $label }}</label>
                     <div class="col-sm-7">
                         <select  onChange={ inputRegencyChange } name="{{ $name }}_regency" id="{{ $name }}_regency" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="{{ $name }}_district" class="col-sm-5 col-form-label">Kecamatan {{ $label }}</label>        
+                    <label for="{{ $name }}_district" class="col-sm-5 col-form-label">Kecamatan {{ $label }}</label>
                     <div class="col-sm-7">
                         <select  onChange={ inputDistrictChange } name="{{ $name }}_district" id="{{ $name }}_district" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="{{ $name }}_village" class="col-sm-5 col-form-label">Kelurahan {{ $label }}</label>        
+                    <label for="{{ $name }}_village" class="col-sm-5 col-form-label">Kelurahan {{ $label }}</label>
                     <div class="col-sm-7">
                         <select  name="{{ $name }}_village" id="{{ $name }}_village" class="form-select" aria-label="Default select example">
                             <option class="d-none" value="">-- Pilih --</option>

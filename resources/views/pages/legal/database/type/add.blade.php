@@ -55,7 +55,7 @@
         <form class="mt-4" method="POST" enctype="multipart/form-data" action="{{ route('legal.database.store-type') }}">
             @csrf
             <div class="row mt-4">
-                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name" required>
+                <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name">
                 </x-input>
             </div>
 

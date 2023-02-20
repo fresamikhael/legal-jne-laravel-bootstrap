@@ -44,95 +44,17 @@
             @csrf
             <div class="row mt-4">
                 <x-env-type>
-                    @slot('ukl')
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <label for="">Lokasi</label>
-                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input value="UKL/UPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" required />
-                                <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input type="file" label="File Upload" name="file" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            </div>
-                        </div>
+                    {{-- @slot('ukl')
+
                     @endslot
 
                     @slot('amdal')
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <label for="">Lokasi</label>
-                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input value="AMDAL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            </div>
-                        </div>
+
                     @endslot
 
                     @slot('sppl')
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <label for="">Lokasi</label>
-                                <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    hidden />
-                                <x-input value="SPPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    hidden />
-                                <x-input label="Provinsi" name="province" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kab/Kota" name="regency" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Kecamatan" name="district" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Desa/Kel" name="village" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input label="Jalan/Nama Gedung" name="address" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    required />
-                                <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" required />
-                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            </div>
-                        </div>
-                    @endslot
+
+                    @endslot --}}
                 </x-env-type>
             </div>
 

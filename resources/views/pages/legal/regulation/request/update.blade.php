@@ -98,12 +98,11 @@
                 action="{{ route('legal.regulation.request-update-post', $file->id) }}">
                 @csrf
                 <x-input label="Kode Dokumen" name="document_code" type="text" labelClass="col-sm-2"
-                    fieldClass="col-sm-10" required>
+                    fieldClass="col-sm-10">
                 </x-input>
-                <x-input label="File Number" name="file_number" type="text" labelClass="col-sm-2" fieldClass="col-sm-10"
-                    required>
+                <x-input label="File Number" name="file_number" type="text" labelClass="col-sm-2" fieldClass="col-sm-10">
                 </x-input>
-                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Pilih File" name="file_id" required>
+                <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Pilih File" name="file_id">
                     <option value="">Semua Jenis</option>
                     <option disabled>-----------------------------</option>
                     @foreach ($database as $db)
@@ -114,7 +113,7 @@
                 <div class="mb-3 row">
                     <div class="col-sm-12">
                         <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px"
-                            required>Dokumen tersedia, segera mengambil ke bagian yang telah ditentukan</textarea>
+                            >Dokumen tersedia, segera mengambil ke bagian yang telah ditentukan</textarea>
                     </div>
                 </div> --}}
                 <div class="mb-3 row">

@@ -44,19 +44,19 @@
             @csrf
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Peraturan" name="name" required />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Peraturan" name="type" required>
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Peraturan" name="name" />
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Peraturan" name="type">
                         @foreach ($type as $t)
                             <option value="{{ $t->name }}">{{ $t->name }}</option>
                         @endforeach
                     </x-select>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Instansi" name="entity" required />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="number" required />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tahun Peraturan" name="year" required />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Instansi" name="entity" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="number" />
+                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tahun Peraturan" name="year" />
                     <div class="mb-3 row">
                         <label class="col-sm-5 col-form-label">Tentang</label>
                         <div class="col-sm-7">
-                            <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required></textarea>
+                            <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px"></textarea>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -66,14 +66,14 @@
                         <textarea name="note" id="editor"></textarea>
                     </div>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
-                        name="set_date" required />
+                        name="set_date" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"
-                        name="promulgated_date" required />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
+                        name="promulgated_date" />
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status">
                         <option value="Aktif">Aktif</option>
                         <option value="Tidak Aktif">Tidak Aktif</option>
                     </x-select>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege" required>
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege">
                         <option value="ALL">Peraturan Umum</option>
                         <option value="RESTRICTED">Peraturan Internal</option>
                     </x-select>

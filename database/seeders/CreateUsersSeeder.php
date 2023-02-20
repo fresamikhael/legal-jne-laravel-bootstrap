@@ -86,7 +86,31 @@ class CreateUsersSeeder extends Seeder
                 'nik' => '123123',
                 'role' => 'HEADLEGAL',
                 'email' => 'head@jne.co.id',
-                'password' => bcrypt('kepalalegal'),
+                'password' => bcrypt('kepala'),
+            ],
+            [
+                'id' => 'USR010',
+                'name' => 'Tono',
+                'nik' => '0123',
+                'role' => 'HEADUSER',
+                'email' => 'tono@jne.co.id',
+                'password' => bcrypt('kepalauser'),
+            ],
+            [
+                'id' => 'USR012',
+                'name' => 'Puji',
+                'nik' => '01234',
+                'role' => 'HEADDEPT',
+                'email' => 'puji@jne.co.id',
+                'password' => bcrypt('kepalauser'),
+            ],
+            [
+                'id' => 'USR013',
+                'name' => 'Joker',
+                'nik' => '01235',
+                'role' => 'HEADDIV',
+                'email' => 'puji@jne.co.id',
+                'password' => bcrypt('kepalauser'),
             ],
         ];
 

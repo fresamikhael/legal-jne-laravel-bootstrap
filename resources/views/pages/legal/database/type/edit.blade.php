@@ -58,7 +58,7 @@
             @csrf
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="name"
-                    value="{{ $data->name }}" required>
+                    value="{{ $data->name }}">
                 </x-input>
             </div>
 

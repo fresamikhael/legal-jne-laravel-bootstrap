@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Province;
 use Illuminate\View\Component;
 
 class AdsType extends Component
@@ -31,6 +32,7 @@ class AdsType extends Component
      */
     public function render()
     {
-        return view('components.ads-type');
+        $province = Province::orderBy('name', 'ASC')->get();
+        return view('components.ads-type', compact('province'));
     }
 }

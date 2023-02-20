@@ -44,9 +44,9 @@
             @csrf
             <div class="row mt-4">
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Regulasi" name="name"
-                    value="{{ $data->name }}" required>
+                    value="{{ $data->name }}">
                 </x-input>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Tipe Regulasi" name="type">
                     <option value="{{ $data->type }}" selected>{{ $data->type }}</option>
                     <option value="" disabled>----------------------------</option>
                     @foreach ($type as $t)
@@ -54,18 +54,18 @@
                     @endforeach
                 </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Direktorat/Divisi/Departement"
-                    value="{{ $data->agency }}" name="agency" required />
+                    value="{{ $data->agency }}" name="agency" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" value="{{ $data->number }}"
                     name="number" />
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Peraturan" name="date"
-                    value="{{ $data->date }}" type="date" required />
+                    value="{{ $data->date }}" type="date" />
                 <div class="mb-3 row">
                     <label class="col-sm-5 col-form-label">Tentang</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required>{{ $data->about }}</textarea>
+                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px">{{ $data->about }}</textarea>
                     </div>
                 </div>
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit" required>
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Unit" name="unit">
                     <option value="{{ $data->unit }}" selected>{{ $data->unit }}</option>
                     <option value="" disabled>----------------------------</option>
                     <option value="Drafting">Drafting</option>
@@ -74,8 +74,8 @@
                     <option value="Corporate">Corporate</option>
                 </x-select>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan"
-                    value="{{ $data->set_date }}" type="date" name="set_date" required />
-                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
+                    value="{{ $data->set_date }}" type="date" name="set_date" />
+                <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status">
                     <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
                     <option value="" disabled>----------------------------</option>
                     <option value="Aktif">Aktif</option>

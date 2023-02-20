@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Perpanjangan
+    Perpanjangan Perizinan
 @endsection
 
 @section('content')
@@ -13,14 +13,14 @@
             action="{{ route('legal.permit.perpanjangan-post') }}">
             @csrf
             <div class="d-flex align-items-center justify-content-between">
-                <h2>Perpanjangan</h2>
+                <h2>Perpanjangan Perizinan</h2>
                 <div class="row">
                     <div class="col-5">
                         <x-modal-history id="dataTables">
                             @slot('header')
                                 <tr>
                                     <th>No</th>
-                                    <th>Nomor Kasus</th>
+                                    <th>Nomor Pengajuan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>

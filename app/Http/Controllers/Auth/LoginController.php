@@ -50,7 +50,12 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (auth()->attempt(array('nik' => $input['nik'], 'password' => $input['password']))) {
+        if (
+            auth()->attempt([
+                'nik' => $input['nik'],
+                'password' => $input['password'],
+            ])
+        ) {
             $request->session()->regenerate();
             if (auth()->user()->role == 'ADMIN') {
                 return redirect()->route('admin-dashboard');
@@ -72,9 +77,16 @@ class LoginController extends Controller
                 return to_route('home');
             } elseif (auth()->user()->role == 'HEADLEGAL') {
                 return to_route('headlegal');
+            } elseif (auth()->user()->role == 'HEADUSER') {
+                return to_route('headuser.index');
+            } elseif (auth()->user()->role == 'HEADDEPT') {
+                return to_route('headdept.index');
+            } elseif (auth()->user()->role == 'HEADDIV') {
+                return to_route('headdiv.index');
             }
         } else {
-            return redirect()->route('login')
+            return redirect()
+                ->route('login')
                 ->with('error', 'Email-Address And Password Are Wrong.');
         }
     }

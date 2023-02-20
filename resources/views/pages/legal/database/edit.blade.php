@@ -43,8 +43,8 @@
             <div class="row mt-3">
                 <div class="col-sm-12">
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Peraturan" name="name"
-                        value="{{ $data->name }}" required />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Peraturan" name="type" required>
+                        value="{{ $data->name }}" />
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis Peraturan" name="type">
                         <option value="{{ $data->type }}" selected>{{ $data->type }}</option>
                         <option value="" disabled>----------------------------</option>
                         @foreach ($type as $t)
@@ -52,28 +52,28 @@
                         @endforeach
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Instansi" value="{{ $data->entity }}"
-                        name="entity" required />
+                        name="entity" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan"
-                        value="{{ $data->number }}" name="number" required />
+                        value="{{ $data->number }}" name="number" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tahun Peraturan"
-                        value="{{ $data->year }}" name="year" required />
+                        value="{{ $data->year }}" name="year" />
                     <div class="mb-3 row">
                         <label class="col-sm-5 col-form-label">Tentang</label>
                         <div class="col-sm-7">
-                            <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px" required>{{ $data->about }}</textarea>
+                            <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px">{{ $data->about }}</textarea>
                         </div>
                     </div>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan"
-                        value="{{ $data->set_date }}" type="date" name="set_date" required />
+                        value="{{ $data->set_date }}" type="date" name="set_date" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"
-                        name="promulgated_date" value="{{ $data->promulgated_date }}" required />
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status" required>
+                        name="promulgated_date" value="{{ $data->promulgated_date }}" />
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status">
                         <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
                         <option value="" disabled>----------------------------</option>
                         <option value="Aktif">Aktif</option>
                         <option value="Tidak Aktif">Tidak Aktif</option>
                     </x-select>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege" required>
+                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege">
                         <option value="{{ $data->privilege }}" selected>
                             @if ($data->privilege == 'ALL')
                                 Peraturan Umum
@@ -92,7 +92,7 @@
                     @if ($data->historical_id)
                         <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
                             label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
-                            name="historical_id" required>
+                            name="historical_id">
                             @foreach ($database as $d)
                                 <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
                             @endforeach

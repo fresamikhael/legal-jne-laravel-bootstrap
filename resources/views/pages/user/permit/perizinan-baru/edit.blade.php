@@ -61,20 +61,35 @@
                         <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required value="{{ $data->application_reason }}" />
                         <label>Dokumen Pendukung :</label>
-                        <x-input label="1. Foto Reklame" name="file_ads_photo" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="2. Surat Pernyataan Reklame" name="file_statement_letter" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" required />
-                        <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="4. Dokumen Kepemilikan Gedung" name="file_building_ownership" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" required />
-                        <x-input label="5. PBB Terbaru" name="file_pbb" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="6. Surat Pernyataan Pemilik Sewa Gedung*" name="file_ownership_statement"
-                            type="file" labelClass="col-sm-4" fieldClass="col-sm-8" />
-                        <x-input label="7. Jika Luas Reklame > 10M2 (Menyertakan TLBBR, IMBBR, IPR)" name="file_tlbbr"
-                            type="file" labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                        <br />
+                        @foreach ($dataFile as $key => $items)
+                            <div class="pull-right">
+                                <div class="col-sm-12">
+                                    @php
+                                        $file = explode(',', $items->filepath);
+                                    @endphp
+                                    @foreach ($file as $keys => $item)
+                                        <a href="{{ route('download.permit', substr($item, 7)) }}" style="font-size:24px "
+                                            class="pull-right">
+                                            <div
+                                                class="col-sm-11 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @if ($items->field_name == 'Dokumen Pendukung Lainnya')
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="fileother[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" multiple
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @else
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="file[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             @endif
@@ -90,18 +105,36 @@
                         <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required value="{{ $data->application_reason }}" />
                         <label>Dokumen Pendukung :</label>
-                        <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="2. Gambar ME" name="file_me" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="4. Gambar Teknis" name="file_technical" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="5. Foto Gedung Apabila Sudah Berdiri" name="file_building_photo" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" />
-                        <x-input label="6. Dokumen Pendukung Lainnya" name="file_other" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                        <br />
+                        @foreach ($dataFile as $key => $items)
+                            <div class="pull-right">
+                                <div class="col-sm-12">
+                                    @php
+                                        $file = explode(',', $items->filepath);
+                                    @endphp
+                                    @foreach ($file as $keys => $item)
+                                        <a href="{{ route('download.permit', substr($item, 7)) }}"
+                                            style="font-size:24px " class="pull-right">
+                                            <div
+                                                class="col-sm-11 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @if ($items->field_name == 'Dokumen Pendukung Lainnya')
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="fileother[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" multiple
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @else
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="file[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             @endif
@@ -117,16 +150,36 @@
                         <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required value="{{ $data->application_reason }}" />
                         <label>Dokumen Pendukung :</label>
-                        <x-input label="1. Disposisi" name="file_disposition" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="2. PKS(Apabila Memakai Vendor) Gambar ME" name="file_me" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" />
-                        <x-input label="3. Gambar Arsitek" name="file_architect" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="4. Gambar Teknis" name="file_technical" type="file" labelClass="col-sm-4"
-                            fieldClass="col-sm-8" required />
-                        <x-input label="5. Foto Gedung Apabila Sudah Berdiri" name="file_building_photo" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" />
+                        <br />
+                        @foreach ($dataFile as $key => $items)
+                            <div class="pull-right">
+                                <div class="col-sm-12">
+                                    @php
+                                        $file = explode(',', $items->filepath);
+                                    @endphp
+                                    @foreach ($file as $keys => $item)
+                                        <a href="{{ route('download.permit', substr($item, 7)) }}"
+                                            style="font-size:24px " class="pull-right">
+                                            <div
+                                                class="col-sm-11 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @if ($items->field_name == 'Dokumen Pendukung Lainnya')
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="fileother[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" multiple
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @else
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="file[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             @endif
@@ -149,11 +202,36 @@
                         <x-input label="Alasan Permohonan" name="application_reason" labelClass="col-sm-2"
                             fieldClass="col-sm-10" required value="{{ $data->application_reason }}" />
                         <label>Dokumen Pendukung :</label>
-                        <x-input label="1. Gambar lokasi dalam bentuk polygon (zip) kurang dari 2 Mb"
-                            name="file_location_polygon" type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
-                            required />
-                        <x-input label="2. Form Pengajuan Pembuatan Izin Melalui OSS" name="file_oss_form" type="file"
-                            labelClass="col-sm-4" fieldClass="col-sm-8" required />
+                        <br />
+                        @foreach ($dataFile as $key => $items)
+                            <div class="pull-right">
+                                <div class="col-sm-12">
+                                    @php
+                                        $file = explode(',', $items->filepath);
+                                    @endphp
+                                    @foreach ($file as $keys => $item)
+                                        <a href="{{ route('download.permit', substr($item, 7)) }}"
+                                            style="font-size:24px " class="pull-right">
+                                            <div
+                                                class="col-sm-11 col-form-label btn btn-primary justify-content-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @if ($items->field_name == 'Dokumen Pendukung Lainnya')
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="fileother[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8" multiple
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @else
+                                <x-input label="{{ $key + 1 }}. {{ $items->field_name }}" name="file[]"
+                                    type="file" labelClass="col-sm-4" fieldClass="col-sm-8"
+                                    accept="application/pdf" />
+                                <input type="hidden" name="fieldname[]" value="{{ $items->field_name }}" />
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             @endif

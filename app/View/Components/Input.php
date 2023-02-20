@@ -23,6 +23,8 @@ class Input extends Component
     public $readOnly;
     public $option;
     public $multiple;
+    public $accept;
+    public $maxFileSize;
 
 
     /**
@@ -48,6 +50,8 @@ class Input extends Component
         $readOnly = null,
         $option = null,
         $multiple = null,
+        $accept = null,
+        $maxFileSize = null,
 
     )
     {
@@ -68,6 +72,8 @@ class Input extends Component
         $this->readOnly = $readOnly;
         $this->option = $option;
         $this->multiple = $multiple;
+        $this->accept = $accept;
+        $this->maxFileSize = $maxFileSize;
     }
 
     /**
