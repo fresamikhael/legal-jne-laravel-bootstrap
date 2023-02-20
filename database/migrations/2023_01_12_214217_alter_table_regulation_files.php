@@ -13,11 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('regulation_files', function (Blueprint $table) {
-            $table->id();
-            $table->string('filepath')->nullable();
-        });
-
         Schema::table('regulations', function (Blueprint $table) {
             $table->date('date_awal')->nullable();
             $table->date('date_akhir')->nullable();
