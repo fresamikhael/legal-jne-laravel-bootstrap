@@ -507,7 +507,7 @@
                             <tbody>
                                 @foreach ($dataTopLevel as $item)
                                     <tr>
-                                        <td>{{ $item->firstItem() + $loop->index }}</td>
+                                        <td>{{ $dataTopLevel->firstItem() + $loop->index }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->country }}</td>
                                         <td>{{ $item->position }}</td>
