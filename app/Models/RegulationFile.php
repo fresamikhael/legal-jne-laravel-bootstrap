@@ -16,10 +16,10 @@ class RegulationFile extends Model
 
     public $incrementing = true;
 
-    // protected $fillable = [
-    //     'regulation_id',
-    //     'name',
-    //     'filepath'
-    // ];
+    protected $fillable = [
+        'regulation_id',
+        'name',
+        'filepath'
+    ];
 
 }

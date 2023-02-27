@@ -54,116 +54,27 @@
                                     prefix="Rp" type="number" />
                                 <x-input label="Modal Disetor" name="modal_disetor" labelClass="col-sm-2" prefix="Rp"
                                     fieldClass="col-sm-10" type="number" />
-                                {{-- <label for="direksi">
-                                    <b>Identitas Direksi Dan Komisaris</b>
+                                <label for="toplevel">
+                                    <b>Identitas Petinggi Perusahaan</b>
                                 </label>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <span class="fas fa-plus"></span> Tambah
-                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" onclick="addTopLevel()"><i
+                                            class="fa fa-plus"></i>&nbsp; Tambah</a>
                                 </div>
-                                <table>
+                                <br />
+                                <br />
+                                <table class="table table-bordered table-striped" width="100%" id="tblInputTopLevel">
                                     <thead>
-                                        <th>Nama Direksi</th>
+                                        <th width="15%">Nama</th>
+                                        <th width="15%">Negara Asal</th>
+                                        <th width="15%">Jabatan</th>
+                                        <th width="15%">Masa Jabatan</th>
+                                        <th width="15%">Jumlah Saham</th>
+                                        <th width="5%">Aksi</th>
                                     </thead>
-                                </table> --}}
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for="">Nama Direksi</label>
-                                    <input name="director_name" class="form-control mx-1" placeholder="Masukkan Nama Direksi" />
-                                    <input name="director_name1" class="form-control mx-1"placeholder="Masukkan Nama Direksi" />
-                                    <input name="director_name2" class="form-control mx-1"
-                                        placeholder="Masukkan Nama Direksi" />
-                                    <input name="director_name3" class="form-control mx-1"placeholder="Masukkan Nama Direksi" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for="">Masa Jabatan Direksi Susunan Pemegang Saham dan
-                                        jumlah saham</label>
-                                    <input name="comms_term_arr" class="form-control mx-1"
-                                        placeholder="Masukkan Masa Jabatan" />
-                                    <input name="comms_term_arr1"
-                                        class="form-control mx-1"placeholder="Masukkan Masa Jabatan" />
-                                    <input name="comms_term_arr2" class="form-control mx-1"
-                                        placeholder="Masukkan Masa Jabatan" />
-                                    <input name="comms_term_arr3"
-                                        class="form-control mx-1"placeholder="Masukkan Masa Jabatan" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for=""></label>
-                                    <input name="comms_term_arr_share" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_term_arr_share1"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_term_arr_share2" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_term_arr_share3"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for="">Nama Dewan Komisaris Susunan Pemegang Saham
-                                        dan
-                                        Jumlah Saham</label>
-                                    <input name="comms_name" class="form-control mx-1" placeholder="Masukkan Nama Dewan" />
-                                    <input name="comms_name1" class="form-control mx-1"placeholder="Masukkan Nama Dewan" />
-                                    <input name="comms_name2" class="form-control mx-1" placeholder="Masukkan Nama Dewan" />
-                                    <input name="comms_name3" class="form-control mx-1"placeholder="Masukkan Nama Dewan" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for=""></label>
-                                    <input name="comms_name_share" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_name_share1"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_name_share2" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_name_share3"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for="">Masa Jabatan Komisaris Susunan Pemegang Saham
-                                        dan jumlah saham</label>
-                                    <input name="comms_term" class="form-control mx-1"
-                                        placeholder="Masukkan Masa Jabatan Komisaris" />
-                                    <input name="comms_term1"
-                                        class="form-control mx-1"placeholder="Masukkan Masa Jabatan Komisaris" />
-                                    <input name="comms_term2" class="form-control mx-1"
-                                        placeholder="Masukkan Masa Jabatan Komisaris" />
-                                    <input name="comms_term3"
-                                        class="form-control mx-1"placeholder="Masukkan Masa Jabatan Komisaris" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for=""></label>
-                                    <input name="comms_term_share" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_term_share1"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_term_share2" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_term_share3"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for="">Susunan Pemegang Saham dan jumlah
-                                        saham</label>
-                                    <input name="comms_arr" class="form-control mx-1"
-                                        placeholder="Masukkan Susunan Pemegang Saham" />
-                                    <input name="comms_arr1"
-                                        class="form-control mx-1"placeholder="Masukkan Susunan Pemegang Saham" />
-                                    <input name="comms_arr2" class="form-control mx-1"
-                                        placeholder="Masukkan Susunan Pemegang Saham" />
-                                    <input name="comms_arr3"
-                                        class="form-control mx-1"placeholder="Masukkan Susunan Pemegang Saham" />
-                                </div>
-                                <div class="d-flex flex-row mb-3">
-                                    <label class="col-sm-2 mt-1" for=""></label>
-                                    <input name="comms_arr_share" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_arr_share1"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_arr_share2" class="form-control mx-1"
-                                        placeholder="Masukkan jumlah saham" />
-                                    <input name="comms_arr_share3"
-                                        class="form-control mx-1"placeholder="Masukkan jumlah saham" />
-                                </div>
+                                    <tbody id="bodyInputTopLevel">
+                                    </tbody>
+                                </table>
                                 <x-input label="Isi Akta" name="body" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
@@ -364,22 +275,6 @@
 @endsection
 
 @push('addon-script')
-    <script>
-        document.getElementById("corporate_type").addEventListener("change", handleChange);
-
-        function handleChange() {
-            var x = document.getElementById("corporate_type");
-            if (x.value === "Anggaran dasar perusahaan") {
-                document.getElementById("dynamicTable1").classList.remove('d-none');
-                document.getElementById("dynamicTable1").classList.add('d-flex');
-                document.getElementById("dynamicTable"). = true;
-            } else {
-                document.getElementById("dynamicTable1").classList.remove('d-flex');
-                document.getElementById("dynamicTable1").classList.add('d-none');
-                document.getElementById("dynamicTable"). = false;
-            }
-        }
-    </script>
     <script type="text/javascript">
         $(function() {
             var table = $('#dataTables').DataTable({
@@ -411,182 +306,5 @@
             });
 
         });
-        var i = 0;
-
-        $("#add").click(function() {
-
-            ++i;
-
-            $("#dynamicTable").append($("#test").html());
-        });
-
-        $("#add1").click(function() {
-
-            ++i;
-
-            $("#dynamicTable1").append($("#test1").html());
-        });
-
-        $("#add2").click(function() {
-
-            ++i;
-
-            $("#dynamicTable2").append($("#test2").html());
-        });
-
-        $("#add3").click(function() {
-
-            ++i;
-
-            $("#dynamicTable3").append($("#test3").html());
-        });
-
-        $("#add4").click(function() {
-
-            ++i;
-
-            $("#dynamicTable4").append($("#test4").html());
-        });
-        // var form_tags = document.getElementById('form')
-        // $(document).on('click', '#remove', function() {
-        //     // $(this).parents('tr').remove();
-        //     if (form_tags.length > 2) {
-        //         form_tags.removeChild();
-        //     }
-        // });
-        $(document).on('click', '.remove-tr', function() {
-            $(this).parents('tr').remove();
-        });
     </script>
-    <script type="text/html" id="test">
-        <tr>
-            <td>
-                <div class="d-flex justify-content-start my-2">
-                    <div class="col-sm-12">
-                        <x-input label="Nama Direksi" name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
-                </div>
-            </td>
-        </tr>
-    </script>
-    <script type="text/html" id="test1">
-        <tr>
-            <td>
-                <div class="d-flex justify-content-start my-2">
-                    <div class="col-sm-12">
-                        <x-input placeholder="Masa Jabatan Komisaris Susunan Pemegang Saham"
-                            label="Masa Jabatan Komisaris Susunan Pemegang Saham dan jumlah saham"
-                            name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <div class="col-sm-12">
-                        <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
-                            fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
-                </div>
-            </td>
-        </tr>
-    </script>
-    <script type="text/html" id="test2">
-        <tr>
-            <td>
-                <div class="d-flex justify-content-start my-2">
-                    <div class="col-sm-12">
-                        <x-input placeholder="Nama Dewan Komisaris Susunan Pemegang Saham"
-                            label="Nama Dewan Komisaris Susunan Pemegang Saham dan Jumlah Saham"
-                            name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <div class="col-sm-12">
-                        <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
-                            fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
-                </div>
-            </td>
-        </tr>
-    </script>
-    <script type="text/html" id="test3">
-        <tr>
-            <td>
-                <div class="d-flex justify-content-start my-2">
-                    <div class="col-sm-12">
-                        <x-input label="Masa Jabatan Komisaris Susunan Pemegang Saham dan jumlah saham" name="document_name[]" labelClass="col-sm-3" fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            {{-- <td>
-                <div class="d-flex justify-content-center my-2">
-                    <div class="col-sm-12">
-                        <x-select label="Tipe Dokumen" name="document_type[]" labelClass="col-sm-6" fieldClass="col-sm-6"
-                            >
-                            <option value="" style="display: none" selected>-- Pilih --</option>
-                            <option value="Hard Copy">Hard Copy</option>
-                            <option value="Soft Copy">Sof Copy</option>
-                        </x-select>
-                    </div>
-                </div>
-            </td> --}}
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
-                </div>
-            </td>
-        </tr>
-    </script>
-    <script type="text/html" id="test4">
-        <tr>
-            <td>
-                <div class="d-flex justify-content-start my-2">
-                    <div class="col-sm-12">
-                        <x-input placeholder="Susunan Pemegang Saham"
-                            label="Susunan Pemegang Saham dan jumlah saham" name="document_name[]"
-                            labelClass="col-sm-3" fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <div class="col-sm-12">
-                        <x-input placeholder="Jumlah Saham" name="document_name[]" labelClass="col-sm-3"
-                            fieldClass="col-sm-9">
-                        </x-input>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="d-flex justify-content-end my-2">
-                    <button type="button" class="btn btn-danger me-2 remove-tr" id="remove">Hapus</button>
-                </div>
-            </td>
-        </tr>
-    </script>
-    <script type="text/javascript" id="addNewDirector"></script>
 @endpush

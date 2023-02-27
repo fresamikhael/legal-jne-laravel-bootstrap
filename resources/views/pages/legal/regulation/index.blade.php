@@ -31,31 +31,32 @@
                         <form action="{{ route('legal.regulation.index') }}" method="GET">
                             @csrf
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Dokumen" name="type">
+                                <option value="">-- Pilih --</option>
                                 @foreach ($type as $t)
-                                    <option value="{{ $t->name }}"
-                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>
-                                        {{ $t->name ?? '' . ' ' . '(' . $allData[$t->name] . ')' }}
+                                    <option value="{{ $t->name }}" {{ request('type') == $t->name ? 'selected' : '' }}>
+                                        {{ $t->name }}
                                     </option>
                                 @endforeach
                             </x-select>
 
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="dropperjanjian"
                                 hidden>
+                                <option value="Sewa Menyewa">Sewa Menyewa</option>
+                                <option value="Supplier/Vendor">Supplier/Vendor</option>
                                 <option value="Customer">Customer</option>
-                                <option value="Supplier">Supplier</option>
-                                <option value="Vendor">Vendor</option>
-                                <option value="Lease/Other">Lease/Other</option>
+                                <option value="Other">Other</option>
+                                <option value="Keagenan">Keagenan</option>
                             </x-select>
 
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="dropperizinan"
                                 hidden>
-                                <option value="Izin Reklame - SKPD">Izin Reklame - SKPD</option>
-                                <option value="Izin Reklame - TLBBR">Izin Reklame - TLBBR</option>
-                                <option value="Izin Reklame - IPR">Izin Reklame - IPR</option>
-                                <option value="Izin Reklame - IMBBR">Izin Reklame - IMBBR</option>
-                                <option value="Izin Lingkungan - UKL/UPL">Izin Lingkungan - UKL/UPL</option>
-                                <option value="Izin Lingkungan - AMDAL">Izin Lingkungan - AMDAL</option>
-                                <option value="Izin Lingkungan - SPPL">Izin Lingkungan - SPPL</option>
+                                <option value="SKPD">Izin Reklame - SKPD</option>
+                                <option value="TLBBR">Izin Reklame - TLBBR</option>
+                                <option value="IPR">Izin Reklame - IPR</option>
+                                <option value="IMBBR">Izin Reklame - IMBBR</option>
+                                <option value="UKL/UPL">Izin Lingkungan - UKL/UPL</option>
+                                <option value="AMDAL">Izin Lingkungan - AMDAL</option>
+                                <option value="SPPL">Izin Lingkungan - SPPL</option>
                                 <option value="izin K3">Izin K3</option>
                                 <option value="Disnaker">Disnaker</option>
                             </x-select>
@@ -68,7 +69,7 @@
 
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Unit" name="dropcorporate"
                                 hidden>
-                                <option value="Anggaran Dasar Perusahaan">Anggaran Dasar Perusahaan</option>
+                                <option value="Anggaran dasar perusahaan">Anggaran Dasar Perusahaan</option>
                                 <option value="SK Menteri Hukum dan Ham">SK Menteri Hukum dan Ham</option>
                                 <option value="Identitas Direksi">Identitas Direksi</option>
                                 <option value="Identitas Dewan Komisaris">Identitas Dewan Komisaris</option>
@@ -77,8 +78,8 @@
                                 <option value="NIB">NIB</option>
                                 <option value="SIPP">SIPP</option>
 
-                                <option value="Sertifikat - HGB">Sertifikat - HGB</option>
-                                <option value="Sertifikat - HM">Sertifikat - HM</option>
+                                <option value="Sertipikat HGB">Sertifikat - HGB</option>
+                                <option value="Sertipikat HM">Sertifikat - HM</option>
                                 <option value="PBB">PBB</option>
                                 <option value="IMB">IMB</option>
                                 <option value="SLF">SLF</option>
@@ -86,11 +87,11 @@
                                 <option value="PPJB">PPJB</option>
                                 <option value="APH">APH</option>
                                 <option value="Kendaraan">Kendaraan</option>
-                                <option value="Hak Kekayaan Intelektual - Hak Merek">Hak Kekayaan Intelektual - Hak Merek
+                                <option value="Hak Kekayaan Intelektual Hak Merek">Hak Kekayaan Intelektual - Hak Merek
                                 </option>
-                                <option value="Hak Kekayaan Intelektual - Hak Cipta">Hak Kekayaan Intelektual - Hak Cipta
+                                <option value="Hak Kekayaan Intelektual Hak Cipta">Hak Kekayaan Intelektual - Hak Cipta
                                 </option>
-                                <option value="Hak Kekayaan Intelektual - Desain Industri">Hak Kekayaan Intelektual - Desain
+                                <option value="Hak Kekayaan Intelektual Desain Industri">Hak Kekayaan Intelektual - Desain
                                     Industri</option>
 
                                 <option value="Cabang Utama - Anggaran Dasar Perusahaan">Cabang Utama - Anggaran Dasar

@@ -13,6 +13,7 @@ use App\Models\DatabaseRequestFile;
 use App\Http\Controllers\Controller;
 use App\Models\DatabasePublicRequest;
 use App\Models\RegulationFile;
+use App\Models\TopLevelIdentity;
 use Illuminate\Support\Facades\Redirect;
 
 class RegulationController extends Controller
@@ -36,9 +37,10 @@ class RegulationController extends Controller
 
     public function indexLegal()
     {
+        
         $allData = Regulation::all()->countBy('type');
         $database = Regulation::orderBy('name', 'ASC')
-            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about']))
+            ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about', 'dropperjanjian', 'dropperizinan', 'droplitigasi', 'dropcorporate']))
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
         $total = Regulation::query()->where('type', 'Peraturan Presiden')->get()->count();
@@ -72,8 +74,9 @@ class RegulationController extends Controller
         $database = Regulation::where('id', $id)
             ->with('data')->first();
         $dataFile = RegulationFile::where('regulation_id', $id)->get();
+        $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->paginate(5);
 
-        return view('pages.legal.regulation.detail', compact('database', 'dataFile'));
+        return view('pages.legal.regulation.detail', compact('database', 'dataFile', 'dataTopLevel'));
     }
 
     public function requestDocument()
