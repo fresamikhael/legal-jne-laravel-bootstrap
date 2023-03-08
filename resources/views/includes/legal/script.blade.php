@@ -66,4 +66,5 @@
         $("#staticBackdrop").modal('show')
     });
 </script>
+<script type="text/javascript" src={{ asset('js/sweatalert2.js') }}></script>
 <script type="text/javascript" src={{ asset('js/myScript.js') }}></script>

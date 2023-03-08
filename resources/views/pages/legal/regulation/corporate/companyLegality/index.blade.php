@@ -58,7 +58,7 @@
                                     <b>Identitas Petinggi Perusahaan</b>
                                 </label>
                                 <div class="pull-right">
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" onclick="addTopLevel()"><i
+                                    <a href="javascript:addTopLevel()" class="btn btn-primary btn-sm"><i
                                             class="fa fa-plus"></i>&nbsp; Tambah</a>
                                 </div>
                                 <br />
@@ -273,38 +273,3 @@
 
     </x-base>
 @endsection
-
-@push('addon-script')
-    <script type="text/javascript">
-        $(function() {
-            var table = $('#dataTables').DataTable({
-                paging: false,
-                searching: false,
-                retrieve: true,
-                processing: true,
-                serverSide: true,
-                ordering: true,
-                ajax: "{{ route('permit.newpermit') }}",
-                columns: [{
-                        data: 'id',
-                        name: 'id',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'id',
-                        name: 'id',
-                        "className": "text-center"
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        "className": "text-center",
-                        orderable: true,
-                        searchable: true
-                    },
-                ]
-            });
-
-        });
-    </script>
-@endpush

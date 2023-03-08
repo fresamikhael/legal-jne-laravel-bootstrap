@@ -327,13 +327,8 @@
                                                         </button>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                             <li>
-                                                                @if ($row->privilege == 'ALL')
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('legal.regulation.public-edit', [$row->id]) }}">Ubah</a>
-                                                                @elseif($row->privilege == 'RESTRICTED')
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('legal.regulation.special-edit', [$row->id]) }}">Ubah</a>
-                                                                @endif
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('legal.regulation.edit-legal', [$row->id]) }}">Ubah</a>
                                                             </li>
                                                             <li><a class="dropdown-item"
                                                                     href="{{ route('legal.regulation.delete', [$row->id]) }}">Hapus</a>

@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Detail Peraturan
+    Detail Database
 @endsection
 
 @section('content')

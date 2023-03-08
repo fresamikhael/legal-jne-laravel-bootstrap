@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\RegulationFile;
 use App\Models\RegulationType;
 use App\Http\Controllers\Controller;
+use App\Models\TopLevelIdentity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -63,16 +64,6 @@ class NormativeController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('file');
-        // $validator = Validator::make(
-        //     $file,
-        //     [
-        //         '*.*' => 'max:1000'
-        //     ]
-        // );
-        // if ($validator->fails()) {
-        //     return redirect()->route('legal.regulation.index')->with('message_danger', 'Data gagal diupload.');
-        // }
-
         $no = 0;
         $database = $request->input();
         if ($request->input('date')) {
@@ -81,6 +72,7 @@ class NormativeController extends Controller
         $dir = 'regulation/';
 
         $databaseFiles = [];
+        $databaseTopLevel = [];
         $idRegulation = Regulation::create($database)->id;
         if ($file) {
             foreach ($file as $key => $value) {
@@ -109,9 +101,19 @@ class NormativeController extends Controller
                 }
             }
             RegulationFile::insert($databaseFiles);
-            // DB::table('regulation_files')->insert($databaseFiles);
         }
-        return redirect()->route('legal.regulation.index')->with('message_success', 'File berhasil di upload.');
+        if (isset($database['topLevel']) && count($database['topLevel']) > 0) {
+            foreach ($database['topLevel'] as $key => $value) {
+                $databaseTopLevel[$key]['regulation_id'] = $idRegulation;
+                $databaseTopLevel[$key]['name'] = $value['name'];
+                $databaseTopLevel[$key]['country'] = $value['country'];
+                $databaseTopLevel[$key]['position'] = $value['position'];
+                $databaseTopLevel[$key]['len_service'] = $value['len_service'];
+                $databaseTopLevel[$key]['share_amount'] = $value['share_amount'];
+            }
+            TopLevelIdentity::insert($databaseTopLevel);
+        }
+        return redirect()->route('legal.regulation.index')->with('message_success', 'Data berhasil di upload.');
     }
 
     public function edit($id)
@@ -130,43 +132,63 @@ class NormativeController extends Controller
         ]);
     }
 
-    public function update(Request $request, Regulation $regulation, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        $regulation = Regulation::where('id', $id)->firstOrFail();
-
-        // if ($request->file('file')) {
-        //     $file = $request->file('file');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename = Str::random(40) . '.' . $extension;
-        //     $data['file'] = 'Regulation/'.$filename;
-        //     $file->move('Regulation', $filename);
-        // }
-        // else {
-        //     unset($data['file']);
-        // }
-
-        if ($request->file('file_database')) {
-            $files = $request->file('file_database');
-
-            foreach ($files as $file) {
-                // $extension = $file->getClientOriginalExtension();
-                $name = $file->getClientOriginalName();
-                $filename = $name;
-                $file->move('regulation', $filename);
-
-                RegulationFile::where('regulation_id', $id)->update([
-                    'name' => 'regulation/' . $filename
-                ]);
-            }
-        } else {
-            unset($data['file']);
+        $file = $request->file('file');
+        $no = 0;
+        $database = $request->input();
+        if ($request->input('date')) {
+            $database['agency'] = Carbon::createFromFormat('Y-m-d', $request->input('date'))->format('Y');
         }
+        $dir = 'regulation/';
+        $data = (array)$database;
+        unset($data['_token']);
+        unset($data['topLevel']);
+        unset($data['action']);
+        DB::table('regulations')->where('id', $id)->update($data);
 
-        $regulation->update($data);
-
-        return redirect()->route('legal.regulation.index')->with('message_success', 'Berhasil memperbaharui data');;
+        $databaseFiles = [];
+        $databaseTopLevel = [];
+        if ($file) {
+            foreach ($file as $key => $value) {
+                if ($key == 'upload') {
+                    foreach ($value as $keys => $values) {
+                        $random = Str::random(5);
+                        $name = $values->getClientOriginalName();
+                        $ext = $values->getClientOriginalExtension();
+                        $filename = $name . '-' . $random . '.' . $ext;
+                        $values->move($dir, $filename);
+                        $databaseFiles[$no]['regulation_id'] = $id;
+                        $databaseFiles[$no]['name'] = 'upload';
+                        $databaseFiles[$no]['filepath'] = $dir . $filename;
+                        $no += 1;
+                    }
+                } else {
+                    $random = Str::random(5);
+                    $name = $value->getClientOriginalName();
+                    $ext = $value->getClientOriginalExtension();
+                    $filename = $name . '-' . $random . '.' . $ext;
+                    $value->move($dir, $filename);
+                    $databaseFiles[$no]['regulation_id'] = $id;
+                    $databaseFiles[$no]['name'] = $key;
+                    $databaseFiles[$no]['filepath'] = $dir . $filename;
+                    $no += 1;
+                }
+            }
+            RegulationFile::insert($databaseFiles);
+        }
+        if (isset($database['topLevel']) && count($database['topLevel']) > 0) {
+            foreach ($database['topLevel'] as $key => $value) {
+                $databaseTopLevel[$key]['regulation_id'] = $id;
+                $databaseTopLevel[$key]['name'] = $value['name'];
+                $databaseTopLevel[$key]['country'] = $value['country'];
+                $databaseTopLevel[$key]['position'] = $value['position'];
+                $databaseTopLevel[$key]['len_service'] = $value['len_service'];
+                $databaseTopLevel[$key]['share_amount'] = $value['share_amount'];
+            }
+            TopLevelIdentity::insert($databaseTopLevel);
+        }
+        return redirect()->route('legal.regulation.index')->with('message_success', 'Data berhasil diperbaharui.');
     }
 
     public function show($id)

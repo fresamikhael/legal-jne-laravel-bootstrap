@@ -20,11 +20,11 @@ class RegulationController extends Controller
 {
     public function index()
     {
-        $database = Regulation::orderBy('name', 'ASC')
+        $database = Regulation::orderBy('created_at', 'DESC')
             ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about']))
             // ->where('privilege', 'ALL')
             ->paginate(10);
-        $all = Regulation::orderBy('name', 'ASC')
+        $all = Regulation::orderBy('created_at', 'DESC')
             ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about']))
             ->where('privilege', 'ALL')
             ->paginate(10);
@@ -37,9 +37,9 @@ class RegulationController extends Controller
 
     public function indexLegal()
     {
-        
+
         $allData = Regulation::all()->countBy('type');
-        $database = Regulation::orderBy('name', 'ASC')
+        $database = Regulation::orderBy('created_at', 'DESC')
             ->filter(request(['privilege', 'unit', 'name', 'number', 'type', 'agency', 'about', 'dropperjanjian', 'dropperizinan', 'droplitigasi', 'dropcorporate']))
             ->paginate(10);
         $type = RegulationType::query()->where('type', 'Khusus')->get();
@@ -77,6 +77,35 @@ class RegulationController extends Controller
         $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->paginate(5);
 
         return view('pages.legal.regulation.detail', compact('database', 'dataFile', 'dataTopLevel'));
+    }
+
+    public function editLegal($id)
+    {
+        $database = Regulation::where('id', $id)
+            ->with('data')->first();
+        $dataFile = RegulationFile::where('regulation_id', $id)->get();
+        $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->get();
+        return view('pages.legal.regulation.edit', compact('database', 'dataFile', 'dataTopLevel'));
+    }
+
+    public function deleteToplevelLegal($id)
+    {
+        TopLevelIdentity::where('id', $id)
+            ->first()
+            ->delete();
+        $result = array('status' => 'success');
+        echo json_encode($result);
+    }
+
+    public function deleteFile($id)
+    {
+        $data = RegulationFile::where('id', $id)
+            ->first();
+        unlink($data->filepath);
+        $data->delete();
+
+        $result = array('status' => 'success');
+        echo json_encode($result);
     }
 
     public function requestDocument()
@@ -323,7 +352,7 @@ class RegulationController extends Controller
             ->first()
             ->delete();
 
-        return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil di dihapus!.');
+        return redirect()->route('legal.regulation.add-type')->with('message_success', 'Tipe Regulasi berhasil dihapus!');
     }
 
     public function addUnit()
@@ -341,7 +370,7 @@ class RegulationController extends Controller
 
         RegulationUnit::create($data);
 
-        return redirect()->route('legal.regulation.normative-create')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!.');;
+        return redirect()->route('legal.regulation.normative-create')->with('message_success', 'Tipe Regulasi berhasil di tambahkan!');;
     }
 
     public function delete($id)
@@ -350,7 +379,7 @@ class RegulationController extends Controller
             ->first()
             ->delete();
 
-        return redirect()->route('legal.regulation.index')->with('message_success', 'File berhasil di dihapus!.');;
+        return redirect()->route('legal.regulation.index')->with('message_success', 'File berhasil di dihapus!');;
     }
 
     public function createCorporate()

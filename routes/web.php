@@ -1243,6 +1243,18 @@ Route::prefix('legal/database')
             NormativeController::class,
             'edit',
         ])->name('special-edit');
+        Route::get('edit-legal/{id}', [
+            RegulationController::class,
+            'editLegal',
+        ])->name('edit-legal');
+        Route::post('delete-toplevel-legal/{id}', [
+            RegulationController::class,
+            'deleteTopLevelLegal',
+        ])->name('delete-toplevel-legal');
+        Route::post('delete-file/{id}', [
+            RegulationController::class,
+            'deleteFile',
+        ])->name('delete-file');
         Route::post('special-update/post/{id}', [
             NormativeController::class,
             'update',
