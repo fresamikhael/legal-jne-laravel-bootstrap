@@ -59,15 +59,27 @@
                         <x-input type="date" label="Jangka Waktu Penjanjian Akhir" name="date_akhir"
                             labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Nama Badan Hukum" name="legal_name" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input label="Nama Direksi" name="director_name" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input label="Masa Jabatan Direksi" name="comms_term_arr" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
-                        <x-input label="Nama Dewan Komisaris" name="comms_name" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
-                        <x-input label="Masa Jabatan Komisaris" name="comms_term" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
-                        <x-input label="Nama Pemegang Saham" name="comms_arr" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
+                        <label for="toplevel">
+                            <b>Identitas Petinggi Perusahaan</b>
+                        </label>
+                        <div class="pull-right">
+                            <a href="javascript:addTopLevel()" class="btn btn-primary btn-sm"><i
+                                    class="fa fa-plus"></i>&nbsp; Tambah</a>
+                        </div>
+                        <br />
+                        <br />
+                        <table class="table table-bordered table-striped" width="100%" id="tblInputTopLevel">
+                            <thead>
+                                <th width="15%">Nama</th>
+                                <th width="15%">Negara Asal</th>
+                                <th width="15%">Jabatan</th>
+                                <th width="15%">Masa Jabatan</th>
+                                <th width="15%">Jumlah Saham</th>
+                                <th width="5%">Aksi</th>
+                            </thead>
+                            <tbody id="bodyInputTopLevel">
+                            </tbody>
+                        </table>
                         <x-input type="file" label="Akta" name="file[akta]" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"

@@ -192,6 +192,12 @@
                                 <td>{{ $database->address }}</td>
                             </tr>
                         @endif
+                        @if ($database->zip_code)
+                            <tr>
+                                <th scope="row" class="text-end">Kode Pos</th>
+                                <td>{{ $database->zip_code }}</td>
+                            </tr>
+                        @endif
                         @if ($database->size)
                             <tr>
                                 <th scope="row" class="text-end">Ukuran</th>

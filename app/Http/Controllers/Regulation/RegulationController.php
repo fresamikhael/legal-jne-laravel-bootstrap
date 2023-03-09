@@ -101,7 +101,9 @@ class RegulationController extends Controller
     {
         $data = RegulationFile::where('id', $id)
             ->first();
-        unlink($data->filepath);
+        if (file_exists($data->filepath)) {
+            unlink($data->filepath);
+        }
         $data->delete();
 
         $result = array('status' => 'success');

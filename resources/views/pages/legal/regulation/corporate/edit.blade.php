@@ -11,6 +11,8 @@
             $database->unit == 'NIB' ||
             $database->unit == 'SIPP')
         @include('pages.legal.regulation.corporate.companyLegality.edit')
+    @elseif ($database->unit == 'Cabang Utama' || $database->unit == 'Cabang' || $database->unit == 'Agen')
+        @include('pages.legal.regulation.corporate.partnerData.edit')
     @endif
     <div class="d-flex justify-content-end me-4">
         <x-button type="submit" name="Upload" buttonClass="btn-primary" />

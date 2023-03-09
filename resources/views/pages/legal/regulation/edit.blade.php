@@ -29,14 +29,13 @@
                 <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
-        {{$database->type}}
-        @if ($database->type == "Corporate")
+        @if ($database->type == 'Corporate')
             @include('pages.legal.regulation.corporate.edit')
-        @elseif ($database->type == "Perjanjian")
+        @elseif ($database->type == 'Perjanjian')
 
-        @elseif ($database->type == "Perizinan")
+        @elseif ($database->type == 'Perizinan')
 
-        @elseif ($database->type == "Litigasi")
+        @elseif ($database->type == 'Litigasi')
         @endif
     </x-base>
 @endsection
