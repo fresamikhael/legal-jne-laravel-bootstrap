@@ -52,6 +52,7 @@
                     <div class="col-sm-12">
                         <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Data Mitra" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-address-custom label="" classLabel="col-sm-2" name="" classField="col-sm-10" />
                         <x-input type="date" label="Jangka Waktu Penjanjian Awal" name="date_awal" labelClass="col-sm-2"

@@ -44,17 +44,6 @@
             @csrf
             <div class="row mt-4">
                 <x-env-type>
-                    {{-- @slot('ukl')
-
-                    @endslot
-
-                    @slot('amdal')
-
-                    @endslot
-
-                    @slot('sppl')
-
-                    @endslot --}}
                 </x-env-type>
             </div>
 

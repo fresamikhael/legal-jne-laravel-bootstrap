@@ -58,6 +58,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <label for="">Lokasi</label>
                             <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                            <x-input value="Izin Lingkungan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="UKL/UPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <div class="mb-3 row">
                                 <label for="province" class="col-sm-2 col-form-label">Provinsi </label>
@@ -138,6 +139,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <label for="">Lokasi</label>
                             <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                            <x-input value="Izin Lingkungan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="AMDAL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <div class="mb-3 row">
                                 <label for="province" class="col-sm-2 col-form-label">Provinsi </label>
@@ -218,6 +220,7 @@
                             <label for="">Lokasi</label>
                             <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Izin Lingkungan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="SPPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                                 <div class="mb-3 row">

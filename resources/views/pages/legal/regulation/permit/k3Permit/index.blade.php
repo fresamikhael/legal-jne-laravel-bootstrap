@@ -42,6 +42,7 @@
                         <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Izin K3" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit">
                             <option value="Penangkal Petir">Penangkal Petir</option>
                             <option value="HT">HT</option>

@@ -31,34 +31,6 @@
                 <x-alert message="{{ Session::get('message_success') }}" type="success" />
             @endslot
         @endif
-
-        {{-- <form class="mt-4" method="POST" enctype="multipart/form-data"
-            action="{{ route('legal.regulation.normative-post') }}">
-            @csrf
-            <div class="row mt-4">
-                <div class="row mt-3">
-                    <div class="col-sm-12">
-                        <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                        <x-input value="Disnaker" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                        <x-input label="WLTK" name="wltk" labelClass="col-sm-2" fieldClass="col-sm-10"  />
-                        <x-input label="BPJS Ketenagakerjaan" name="bpjs" labelClass="col-sm-2" fieldClass="col-sm-10"
-                             />
-                        <x-input label="Peraturan Perusahaan" name="pp" labelClass="col-sm-2" fieldClass="col-sm-10"
-                             />
-                        <x-input label="LKS Bipartit" name="lks" labelClass="col-sm-2" fieldClass="col-sm-10"
-                             />
-                        <x-input label="P2K3" name="p2k3" labelClass="col-sm-2" fieldClass="col-sm-10"  />
-                        <x-input label="SMK3" name="smk3" labelClass="col-sm-2" fieldClass="col-sm-10"  />
-                        <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-end me-4">
-                <x-button type="submit" name="Upload" buttonClass="btn-primary" />
-            </div>
-        </form> --}}
-
         <form class="mt-4" method="POST" enctype="multipart/form-data"
             action="{{ route('legal.regulation.normative-post') }}">
             @csrf
@@ -68,7 +40,7 @@
                         <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                        <x-input value="Disnaker" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Disnaker" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit">
                             <option value="WLTK">WLTK</option>
                             <option value="BPJS Ketenagakerjaan">BPJS Ketenagakerjaan</option>

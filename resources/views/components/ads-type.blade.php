@@ -59,6 +59,7 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input value="SKPD" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Izin Reklame" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <div class="mb-3 row">
                                     <label for="province" class="col-sm-2 col-form-label">Provinsi </label>
                                     <div class="col-sm-10">
@@ -127,7 +128,7 @@
                                     fieldClass="col-sm-10" />
                                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nilai Pajak" name="tax_value" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="file" label="Foto Reklame" name="file[ads_photo]" labelClass="col-sm-2"
+                                <x-input type="file" label="Foto Reklame" name="file[foto_reklame]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
                                 <x-input label="Teks Reklame" name="ads_text" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
@@ -139,8 +140,11 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <label for="">Lokasi</label>
+                            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Izin Reklame" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="TLBBR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -209,7 +213,7 @@
                             <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            <x-input type="file" label="Gambar" name="file[photo]" labelClass="col-sm-2"
+                            <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" multiple />
@@ -220,8 +224,11 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <label for="">Lokasi</label>
+                            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                                <x-input value="Izin Reklame" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="IPR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -290,7 +297,7 @@
                             <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            <x-input type="file" label="Gambar" name="file[photo]" labelClass="col-sm-2"
+                            <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" multiple />
@@ -301,8 +308,11 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <label for="">Lokasi</label>
+                            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                                <x-input value="Izin Reklame" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="IMBBR" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -364,7 +374,7 @@
                             <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            <x-input type="file" label="Gambar" name="file[photo]" labelClass="col-sm-2"
+                            <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" multiple />

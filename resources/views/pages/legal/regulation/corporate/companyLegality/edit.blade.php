@@ -9,6 +9,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                     hidden />
                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -69,8 +71,8 @@
                             <label for="" class="col-sm-2 col-form-label">File Sebelumnya
                                 {{ $file->name == 'upload' ? '' : ucfirst($file->name) }}</label>
                             <div class="col-sm-10 btn-group">
-                                <a href="{{ asset($file->filepath) }}" target="_blank" class="btn btn-primary w-100"><i
-                                        class="fa fa-eye"></i>Lihat
+                                <a href="{{ asset($file->filepath) }}" target="_blank"
+                                    class="btn btn-primary w-100"><i class="fa fa-eye"></i>Lihat
                                 </a>
                                 <a href="javascript:removeFile({{ $file->id }})" class="btn btn-danger w-25"><i
                                         class="fa fa-trash"></i> Hapus</a>
@@ -90,6 +92,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="SK Menteri Hukum dan Ham" name="unit" labelClass="col-sm-2"
                     fieldClass="col-sm-10" hidden />
                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -127,6 +131,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="Identitas Direksi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                     hidden />
                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -182,6 +188,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2"
                     fieldClass="col-sm-10"value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
                     fieldClass="col-sm-10" hidden />
                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -237,6 +245,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
                     fieldClass="col-sm-10" hidden />
                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -292,6 +302,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="NPWP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->number }}" />
@@ -326,6 +338,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="NIB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->number }}" />
@@ -362,6 +376,8 @@
                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->code }}" />
                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    hidden />
                 <x-input value="SIPP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->number }}" />

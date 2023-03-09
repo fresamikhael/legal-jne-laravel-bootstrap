@@ -43,6 +43,8 @@
                                 <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -90,6 +92,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="SK Menteri Hukum dan Ham" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -110,6 +114,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Identitas Direksi" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -144,6 +150,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -178,6 +186,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -213,6 +223,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="NPWP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -232,6 +244,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="NIB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -252,6 +266,8 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="SIPP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
