@@ -204,6 +204,24 @@
                                 <td>{{ $database->size }}</td>
                             </tr>
                         @endif
+                        @if ($database->date_awal)
+                            <tr>
+                                <th scope="row" class="text-end">Jangka Waktu Awal</th>
+                                <td>{{ $database->date_awal }}</td>
+                            </tr>
+                        @endif
+                        @if ($database->date_akhir)
+                            <tr>
+                                <th scope="row" class="text-end">Jangka Waktu Akhir</th>
+                                <td>{{ $database->date_akhir }}</td>
+                            </tr>
+                        @endif
+                        @if ($database->legal_name)
+                            <tr>
+                                <th scope="row" class="text-end">Badan Hukum</th>
+                                <td>{{ $database->legal_name }}</td>
+                            </tr>
+                        @endif
                         @if ($database->tax_value)
                             <tr>
                                 <th scope="row" class="text-end">Nilai Pajak</th>
@@ -284,7 +302,7 @@
                         @endif
                         @if ($database->body)
                             <tr>
-                                <th scope="row" class="text-end">Isi</th>
+                                <th scope="row" class="text-end">Isi Akta</th>
                                 <td>{{ $database->body }}</td>
                             </tr>
                         @endif
@@ -342,10 +360,16 @@
                                 <td>{{ $database->notary_name }}</td>
                             </tr>
                         @endif
-                        @if ($database->sk_type)
+                        @if ($database->modal_dasar)
                             <tr>
-                                <th scope="row" class="text-end">Jenis SK</th>
-                                <td>{{ $database->sk_type }}</td>
+                                <th scope="row" class="text-end">Modal Dasar</th>
+                                <td>Rp. {{ number_format($database->modal_dasar, 0, ',', '.') }}</td>
+                            </tr>
+                        @endif
+                        @if ($database->modal_disetor)
+                            <tr>
+                                <th scope="row" class="text-end">Modal Disetor</th>
+                                <td>Rp. {{ number_format($database->modal_disetor, 0, ',', '.') }}</td>
                             </tr>
                         @endif
                         @if ($database->ktp)
@@ -500,7 +524,7 @@
                         @endif
                     </table>
                     @if (count($dataTopLevel) > 0)
-                        <label for="">Identitas Petinggi Perusahaan</label>
+                        <label for=""> <strong>Identitas Petinggi Perusahaan</strong></label>
                         <table class="table table-bordered table-striped table-responsive">
                             <thead>
                                 <th>No</th>
