@@ -1,3 +1,42 @@
+$(document).ready(function () {
+    $(document).on("input", ".number-separator", function (e) {
+        if (/^[0-9.,]+$/.test($(this).val())) {
+            var mynumber = remove_thousandformat($(this).val());
+            $(this).val(thousandformat(mynumber));
+            // $(this).val(
+            // 	parseFloat($(this).val().replace(/,/g, "")).toLocaleString("en")
+            // );
+        } else {
+            $(this).val(
+                $(this)
+                    .val()
+                    .substring(0, $(this).val().length - 1)
+            );
+        }
+    });
+});
+
+function remove_thousandformat(value) {
+    value = value.toString();
+    return parseInt(value.replace(/[^,\d]/g, "").toString());
+}
+
+function thousandformat(angka) {
+    if (angka != null) {
+        var rev = Math.round(angka, 10).toString().split("").reverse().join("");
+        var rev2 = "";
+        for (var i = 0; i < rev.length; i++) {
+            rev2 += rev[i];
+            if ((i + 1) % 3 === 0 && i !== rev.length - 1) {
+                rev2 += ".";
+            }
+        }
+        return rev2.split("").reverse().join("") + "";
+    } else {
+        return 0;
+    }
+}
+
 function addTopLevel() {
     var idTopLevel = $("#tblInputTopLevel tbody").find("tr").length + 1;
 
@@ -40,7 +79,7 @@ function addTopLevel() {
                 "<td>" +
                 '<div class="mb-3 row">' +
                 '<div class="col-sm-12">' +
-                '<input type="number" class="form-control"' +
+                '<input type="tel" class="form-control"' +
                 'name="topLevel[' +
                 idTopLevel +
                 '][len_service]" />' +
@@ -50,7 +89,7 @@ function addTopLevel() {
                 "<td>" +
                 '<div class="mb-3 row">' +
                 '<div class="col-sm-12">' +
-                '<input type="number" class="form-control"' +
+                '<input type="tel" class="form-control"' +
                 'name="topLevel[' +
                 idTopLevel +
                 '][share_amount]" />' +

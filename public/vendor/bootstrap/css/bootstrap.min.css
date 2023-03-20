@@ -410,7 +410,7 @@ legend + * {
 [type="tel"],
 [type="url"],
 [type="email"],
-[type="number"] {
+[type="tel"] {
   direction: ltr;
 }
 */

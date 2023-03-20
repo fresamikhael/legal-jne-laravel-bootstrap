@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Province;
 use Illuminate\View\Component;
 
 class K3Type extends Component
@@ -13,7 +14,6 @@ class K3Type extends Component
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -23,6 +23,7 @@ class K3Type extends Component
      */
     public function render()
     {
-        return view('components.k3-type');
+        $province = Province::orderBy('name', 'ASC')->get();
+        return view('components.k3-type', compact('province'));
     }
 }

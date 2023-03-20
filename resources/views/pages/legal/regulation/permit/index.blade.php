@@ -23,11 +23,6 @@
                     'route' => 'k3-permit-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
-                [
-                    'label' => 'Disnaker',
-                    'route' => 'disnaker-create',
-                    'style' => 'background: #2a2a2a !important; color: #fff !important;',
-                ],
             ];
         @endphp
 

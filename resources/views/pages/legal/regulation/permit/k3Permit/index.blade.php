@@ -37,38 +37,9 @@
             action="{{ route('legal.regulation.normative-post') }}">
             @csrf
             <div class="row mt-4">
-                <div class="row mt-3">
-                    <div class="col-sm-12">
-                        <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                        <x-input value="Izin K3" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Unit" name="unit">
-                            <option value="Penangkal Petir">Penangkal Petir</option>
-                            <option value="HT">HT</option>
-                            <option value="Bejana Tekan">Bejana Tekan</option>
-                            <option value="Lift">Lift</option>
-                            <option value="Genset">Genset</option>
-                            <option value="Forklift">Forklift</option>
-                            <option value="SIPA">SIPA</option>
-                            <option value="Gondola">Gondola</option>
-                            <option value="X-Ray">X-Ray</option>
-                            <option value="Motor Diesel">Motor Diesel</option>
-                            <option value="Hydrant">Hydrant</option>
-                            <option value="Tera">Tera</option>
-                        </x-select>
-                        <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
-                        <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
-                        <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" multiple />
-                        <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                    </div>
-                </div>
+                <x-k3-type>
+                </x-k3-type>
             </div>
-
             <div class="d-flex justify-content-end me-4">
                 <x-button type="submit" name="Upload" buttonClass="btn-primary" />
             </div>

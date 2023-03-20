@@ -124,8 +124,10 @@
                                     </div>
                                 </div>
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" type="date" />
+                                <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" type="date" />
                                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nilai Pajak" name="tax_value" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input type="file" label="Foto Reklame" name="file[foto_reklame]" labelClass="col-sm-2"
@@ -210,8 +212,10 @@
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" />
+                            <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" type="date" />
+                            <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" type="date" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
@@ -294,8 +298,10 @@
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" />
+                            <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" type="date" />
+                            <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" type="date" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
@@ -366,13 +372,22 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
+                                <label for="zip_code"
+                                    class="col-sm-2 col-form-label">Kode Pos </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="zip_code" name="zip_code" />
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
                                 <label for="address" class="col-sm-2 col-form-label">Jalan/Nama Gedung </label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" />
+                            <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" type="date" />
+                            <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" type="date" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />

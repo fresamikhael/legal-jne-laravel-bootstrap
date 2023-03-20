@@ -42,6 +42,7 @@
                         <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Sewa Menyewa" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Sewa Menyewa" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
@@ -50,7 +51,7 @@
                         <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <x-input label="Landlord" name="landlord" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input label="Nilai Sewa" type="number" prefix="Rp" name="rental_value" labelClass="col-sm-2"
+                        <x-input label="Nilai Sewa" type="tel" prefix="Rp" name="rental_value" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <label for="">Lokasi</label>
                         <x-address-custom name="lease" label="" classLabel="col-sm-2" classField="col-sm-10" />
@@ -58,8 +59,8 @@
                         <x-input label="Email PIC" name="pic_email" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Nama Notaris" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
-                            <option value="Ecommerce">Kantor Pusat</option>
-                            <option value="Fullfilment">Cabang Utama</option>
+                            <option value="Kantor Pusat">Kantor Pusat</option>
+                            <option value="Cabang Utama">Cabang Utama</option>
                         </x-select>
                         <x-input label="Department/Cabang" name="department" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"

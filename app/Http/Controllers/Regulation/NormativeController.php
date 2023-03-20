@@ -76,7 +76,7 @@ class NormativeController extends Controller
         $idRegulation = Regulation::create($database)->id;
         if ($file) {
             foreach ($file as $key => $value) {
-                if ($key == 'upload') {
+                if ($key == 'upload' || $key == 'akta') {
                     foreach ($value as $keys => $values) {
                         $random = Str::random(5);
                         $name = $values->getClientOriginalName();
@@ -84,7 +84,7 @@ class NormativeController extends Controller
                         $filename = $name . '-' . $random . '.' . $ext;
                         $values->move($dir, $filename);
                         $databaseFiles[$no]['regulation_id'] = $idRegulation;
-                        $databaseFiles[$no]['name'] = 'upload';
+                        $databaseFiles[$no]['name'] = $key;
                         $databaseFiles[$no]['filepath'] = $dir . $filename;
                         $no += 1;
                     }

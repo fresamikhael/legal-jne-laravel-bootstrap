@@ -42,6 +42,8 @@
                         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Supplier/Vendor" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                             hidden />
+                        <x-input value="Supplier/Vendor" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            hidden />
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />

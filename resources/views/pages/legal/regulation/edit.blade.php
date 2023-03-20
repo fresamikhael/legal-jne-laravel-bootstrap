@@ -32,7 +32,7 @@
         @if ($database->type == 'Corporate')
             @include('pages.legal.regulation.corporate.edit')
         @elseif ($database->type == 'Perjanjian')
-
+            @include('pages.legal.regulation.drafting.edit')
         @elseif ($database->type == 'Perizinan')
             @include('pages.legal.regulation.permit.edit')
         @elseif ($database->type == 'Litigasi')

@@ -22,11 +22,11 @@
                 <x-input label="Nama Notaris" name="notary_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->notary_name }}" />
                 <x-input label="Modal Dasar" name="modal_dasar" labelClass="col-sm-2" fieldClass="col-sm-10"
-                    value="{{ $database->modal_dasar }}" prefix="Rp" type="number" />
+                    value="{{ $database->modal_dasar }}" prefix="Rp" type="tel" />
                 <x-input label="Modal Disetor" name="modal_disetor" labelClass="col-sm-2" prefix="Rp"
-                    value="{{ $database->modal_disetor }}" fieldClass="col-sm-10" type="number" />
+                    value="{{ $database->modal_disetor }}" fieldClass="col-sm-10" type="tel" />
                 <label for="toplevel">
-                    <b>Identitas Petinggi Perusahaan</b>
+                    <b>Identitas Pengurus Perseroan</b>
                 </label>
                 <div class="pull-right">
                     <a href="javascript:addTopLevel()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;

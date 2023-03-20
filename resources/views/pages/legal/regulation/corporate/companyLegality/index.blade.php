@@ -53,11 +53,11 @@
                                 <x-input label="Judul Akta" name="title_deed" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nama Notaris" name="notary_name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Modal Dasar" name="modal_dasar" labelClass="col-sm-2" fieldClass="col-sm-10"
-                                    prefix="Rp" type="number" />
+                                    prefix="Rp" type="tel" />
                                 <x-input label="Modal Disetor" name="modal_disetor" labelClass="col-sm-2" prefix="Rp"
-                                    fieldClass="col-sm-10" type="number" />
+                                    fieldClass="col-sm-10" type="tel" />
                                 <label for="toplevel">
-                                    <b>Identitas Petinggi Perusahaan</b>
+                                    <b>Identitas Pengurus Perseroan</b>
                                 </label>
                                 <div class="pull-right">
                                     <a href="javascript:addTopLevel()" class="btn btn-primary btn-sm"><i

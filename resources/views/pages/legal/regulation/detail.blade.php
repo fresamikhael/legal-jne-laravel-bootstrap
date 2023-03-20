@@ -524,7 +524,7 @@
                         @endif
                     </table>
                     @if (count($dataTopLevel) > 0)
-                        <label for=""> <strong>Identitas Petinggi Perusahaan</strong></label>
+                        <label for=""> <strong>Identitas Pengurus Perseroan</strong></label>
                         <table class="table table-bordered table-striped table-responsive">
                             <thead>
                                 <th>No</th>

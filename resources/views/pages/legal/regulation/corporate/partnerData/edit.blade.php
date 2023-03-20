@@ -5,22 +5,22 @@
         <div class="col-sm-12">
             <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->title }}" />
-            <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-            <x-input value="Data Mitra" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+            <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden value="{{ $database->type }}" />
+            <x-input value="Data Mitra" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden value="{{ $database->category }}" />
             <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->number }}" />
             <x-address-custom label="" classLabel="col-sm-2" name="" classField="col-sm-10"
                 provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                 districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
                 postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
-            <x-input type="date" label="Jangka Waktu Penjanjian Awal" name="date_awal" labelClass="col-sm-2"
+            <x-input type="date" label="Jangka Waktu Penjanjian" name="date_awal" labelClass="col-sm-2"
                 fieldClass="col-sm-10" value="{{ $database->date_awal }}" />
             <x-input type="date" label="Jangka Waktu Penjanjian Akhir" name="date_akhir" labelClass="col-sm-2"
                 fieldClass="col-sm-10" value="{{ $database->date_akhir }}" />
             <x-input label="Nama Badan Hukum" name="legal_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->legal_name }}" />
             <label for="toplevel">
-                <b>Identitas Petinggi Perusahaan</b>
+                <b>Identitas Pengurus Perseroan</b>
             </label>
             <div class="pull-right">
                 <a href="javascript:addTopLevel()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;
@@ -54,7 +54,8 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-input type="file" label="Akta" name="file[akta]" labelClass="col-sm-2" fieldClass="col-sm-10" />
+            <x-input type="file" label="Akta" name="file[akta][]" labelClass="col-sm-2" fieldClass="col-sm-10"
+                multiple />
             <div id="file">
                 @foreach ($dataFile as $file)
                     <div class="mb-3 row" id="rowFileExist-{{ $file->id }}">

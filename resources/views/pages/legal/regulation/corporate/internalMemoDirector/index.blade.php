@@ -44,6 +44,8 @@
                         <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Internal Memo Direksi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                             hidden />
+                        <x-input value="Internal Memo Direksi" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <div class="mb-3 row">

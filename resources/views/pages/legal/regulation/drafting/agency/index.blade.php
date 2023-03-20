@@ -41,6 +41,7 @@
                     <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                     <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                     <x-input value="Keagenan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                    <x-input value="Keagenan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                     <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Tipe Dokumen" name="agent_type">
                         <option value="Cabang Utama">Cabang Utama</option>
                         <option value="Cabang">Cabang</option>

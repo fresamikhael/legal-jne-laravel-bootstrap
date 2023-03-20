@@ -44,6 +44,7 @@
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Asosiasi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Asosiasi" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"

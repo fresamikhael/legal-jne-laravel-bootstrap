@@ -61,7 +61,7 @@
                             labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Nama Badan Hukum" name="legal_name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <label for="toplevel">
-                            <b>Identitas Petinggi Perusahaan</b>
+                            <b>Identitas Pengurus Perseroan</b>
                         </label>
                         <div class="pull-right">
                             <a href="javascript:addTopLevel()" class="btn btn-primary btn-sm"><i
@@ -81,8 +81,8 @@
                             <tbody id="bodyInputTopLevel">
                             </tbody>
                         </table>
-                        <x-input type="file" label="Akta" name="file[akta]" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
+                        <x-input type="file" label="Akta" name="file[akta][]" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" multiple />
                         <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                             fieldClass="col-sm-10" multiple />
                     </div>

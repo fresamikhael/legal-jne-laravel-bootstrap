@@ -43,6 +43,7 @@
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="SE Direksi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="SE Direksi" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <div class="mb-3 row">
