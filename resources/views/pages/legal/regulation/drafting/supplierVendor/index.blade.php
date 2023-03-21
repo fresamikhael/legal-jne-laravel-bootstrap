@@ -38,7 +38,7 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
-                        <x-input label="Nama Perusahaan" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                        <x-input label="Nama Perusahaan" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Supplier/Vendor" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                             hidden />

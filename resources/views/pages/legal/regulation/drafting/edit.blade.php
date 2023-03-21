@@ -9,7 +9,7 @@
         @include('pages.legal.regulation.drafting.lease.edit')
     @elseif ($database->category == 'Others')
         @include('pages.legal.regulation.drafting.others.edit')
-    @elseif ($database->category == 'Others')
+    @elseif ($database->category == 'Supplier/Vendor')
         @include('pages.legal.regulation.drafting.supplierVendor.edit')
     @endif
     <div class="d-flex justify-content-end me-4">

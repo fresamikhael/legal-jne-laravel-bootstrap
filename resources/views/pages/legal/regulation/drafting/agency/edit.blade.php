@@ -10,9 +10,11 @@
             value="{{ $database->category }}" />
         <x-input value="Keagenan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Tipe Dokumen" name="agent_type">
-            <option value="Cabang Utama">Cabang Utama</option>
-            <option value="Cabang">Cabang</option>
-            <option value="Agen">Agen</option>
+            <option {{ $database->agent_type == 'Cabang Utama' ? 'selected' : '' }} value="Cabang Utama">Cabang
+                Utama
+            </option>
+            <option {{ $database->agent_type == 'Cabang' ? 'selected' : '' }} value="Cabang">Cabang</option>
+            <option {{ $database->agent_type == 'Agen' ? 'selected' : '' }} value="Agen">Agen</option>
         </x-select>
         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
             value="{{ $database->number }}" />

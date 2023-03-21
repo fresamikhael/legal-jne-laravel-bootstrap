@@ -11,9 +11,12 @@ class JenisVendor extends Component
      *
      * @return void
      */
-    public function __construct()
+
+     public $value;
+    public function __construct($value = null)
     {
         //
+        $this->value = $value;
     }
 
     /**

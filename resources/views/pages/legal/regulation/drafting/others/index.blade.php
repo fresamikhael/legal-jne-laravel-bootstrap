@@ -38,7 +38,7 @@
             <div class="row mt-4">
                 <div class="row mt-3">
                     <div class="col-sm-12">
-                        <x-input label="Nama Perusahaan" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                        <x-input label="Nama Perusahaan" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Others" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Others" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
@@ -52,8 +52,9 @@
                             fieldClass="col-sm-10" />
                         <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
-                        <x-input label="Jenis Perjanjian" name="agreement_type" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user">
+                        <x-input label="Jenis Perjanjian" name="agreement_type" labelClass="col-sm-2"
+                            fieldClass="col-sm-10" />
+                        <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
                             <option value="Kantor Pusat">Kantor Pusat</option>
                             <option value="Cabang Utama">Cabang Utama</option>
                         </x-select>

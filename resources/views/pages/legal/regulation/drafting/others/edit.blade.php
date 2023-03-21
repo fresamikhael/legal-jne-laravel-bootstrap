@@ -23,9 +23,11 @@
                 value="{{ $database->date_akhir }}" fieldClass="col-sm-10" />
             <x-input label="Jenis Perjanjian" name="agreement_type" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->agreement_type }}" />
-            <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user">
-                <option value="Kantor Pusat">Kantor Pusat</option>
-                <option value="Cabang Utama">Cabang Utama</option>
+            <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
+                <option {{ $database->user_department == 'Kantor Pusat' ? 'selected' : '' }} value="Kantor Pusat">
+                    Kantor Pusat</option>
+                <option {{ $database->user_department == 'Cabang Utama' ? 'selected' : '' }} value="Cabang Utama">
+                    Cabang Utama</option>
             </x-select>
             <div id="file">
                 @foreach ($dataFile as $file)
@@ -45,7 +47,7 @@
             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                 fieldClass="col-sm-10" multiple />
             <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10"
-                value="{{ $database->noteuu }}" />
+                value="{{ $database->note }}" />
         </div>
     </div>
 </div>

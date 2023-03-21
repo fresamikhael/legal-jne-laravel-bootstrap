@@ -21,10 +21,12 @@
                 value="{{ $database->date_awal }}" fieldClass="col-sm-10" />
             <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                 value="{{ $database->date_akhir }}" fieldClass="col-sm-10" />
-            <x-jenis-vendor />
+            <x-jenis-vendor value="{{ $database->agreement_type }}" />
             <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
-                <option value="Kantor Pusat">Kantor Pusat</option>
-                <option value="Cabang Utama">Cabang Utama</option>
+                <option {{ $database->user_department == 'Kantor Pusat' ? 'selected' : '' }} value="Kantor Pusat">
+                    Kantor Pusat</option>
+                <option {{ $database->user_department == 'Cabang Utama' ? 'selected' : '' }} value="Cabang Utama">
+                    Cabang Utama</option>
             </x-select>
             <x-input label="Department/Cabang" name="department" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->department }}" />

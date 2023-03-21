@@ -55,8 +55,8 @@
                             fieldClass="col-sm-10" />
                         <label for="">Lokasi</label>
                         <x-address-custom name="lease" label="" classLabel="col-sm-2" classField="col-sm-10" />
-                        <x-input label="Nomor PIC" name="pic_no" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input label="Email PIC" name="pic_email" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                        <x-input label="Nomor PIC" name="pic_no" labelClass="col-sm-2" fieldClass="col-sm-10" type="number" />
+                        <x-input label="Email PIC" name="pic_email" labelClass="col-sm-2" fieldClass="col-sm-10" type="email" />
                         <x-input label="Nama Notaris" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
                             <option value="Kantor Pusat">Kantor Pusat</option>

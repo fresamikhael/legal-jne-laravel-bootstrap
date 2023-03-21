@@ -10,11 +10,11 @@
                     <div class="col-sm-10">
                         <select onChange={ (e) => setType(e.target.value) } required name="agreement_type" id="agreement_type" class="form-select" aria-label="Default select example">
                             <option class="d-none">-- Pilih --</option>
-                            <option value="Kontraktor Building">Kontraktor Building</option>
-                            <option value="Jasa Perizinan">Jasa Perizinan</option>
-                            <option value="Kendaraan">Kendaraan</option>
-                            <option value="Perawatan">Perawatan</option>
-                            <option value="Others">Others</option>
+                            <option {{$value == 'Kontraktor Building' ? 'selected' : ''}} value="Kontraktor Building">Kontraktor Building</option>
+                            <option {{$value == 'Jasa Perizinan' ? 'selected' : ''}} value="Jasa Perizinan">Jasa Perizinan</option>
+                            <option {{$value == 'Kendaraan' ? 'selected' : ''}} value="Kendaraan">Kendaraan</option>
+                            <option {{$value == 'Perawatan' ? 'selected' : ''}} value="Perawatan">Perawatan</option>
+                            <option {{$value == 'Others' ? 'selected' : ''}} value="Others">Others</option>
                         </select>
                     </div>
                 </div>

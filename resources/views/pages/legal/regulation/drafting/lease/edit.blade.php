@@ -24,16 +24,21 @@
             <x-input label="Nilai Sewa" type="tel" prefix="Rp" name="rental_value" labelClass="col-sm-2"
                 value="{{ $database->rental_value }}" fieldClass="col-sm-10" />
             <label for="">Lokasi</label>
-            <x-address-custom name="lease" label="" classLabel="col-sm-2" classField="col-sm-10" />
+            <x-address-custom name="lease" label="" classLabel="col-sm-2" classField="col-sm-10"
+                provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
+                districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
+                postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
             <x-input label="Nomor PIC" name="pic_no" labelClass="col-sm-2" fieldClass="col-sm-10"
-                value="{{ $database->pic_no }}" />
+                value="{{ $database->pic_no }}" type="number" />
             <x-input label="Email PIC" name="pic_email" labelClass="col-sm-2" fieldClass="col-sm-10"
-                value="{{ $database->pic_email }}" />
+                value="{{ $database->pic_email }}" type="email" />
             <x-input label="Nama Notaris" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->name }}" />
             <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
-                <option value="Kantor Pusat">Kantor Pusat</option>
-                <option value="Cabang Utama">Cabang Utama</option>
+                <option {{ $database->user_department == 'Kantor Pusat' ? 'selected' : '' }} value="Kantor Pusat">
+                    Kantor Pusat</option>
+                <option {{ $database->user_department == 'Cabang Utama' ? 'selected' : '' }} value="Cabang Utama">
+                    Cabang Utama</option>
             </x-select>
             <x-input label="Department/Cabang" name="department" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->department }}" />

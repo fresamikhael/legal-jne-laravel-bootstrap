@@ -299,7 +299,7 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col" class="col-3">Nama Dokumen</th>
+                                        <th scope="col" class="col-3">Nama Dokumen / Perusahaan</th>
                                         <th scope="col">Nomor</th>
                                         <th scope="col">Tentang</th>
                                         <th scope="col" class="col-1">Aksi</i></th>
