@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap2.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/dataTables.bootstrap5.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/fixedHeader.bootstrap5.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/select2.min.css') }}" />
 
 <!-- Charting library -->
 <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>

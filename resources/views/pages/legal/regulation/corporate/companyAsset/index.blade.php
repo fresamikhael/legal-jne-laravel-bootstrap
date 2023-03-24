@@ -56,6 +56,8 @@
                                 <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
                                 <x-input value="SLF" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
@@ -63,7 +65,9 @@
                                 <x-input label="Lokasi" name="location" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Luas Bangunan" name="building_area" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
-                                <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
@@ -87,7 +91,10 @@
                                 <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-                                <x-input value="Kendaraan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Kendaraan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
                                 <x-input label="Nomor Polisi" name="nopol" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nomor BPKB" name="nobpkb" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nomor Mesin" name="nomes" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -96,8 +103,10 @@
                                 <x-input label="Jenis Kendaraan" name="vehicle_type" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
                                 <x-input label="Nomor STNK" name="nostnk" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="date" label="Jangka Waktu STNK" name="time_period" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Awal STNK" name="date_awal"
+                                    labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Akhir STNK" name="date_akhir"
+                                    labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" multiple />
@@ -112,11 +121,15 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Hak Kekayaan Intelektual Hak Merek" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
-                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
                                 <x-input type="file" label="Gambar Logo/Merek" name="file[logo]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
@@ -134,11 +147,15 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Hak Kekayaan Intelektual Hak Cipta" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
-                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
                                 <x-input type="file" label="Isi Ciptaan" name="file[ciptaan]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
@@ -156,11 +173,15 @@
                                 <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
                                 <x-input value="Hak Kekayaan Intelektual Desain Industri" name="unit"
                                     labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
-                                <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />
                                 <x-input type="file" label="Jenis Desain" name="file[jenis_design]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" />

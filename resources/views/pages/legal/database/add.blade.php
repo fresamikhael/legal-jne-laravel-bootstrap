@@ -77,13 +77,17 @@
                         <option value="ALL">Peraturan Umum</option>
                         <option value="RESTRICTED">Peraturan Internal</option>
                     </x-select>
-                    <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
-                        label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
-                        name="historical_id">
-                        @foreach ($database as $d)
-                            <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
-                        @endforeach
-                    </x-select>
+                    <div class="mb-3 row">
+                        <label for="peraturan terkait" class="col-sm-5 col-form-label">Peraturan Terkait</label>
+                        <div class="col-sm-7">
+                            <select name="historical_id[]" id="historical_id" class="form-select js-example-basic-multiple"
+                                multiple="multiple" aria-label="Default select example">
+                                @foreach ($database as $d)
+                                    <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file_database[]"
                         multiple />
                     <div class="d-flex justify-content-end">

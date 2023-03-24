@@ -1,14 +1,24 @@
 <div class="row mt-4">
     <div class="row mt-3">
         <div class="col-sm-12">
-            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-            <x-input value="Sertifikat Saham" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
-            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Nama Pemegang Saham" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Jumlah Saham" name="share_amount" labelClass="col-sm-2" fieldClass="col-sm-10" />
+            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->title }}" />
+            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->code }}" />
+            <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->number }}" />
+            <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                value="{{ $database->type }}" />
+            <x-input value="Sertifikat Saham" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                value="{{ $database->unit }}" />
+            <x-input value="Sertifikat Saham" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                value="{{ $database->category }}" />
+            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->date }}" />
+            <x-input label="Nama Pemegang Saham" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->name }}" />
+            <x-input label="Jumlah Saham" name="share_amount" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->share_amount }}" postfix="Lembar" type="tel" />
             <div id="file">
                 @foreach ($dataFile as $file)
                     <div class="mb-3 row" id="rowFileExist-{{ $file->id }}">
@@ -26,7 +36,8 @@
             </div>
             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                 fieldClass="col-sm-10" multiple />
-            <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+            <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->note }}" />
         </div>
     </div>
 </div>

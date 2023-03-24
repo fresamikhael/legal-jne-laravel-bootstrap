@@ -66,6 +66,7 @@
                             <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="Sertipikat HGB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
@@ -136,7 +137,9 @@
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input type="date" label="Jangka Waktu" name="time_period" labelClass="col-sm-2"
+                            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="Nomor Surat Ukur" name="measure_number" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
@@ -152,6 +155,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="Sertipikat HM" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <x-input label="Nomor Sertipikat" name="number" labelClass="col-sm-2"
@@ -238,6 +242,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="PBB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -318,6 +323,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="IMB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -405,6 +411,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="Akta Jual Beli" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -491,6 +498,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="PPJB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">
@@ -577,6 +585,7 @@
                             <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
+                            <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                             <x-input value="APH" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                 hidden />
                             <div class="mb-3 row">

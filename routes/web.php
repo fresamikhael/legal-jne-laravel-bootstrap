@@ -716,6 +716,7 @@ Route::prefix('legal/regulation')
         Route::get('add-type', 'addType')->name('add-type');
         Route::post('add-type/post', 'storeType')->name('store-type');
         Route::get('delete-type/{id}', 'deleteType')->name('delete-type');
+        Route::post('delete-file/{id}', 'deleteFile')->name('delete-file');
     });
 
 Route::prefix('legal/user')
@@ -1215,6 +1216,14 @@ Route::prefix('legal/database')
             RegulationController::class,
             'createLitigation',
         ])->name('litigation-create');
+        Route::get('lawsuit-create', [
+            RegulationController::class,
+            'createLawsuit',
+        ])->name('lawsuit-create');
+        Route::get('subpoena-create', [
+            RegulationController::class,
+            'createSubpoena',
+        ])->name('subpoena-create');
 
         Route::get('normative-create', [
             NormativeController::class,

@@ -1,8 +1,8 @@
 <div class="row mt-4">
     <div class="row mt-3">
         <div class="col-sm-12">
-            <x-input label="Nama Perusahaan" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
-                value="{{ $database->name }}" />
+            <x-input label="Nama Perusahaan" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->title }}" />
             <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                 value="{{ $database->type }}" />
             <x-input value="Supplier/Vendor" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
@@ -21,7 +21,15 @@
                 value="{{ $database->date_awal }}" fieldClass="col-sm-10" />
             <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
                 value="{{ $database->date_akhir }}" fieldClass="col-sm-10" />
-            <x-jenis-vendor value="{{ $database->agreement_type }}" />
+            @if (
+                $database->agreement_type == 'Kontraktor Building' ||
+                    $database->agreement_type == 'Jasa Perizinan' ||
+                    $database->agreement_type == 'Kendaraan' ||
+                    $database->agreement_type == 'Perawatan')
+                <x-jenis-vendor value="{{ $database->agreement_type }}" />
+            @else
+                <x-jenis-vendor valueNew="{{ $database->agreement_type }}" />
+            @endif
             <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="User" name="user_department">
                 <option {{ $database->user_department == 'Kantor Pusat' ? 'selected' : '' }} value="Kantor Pusat">
                     Kantor Pusat</option>

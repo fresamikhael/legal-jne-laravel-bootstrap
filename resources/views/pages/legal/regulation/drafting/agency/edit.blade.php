@@ -1,7 +1,7 @@
 <div class="row mt-4">
     <div class="row mt-3">
-        <x-input label="Nama Cabang Utama" name="branch_name" labelClass="col-sm-2" fieldClass="col-sm-10"
-            value="{{ $database->branch_name }}" />
+        <x-input label="Nama Cabang Utama" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+            value="{{ $database->title }}" />
         <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
             value="{{ $database->code }}" />
         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden

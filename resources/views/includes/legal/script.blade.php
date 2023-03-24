@@ -65,4 +65,5 @@
     });
 </script>
 <script type="text/javascript" src={{ asset('js/sweatalert2.js') }}></script>
+<script type="text/javascript" src={{ asset('vendor/bootstrap/js/select2.min.js') }}></script>
 <script type="text/javascript" src={{ asset('js/myScript.js') }}></script>

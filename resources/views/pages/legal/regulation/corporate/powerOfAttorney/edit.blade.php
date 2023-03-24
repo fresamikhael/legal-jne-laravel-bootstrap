@@ -1,15 +1,26 @@
 <div class="row mt-4">
     <div class="row mt-3">
         <div class="col-sm-12">
-            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10" />
-            <x-input label="Penerima Kuasa" name="authorized_person" labelClass="col-sm-2" fieldClass="col-sm-10" />
+            <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->title }}" />
+            <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->code }}" />
+            <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->number }}" />
+            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->date }}" />
+            <x-input label="Penerima Kuasa" name="authorized_person" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->authorized_person }}" />
+            <x-input name="type" value="Corporate" labelClass="col-sm-2" fieldClass="col-sm-10"
+                hidden />
+            <x-input name="unit" value="Surat Kuasa" labelClass="col-sm-2" fieldClass="col-sm-10"
+                hidden />
+            <x-input name="category" value="Surat Kuasa" labelClass="col-sm-2" fieldClass="col-sm-10"
+                hidden />
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Tentang</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px"> {{ $database->title }}</textarea>
                 </div>
             </div>
             <div id="file">
@@ -31,7 +42,8 @@
                 fieldClass="col-sm-10" multiple />
             <x-input label="Dokumen Pendukung Lainnya" type="file" name="file[other][]" labelClass="col-sm-2"
                 fieldClass="col-sm-10" multiple />
-            <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+            <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->note }}" />
         </div>
     </div>
 </div>

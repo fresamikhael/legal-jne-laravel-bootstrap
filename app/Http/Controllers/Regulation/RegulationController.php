@@ -504,6 +504,16 @@ class RegulationController extends Controller
         return view('pages.legal.regulation.litigation.index');
     }
 
+    public function createLawsuit()
+    {
+        return view('pages.legal.regulation.litigation.lawsuit.index');
+    }
+
+    public function createSubpoena()
+    {
+        return view('pages.legal.regulation.litigation.subpoena.index');
+    }
+
     public function createHGB()
     {
         return view('pages.legal.regulation.corporate.companyAsset.hgb');

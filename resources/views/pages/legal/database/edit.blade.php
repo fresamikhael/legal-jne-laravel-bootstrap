@@ -85,20 +85,42 @@
                         <option value="ALL">Peraturan Umum</option>
                         <option value="RESTRICTED">Peraturan Khusus</option>
                     </x-select>
+                    <x-input name="historical_id_old" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                        value="{{ $data->historical_id }}" />
+                    <label for="peraturan terkait" class="col-sm-5 col-form-label">Peraturan Terkait</label>
+                    <div class="mb-3 row">
+                        @foreach ($linkData as $item)
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-7">
+                                <label for="peraturanterkait"> {{ $item->name }} |
+                                    {{ $item->type }} </label>
+                            </div>
+                        @endforeach
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-7">
+                            <select name="historical_id[]" id="historical_id"
+                                class="form-select js-example-basic-multiple" multiple="multiple"
+                                aria-label="Default select example">
+                                @foreach ($database as $d)
+                                    <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     @foreach ($data->file as $file)
-                        <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="File Sebelumnya" type="download"
-                            path="{{ asset($file->name) }}" blank>Lihat <i class="fa fa-eye"></i></x-file>
+                        <div class="mb-3 row" id="rowFileExist-{{ $file->database_id }}">
+                            <label for="" class="col-sm-5 col-form-label">File Sebelumnya</label>
+                            <div class="col-sm-7 btn-group">
+                                <a href="{{ asset($file->name) }}" target="_blank" class="btn btn-primary w-100"><i
+                                        class="fa fa-eye"></i> Lihat
+                                </a>
+                                <a href="javascript:void(0)" data-id="{{ $file->database_id }}"
+                                    onclick="removeFiles(this)" class="btn btn-danger w-25"><i class="fa fa-trash"></i>
+                                    Hapus</a>
+                            </div>
+                        </div>
                     @endforeach
-                    @if ($data->historical_id)
-                        <x-select labelClass="col-sm-5" fieldClass="col-sm-7"
-                            label="Update Dokumen(diisi apabila dokumen ini pembaharuan dari dokumen sebelumnya)"
-                            name="historical_id">
-                            @foreach ($database as $d)
-                                <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
-                            @endforeach
-                        </x-select>
-                    @else
-                    @endif
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file_database[]"
                         multiple />
                 </div>

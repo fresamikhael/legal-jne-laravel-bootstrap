@@ -8,10 +8,13 @@
             <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->number }}" />
             <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
-                value="{{ $database->tyoe }}" />
+                value="{{ $database->type }}" />
             <x-input value="Internal Memo Direksi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                 value="{{ $database->unit }}" />
-            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10" />
+            <x-input value="Internal Memo Direksi" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                value="{{ $database->category }}" />
+            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
+                value="{{ $database->date }}" />
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Tentang</label>
                 <div class="col-sm-10">

@@ -96,6 +96,7 @@
                                         <th scope="col" class="col-3">Nama Dokumen</th>
                                         <th scope="col">Nomor</th>
                                         <th scope="col">Tentang</th>
+                                        <th scope="col">Tahun</th>
                                         <th scope="col" class="col-1">Aksi</i></th>
                                     </tr>
                                 </thead>
@@ -110,6 +111,7 @@
                                                 </td>
                                                 <td>{{ $row->number }}</td>
                                                 <td>{{ $row->about }}</td>
+                                                <td>{{ $row->year }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button class="btn btn-secondary dropdown-toggle" type="button"

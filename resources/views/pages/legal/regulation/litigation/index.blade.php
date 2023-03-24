@@ -1,7 +1,7 @@
 @extends('layouts.legal')
 
 @section('title')
-    Create Permit
+    Create Litigation
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@
             $menu = [
                 [
                     'label' => 'Gugatan',
-                    'route' => '#',
+                    'route' => 'lawsuit-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [
                     'label' => 'Somasi',
-                    'route' => '#',
+                    'route' => 'subpoena-create',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
                 ],
             ];

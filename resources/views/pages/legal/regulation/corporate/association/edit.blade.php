@@ -18,7 +18,7 @@
             <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->date }}" />
             <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                value="{{ $database->valid_period }}" fieldClass="col-sm-10" />
+                value="{{ $database->validity_period }}" fieldClass="col-sm-10" />
             <div id="file">
                 @foreach ($dataFile as $file)
                     <div class="mb-3 row" id="rowFileExist-{{ $file->id }}">

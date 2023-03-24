@@ -40,6 +40,9 @@
                     <div class="col-sm-12">
                         <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                        <x-input name="type" value="Corporate" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input name="unit" value="Surat Kuasa" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input name="category" value="Surat Kuasa" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />

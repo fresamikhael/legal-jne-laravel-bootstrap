@@ -90,10 +90,14 @@
                             </tr>
                             @if ($database->historical_id)
                                 <tr>
-                                    <th scope="row" class="text-end">Dokumen Sebelumnya</th>
-                                    <td><a style="color: brown"
-                                            href="{{ route('legal.database.show', [$database->historical_id]) }}">Klik
-                                            Disini Untuk Melihat Peraturan</a></td>
+                                    <th scope="row" class="text-end">Peraturan Terkait</th>
+                                    <td>
+                                        @foreach ($linkData as $item)
+                                            <a target="_blank" style="color: brown"
+                                                href="{{ route('legal.database.show', [$item->id]) }}">
+                                                {{ $item->name }} | {{ $item->type }} </a> <br />
+                                        @endforeach
+                                    </td>
                                 </tr>
                             @else
                             @endif

@@ -15,32 +15,32 @@ class DatabaseController extends Controller
 {
     public function index()
     {
-        $database = Database::orderBy('year', 'DESC')
+        $database = Database::orderBy('created_at', 'DESC')
             ->orderBy('name', 'ASC')
             ->filter(request(['privilege', 'type', 'number', 'year', 'number', 'about']))
             ->paginate(10);
         $type = DatabaseType::get();
 
-        return view('pages.user.database.index',compact('database', 'type'));
+        return view('pages.user.database.index', compact('database', 'type'));
     }
 
     public function indexLegal()
     {
         $type = DatabaseType::get();
 
-        $database = Database::orderBy('year', 'DESC')
+        $database = Database::orderBy('created_at', 'DESC')
             ->orderBy('name', 'ASC')
-            ->filter(request(['privilege','type', 'name', 'year', 'number', 'about']))
+            ->filter(request(['privilege', 'type', 'name', 'year', 'number', 'about']))
             ->paginate(10);
 
-        return view('pages.legal.database.index',compact('database', 'type'));
+        return view('pages.legal.database.index', compact('database', 'type'));
     }
 
     public function indexRequestLegal()
     {
         $data = RegulationRequestAccess::with('database')->get();
 
-        return view('pages.legal.database.request',compact('data'));
+        return view('pages.legal.database.request', compact('data'));
     }
 
     public function add()
@@ -53,23 +53,26 @@ class DatabaseController extends Controller
 
     public function store(Request $request)
     {
-        $database = Database::create($request->all());
+        $dataRequest = $request->input();
+        $dataRequest['historical_id'] = implode(";", $request->historical_id);
+        $database = Database::create($dataRequest);
 
         $files = $request->file('file_database');
 
-        foreach ($files as $file) {
-            // $extension = $file->getClientOriginalExtension();
-            $name = $file->getClientOriginalName();
-            $filename = $name;
-            $file->move('database', $filename);
+        if ($files) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $filename = $name;
+                $file->move('database', $filename);
 
-            DatabaseFile::create([
-                'database_id' => $database->id,
-                'name' => 'database/'.$filename
-            ]);
+                DatabaseFile::create([
+                    'database_id' => $database->id,
+                    'name' => 'database/' . $filename
+                ]);
+            }
         }
 
-        return to_route('legal.database.add')->with('message_success', 'Peraturan berhasil ditambahkan.');
+        return to_route('legal.database.index')->with('message_success', 'Peraturan berhasil ditambahkan.');
     }
 
     public function edit(Request $request, $id)
@@ -78,37 +81,59 @@ class DatabaseController extends Controller
             ->with('file')->first();
         $type = DatabaseType::get();
         $database = Database::get();
+        $link = explode(';', $data->historical_id);
+        foreach ($link as $key => $value) {
+            $linkData[] = Database::where('id', $value)->first();
+        }
 
-        return view('pages.legal.database.edit', compact('data', 'type', 'database'));
+        return view('pages.legal.database.edit', compact('data', 'type', 'database', 'linkData'));
     }
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $dataRequest = $request->input();
+        if (isset($dataRequest['historical_id'])) {
+            $dataRequest['historical_id'] = implode(";", $request->historical_id);
+        } else {
+            $dataRequest['historical_id'] = $dataRequest['historical_id_old'];
+        }
 
-        $regulation = Database::where('id',$id)->firstOrFail();
-
-        if ($request->file('file_database')) {
+        $regulation = Database::where('id', $id)->firstOrFail();
         $files = $request->file('file_database');
+        $databaseFile = [];
+        $no = 0;
 
-        foreach ($files as $file) {
-            // $extension = $file->getClientOriginalExtension();
-            $name = $file->getClientOriginalName();
-            $filename = $name;
-            $file->move('database', $filename);
+        if ($files) {
+            foreach ($files as $file) {
+                $random = Str::random(5);
+                $name = $file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                $filename = $name . '-' . $random . '.' . $ext;
+                $file->move('database', $filename);
 
-            DatabaseFile::where('database_id', $id)->update([
-                'name' => 'database/'.$filename
-            ]);
+                $databaseFile[$no]['database_id'] = $id;
+                $databaseFile[$no]['name'] = $filename;
+                $no++;
             }
-        }
-        else {
-            unset($data['file']);
+            DatabaseFile::insert($databaseFile);
         }
 
-        $regulation->update($data);
+        $regulation->update($dataRequest);
 
         return to_route('legal.database.index')->with('message_success', 'Peraturan berhasil diubah.');
+    }
+
+    public function deleteFile($id)
+    {
+        $data = DatabaseFile::where('database_id', $id)
+            ->first();
+        if (file_exists($data->name)) {
+            unlink($data->name);
+        }
+        DatabaseFile::where('database_id', $id)->delete();
+
+        $result = array('status' => 'success');
+        echo json_encode($result);
     }
 
     public function show($id)
@@ -132,8 +157,12 @@ class DatabaseController extends Controller
     {
         $database = Database::where('id', $id)
             ->with('file')->first();
+        $link = explode(';', $database->historical_id);
+        foreach ($link as $key => $value) {
+            $linkData[] = Database::where('id', $value)->first();
+        }
 
-        return view('pages.legal.database.detail', compact('database'));
+        return view('pages.legal.database.detail', compact('database', 'linkData'));
     }
 
     public function addType()

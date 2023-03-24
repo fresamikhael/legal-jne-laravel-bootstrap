@@ -14,6 +14,8 @@ $(document).ready(function () {
             );
         }
     });
+
+    $(".js-example-basic-multiple").select2();
 });
 
 function remove_thousandformat(value) {
@@ -182,6 +184,7 @@ function removeTopLevelExist(id) {
 }
 
 function removeFile(id) {
+    console.log(id);
     Swal.fire({
         title: "Kamu yakin akan menghapus ini?",
         text: "Kamu tidak dapat mengembalikan data ini",
@@ -193,6 +196,71 @@ function removeFile(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax(location.origin + "/legal/database/delete-file/" + id, {
+                headers: {
+                    "X-CSRF-Token": $('meta[name="_token"]').attr("content"),
+                },
+                dataType: "json",
+                type: "POST",
+                beforeSend: function (data) {
+                    Swal.fire({
+                        title: "Silahkan tunggu!",
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        },
+                    });
+                },
+                success: function (data) {
+                    swal.close();
+                    if (data.status == "success") {
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Data Sudah Dihapus",
+                            icon: "success",
+                            allowOutsideClick: false,
+                        }).then((result) => {
+                            if (result.value) {
+                                $("#file")
+                                    .find("#rowFileExist-" + id)
+                                    .remove();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Gagal",
+                            text: "Koneksi ke server gagal!",
+                            icon: "error",
+                        });
+                    }
+                },
+                error: function (data) {
+                    swal.close();
+                    Swal.fire({
+                        title: "Gagal",
+                        text: "Koneksi ke server gagal!",
+                        icon: "error",
+                    });
+                },
+            });
+        }
+    });
+}
+
+function removeFiles(i) {
+    id = $(i).data("id");
+    Swal.fire({
+        title: "Kamu yakin akan menghapus ini?",
+        text: "Kamu tidak dapat mengembalikan data ini",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, Hapus!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax(location.origin + "/legal/regulation/delete-file/" + id, {
                 headers: {
                     "X-CSRF-Token": $('meta[name="_token"]').attr("content"),
                 },

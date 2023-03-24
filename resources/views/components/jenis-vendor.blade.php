@@ -15,6 +15,9 @@
                             <option {{$value == 'Kendaraan' ? 'selected' : ''}} value="Kendaraan">Kendaraan</option>
                             <option {{$value == 'Perawatan' ? 'selected' : ''}} value="Perawatan">Perawatan</option>
                             <option {{$value == 'Others' ? 'selected' : ''}} value="Others">Others</option>
+                            @if ($valueNew != '')
+                                <option selected value="{{$valueNew}}">{{$valueNew}}</option>
+                            @endif
                         </select>
                     </div>
                 </div>
