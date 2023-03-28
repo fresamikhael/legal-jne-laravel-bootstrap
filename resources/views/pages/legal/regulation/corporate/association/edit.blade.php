@@ -15,10 +15,12 @@
                 value="{{ $database->unit }}" />
             <x-input value="Asosiasi" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                 value="{{ $database->category }}" />
-            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
-                value="{{ $database->date }}" />
-            <x-input type="date" label="Masa Berlaku" name="validity_period" labelClass="col-sm-2"
-                value="{{ $database->validity_period }}" fieldClass="col-sm-10" />
+            <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
+                fieldClass="col-sm-10" value="{{ $database->date }}" />
+            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                value="{{ $database->date_awal }}" fieldClass="col-sm-10" />
+            <x-input type="date" label="Jangka Waktu AKhir" name="date_akhir" labelClass="col-sm-2"
+                value="{{ $database->date_akhir }}" fieldClass="col-sm-10" />
             <div id="file">
                 @foreach ($dataFile as $file)
                     <div class="mb-3 row" id="rowFileExist-{{ $file->id }}">

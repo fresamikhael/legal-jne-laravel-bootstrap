@@ -21,8 +21,12 @@
                     postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->number }}" />
-                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                    value="{{ $database->validity_period }}" />
+                <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
+                    fieldClass="col-sm-10" value="{{ $database->date }}" />
+                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                    fieldClass="col-sm-10" value="{{ $database->date_awal }}" />
+                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
+                    fieldClass="col-sm-10" value="{{ $database->date_akhir }}" />
                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->size }}" />
                 <x-input label="Nilai Pajak" name="tax_value" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -70,8 +74,10 @@
                     provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                     districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
                     postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
-                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                    value="{{ $database->validity_period }}" />
+                <x-input label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    value="{{ $database->date_awal }}" />
+                <x-input label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    value="{{ $database->date_akhir }}" />
                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->size }}" />
                 <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
@@ -115,8 +121,10 @@
                     provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                     districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
                     postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
-                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                    value="{{ $database->validity_period }}" />
+                <x-input label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    value="{{ $database->date_awal }}" />
+                <x-input label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    value="{{ $database->date_akhir }}" />
                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->size }}" />
                 <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
@@ -160,8 +168,10 @@
                     provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                     districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
                     postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
-                <x-input label="Masa Berlaku" name="validity_period" labelClass="col-sm-2" fieldClass="col-sm-10"
-                    value="{{ $database->validity_period }}" />
+                <x-input label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    value="{{ $database->date_awal }}" />
+                <x-input label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10"
+                    value="{{ $database->date_akhir }}" />
                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->size }}" />
                 <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"

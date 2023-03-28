@@ -19,8 +19,6 @@
         @include('pages.legal.regulation.corporate.seDirector.edit')
     @elseif ($database->category == 'Internal Memo Direksi')
         @include('pages.legal.regulation.corporate.internalMemoDirector.edit')
-    @elseif ($database->category == 'Sertifikat Saham')
-        @include('pages.legal.regulation.corporate.shareCertificate.edit')
     @elseif ($database->category == 'Surat Kuasa')
         @include('pages.legal.regulation.corporate.powerOfAttorney.edit')
     @elseif ($database->category == 'Asosiasi')

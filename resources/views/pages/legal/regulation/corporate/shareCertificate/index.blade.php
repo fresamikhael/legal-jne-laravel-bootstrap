@@ -44,13 +44,15 @@
                         <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Sertifikat Saham" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                             hidden />
-                        <x-input value="Sertifikat Saham" name="cateogory" labelClass="col-sm-2" fieldClass="col-sm-10"
+                        <x-input value="Sertifikat Saham" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
                             hidden />
                         <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
                             fieldClass="col-sm-10" />
                         <x-input label="Nama Pemegang Saham" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <x-input label="Jumlah Saham" name="share_amount" labelClass="col-sm-2" fieldClass="col-sm-10"
                             postfix="Lembar" type="tel" />
+                        <x-input label="Nilai Nominal Saham" name="share_amount_value" labelClass="col-sm-2" fieldClass="col-sm-10"
+                            prefix="Rp. " type="tel" />
                         <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                             fieldClass="col-sm-10" multiple />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />

@@ -123,6 +123,10 @@
                     value="{{ $database->njop }}" />
                 <x-input label="Nilai PBB" name="pbb" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->pbb }}" />
+                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
+                    fieldClass="col-sm-10" value="{{ $database->date_awal }}" />
+                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
+                    fieldClass="col-sm-10" value="{{ $database->date_akhir }}" />
                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10"
                     value="{{ $database->note }}" />
                 <div id="file">

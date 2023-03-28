@@ -76,7 +76,7 @@ class NormativeController extends Controller
         $idRegulation = Regulation::create($database)->id;
         if ($file) {
             foreach ($file as $key => $value) {
-                if ($key == 'upload' || $key == 'akta') {
+                if ($key == 'upload' || $key == 'akta' || $key == 'other') {
                     foreach ($value as $keys => $values) {
                         $random = Str::random(5);
                         $name = $values->getClientOriginalName();

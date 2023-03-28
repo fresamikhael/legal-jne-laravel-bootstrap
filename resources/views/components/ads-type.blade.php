@@ -124,10 +124,10 @@
                                     </div>
                                 </div>
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" type="date" />
-                                <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" type="date" />
+                                <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nilai Pajak" name="tax_value" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input type="file" label="Foto Reklame" name="file[foto_reklame]" labelClass="col-sm-2"
@@ -212,10 +212,10 @@
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" type="date" />
-                            <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" type="date" />
+                            <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
@@ -298,10 +298,10 @@
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" type="date" />
-                            <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" type="date" />
+                            <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
@@ -384,10 +384,10 @@
                                     <textarea class="form-control" id="address" name="address" ></textarea>
                                 </div>
                             </div>
-                            <x-input label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" type="date" />
-                            <x-input label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" type="date" />
+                            <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
+                                fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Ukuran" name="size" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input type="file" label="Gambar" name="file[gambar]" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />

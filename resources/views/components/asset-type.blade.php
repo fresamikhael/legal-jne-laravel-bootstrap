@@ -45,8 +45,8 @@
                     <div class="col-sm-10">
                         <select onChange={ (e) => setType(e.target.value) } required name="asset_type" id="asset_type" class="form-select" aria-label="Default select example">
                             <option class="d-none">-- Pilih --</option>
-                            <option value="Sertipikat HGB">Setipikat HGB</option>
-                            <option value="Sertipikat HM">Setipikat HM</option>
+                            <option value="Sertipikat HGB">Sertipikat HGB</option>
+                            <option value="Sertipikat HM">Sertipikat HM</option>
                             <option value="PBB">PBB</option>
                             <option value="IMB">IMB</option>
                             <option value="SLF">SLF</option>
@@ -312,6 +312,8 @@
                             <x-input label="NJOP" name="njop" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Nilai PBB" name="pbb" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" multiple />
                         </div>

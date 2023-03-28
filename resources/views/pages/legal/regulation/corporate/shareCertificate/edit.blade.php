@@ -19,6 +19,8 @@
                 value="{{ $database->name }}" />
             <x-input label="Jumlah Saham" name="share_amount" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->share_amount }}" postfix="Lembar" type="tel" />
+            <x-input label="Nilai Nominal Saham" name="share_amount_value" labelClass="col-sm-2" fieldClass="col-sm-10"
+                prefix="Rp. " type="tel" value="{{ $database->share_amount_value }}" />
             <div id="file">
                 @foreach ($dataFile as $file)
                     <div class="mb-3 row" id="rowFileExist-{{ $file->id }}">

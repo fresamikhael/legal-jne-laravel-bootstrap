@@ -122,10 +122,10 @@
                                 </div>
                             </div>
                             <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                            <x-input type="date" label="Tanggal Penerbitan" name="date_awal" labelClass="col-sm-2"
+                            <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
-                            <x-input type="date" label="Masa Berlaku" name="date_akhir" labelClass="col-sm-2"
-                                fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
                             <x-input label="Laporan Berkala" name="periodic_report" labelClass="col-sm-2"
                                 fieldClass="col-sm-10" />
                             <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"

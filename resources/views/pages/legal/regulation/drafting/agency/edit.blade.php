@@ -5,10 +5,11 @@
         <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10"
             value="{{ $database->code }}" />
         <x-input value="Perjanjian" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
-            value="{{ $database->unit }}" />
+            value="{{ $database->type }}" />
         <x-input value="Keagenan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+            value="{{ $database->unit }}" />
+        <x-input value="Keagenan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
             value="{{ $database->category }}" />
-        <x-input value="Keagenan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
         <x-select labelClass="col-sm-2" fieldClass="col-sm-10" label="Tipe Dokumen" name="agent_type">
             <option {{ $database->agent_type == 'Cabang Utama' ? 'selected' : '' }} value="Cabang Utama">Cabang
                 Utama

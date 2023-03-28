@@ -78,10 +78,12 @@
                                     <td>{{ $database->agency }}</td>
                                 </tr>
                             @else
-                                <tr>
-                                    <th scope="row" class="text-end">Dikeluarkan/Mitra</th>
-                                    <td>{{ $database->agency }}</td>
-                                </tr>
+                                @if ($database->type != 'Perjanjian')
+                                    <tr>
+                                        <th scope="row" class="text-end">Dikeluarkan/Mitra</th>
+                                        <td>{{ $database->agency }}</td>
+                                    </tr>
+                                @endif
                             @endif
                         @endif
                         @if ($database->number)
@@ -99,7 +101,7 @@
                         @endif
                         @if ($database->date)
                             <tr>
-                                <th scope="row" class="text-end">Tanggal</th>
+                                <th scope="row" class="text-end">Tanggal Penerbitan</th>
                                 <td>{{ $database->date }}</td>
                             </tr>
                         @endif
@@ -520,6 +522,18 @@
                             <tr>
                                 <th scope="row" class="text-end">Nomor Rangka</th>
                                 <td>{{ $database->norangka }}</td>
+                            </tr>
+                        @endif
+                        @if ($database->pic_no)
+                            <tr>
+                                <th scope="row" class="text-end">Nomor PIC</th>
+                                <td>{{ $database->pic_no }}</td>
+                            </tr>
+                        @endif
+                        @if ($database->pic_email)
+                            <tr>
+                                <th scope="row" class="text-end">Email PIC</th>
+                                <td>{{ $database->pic_email }}</td>
                             </tr>
                         @endif
                     </table>
