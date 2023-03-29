@@ -60,12 +60,11 @@
                                 <li><a class="dropdown-item" href="{{ route('legal.database.index') }}">Semua
                                         Peraturan</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('legal.database.index-all') }}">Peraturan
-                                        Umum</a>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('legal.database.index-all') }}">Normatif</a>
                                 </li>
                                 <li><a class="dropdown-item"
-                                        href="{{ route('legal.database.index-internal') }}">Peraturan
-                                        Internal</a>
+                                        href="{{ route('legal.database.index-internal') }}">Internal</a>
                                 </li>
                                 <li><a class="dropdown-item disabled" style="display: none" href="#">Another
                                         action</a></li>

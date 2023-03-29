@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('database_files', function (Blueprint $table) {
+            $table->id();
             $table->uuid('database_id');
             $table->string('name');
             $table->timestamps();

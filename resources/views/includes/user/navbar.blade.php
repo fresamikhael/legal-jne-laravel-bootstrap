@@ -53,11 +53,9 @@
                                 <li><a class="dropdown-item" href="{{ route('database.index') }}">Semua
                                         Peraturan</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('database.index-all') }}">Peraturan
-                                        Umum</a>
+                                <li><a class="dropdown-item" href="{{ route('database.index-all') }}">Normatif</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('database.index-internal') }}">Peraturan
-                                        Internal</a>
+                                <li><a class="dropdown-item" href="{{ route('database.index-internal') }}">Internal</a>
                                 </li>
                                 <li><a class="dropdown-item disabled" style="display: none" href="#">Another
                                         action</a></li>

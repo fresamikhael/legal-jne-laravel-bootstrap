@@ -76,26 +76,29 @@
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege">
                         <option value="{{ $data->privilege }}" selected>
                             @if ($data->privilege == 'ALL')
-                                Peraturan Umum
+                                Normatif
                             @else
-                                Peraturan Khusus
+                                Khusus
                             @endif
                         </option>
                         <option value="" disabled>----------------------------</option>
-                        <option value="ALL">Peraturan Umum</option>
-                        <option value="RESTRICTED">Peraturan Khusus</option>
+                        <option value="ALL">Normatif</option>
+                        <option value="RESTRICTED">Khusus</option>
                     </x-select>
                     <x-input name="historical_id_old" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                         value="{{ $data->historical_id }}" />
                     <label for="peraturan terkait" class="col-sm-5 col-form-label">Peraturan Terkait</label>
+
                     <div class="mb-3 row">
-                        @foreach ($linkData as $item)
-                            <div class="col-sm-5"></div>
-                            <div class="col-sm-7">
-                                <label for="peraturanterkait"> {{ $item->name }} |
-                                    {{ $item->type }} </label>
-                            </div>
-                        @endforeach
+                        @if (count($linkData) > 0)
+                            @foreach ($linkData as $item)
+                                <div class="col-sm-5"></div>
+                                <div class="col-sm-7">
+                                    <label for="peraturanterkait"> {{ $item->name }} |
+                                        {{ $item->type }} </label>
+                                </div>
+                            @endforeach
+                        @endif
                         <div class="col-sm-5"></div>
                         <div class="col-sm-7">
                             <select name="historical_id[]" id="historical_id"
@@ -108,19 +111,24 @@
                             </select>
                         </div>
                     </div>
-                    @foreach ($data->file as $file)
-                        <div class="mb-3 row" id="rowFileExist-{{ $file->database_id }}">
-                            <label for="" class="col-sm-5 col-form-label">File Sebelumnya</label>
-                            <div class="col-sm-7 btn-group">
-                                <a href="{{ asset($file->name) }}" target="_blank" class="btn btn-primary w-100"><i
-                                        class="fa fa-eye"></i> Lihat
-                                </a>
-                                <a href="javascript:void(0)" data-id="{{ $file->database_id }}"
-                                    onclick="removeFiles(this)" class="btn btn-danger w-25"><i class="fa fa-trash"></i>
-                                    Hapus</a>
+
+                    <div id="file">
+                        @foreach ($data->file as $file)
+                            <div class="mb-3 row" id="rowFileExist-{{ $file->id }}">
+                                <label for="" class="col-sm-5 col-form-label">File Sebelumnya</label>
+                                <div class="col-sm-7 btn-group">
+                                    <a href="{{ asset($file->name) }}" target="_blank" class="btn btn-primary w-100"><i
+                                            class="fa fa-eye"></i> Lihat
+                                    </a>
+                                    <a href="javascript:void(0)" data-id="{{ $file->id }}"
+                                        onclick="removeFiles(this)" class="btn btn-danger w-25"><i
+                                            class="fa fa-trash"></i>
+                                        Hapus</a>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+
                     <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="Upload File" name="file_database[]"
                         multiple />
                 </div>

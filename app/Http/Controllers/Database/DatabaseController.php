@@ -54,22 +54,27 @@ class DatabaseController extends Controller
     public function store(Request $request)
     {
         $dataRequest = $request->input();
-        $dataRequest['historical_id'] = implode(";", $request->historical_id);
-        $database = Database::create($dataRequest);
+        if (isset($dataRequest['historical_id'])) {
+            $dataRequest['historical_id'] = implode(";", $request->historical_id);
+        }
+        $idDatabase = Database::create($dataRequest)->id;
+        $no = 0;
+        $dir = 'database/';
 
         $files = $request->file('file_database');
 
         if ($files) {
-            foreach ($files as $file) {
-                $name = $file->getClientOriginalName();
-                $filename = $name;
-                $file->move('database', $filename);
-
-                DatabaseFile::create([
-                    'database_id' => $database->id,
-                    'name' => 'database/' . $filename
-                ]);
+            foreach ($files as $key => $value) {
+                $random = Str::random(5);
+                $name = $value->getClientOriginalName();
+                $ext = $value->getClientOriginalExtension();
+                $filename = $name . '-' . $random . '.' . $ext;
+                $value->move($dir, $filename);
+                $databaseFiles[$no]['database_id'] = $idDatabase;
+                $databaseFiles[$no]['name'] = $dir . $filename;
+                $no += 1;
             }
+            DatabaseFile::insert($databaseFiles);
         }
 
         return to_route('legal.database.index')->with('message_success', 'Peraturan berhasil ditambahkan.');
@@ -77,13 +82,16 @@ class DatabaseController extends Controller
 
     public function edit(Request $request, $id)
     {
+        $linkData = array();
         $data = Database::where('id', $id)
             ->with('file')->first();
         $type = DatabaseType::get();
-        $database = Database::get();
-        $link = explode(';', $data->historical_id);
-        foreach ($link as $key => $value) {
-            $linkData[] = Database::where('id', $value)->first();
+        $database = Database::where('id', '<>', $id)->get();
+        if ($data->historical_id != null) {
+            $link = explode(';', $data->historical_id);
+            foreach ($link as $key => $value) {
+                $linkData[] = Database::where('id', $value)->first();
+            }
         }
 
         return view('pages.legal.database.edit', compact('data', 'type', 'database', 'linkData'));
@@ -100,22 +108,21 @@ class DatabaseController extends Controller
 
         $regulation = Database::where('id', $id)->firstOrFail();
         $files = $request->file('file_database');
-        $databaseFile = [];
+        $dir = 'database/';
         $no = 0;
 
         if ($files) {
-            foreach ($files as $file) {
+            foreach ($files as $key => $value) {
                 $random = Str::random(5);
-                $name = $file->getClientOriginalName();
-                $ext = $file->getClientOriginalExtension();
+                $name = $value->getClientOriginalName();
+                $ext = $value->getClientOriginalExtension();
                 $filename = $name . '-' . $random . '.' . $ext;
-                $file->move('database', $filename);
-
-                $databaseFile[$no]['database_id'] = $id;
-                $databaseFile[$no]['name'] = $filename;
-                $no++;
+                $value->move($dir, $filename);
+                $databaseFiles[$no]['database_id'] = $id;
+                $databaseFiles[$no]['name'] = $dir . $filename;
+                $no += 1;
             }
-            DatabaseFile::insert($databaseFile);
+            DatabaseFile::insert($databaseFiles);
         }
 
         $regulation->update($dataRequest);
@@ -125,12 +132,12 @@ class DatabaseController extends Controller
 
     public function deleteFile($id)
     {
-        $data = DatabaseFile::where('database_id', $id)
+        $data = DatabaseFile::where('id', $id)
             ->first();
         if (file_exists($data->name)) {
             unlink($data->name);
         }
-        DatabaseFile::where('database_id', $id)->delete();
+        DatabaseFile::where('id', $id)->delete();
 
         $result = array('status' => 'success');
         echo json_encode($result);
@@ -146,9 +153,20 @@ class DatabaseController extends Controller
 
     public function delete($id)
     {
-        Database::where('id', $id)
-            ->first()
-            ->delete();
+        $data = Database::where('id', $id)
+            ->first();
+        $dataLinked = Database::where('historical_id', 'like', '%' . $data->id . '%')->get();
+        if (count($dataLinked) > 0) {
+            foreach ($dataLinked as $key => $value) {
+                $replaceData = str_replace($id, '', $value->historical_id);
+                $replaceData = str_replace(';;', ';', $replaceData);
+                if (substr($replaceData, -1) == ';' || substr($replaceData, 0, 1) == ';') {
+                    $replaceData = str_replace(';', '', $replaceData);
+                }
+                Database::where('id', $value->id)->update(['historical_id' => $replaceData]);
+            }
+        }
+        $data->delete();
 
         return redirect()->route('legal.database.index')->with('message_success', 'Peraturan berhasil di dihapus!.');;
     }

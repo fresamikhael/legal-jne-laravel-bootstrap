@@ -93,9 +93,9 @@
                                 <th scope="row" class="text-end">Jenis Peraturan</th>
                                 <td>
                                     @if ($database->privilege == 'ALL')
-                                        Peraturan Umum
+                                        Normatif
                                     @else
-                                        Peraturan Internal
+                                        Internal
                                     @endif
                                 </td>
                             </tr>

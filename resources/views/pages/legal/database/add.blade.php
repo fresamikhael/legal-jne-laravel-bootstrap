@@ -74,8 +74,8 @@
                         <option value="Tidak Aktif">Tidak Aktif</option>
                     </x-select>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Jenis" name="privilege">
-                        <option value="ALL">Peraturan Umum</option>
-                        <option value="RESTRICTED">Peraturan Internal</option>
+                        <option value="ALL">Normatif</option>
+                        <option value="RESTRICTED">Internal</option>
                     </x-select>
                     <div class="mb-3 row">
                         <label for="peraturan terkait" class="col-sm-5 col-form-label">Peraturan Terkait</label>

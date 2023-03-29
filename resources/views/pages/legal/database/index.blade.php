@@ -40,9 +40,9 @@
                             </x-select> --}}
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Tipe Peraturan" name="privilege">
                                 <option value="ALL" {{ request('privilege') == 'ALL' ? 'selected' : '' }}>
-                                    Peraturan Umum</option>
+                                    Normatif</option>
                                 <option value="RESTRICTED" {{ request('privilege') == 'RESTRICTED' ? 'selected' : '' }}>
-                                    Peraturan Internal
+                                    Internal
                                 </option>
                             </x-select>
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
