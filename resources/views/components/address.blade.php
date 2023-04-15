@@ -98,7 +98,7 @@
                 <div class="mb-3 row">
                     <label for="{{ $name }}_address" class="col-sm-5 col-form-label">Alamat {{ $label }}</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" id="{{ $name }}_address" name="{{ $name }}_address" ></textarea>
+                        <textarea class="form-control h-100 mt-0" id="{{ $name }}_address" name="{{ $name }}_address" ></textarea>
                     </div>
                 </div>
             </React.Fragment>

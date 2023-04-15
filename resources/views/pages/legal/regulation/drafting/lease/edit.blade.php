@@ -13,12 +13,34 @@
                 value="{{ $database->category }}" />
             <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->number }}" />
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Tentang</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }}</textarea>
+                </div>
+            </div>
             <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
                 value="{{ $database->date }}" fieldClass="col-sm-10" />
-            <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2"
-                value="{{ $database->date_awal }}" fieldClass="col-sm-10" />
-            <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2"
-                value="{{ $database->date_akhir }}" fieldClass="col-sm-10" />
+                <div class="mb-3 row">
+                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                value="{{ $database->date_awal }}" name="date_awal" />
+                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                value="{{ $database->date_akhir }}" name="date_akhir" />
+                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                        </div>
+                    </div>
+                </div>
             <x-input label="Landlord" name="landlord" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->landlord }}" />
             <x-input label="Nilai Sewa" type="tel" prefix="Rp" name="rental_value" labelClass="col-sm-2"

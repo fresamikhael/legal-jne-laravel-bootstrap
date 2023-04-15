@@ -295,14 +295,14 @@
                             @endif
                         </div>
                         <div class="border rounded">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" width="100%">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col" class="col-3">Nama Dokumen / Perusahaan</th>
-                                        <th scope="col">Nomor</th>
-                                        <th scope="col">Tentang</th>
-                                        <th scope="col" class="col-1">Aksi</i></th>
+                                        <th scope="col" width="5%">No</th>
+                                        <th scope="col" width="25%" class="col-3">Nama Dokumen / Perusahaan</th>
+                                        <th scope="col" width="20%">Nomor</th>
+                                        <th scope="col" width="45%">Tentang</th>
+                                        <th scope="col" width="5%" class="col-1">Aksi</i></th>
                                     </tr>
                                 </thead>
                                 <tbody>

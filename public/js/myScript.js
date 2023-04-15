@@ -16,6 +16,51 @@ $(document).ready(function () {
     });
 
     $(".js-example-basic-multiple").select2();
+    $(document).on("change", ".trigger-date", function (e) {
+        $(".cannot_texting").bind("keypress", function (event) {
+            var regex = new RegExp(
+                "^([0-2][0-9]|(3)[0-1])(/)(((0)[0-9])|((1)[0-2]))(/)d{4}$"
+            );
+            var key = String.fromCharCode(
+                !event.charCode ? event.which : event.charCode
+            );
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(".dates").each(function (i) {
+            $(this).datepicker({
+                autoclose: true,
+                disableTouchKeyboard: true,
+                format: "dd/mm/yyyy",
+                orientation: "top",
+                todayHighlight: true,
+            });
+        });
+    });
+
+    $(".cannot_texting").bind("keypress", function (event) {
+        var regex = new RegExp(
+            "^([0-2][0-9]|(3)[0-1])(/)(((0)[0-9])|((1)[0-2]))(/)d{4}$"
+        );
+        var key = String.fromCharCode(
+            !event.charCode ? event.which : event.charCode
+        );
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
+    $(".dates").each(function (i) {
+        $(this).datepicker({
+            autoclose: true,
+            disableTouchKeyboard: true,
+            format: "dd/mm/yyyy",
+            orientation: "top",
+            todayHighlight: true,
+        });
+    });
 });
 
 function remove_thousandformat(value) {
@@ -81,17 +126,24 @@ function addTopLevel() {
                 "<td>" +
                 '<div class="mb-3 row">' +
                 '<div class="col-sm-12">' +
-                '<input type="tel" class="form-control"' +
+                '<div class="input-group">' +
+                '<input type="text" autocomplete="off" class="form-control cannot_texting dates"' +
                 'name="topLevel[' +
                 idTopLevel +
-                '][len_service]" />' +
+                '][date_awal]" />' +
+                '<div class="input-group-text">s/d</div>' +
+                '<input type="text" autocomplete="off" class="form-control cannot_texting dates"' +
+                'name="topLevel[' +
+                idTopLevel +
+                '][date_akhir]" />' +
+                "</div>" +
                 "</div>" +
                 "</div>" +
                 "</td>" +
                 "<td>" +
                 '<div class="mb-3 row">' +
                 '<div class="col-sm-12">' +
-                '<input type="tel" class="form-control"' +
+                '<input type="number" class="form-control"' +
                 'name="topLevel[' +
                 idTopLevel +
                 '][share_amount]" />' +
@@ -106,6 +158,28 @@ function addTopLevel() {
                 "</td>" +
                 "</tr>"
         );
+    $(".dates").each(function (i) {
+        $(this).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            autoclose: true,
+            todayBtn: true,
+            disableTouchKeyboard: true,
+            format: "dd/mm/yyyy",
+        });
+    });
+    $(".cannot_texting").bind("keypress", function (event) {
+        var regex = new RegExp(
+            "^([0-2][0-9]|(3)[0-1])(/)(((0)[0-9])|((1)[0-2]))(/)d{4}$"
+        );
+        var key = String.fromCharCode(
+            !event.charCode ? event.which : event.charCode
+        );
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
 }
 
 function removeTopLevel(id) {

@@ -48,8 +48,22 @@
                                 <x-input value="Anggaran dasar perusahaan" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="about"></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                                name="date" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <x-input label="Judul Akta" name="title_deed" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Nama Notaris" name="notary_name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Modal Dasar" name="modal_dasar" labelClass="col-sm-2" fieldClass="col-sm-10"
@@ -66,12 +80,12 @@
                                 <br />
                                 <br />
                                 <table class="table table-bordered table-striped" width="100%" id="tblInputTopLevel">
-                                    <thead>
+                                    <thead class="text-center">
                                         <th width="15%">Nama</th>
                                         <th width="15%">Negara Asal</th>
                                         <th width="15%">Jabatan</th>
-                                        <th width="15%">Masa Jabatan</th>
-                                        <th width="15%">Jumlah Saham</th>
+                                        <th width="20%">Masa Jabatan</th>
+                                        <th width="10%">Jumlah Saham</th>
                                         <th width="5%">Aksi</th>
                                     </thead>
                                     <tbody id="bodyInputTopLevel">
@@ -97,8 +111,22 @@
                                 <x-input value="SK Menteri Hukum dan Ham" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                                name="date" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <x-input label="Jenis SK" name="sk_type" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
@@ -118,6 +146,12 @@
                                     fieldClass="col-sm-10" hidden />
                                 <x-input value="Identitas Direksi" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
                                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Alamat" name="address" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Tempat Tanggal Lahir" name="ttl" labelClass="col-sm-2"
@@ -154,6 +188,12 @@
                                     fieldClass="col-sm-10" hidden />
                                 <x-input value="Identitas Dewan Komisaris" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
                                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Alamat" name="address" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Tempat Tanggal Lahir" name="ttl" labelClass="col-sm-2"
@@ -190,6 +230,12 @@
                                     fieldClass="col-sm-10" hidden />
                                 <x-input value="Identitas Pemegang Saham" name="unit" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
                                 <x-input label="Nama" name="name" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Alamat" name="address" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Tempat Tanggal Lahir" name="ttl" labelClass="col-sm-2"
@@ -225,11 +271,26 @@
                                     hidden />
                                 <x-input value="Legalitas Perusahaan" name="category" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" hidden />
+
                                 <x-input value="NPWP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                                name="date" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" multiple />
@@ -249,8 +310,22 @@
                                 <x-input value="NIB" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                                name="date" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <x-input label="KBLI" name="kbli" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
@@ -271,8 +346,22 @@
                                 <x-input value="SIPP" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10"
                                     hidden />
                                 <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                                <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2"
-                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                                name="date" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
                                 <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                                     fieldClass="col-sm-10" multiple />

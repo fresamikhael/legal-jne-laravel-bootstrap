@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/dataTables.bootstrap5.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/fixedHeader.bootstrap5.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/select2.min.css') }}" />
-
+<link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" />
+<link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css') }}" />
 <!-- Charting library -->
 <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
 <!-- Chartisan -->

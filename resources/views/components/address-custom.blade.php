@@ -118,7 +118,7 @@
                 <div class="mb-3 row">
                     <label for="address" class="{{ $classLabel }} col-form-label">Alamat {{ $label }}</label>
                     <div class="{{ $classField }}">
-                        <textarea class="form-control" id="address" name="address" >{{$addressExist ? $addressExist : ""}}</textarea>
+                        <textarea class="form-control h-100 mt-0" id="address" name="address" >{{$addressExist ? $addressExist : ""}}</textarea>
                     </div>
                 </div>
             </React.Fragment>

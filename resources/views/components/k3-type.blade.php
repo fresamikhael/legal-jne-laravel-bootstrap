@@ -62,6 +62,12 @@
                         </x-select>
                         <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10" />
                         <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">Tentang</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label for="province" class="col-sm-2 col-form-label">Provinsi </label>
                             <div class="col-sm-10">
                                 <select  onChange={ inputProvinceChange } name="province" id="province" class="form-select" aria-label="Default select example">
@@ -114,19 +120,45 @@
                         <div class="mb-3 row">
                             <label for="zip_code" class="col-sm-2 col-form-label">Kode Pos </label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="zip_code" name="zip_code" ></textarea>
+                                <textarea class="form-control h-100 mt-0" id="zip_code" name="zip_code" ></textarea>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="address" class="col-sm-2 col-form-label">Jalan/Nama Gedung </label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="address" name="address" ></textarea>
+                                <textarea class="form-control h-100 mt-0" id="address" name="address" ></textarea>
                             </div>
                         </div>
-                        <x-input type="date" label="Tanggal Penerbitan" name="date" labelClass="col-sm-2"
-                            fieldClass="col-sm-10" />
-                        <x-input type="date" label="Jangka Waktu Awal" name="date_awal" labelClass="col-sm-2" fieldClass="col-sm-10" />
-                        <x-input type="date" label="Jangka Waktu Akhir" name="date_akhir" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                        <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Tanggal Penerbitan</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                                name="date" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="mb-3 row">
+                            <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                        name="date_awal" />
+                                    <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                        name="date_akhir" />
+                                    <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                </div>
+                            </div>
+                        </div>
                         <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
                             fieldClass="col-sm-10" multiple />
                         <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />

@@ -5,18 +5,42 @@
         <div class="col-sm-12">
             <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->title }}" />
-            <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden value="{{ $database->type }}" />
-            <x-input value="Data Mitra" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden value="{{ $database->category }}" />
+            <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                value="{{ $database->type }}" />
+            <x-input value="Data Mitra" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
+                value="{{ $database->category }}" />
             <x-input label="Nomor" name="number" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->number }}" />
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Tentang</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2"> {{ $database->about }}</textarea>
+                </div>
+            </div>
             <x-address-custom label="" classLabel="col-sm-2" name="" classField="col-sm-10"
                 provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                 districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
                 postCodeExist="{{ $database->zip_code }}" addressExist="{{ $database->address }}" />
-            <x-input type="date" label="Jangka Waktu Penjanjian" name="date_awal" labelClass="col-sm-2"
-                fieldClass="col-sm-10" value="{{ $database->date_awal }}" />
-            <x-input type="date" label="Jangka Waktu Penjanjian Akhir" name="date_akhir" labelClass="col-sm-2"
-                fieldClass="col-sm-10" value="{{ $database->date_akhir }}" />
+            <div class="mb-3 row">
+                <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control dates cannot_texting" id="date"
+                            value="{{ $database->date_awal }}" name="date_awal" />
+                        <div class="input-group-text"><span class="fa fa-th"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control dates cannot_texting" id="date"
+                            value="{{ $database->date_akhir }}" name="date_akhir" />
+                        <div class="input-group-text"><span class="fa fa-th"></span></div>
+                    </div>
+                </div>
+            </div>
             <x-input label="Nama Badan Hukum" name="legal_name" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->legal_name }}" />
             <label for="toplevel">
@@ -33,8 +57,8 @@
                     <th width="15%">Nama</th>
                     <th width="15%">Negara Asal</th>
                     <th width="15%">Jabatan</th>
-                    <th width="15%">Masa Jabatan</th>
-                    <th width="15%">Jumlah Saham</th>
+                    <th width="20%">Masa Jabatan</th>
+                    <th width="10%">Jumlah Saham</th>
                     <th width="5%">Aksi</th>
                 </thead>
                 <tbody id="bodyInputTopLevel">
@@ -43,7 +67,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->country }}</td>
                             <td>{{ $item->position }}</td>
-                            <td>{{ $item->len_service }}</td>
+                            <td>{{ $item->date_awal }} s/d {{ $item->date_akhir }}</td>
                             <td>{{ $item->share_amount }}</td>
                             <td><a href="javascript:removeTopLevelExist({{ $item->id }})"
                                     class="btn btn-danger btn-sm">

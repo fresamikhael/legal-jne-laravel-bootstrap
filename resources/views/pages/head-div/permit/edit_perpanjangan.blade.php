@@ -97,7 +97,7 @@
                     <label class="col-sm-2 col-form-label">Note</label>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
-                            <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                            <textarea class="form-control h-100 mt-0" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                                 style="height: 200px" required></textarea>
                         </div>
                     </div>

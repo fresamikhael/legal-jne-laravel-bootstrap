@@ -10,6 +10,7 @@
 <script src="{{ asset('vendor/js/jquery-3.5.1.js.js') }}"></script>
 <script src="{{ asset('vendor/js/dataTables.bootstrap5.min.js.js') }}"></script>
 <script src="{{ asset('vendor/js/dataTables.fixedHeader.min.js.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         var table = $('#dataTables').DataTable({

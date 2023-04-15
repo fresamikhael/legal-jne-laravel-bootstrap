@@ -48,8 +48,8 @@
                             <x-select labelClass="col-sm-12" fieldClass="col-sm-12" label="Pilih Jenis Peraturan"
                                 name="type">
                                 @foreach ($type as $t)
-                                    <option value="{{ $t->name }}"
-                                        {{ request('type') == '. {$t->name} .' ? 'selected' : '' }}>{{ $t->name }}
+                                    <option value="{{ $t->name }}" {{ request('type') == $t->name ? 'selected' : '' }}>
+                                        {{ $t->name }}
                                     </option>
                                 @endforeach
                             </x-select>
@@ -89,15 +89,15 @@
                             {{ $database->total() }} Data Peraturan
                         </div>
                         <div class="border rounded">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" width="100%">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col" class="col-3">Nama Dokumen</th>
-                                        <th scope="col">Nomor</th>
-                                        <th scope="col">Tentang</th>
-                                        <th scope="col">Tahun</th>
-                                        <th scope="col" class="col-1">Aksi</i></th>
+                                        <th scope="col" width="5%">No</th>
+                                        <th scope="col" width="10%" class="col-3">Nama Dokumen</th>
+                                        <th scope="col" width="20%">Nomor</th>
+                                        <th scope="col" width="55%">Tentang</th>
+                                        <th scope="col" width="5%">Tahun</th>
+                                        <th scope="col" width="5%" class="col-1">Aksi</i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,7 +133,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <th scope="row">Data yang dicari tidak tersedia.</th>
+                                            <th scope="row" colspan="6">Data yang dicari tidak tersedia.</th>
                                         </tr>
                                     @endif
                                 </tbody>

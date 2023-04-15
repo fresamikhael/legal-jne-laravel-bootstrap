@@ -66,8 +66,26 @@ class NormativeController extends Controller
         $file = $request->file('file');
         $no = 0;
         $database = $request->input();
+
         if ($request->input('date')) {
-            $database['agency'] = Carbon::createFromFormat('Y-m-d', $request->input('date'))->format('Y');
+            $database['agency'] = Carbon::createFromFormat('Y-m-d', $this->convertDateToDB($request->input('date')))->format('Y');
+            $database['date'] = $this->convertDateToDB($request->input('date'));
+        }
+
+        if ($request->input('date_awal')) {
+            $database['date_awal'] = $this->convertDateToDB($request->input('date_awal'));
+        }
+
+        if ($request->input('date_akhir')) {
+            $database['date_akhir'] = $this->convertDateToDB($request->input('date_akhir'));
+        }
+
+        if ($request->input('modal_dasar')) {
+            $database['modal_dasar'] = intval(str_replace('.', '', $request->input('modal_dasar')));
+        }
+
+        if ($request->input('modal_disetor')) {
+            $database['modal_disetor'] = intval(str_replace('.', '', $request->input('modal_disetor')));
         }
         $dir = 'regulation/';
 
@@ -108,8 +126,9 @@ class NormativeController extends Controller
                 $databaseTopLevel[$key]['name'] = $value['name'];
                 $databaseTopLevel[$key]['country'] = $value['country'];
                 $databaseTopLevel[$key]['position'] = $value['position'];
-                $databaseTopLevel[$key]['len_service'] = $value['len_service'];
-                $databaseTopLevel[$key]['share_amount'] = $value['share_amount'];
+                $databaseTopLevel[$key]['date_awal'] = $this->convertDateToDB($value['date_awal']);
+                $databaseTopLevel[$key]['date_akhir'] = $this->convertDateToDB($value['date_akhir']);
+                $databaseTopLevel[$key]['share_amount'] = intval(str_replace('.', '', $value['share_amount']));
             }
             TopLevelIdentity::insert($databaseTopLevel);
         }
@@ -137,9 +156,28 @@ class NormativeController extends Controller
         $file = $request->file('file');
         $no = 0;
         $database = $request->input();
+
         if ($request->input('date')) {
-            $database['agency'] = Carbon::createFromFormat('Y-m-d', $request->input('date'))->format('Y');
+            $database['agency'] = Carbon::createFromFormat('Y-m-d', $this->convertDateToDB($request->input('date')))->format('Y');
+            $database['date'] = $this->convertDateToDB($request->input('date'));
         }
+
+        if ($request->input('date_awal')) {
+            $database['date_awal'] = $this->convertDateToDB($request->input('date_awal'));
+        }
+
+        if ($request->input('date_akhir')) {
+            $database['date_akhir'] = $this->convertDateToDB($request->input('date_akhir'));
+        }
+
+        if ($request->input('modal_dasar')) {
+            $database['modal_dasar'] = intval(str_replace('.', '', $request->input('modal_dasar')));
+        }
+
+        if ($request->input('modal_disetor')) {
+            $database['modal_disetor'] = intval(str_replace('.', '', $request->input('modal_disetor')));
+        }
+
         $dir = 'regulation/';
         $data = (array)$database;
         unset($data['_token']);
@@ -183,8 +221,9 @@ class NormativeController extends Controller
                 $databaseTopLevel[$key]['name'] = $value['name'];
                 $databaseTopLevel[$key]['country'] = $value['country'];
                 $databaseTopLevel[$key]['position'] = $value['position'];
-                $databaseTopLevel[$key]['len_service'] = $value['len_service'];
-                $databaseTopLevel[$key]['share_amount'] = $value['share_amount'];
+                $databaseTopLevel[$key]['date_awal'] = $this->convertDateToDB($value['date_awal']);
+                $databaseTopLevel[$key]['date_akhir'] = $this->convertDateToDB($value['date_akhir']);
+                $databaseTopLevel[$key]['share_amount'] = intval(str_replace('.', '', $value['share_amount']));
             }
             TopLevelIdentity::insert($databaseTopLevel);
         }
@@ -207,5 +246,17 @@ class NormativeController extends Controller
         return view('pages.legal.regulation.normative.detail', [
             'data' => $data
         ]);
+    }
+
+    public function convertDateToDB($date)
+    {
+        $newDate = Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+        return $newDate;
+    }
+
+    public function convertDateShow($date)
+    {
+        $newDate = Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+        return $newDate;
     }
 }

@@ -102,7 +102,7 @@
                         @if ($database->date)
                             <tr>
                                 <th scope="row" class="text-end">Tanggal Penerbitan</th>
-                                <td>{{ $database->date }}</td>
+                                <td>{{ date('d/m/Y', strtotime($database->date)) }}</td>
                             </tr>
                         @endif
                         @if ($database->about)
@@ -209,13 +209,13 @@
                         @if ($database->date_awal)
                             <tr>
                                 <th scope="row" class="text-end">Jangka Waktu Awal</th>
-                                <td>{{ $database->date_awal }}</td>
+                                <td>{{ date('d/m/Y', strtotime($database->date_awal)) }}</td>
                             </tr>
                         @endif
                         @if ($database->date_akhir)
                             <tr>
                                 <th scope="row" class="text-end">Jangka Waktu Akhir</th>
-                                <td>{{ $database->date_akhir }}</td>
+                                <td>{{ date('d/m/Y', strtotime($database->date_akhir)) }}</td>
                             </tr>
                         @endif
                         @if ($database->legal_name)
@@ -555,7 +555,9 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->country }}</td>
                                         <td>{{ $item->position }}</td>
-                                        <td>{{ $item->len_service }} th</td>
+                                        <td>{{ date('d-m-Y', strtotime($item->date_awal)) }} s/d
+                                            {{ date('d-m-Y', strtotime($item->date_akhir)) }}
+                                        </td>
                                         <td>{{ $item->share_amount }}</td>
                                     </tr>
                                 @endforeach
@@ -582,8 +584,7 @@
                                 <a href="{{ asset($file->filepath) }}" style="color: #fe1717" target="_blank">
                                     <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
                                 </a>
-                                <p style="word-break: break-all">
-                                    {{ $file->name }} - {{ Str::substr($file->filepath, 11) }}</p>
+                                <p style="word-break: break-all">{{ Str::substr($file->filepath, 11) }}</p>
                             </div>
                         @endforeach
                     </div>

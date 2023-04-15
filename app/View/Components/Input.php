@@ -9,6 +9,7 @@ class Input extends Component
     public $labelClass;
     public $inputClass;
     public $fieldClass;
+    public $typeClass;
     public $label;
     public $type;
     public $name;
@@ -36,6 +37,7 @@ class Input extends Component
         $inputClass = null,
         $labelClass = null,
         $fieldClass = null,
+        $typeClass = null,
         $label = null,
         $type = null,
         $name = null,
@@ -58,6 +60,7 @@ class Input extends Component
         $this->inputClass = $inputClass;
         $this->labelClass = $labelClass;
         $this->fieldClass = $fieldClass;
+        $this->typeClass = $typeClass;
         $this->label = $label;
         $this->type = $type;
         $this->name = $name;

@@ -15,6 +15,12 @@
                     value="{{ $database->category }}" />
                 <x-input value="UKL/UPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                     value="{{ $database->unit }}" />
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Tentang</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }}</textarea>
+                    </div>
+                </div>
                 <x-address-custom label="" classLabel="col-sm-2" name="" classField="col-sm-10"
                     provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                     districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
@@ -60,6 +66,12 @@
                     value="{{ $database->category }}" hidden />
                 <x-input value="AMDAL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                     value="{{ $database->unit }}" />
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Tentang</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }}</textarea>
+                    </div>
+                </div>
                 <x-address-custom label="" classLabel="col-sm-2" name="" classField="col-sm-10"
                     provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                     districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"
@@ -103,6 +115,12 @@
                     value="{{ $database->unit }}" />
                 <x-input value="SPPL" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                     value="{{ $database->unit }}" />
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Tentang</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }}</textarea>
+                    </div>
+                </div>
                 <x-address-custom label="" classLabel="col-sm-2" name="" classField="col-sm-10"
                     provinceExist="{{ $database->province }}" regencyExist="{{ $database->regency }}"
                     districtExist="{{ $database->district }}" villageExist="{{ $database->village }}"

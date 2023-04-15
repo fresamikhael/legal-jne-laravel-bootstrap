@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DatabasePublicRequest;
 use App\Models\RegulationFile;
 use App\Models\TopLevelIdentity;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
 class RegulationController extends Controller
@@ -85,6 +86,21 @@ class RegulationController extends Controller
             ->with('data')->first();
         $dataFile = RegulationFile::where('regulation_id', $id)->get();
         $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->get();
+
+        if ($database->date != null) {
+            $database->date = $this->convertDateShow($database->date);
+        }
+        if ($database->date_awal != null) {
+            $database->date_awal = $this->convertDateShow($database->date_awal);
+        }
+        if ($database->date_akhir != null) {
+            $database->date_akhir = $this->convertDateShow($database->date_akhir);
+        }
+
+        foreach ($dataTopLevel as $key => $value) {
+            $value->date_awal = $this->convertDateShow($value->date_awal);
+            $value->date_akhir = $this->convertDateShow($value->date_akhir);
+        }
         return view('pages.legal.regulation.edit', compact('database', 'dataFile', 'dataTopLevel'));
     }
 
@@ -441,7 +457,7 @@ class RegulationController extends Controller
 
     public function createAssociation()
     {
-        return view('pages.legal.regulation.corporate.association.index');
+        return view('pages.legal.regulation.permit.association.index');
     }
 
     public function createPermit()
@@ -562,5 +578,11 @@ class RegulationController extends Controller
     public function createHKI()
     {
         return view('pages.legal.regulation.corporate.companyAsset.hki');
+    }
+
+    public function convertDateShow($date)
+    {
+        $newDate = Carbon::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+        return $newDate;
     }
 }

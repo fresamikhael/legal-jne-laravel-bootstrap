@@ -78,11 +78,11 @@
                             </tr>
                             <tr class="bg-light">
                                 <th scope="row" class="text-end">Tanggal Ditetapkan</th>
-                                <td>{{ $database->set_date }}</td>
+                                <td>{{ date('d/m/Y', strtotime($database->set_date)) }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="text-end">Tanggal Diundangkan</th>
-                                <td>{{ $database->promulgated_date }}</td>
+                                <td>{{ date('d/m/Y', strtotime($database->promulgated_date)) }}</td>
                             </tr>
                             <tr class="bg-light">
                                 <th scope="row" class="text-end">Status Peraturan</th>
@@ -135,9 +135,8 @@
                         </div>
                     </div>
                     <div class="p-3 border bg-white">
-                        <div class="border rounded p-3"
-                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                            <ul class="row-3">
+                        <div class="border rounded p-3">
+                            <ul class="row-12">
                                 {!! $database->note ?? '' !!}
                             </ul>
                         </div>

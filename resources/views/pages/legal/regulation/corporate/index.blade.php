@@ -28,21 +28,21 @@
                     'route' => 'sk-comms-create',
                     'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
-                [
-                    'label' => 'SK Direksi',
-                    'route' => 'sk-director-create',
-                    'style' => 'background: #fe3f40 !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'SE Direksi',
-                    'route' => 'se-director-create',
-                    'style' => 'background: #03a4ed !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'Internal Memo Direksi',
-                    'route' => 'internal-memo-director-create',
-                    'style' => 'background: #2a2a2a !important; color: #fff !important;',
-                ],
+                // [
+                //     'label' => 'SK Direksi',
+                //     'route' => 'sk-director-create',
+                //     'style' => 'background: #fe3f40 !important; color: #fff !important;',
+                // ],
+                // [
+                //     'label' => 'SE Direksi',
+                //     'route' => 'se-director-create',
+                //     'style' => 'background: #03a4ed !important; color: #fff !important;',
+                // ],
+                // [
+                //     'label' => 'Internal Memo Direksi',
+                //     'route' => 'internal-memo-director-create',
+                //     'style' => 'background: #2a2a2a !important; color: #fff !important;',
+                // ],
                 [
                     'label' => 'Sertifikat Saham',
                     'route' => 'share-certificate-create',
@@ -52,11 +52,6 @@
                     'label' => 'Surat Kuasa',
                     'route' => 'power-of-attorney-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
-                ],
-                [
-                    'label' => 'Asosiasi',
-                    'route' => 'association-create',
-                    'style' => 'background: #2a2a2a !important; color: #fff !important;',
                 ],
             ];
         @endphp

@@ -120,7 +120,7 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Alasan Permohonan Dokumen</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="request_document_reason" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <textarea class="form-control h-100 mt-0" name="request_document_reason" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
                 </div>
                 {{-- <div class="mt-4 mb-3 row">

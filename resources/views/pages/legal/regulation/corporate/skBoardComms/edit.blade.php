@@ -13,12 +13,18 @@
                 value="{{ $database->unit }}" />
             <x-input value="SK Dewan Komisaris" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden
                 value="{{ $database->category }}" />
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Tentang</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }}</textarea>
+                </div>
+            </div>
             <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->date }}" />
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Tentang</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px"> {{ $database->about }} </textarea>
+                    <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }} </textarea>
                 </div>
             </div>
             <div id="file">

@@ -76,7 +76,7 @@
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Alasan Permohonan Document</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="floatingTextarea2" style="height: 100px" readonly>{{ $data->request_document_reason }}</textarea>
+                    <textarea class="form-control h-100 mt-0" id="floatingTextarea2" style="height: 100px" readonly>{{ $data->request_document_reason }}</textarea>
                 </div>
             </div>
 
@@ -181,7 +181,7 @@
                 <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
                     <div class="col-sm-12">
-                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                        <textarea class="form-control h-100 mt-0" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 100px" disabled>Tidak ada</textarea>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                 <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
                     <div class="col-sm-12">
-                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                        <textarea class="form-control h-100 mt-0" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 100px" disabled>{{ $data->note }}</textarea>
                     </div>
                 </div>

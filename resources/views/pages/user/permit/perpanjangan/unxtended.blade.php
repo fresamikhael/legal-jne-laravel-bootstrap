@@ -19,7 +19,7 @@
             <label class="col-sm-2 col-form-label">Note</label>
             <div class="mb-3 row">
                 <div class="col-sm-12">
-                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px" required></textarea>
+                    <textarea class="form-control h-100 mt-0" name="note" id="floatingTextarea2" style="height: 100px" required></textarea>
                 </div>
             </div>
 

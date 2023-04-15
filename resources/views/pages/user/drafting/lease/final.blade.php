@@ -449,7 +449,7 @@
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Legal</label>
-                <textarea class="form-control" name="cb_note" id="" cols="30" rows="10" disabled>{{ $data->cb_note }}</textarea>
+                <textarea class="form-control h-100 mt-0" name="cb_note" id="" cols="30" rows="10" disabled>{{ $data->cb_note }}</textarea>
             </div>
         </form>
     </x-base>

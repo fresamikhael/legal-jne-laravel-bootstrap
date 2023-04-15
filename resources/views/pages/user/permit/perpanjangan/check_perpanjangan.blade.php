@@ -57,7 +57,7 @@
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Alasan Permohonan</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="floatingTextarea2" style="height: 100px" readonly>{{ $permit->application_reason }}</textarea>
+                    <textarea class="form-control h-100 mt-0" id="floatingTextarea2" style="height: 100px" readonly>{{ $permit->application_reason }}</textarea>
                 </div>
             </div>
             <div class="mt-4 mb-3 row">
@@ -424,7 +424,7 @@
                 <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
                     <div class="col-sm-12">
-                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                        <textarea class="form-control h-100 mt-0" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 100px" disabled>Tidak ada</textarea>
                     </div>
                 </div>
@@ -432,7 +432,7 @@
                 <label class="col-sm-2 col-form-label">Note</label>
                 <div class="mb-3 row">
                     <div class="col-sm-12">
-                        <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
+                        <textarea class="form-control h-100 mt-0" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 100px" disabled>{{ $permit->note }}</textarea>
                     </div>
                 </div>
@@ -483,7 +483,7 @@
                             <label class="col-sm-2 col-form-label">Note</label>
                             <div class="mb-3 row">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px" required></textarea>
+                                    <textarea class="form-control h-100 mt-0" name="note" id="floatingTextarea2" style="height: 100px" required></textarea>
                                 </div>
                             </div>
 
@@ -516,7 +516,7 @@
                             <label class="col-sm-2 col-form-label">Note</label>
                             <div class="mb-3 row">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control" name="note" id="floatingTextarea2" style="height: 100px" required></textarea>
+                                    <textarea class="form-control h-100 mt-0" name="note" id="floatingTextarea2" style="height: 100px" required></textarea>
                                 </div>
                             </div>
 

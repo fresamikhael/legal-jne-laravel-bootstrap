@@ -62,7 +62,7 @@
                 <div class="mb-3 row">
                     <label class="col-sm-5 col-form-label">Tentang</label>
                     <div class="col-sm-7">
-                        <textarea class="form-control" name="about" id="floatingTextarea2" style="height: 100px">{{ $data->about }}</textarea>
+                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" style="height: 100px">{{ $data->about }}</textarea>
                     </div>
                 </div>
                 <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"

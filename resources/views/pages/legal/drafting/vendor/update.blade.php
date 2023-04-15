@@ -422,12 +422,12 @@
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan dari Contract Business</label>
-                <textarea class="form-control" name="cb_note" id="" cols="30" rows="10"></textarea>
+                <textarea class="form-control h-100 mt-0" name="cb_note" id="" cols="30" rows="10"></textarea>
             </div>
 
             <div class="col-sm-12 mb-3">
                 <label for="">Catatan untuk Contract Business</label>
-                <textarea class="form-control" name="user_note" id="" cols="30" rows="10"
+                <textarea class="form-control h-100 mt-0" name="user_note" id="" cols="30" rows="10"
                     disabled>{{ $data->user_note }}</textarea>
             </div>
 
