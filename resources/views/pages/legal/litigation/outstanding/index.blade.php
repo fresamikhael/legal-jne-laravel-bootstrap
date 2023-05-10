@@ -65,17 +65,12 @@
                         type="text" required />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nama Tergugat" name="person_responsible"
                         required />
-
                     <hr>
-
                     <div class="col-sm-3">
                         <h4>Alamat Penggugat/Tergugat :</h4>
                     </div>
                     <x-address label="Penggugat/Tergugat" name="agent" />
-
                     <hr>
-
-
                 </div>
             </div>
 

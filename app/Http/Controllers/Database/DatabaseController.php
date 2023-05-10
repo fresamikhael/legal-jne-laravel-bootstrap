@@ -15,7 +15,7 @@ class DatabaseController extends Controller
 {
     public function index()
     {
-        $database = Database::orderBy('created_at', 'DESC')
+        $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
             ->filter(request(['privilege', 'type', 'number', 'year', 'number', 'about']))
             ->paginate(10);
@@ -28,7 +28,7 @@ class DatabaseController extends Controller
     {
         $type = DatabaseType::get();
 
-        $database = Database::orderBy('created_at', 'DESC')
+        $database = Database::orderBy('year', 'DESC')
             ->orderBy('name', 'ASC')
             ->filter(request(['privilege', 'type', 'name', 'year', 'number', 'about']))
             ->paginate(10);

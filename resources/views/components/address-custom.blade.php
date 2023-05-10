@@ -41,7 +41,7 @@
                 <div class="mb-3 row">
                     <label for="province" class="{{ $classLabel }} col-form-label">Provinsi {{ $label }}</label>
                     <div class="{{ $classField }}">
-                        <select  onChange={ inputProvinceChange } name="province" id="province" class="form-select" aria-label="Default select example">
+                        <select  onChange={ inputProvinceChange } name="{{$name == '' ? 'province' : $name.'_province'}}" id="{{$name == '' ? 'province' : $name.'_province'}}" class="form-select" aria-label="Default select example">
                             @if ($provinceExist)
                                 <option value="{{$provinceExist}}">{{ ucwords(strtolower(App\Models\Province::find($provinceExist)->name)) }}</option>
                             @else
@@ -56,7 +56,7 @@
                 <div class="mb-3 row">
                     <label for="regency" class="{{ $classLabel }} col-form-label">Kab/Kota {{ $label }}</label>
                     <div class="{{ $classField }}">
-                        <select  onChange={ inputRegencyChange } name="regency" id="regency" class="form-select" aria-label="Default select example">
+                        <select  onChange={ inputRegencyChange } name="{{$name == '' ? 'regency' : $name.'_regency'}}" id="{{$name == '' ? 'regency' : $name.'_regency'}}" class="form-select" aria-label="Default select example">
                             @if ($regencyExist)
                                 <option value="{{$regencyExist}}">{{ ucwords(strtolower(App\Models\Regency::find($regencyExist)->name)) }}</option>
                             @else
@@ -73,7 +73,7 @@
                 <div class="mb-3 row">
                     <label for="district" class="{{ $classLabel }} col-form-label">Kecamatan {{ $label }}</label>
                     <div class="{{ $classField }}">
-                        <select  onChange={ inputDistrictChange } name="district" id="district" class="form-select" aria-label="Default select example">
+                        <select  onChange={ inputDistrictChange } name="{{$name == '' ? 'district' : $name.'_district'}}" id="{{$name == '' ? 'district' : $name.'_district'}}" class="form-select" aria-label="Default select example">
                             @if ($districtExist)
                                 <option value="{{$districtExist}}">{{ ucwords(strtolower(App\Models\District::find($districtExist)->name)) }}</option>
                             @else
@@ -90,7 +90,7 @@
                 <div class="mb-3 row">
                     <label for="village" class="{{ $classLabel }} col-form-label">Kelurahan {{ $label }}</label>
                     <div class="{{ $classField }}">
-                        <select  name="village" id="village" class="form-select" aria-label="Default select example">
+                        <select  name="{{$name == '' ? 'village' : $name.'_village'}}" id="{{$name == '' ? 'village' : $name.'_village'}}" class="form-select" aria-label="Default select example">
                             @if ($villageExist)
                                 <option value="{{$villageExist}}">{{ ucwords(strtolower(App\Models\Village::find($villageExist)->name)) }}</option>
                             @else
@@ -109,16 +109,16 @@
                         class="{{ $classLabel }} col-form-label">Kode Pos {{ $label }}</label>
                     <div class="{{ $classField }}">
                         @if ($postCodeExist)
-                            <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{$postCodeExist}}" />
+                            <input type="text" class="form-control" id="{{$name == '' ? 'zip_code' : $name.'_zip_code'}}" name="{{$name == '' ? 'zip_code' : $name.'_zip_code'}}" value="{{$postCodeExist}}" />
                         @else
-                            <input type="text" class="form-control" id="zip_code" name="zip_code" />
+                            <input type="text" class="form-control" id="{{$name == '' ? 'province' : $name.'_zip_code'}}" name="{{$name == '' ? 'zip_code' : $name.'_zip_code'}}" />
                         @endif
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="address" class="{{ $classLabel }} col-form-label">Alamat {{ $label }}</label>
                     <div class="{{ $classField }}">
-                        <textarea class="form-control h-100 mt-0" id="address" name="address" >{{$addressExist ? $addressExist : ""}}</textarea>
+                        <textarea class="form-control h-100 mt-0" id="{{$name == '' ? 'address' : $name.'_address'}}" name="{{$name == '' ? 'address' : $name.'_address'}}" >{{$addressExist ? $addressExist : ""}}</textarea>
                     </div>
                 </div>
             </React.Fragment>

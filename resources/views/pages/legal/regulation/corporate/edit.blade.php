@@ -21,8 +21,6 @@
         @include('pages.legal.regulation.corporate.internalMemoDirector.edit')
     @elseif ($database->category == 'Surat Kuasa')
         @include('pages.legal.regulation.corporate.powerOfAttorney.edit')
-    @elseif ($database->category == 'Asosiasi')
-        @include('pages.legal.regulation.corporate.association.edit')
     @endif
     <div class="d-flex justify-content-end me-4">
         <x-button type="submit" name="Upload" buttonClass="btn-primary" />

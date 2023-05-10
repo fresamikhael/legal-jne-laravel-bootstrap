@@ -7,8 +7,8 @@
         @include('pages.legal.regulation.permit.environmentalPermit.edit')
     @elseif ($database->category == 'Izin K3')
         @include('pages.legal.regulation.permit.k3Permit.edit')
-    @elseif ($database->category == 'Disnaker')
-        @include('pages.legal.regulation.permit.disnaker.edit')
+    @elseif ($database->category == 'Asosiasi')
+        @include('pages.legal.regulation.permit.association.edit')
     @endif
     <div class="d-flex justify-content-end me-4">
         <x-button type="submit" name="Upload" buttonClass="btn-primary" />

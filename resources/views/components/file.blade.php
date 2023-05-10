@@ -11,14 +11,14 @@
                     <option value="Tidak Ada">Tidak Ada</option>
                     <option value="Ada">Ada</option>
                 </select>
-                <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
+                <input type="file" class="form-control" name="{{ $name }}" id="{{ $name . 1 }}"
                     style="display: none; width: 100%;" {{ $multiple ? 'multiple' : '' }} />
             </div>
         @elseif($type == 'download')
             <a href="{{ $path }}" target="{{ $blank ? '_blank' : '' }}"
                 class="btn btn-primary w-100">{{ $slot }}</a>
         @else
-            <input type="file" class="form-control" name="{{ $name }}" id="{{ $name }}"
+            <input type="file" class="form-control" name="{{ $name }}" id="{{ $name . 1 }}"
                 {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }} />
         @endif
     </div>

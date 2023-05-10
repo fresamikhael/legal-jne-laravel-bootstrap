@@ -9,13 +9,13 @@
         @php
             $menu = [
                 [
-                    'label' => 'Gugatan',
-                    'route' => 'lawsuit-create',
+                    'label' => 'Customer Dispute',
+                    'route' => 'customer-dispute-create',
                     'style' => 'background: #03a4ed !important; color: #fff !important;',
                 ],
                 [
-                    'label' => 'Somasi',
-                    'route' => 'subpoena-create',
+                    'label' => 'Others',
+                    'route' => 'others-create',
                     'style' => 'background: #fe3f40 !important; color: #fff !important;',
                 ],
             ];

@@ -34,7 +34,7 @@ $(document).ready(function () {
                 autoclose: true,
                 disableTouchKeyboard: true,
                 format: "dd/mm/yyyy",
-                orientation: "top",
+                // orientation: "top",
                 todayHighlight: true,
             });
         });
@@ -57,7 +57,7 @@ $(document).ready(function () {
             autoclose: true,
             disableTouchKeyboard: true,
             format: "dd/mm/yyyy",
-            orientation: "top",
+            // orientation: "top",
             todayHighlight: true,
         });
     });

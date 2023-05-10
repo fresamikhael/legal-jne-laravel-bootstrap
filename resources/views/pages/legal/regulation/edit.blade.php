@@ -36,6 +36,7 @@
         @elseif ($database->type == 'Perizinan')
             @include('pages.legal.regulation.permit.edit')
         @elseif ($database->type == 'Litigasi')
+            @include('pages.legal.regulation.litigation.edit')
         @endif
     </x-base>
 @endsection

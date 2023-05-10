@@ -138,12 +138,6 @@
                                 <td>{{ $database->authorized_person }}</td>
                             </tr>
                         @endif
-                        @if ($database->validity_period)
-                            <tr>
-                                <th scope="row" class="text-end">Masa Berlaku</th>
-                                <td>{{ $database->validity_period }}</td>
-                            </tr>
-                        @endif
                         @if ($database->province)
                             <tr>
                                 <th scope="row" class="text-end">Provinsi</th>
@@ -278,22 +272,10 @@
                                 <td>{{ $database->smk3 }}</td>
                             </tr>
                         @endif
-                        @if ($database->time_period)
-                            <tr>
-                                <th scope="row" class="text-end">Jangka Waktu</th>
-                                <td>{{ $database->time_period }}</td>
-                            </tr>
-                        @endif
                         @if ($database->landlord)
                             <tr>
                                 <th scope="row" class="text-end">Landlord</th>
                                 <td>{{ $database->landlord }}</td>
-                            </tr>
-                        @endif
-                        @if ($database->other)
-                            <tr>
-                                <th scope="row" class="text-end">Others</th>
-                                <td>{{ $database->other }}</td>
                             </tr>
                         @endif
                         @if ($database->agreement_title)
@@ -565,6 +547,203 @@
                         </table>
 
                         {{ $dataTopLevel->links('vendor.pagination.custom') }}
+                    @endif
+                    @if ($database->type == 'Litigasi' && $database->category == 'Customer Dispute')
+                        <table class="table table-bordered table-responsive">
+                            <tr>
+                                <th>Tanggal Pengiriman </th>
+                                <td>{{ $dataLitigation->shipping_date }} </td>
+                                <th>Nama Penerima</th>
+                                <td>{{ $dataLitigation->receiver_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nama Pengirim </th>
+                                <td>{{ $dataLitigation->sender_name }}</td>
+                                <th>Provinsi Penerima</th>
+                                <td>@php
+                                    $province = DB::table('provinces')
+                                        ->where('id', $dataLitigation->receiver_province)
+                                        ->first();
+                                @endphp
+                                    {{ $province->name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Provinsi Pengirim </th>
+                                <td>@php
+                                    $province = DB::table('provinces')
+                                        ->where('id', $dataLitigation->sender_province)
+                                        ->first();
+                                @endphp
+                                    {{ $province->name }}</td>
+                                <th>Kab/Kota Penerima</th>
+                                <td>@php
+                                    $regency = DB::table('regencies')
+                                        ->where('id', $dataLitigation->receiver_regency)
+                                        ->first();
+                                @endphp
+                                    {{ $regency->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kab/Kota Pengirim </th>
+                                <td>@php
+                                    $regency = DB::table('regencies')
+                                        ->where('id', $dataLitigation->sender_regency)
+                                        ->first();
+                                @endphp
+                                    {{ $regency->name }}</td>
+                                <th>Kecamatan Penerima</th>
+                                <td>@php
+                                    $district = DB::table('districts')
+                                        ->where('id', $dataLitigation->receiver_district)
+                                        ->first();
+                                @endphp
+                                    {{ $district->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kecamatan Pengirim </th>
+                                <td>@php
+                                    $district = DB::table('districts')
+                                        ->where('id', $dataLitigation->sender_district)
+                                        ->first();
+                                @endphp
+                                    {{ $district->name }}</td>
+                                <th>Kelurahan Penerima</th>
+                                <td>@php
+                                    $village = DB::table('villages')
+                                        ->where('id', $dataLitigation->receiver_village)
+                                        ->first();
+                                @endphp
+                                    {{ $village->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kelurahan Pengirim </th>
+                                <td>@php
+                                    $village = DB::table('villages')
+                                        ->where('id', $dataLitigation->sender_village)
+                                        ->first();
+                                @endphp
+                                    {{ $village->name }}</td>
+                                <th>Kode Pos Penerima</th>
+                                <td>{{ $dataLitigation->receiver_zip_code }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kode Pos Pengirim </th>
+                                <td>{{ $dataLitigation->sender_zip_code }}</td>
+                                <th>Alamat Penerima</th>
+                                <td>{{ $dataLitigation->receiver_address }}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat Pengirim </th>
+                                <td>{{ $dataLitigation->sender_address }}</td>
+                                <th>Nomor Telpon Penerima</th>
+                                <td>{{ $dataLitigation->receiver_phone_number }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nomor Telpon Pengirim </th>
+                                <td>{{ $dataLitigation->sender_phone_number }}</td>
+                                <th>Total Kerugian/Klaim</th>
+                                <td>Rp. {{ number_format($dataLitigation->total_loss, 0, ',', '.') }} </td>
+                            </tr>
+                            <tr>
+                                <th>Jenis Kasus </th>
+                                <td>{{ $dataLitigation->case_type }}</td>
+                                <th>Nominal Barang</th>
+                                <td>Rp. {{ number_format($dataLitigation->item_nominal, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Faktor Penyebab </th>
+                                @if ($dataLitigation->causative_factor == 'Lainnya')
+                                    <td>{{ $dataLitigation->causative_factor }}
+                                        {{ $dataLitigation->causative_factor_others }}</td>
+                                @else
+                                    <td>{{ $dataLitigation->causative_factor }}</td>
+                                @endif
+                                <th>Connote/Perjanjian</th>
+                                <td>{{ $dataLitigation->connote }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kronologis Singkat </th>
+                                <td>{{ $dataLitigation->incident_chronology }}</td>
+                                <th>Jenis Pengiriman</th>
+                                <td>{{ $dataLitigation->shipping_type }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bentuk Kiriman </th>
+                                @if ($dataLitigation->shipping_form == 'Lain-Lain')
+                                    <td>{{ $dataLitigation->shipping_form }}
+                                        {{ $dataLitigation->detail_shipping_form }}</td>
+                                @else
+                                    <td>{{ $dataLitigation->shipping_form }}</td>
+                                @endif
+                                <th>Asuransi</th>
+                                @if ($dataLitigation->assurance == 'Ada')
+                                    <td>{{ $dataLitigation->assurance }}
+                                        Rp. {{ number_format($dataLitigation->assurance_nominal, 0, ',', '.') }}</td>
+                                @else
+                                    <td>{{ $dataLitigation->assurance }}</td>
+                                @endif
+                            </tr>
+                        </table>
+                    @endif
+                    @if ($database->type == 'Litigasi' && $database->category == 'Others')
+                        <table class="table table-bordered table-responsive">
+                            <tr>
+                                <th>Nama Penggugat </th>
+                                <td>{{ $dataLitigation->sender_name }} </td>
+                            </tr>
+                            <tr>
+                                <th>Nama Tergugat </th>
+                                <td>{{ $dataLitigation->receiver_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Provinsi Penggugat/Tergugat </th>
+                                <td>@php
+                                    $province = DB::table('provinces')
+                                        ->where('id', $dataLitigation->sender_province)
+                                        ->first();
+                                @endphp
+                                    {{ $province->name }}</td>
+                            <tr>
+                                <th>Kab/Kota Penggugat/Tergugat </th>
+                                <td>@php
+                                    $regency = DB::table('regencies')
+                                        ->where('id', $dataLitigation->sender_regency)
+                                        ->first();
+                                @endphp
+                                    {{ $regency->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kecamatan Penggugat/Tergugat </th>
+                                <td>@php
+                                    $district = DB::table('districts')
+                                        ->where('id', $dataLitigation->sender_district)
+                                        ->first();
+                                @endphp
+                                    {{ $district->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kelurahan Penggugat/Tergugat </th>
+                                <td>@php
+                                    $village = DB::table('villages')
+                                        ->where('id', $dataLitigation->sender_village)
+                                        ->first();
+                                @endphp
+                                    {{ $village->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kode Pos Penggugat/Tergugat </th>
+                                <td>{{ $dataLitigation->sender_zip_code }}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat Penggugat/Tergugat </th>
+                                <td>{{ $dataLitigation->sender_address }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kronologis Singkat </th>
+                                <td>{{ $dataLitigation->incident_chronology }}</td>
+                            </tr>
+                        </table>
                     @endif
                 </div>
             </div>

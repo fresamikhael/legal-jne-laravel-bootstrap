@@ -48,7 +48,7 @@
                                 <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
                             </div>
                         </div>
-                        <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                        <x-input value="Perizinan" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Asosiasi" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <x-input value="Asosiasi" name="category" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
                         <div class="mb-3 row">

@@ -13,6 +13,7 @@ use App\Models\DatabaseRequestFile;
 use App\Http\Controllers\Controller;
 use App\Models\DatabasePublicRequest;
 use App\Models\RegulationFile;
+use App\Models\RegulationLitigation;
 use App\Models\TopLevelIdentity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
@@ -76,8 +77,9 @@ class RegulationController extends Controller
             ->with('data')->first();
         $dataFile = RegulationFile::where('regulation_id', $id)->get();
         $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->paginate(5);
+        $dataLitigation = RegulationLitigation::where('regulation_id', $id)->firstOrFail();
 
-        return view('pages.legal.regulation.detail', compact('database', 'dataFile', 'dataTopLevel'));
+        return view('pages.legal.regulation.detail', compact('database', 'dataFile', 'dataTopLevel', 'dataLitigation'));
     }
 
     public function editLegal($id)
@@ -86,6 +88,14 @@ class RegulationController extends Controller
             ->with('data')->first();
         $dataFile = RegulationFile::where('regulation_id', $id)->get();
         $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->get();
+        $dataLitigation = null;
+
+        if ($database->type == 'Litigasi') {
+            $dataLitigation = RegulationLitigation::where('regulation_id', $id)->firstOrFail();
+            if ($database->category == 'Customer Dispute') {
+                $dataLitigation->shipping_date = $this->convertDateShow($dataLitigation->shipping_date);
+            }
+        }
 
         if ($database->date != null) {
             $database->date = $this->convertDateShow($database->date);
@@ -101,7 +111,7 @@ class RegulationController extends Controller
             $value->date_awal = $this->convertDateShow($value->date_awal);
             $value->date_akhir = $this->convertDateShow($value->date_akhir);
         }
-        return view('pages.legal.regulation.edit', compact('database', 'dataFile', 'dataTopLevel'));
+        return view('pages.legal.regulation.edit', compact('database', 'dataFile', 'dataTopLevel', 'dataLitigation'));
     }
 
     public function deleteToplevelLegal($id)
@@ -520,14 +530,14 @@ class RegulationController extends Controller
         return view('pages.legal.regulation.litigation.index');
     }
 
-    public function createLawsuit()
+    public function createCustomerDispute()
     {
-        return view('pages.legal.regulation.litigation.lawsuit.index');
+        return view('pages.legal.regulation.litigation.customer-dispute.index');
     }
 
-    public function createSubpoena()
+    public function createOthers()
     {
-        return view('pages.legal.regulation.litigation.subpoena.index');
+        return view('pages.legal.regulation.litigation.others.index');
     }
 
     public function createHGB()

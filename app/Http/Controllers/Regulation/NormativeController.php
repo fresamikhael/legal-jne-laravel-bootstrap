@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\RegulationFile;
 use App\Models\RegulationType;
 use App\Http\Controllers\Controller;
+use App\Models\RegulationLitigation;
 use App\Models\TopLevelIdentity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +67,7 @@ class NormativeController extends Controller
         $file = $request->file('file');
         $no = 0;
         $database = $request->input();
+        $databaseLitigasi = $request->input('litigation');
 
         if ($request->input('date')) {
             $database['agency'] = Carbon::createFromFormat('Y-m-d', $this->convertDateToDB($request->input('date')))->format('Y');
@@ -92,9 +94,41 @@ class NormativeController extends Controller
         $databaseFiles = [];
         $databaseTopLevel = [];
         $idRegulation = Regulation::create($database)->id;
+        if ($database['type'] == 'Litigasi' && $database['unit'] == "Customer Dispute") {
+            $databaseLitigasi['shipping_date'] = $this->convertDateToDB($request->input('litigation')['shipping_date']);
+            $databaseLitigasi['sender_province'] = $database['sender_province'];
+            $databaseLitigasi['sender_regency'] = $database['sender_regency'];
+            $databaseLitigasi['sender_district'] = $database['sender_district'];
+            $databaseLitigasi['sender_village'] = $database['sender_village'];
+            $databaseLitigasi['sender_zip_code'] = $database['sender_zip_code'];
+            $databaseLitigasi['sender_address'] = $database['sender_address'];
+            $databaseLitigasi['receiver_province'] = $database['receiver_province'];
+            $databaseLitigasi['receiver_regency'] = $database['receiver_regency'];
+            $databaseLitigasi['receiver_district'] = $database['receiver_district'];
+            $databaseLitigasi['receiver_village'] = $database['receiver_village'];
+            $databaseLitigasi['receiver_zip_code'] = $database['receiver_zip_code'];
+            $databaseLitigasi['receiver_address'] = $database['receiver_address'];
+            $databaseLitigasi['total_loss'] = intval(str_replace('.', '', $databaseLitigasi['total_loss']));
+            $databaseLitigasi['item_nominal'] = intval(str_replace('.', '', $databaseLitigasi['item_nominal']));
+            $databaseLitigasi['assurance_nominal'] = intval(str_replace('.', '', $databaseLitigasi['assurance_nominal']));
+            $databaseLitigasi['regulation_id'] = $idRegulation;
+            RegulationLitigation::create($databaseLitigasi);
+        }
+
+        if ($database['type'] == 'Litigasi' && $database['unit'] == 'Others') {
+            $databaseLitigasi['sender_province'] = $database['sender_province'];
+            $databaseLitigasi['sender_regency'] = $database['sender_regency'];
+            $databaseLitigasi['sender_district'] = $database['sender_district'];
+            $databaseLitigasi['sender_village'] = $database['sender_village'];
+            $databaseLitigasi['sender_zip_code'] = $database['sender_zip_code'];
+            $databaseLitigasi['sender_address'] = $database['sender_address'];
+            $databaseLitigasi['regulation_id'] = $idRegulation;
+            RegulationLitigation::create($databaseLitigasi);
+        }
+
         if ($file) {
             foreach ($file as $key => $value) {
-                if ($key == 'upload' || $key == 'akta' || $key == 'other') {
+                if ($key == 'upload' || $key == 'akta' || $key == 'other' || $key == 'connote' || $key == 'orion' || $key == 'pod' || $key == 'customer_case_form' || $key == 'destination_chronology' || $key == 'origin_chronology' || $key == 'cs_chronology' || $key == 'subpoena' || $key == 'procuration') {
                     foreach ($value as $keys => $values) {
                         $random = Str::random(5);
                         $name = $values->getClientOriginalName();
@@ -156,6 +190,24 @@ class NormativeController extends Controller
         $file = $request->file('file');
         $no = 0;
         $database = $request->input();
+        $litigation = $request->input();
+        $databaseLitigasi = $request->input('litigation');
+
+        if ($request->input('type') == 'Litigasi') {
+            unset($database['sender_province']);
+            unset($database['sender_regency']);
+            unset($database['sender_district']);
+            unset($database['sender_village']);
+            unset($database['sender_zip_code']);
+            unset($database['sender_address']);
+            unset($database['receiver_province']);
+            unset($database['receiver_regency']);
+            unset($database['receiver_district']);
+            unset($database['receiver_village']);
+            unset($database['receiver_zip_code']);
+            unset($database['receiver_address']);
+        }
+
 
         if ($request->input('date')) {
             $database['agency'] = Carbon::createFromFormat('Y-m-d', $this->convertDateToDB($request->input('date')))->format('Y');
@@ -183,13 +235,48 @@ class NormativeController extends Controller
         unset($data['_token']);
         unset($data['topLevel']);
         unset($data['action']);
+        unset($data['litigation']);
         DB::table('regulations')->where('id', $id)->update($data);
+
+        if ($database['type'] == 'Litigasi'  && $database['category'] == "Customer Dispute") {
+            $databaseLitigasi['shipping_date'] = $this->convertDateToDB($request->input('litigation')['shipping_date']);
+            $databaseLitigasi['sender_province'] = $litigation['sender_province'];
+            $databaseLitigasi['sender_regency'] = $litigation['sender_regency'];
+            $databaseLitigasi['sender_district'] = $litigation['sender_district'];
+            $databaseLitigasi['sender_village'] = $litigation['sender_village'];
+            $databaseLitigasi['sender_zip_code'] = $litigation['sender_zip_code'];
+            $databaseLitigasi['sender_address'] = $litigation['sender_address'];
+            $databaseLitigasi['receiver_province'] = $litigation['receiver_province'];
+            $databaseLitigasi['receiver_regency'] = $litigation['receiver_regency'];
+            $databaseLitigasi['receiver_district'] = $litigation['receiver_district'];
+            $databaseLitigasi['receiver_village'] = $litigation['receiver_village'];
+            $databaseLitigasi['receiver_zip_code'] = $litigation['receiver_zip_code'];
+            $databaseLitigasi['receiver_address'] = $litigation['receiver_address'];
+            $databaseLitigasi['total_loss'] = intval(str_replace('.', '', $databaseLitigasi['total_loss']));
+            $databaseLitigasi['item_nominal'] = intval(str_replace('.', '', $databaseLitigasi['item_nominal']));
+            $databaseLitigasi['assurance_nominal'] = intval(str_replace('.', '', $databaseLitigasi['assurance_nominal']));
+            $databaseLitigasi['regulation_id'] = $id;
+            $dataLitigation = (array)$databaseLitigasi;
+            DB::table('regulation_litigation')->where('regulation_id', $id)->update($dataLitigation);
+        }
+
+        if ($database['type'] == 'Litigasi'  && $database['category'] == 'Others') {
+            $databaseLitigasi['sender_province'] = $litigation['sender_province'];
+            $databaseLitigasi['sender_regency'] = $litigation['sender_regency'];
+            $databaseLitigasi['sender_district'] = $litigation['sender_district'];
+            $databaseLitigasi['sender_village'] = $litigation['sender_village'];
+            $databaseLitigasi['sender_zip_code'] = $litigation['sender_zip_code'];
+            $databaseLitigasi['sender_address'] = $litigation['sender_address'];
+            $databaseLitigasi['regulation_id'] = $id;
+            $dataLitigation = (array)$databaseLitigasi;
+            DB::table('regulation_litigation')->where('regulation_id', $id)->update($dataLitigation);
+        }
 
         $databaseFiles = [];
         $databaseTopLevel = [];
         if ($file) {
             foreach ($file as $key => $value) {
-                if ($key == 'upload') {
+                if ($key == 'upload' || $key == 'akta' || $key == 'other' || $key == 'connote' || $key == 'orion' || $key == 'pod' || $key == 'customer_case_form' || $key == 'destination_chronology' || $key == 'origin_chronology' || $key == 'cs_chronology' || $key == 'subpoena' || $key == 'procuration') {
                     foreach ($value as $keys => $values) {
                         $random = Str::random(5);
                         $name = $values->getClientOriginalName();
@@ -197,7 +284,7 @@ class NormativeController extends Controller
                         $filename = $name . '-' . $random . '.' . $ext;
                         $values->move($dir, $filename);
                         $databaseFiles[$no]['regulation_id'] = $id;
-                        $databaseFiles[$no]['name'] = 'upload';
+                        $databaseFiles[$no]['name'] = $key;
                         $databaseFiles[$no]['filepath'] = $dir . $filename;
                         $no += 1;
                     }

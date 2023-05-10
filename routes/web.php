@@ -1216,14 +1216,14 @@ Route::prefix('legal/database')
             RegulationController::class,
             'createLitigation',
         ])->name('litigation-create');
-        Route::get('lawsuit-create', [
+        Route::get('customer-dispute-create', [
             RegulationController::class,
-            'createLawsuit',
-        ])->name('lawsuit-create');
-        Route::get('subpoena-create', [
+            'createCustomerDispute',
+        ])->name('customer-dispute-create');
+        Route::get('others-create', [
             RegulationController::class,
-            'createSubpoena',
-        ])->name('subpoena-create');
+            'createOthers',
+        ])->name('others-create');
 
         Route::get('normative-create', [
             NormativeController::class,
