@@ -71,7 +71,7 @@
                                 <td>{{ $database->unit }}</td>
                             </tr>
                         @endif
-                        @if ($database->agency)
+                        {{-- @if ($database->agency)
                             @if ($database->privilege == 'ALL')
                                 <tr>
                                     <th scope="row" class="text-end">Direktorat/Divisi/Departement</th>
@@ -85,7 +85,7 @@
                                     </tr>
                                 @endif
                             @endif
-                        @endif
+                        @endif --}}
                         @if ($database->number)
                             @if ($database->privilege == 'ALL')
                                 <tr class="">
@@ -105,10 +105,25 @@
                                 <td>{{ date('d/m/Y', strtotime($database->date)) }}</td>
                             </tr>
                         @endif
+                        @if ($database->name)
+                            @if ($database->unit == 'Serfitikat Saham')
+                                <tr class="">
+                                    <th scope="row" class="text-end">Nama Pemegang Saham</th>
+                                    <td>{{ $database->name }} </td>
+                                </tr>
+                            @endif
+                        @endif
                         @if ($database->about)
                             <tr class="">
                                 <th scope="row" class="text-end">Tentang</th>
-                                <td>{{ $database->about }}</td>
+                                @if (
+                                    $database->unit == 'Identitas Direksi' ||
+                                        $database->unit == 'Identitas Dewan Komisaris' ||
+                                        $database->unit == 'Identitas Pemegang Saham')
+                                    <td> {{ $database->about . ' ' }}{{ $database->name }}</td>
+                                @else
+                                    <td>{{ $database->about }}</td>
+                                @endif
                             </tr>
                         @endif
                         @if ($database->set_date)
@@ -763,7 +778,12 @@
                                 <a href="{{ asset($file->filepath) }}" style="color: #fe1717" target="_blank">
                                     <i class="fa fa-file-pdf" style="font-size: 100px;"></i>
                                 </a>
-                                <p style="word-break: break-all">{{ Str::substr($file->filepath, 11) }}</p>
+                                @if ($database->type == 'Litigasi')
+                                    <p style="word-break: break-all">{{ $file->name . ' ' }}
+                                        {{ Str::substr($file->filepath, 11) }}</p>
+                                @else
+                                    <p style="word-break: break-all">{{ Str::substr($file->filepath, 11) }}</p>
+                                @endif
                             </div>
                         @endforeach
                     </div>

@@ -55,8 +55,16 @@
                         name="entity" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan"
                         value="{{ $data->number }}" name="number" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tahun Peraturan"
-                        value="{{ $data->year }}" name="year" />
+                    <div class="mb-3 row">
+                        <label for="year" class="col-sm-5 col-form-label">Tahun Peraturan</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                <input type="text" class="form-control years cannot_texting" id="date"
+                                    name="year" value="{{ $data->year }}" />
+                                <div class="input-group-text"><span class="fa fa-th"></span></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-3 row">
                         <label class="col-sm-5 col-form-label">Tentang</label>
                         <div class="col-sm-7">

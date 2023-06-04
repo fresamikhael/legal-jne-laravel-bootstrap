@@ -316,7 +316,19 @@
                                                     </a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
-                                                <td>{{ $row->number }}</td>
+                                                <td>
+                                                    @if (
+                                                        $row->unit == 'Identitas Direksi' ||
+                                                            $row->unit == 'Identitas Dewan Komisaris' ||
+                                                            $row->unit == 'Identitas Pemegang Saham')
+                                                        {{ $row->ktp }}
+                                                    @elseif ($row->unit == 'PBB')
+                                                        {{ $row->nop }}
+                                                    @else
+                                                        {{ $row->number }}
+                                                    @endif
+
+                                                </td>
                                                 <td>{{ $row->about }}</td>
                                                 <td>
                                                     <div class="dropdown">

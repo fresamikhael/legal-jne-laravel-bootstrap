@@ -128,7 +128,7 @@ class NormativeController extends Controller
 
         if ($file) {
             foreach ($file as $key => $value) {
-                if ($key == 'upload' || $key == 'akta' || $key == 'other' || $key == 'connote' || $key == 'orion' || $key == 'pod' || $key == 'customer_case_form' || $key == 'destination_chronology' || $key == 'origin_chronology' || $key == 'cs_chronology' || $key == 'subpoena' || $key == 'procuration') {
+                if ($key == 'upload' || $key == 'akta' || $key == 'other') {
                     foreach ($value as $keys => $values) {
                         $random = Str::random(5);
                         $name = $values->getClientOriginalName();
@@ -276,7 +276,7 @@ class NormativeController extends Controller
         $databaseTopLevel = [];
         if ($file) {
             foreach ($file as $key => $value) {
-                if ($key == 'upload' || $key == 'akta' || $key == 'other' || $key == 'connote' || $key == 'orion' || $key == 'pod' || $key == 'customer_case_form' || $key == 'destination_chronology' || $key == 'origin_chronology' || $key == 'cs_chronology' || $key == 'subpoena' || $key == 'procuration') {
+                if ($key == 'upload' || $key == 'akta' || $key == 'other') {
                     foreach ($value as $keys => $values) {
                         $random = Str::random(5);
                         $name = $values->getClientOriginalName();

@@ -194,17 +194,17 @@
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="2. Orion" name="file[orion]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="3. POD" name="file[pod]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="4. Form Kasus Sengketa Konsumen"
-                            name="file[customer_case_form]" />
+                            name="file[kasus_sengketa_konsumen]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. Kronologis Destinasi"
-                            name="file[destination_chronology]" />
+                            name="file[kronologi_destinasi]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. Kronologis Origin"
-                            name="file[origin_chronology]" />
+                            name="file[kronologi_origin]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Kronologis CS"
-                            name="file[cs_chronology]" />
+                            name="file[kronologi_cs]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="8. Surat Customer atau Somasi"
-                            name="file[subpoena]" />
+                            name="file[customer_somasi]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="9. Surat Kuasa"
-                            name="file[procuration]" />
+                            name="file[kuasa]" />
                         <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="10. Dokumen Lainnya"
                             name="file[other][]" multiple />
                     </div>

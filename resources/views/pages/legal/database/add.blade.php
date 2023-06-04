@@ -52,7 +52,16 @@
                     </x-select>
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Instansi" name="entity" />
                     <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Nomor Peraturan" name="number" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tahun Peraturan" name="year" />
+                    <div class="mb-3 row">
+                        <label for="year" class="col-sm-5 col-form-label">Tahun Peraturan</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                <input type="text" class="form-control years cannot_texting" id="date"
+                                    name="year" />
+                                <div class="input-group-text"><span class="fa fa-th"></span></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-3 row">
                         <label class="col-sm-5 col-form-label">Tentang</label>
                         <div class="col-sm-7">
@@ -65,10 +74,26 @@
                     <div class="col-sm-12 mb-3">
                         <textarea name="note" id="editor"></textarea>
                     </div>
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Ditetapkan" type="date"
-                        name="set_date" />
-                    <x-input labelClass="col-sm-5" fieldClass="col-sm-7" label="Tanggal Diundangkan" type="date"
-                        name="promulgated_date" />
+                    <div class="mb-3 row">
+                        <label for="date" class="col-sm-5 col-form-label">Tanggal Ditetapkan</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                <input type="text" class="form-control dates cannot_texting" id="date"
+                                    name="set_date" />
+                                <div class="input-group-text"><span class="fa fa-th"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="date" class="col-sm-5 col-form-label">Tanggal Diundangkan</label>
+                        <div class="col-sm-7">
+                            <div class="input-group">
+                                <input type="text" class="form-control dates cannot_texting" id="date"
+                                    name="promulgated_date" />
+                                <div class="input-group-text"><span class="fa fa-th"></span></div>
+                            </div>
+                        </div>
+                    </div>
                     <x-select labelClass="col-sm-5" fieldClass="col-sm-7" label="Status Peraturan" name="status">
                         <option value="Aktif">Aktif</option>
                         <option value="Tidak Aktif">Tidak Aktif</option>
@@ -80,8 +105,9 @@
                     <div class="mb-3 row">
                         <label for="peraturan terkait" class="col-sm-5 col-form-label">Peraturan Terkait</label>
                         <div class="col-sm-7">
-                            <select name="historical_id[]" id="historical_id" class="form-select js-example-basic-multiple"
-                                multiple="multiple" aria-label="Default select example">
+                            <select name="historical_id[]" id="historical_id"
+                                class="form-select js-example-basic-multiple" multiple="multiple"
+                                aria-label="Default select example">
                                 @foreach ($database as $d)
                                     <option value="{{ $d->id }}">{{ $d->name }} | {{ $d->type }}</option>
                                 @endforeach

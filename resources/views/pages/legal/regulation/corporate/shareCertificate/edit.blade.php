@@ -16,11 +16,19 @@
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Tentang</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" > {{ $database->about }}</textarea>
+                    <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2"> {{ $database->about }}</textarea>
                 </div>
             </div>
-            <x-input type="date" label="Tanggal" name="date" labelClass="col-sm-2" fieldClass="col-sm-10"
-                value="{{ $database->date }}" />
+            <div class="mb-3 row">
+                <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control dates cannot_texting" id="date" name="date"
+                            value="{{ $database->date }}" />
+                        <div class="input-group-text"><span class="fa fa-th"></span></div>
+                    </div>
+                </div>
+            </div>
             <x-input label="Nama Pemegang Saham" name="name" labelClass="col-sm-2" fieldClass="col-sm-10"
                 value="{{ $database->name }}" />
             <x-input label="Jumlah Saham" name="share_amount" labelClass="col-sm-2" fieldClass="col-sm-10"

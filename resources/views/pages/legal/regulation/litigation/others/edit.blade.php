@@ -77,7 +77,7 @@
             <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="5. NPWP" name="file[npwp]" />
             <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="6. NIB" name="file[nib]" />
             <x-file labelClass="col-sm-5" fieldClass="col-sm-7" label="7. Dokumen Pendukung Lainnya"
-                name="file[][other]" multiple />
+                name="file[other][]" multiple />
         </div>
     </div>
 </div>

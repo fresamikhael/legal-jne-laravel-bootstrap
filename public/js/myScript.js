@@ -61,6 +61,17 @@ $(document).ready(function () {
             todayHighlight: true,
         });
     });
+    $(".years").each(function (i) {
+        $(this).datepicker({
+            autoclose: true,
+            disableTouchKeyboard: true,
+            format: "yyyy",
+            // orientation: "top",
+            todayHighlight: true,
+            viewMode: "years",
+            minViewMode: "years",
+        });
+    });
 });
 
 function remove_thousandformat(value) {
