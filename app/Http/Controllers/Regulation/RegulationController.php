@@ -77,7 +77,7 @@ class RegulationController extends Controller
             ->with('data')->first();
         $dataFile = RegulationFile::where('regulation_id', $id)->get();
         $dataTopLevel = TopLevelIdentity::where('regulation_id', $id)->paginate(5);
-        $dataLitigation = RegulationLitigation::where('regulation_id', $id)->firstOrFail();
+        $dataLitigation = RegulationLitigation::where('regulation_id', $id)->first();
 
         return view('pages.legal.regulation.detail', compact('database', 'dataFile', 'dataTopLevel', 'dataLitigation'));
     }
