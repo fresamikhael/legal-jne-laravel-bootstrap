@@ -106,7 +106,7 @@
                             </tr>
                         @endif
                         @if ($database->name)
-                            @if ($database->unit == 'Serfitikat Saham')
+                            @if ($database->unit == 'Sertifikat Saham')
                                 <tr class="">
                                     <th scope="row" class="text-end">Nama Pemegang Saham</th>
                                     <td>{{ $database->name }} </td>
@@ -120,7 +120,7 @@
                                     $database->unit == 'Identitas Direksi' ||
                                         $database->unit == 'Identitas Dewan Komisaris' ||
                                         $database->unit == 'Identitas Pemegang Saham')
-                                    <td> {{ $database->about . ' ' }}{{ $database->name }}</td>
+                                    <td> {{ $database->about }}</td>
                                 @else
                                     <td>{{ $database->about }}</td>
                                 @endif
@@ -145,6 +145,12 @@
                             <tr>
                                 <th scope="row" class="text-end">Jumlah Saham</th>
                                 <td>{{ $database->share_amount }}</td>
+                            </tr>
+                        @endif
+                        @if ($database->share_amount_value)
+                            <tr>
+                                <th scope="row" class="text-end">Nilai Nominal Saham</th>
+                                <td>Rp. {{ number_format($database->share_amount_value, 0, ',', '.') }}</td>
                             </tr>
                         @endif
                         @if ($database->authorized_person)

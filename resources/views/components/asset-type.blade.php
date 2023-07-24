@@ -38,6 +38,34 @@
             });
         }
 
+        $(document).ready(function () {
+            console.log("test")
+            $(".cannot_texting_asset").bind("keypress", function (event) {
+                console.log("test1")
+                var regex = new RegExp(
+                    "^([0-2][0-9]|(3)[0-1])(/)(((0)[0-9])|((1)[0-2]))(/)d{4}$"
+                );
+                var key = String.fromCharCode(
+                    !event.charCode ? event.which : event.charCode
+                );
+                if (!regex.test(key)) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+            $(".dates").each(function (i) {
+                console.log("test2")
+                $(this).datepicker({
+                    autoclose: true,
+                    disableTouchKeyboard: true,
+                    format: "dd/mm/yyyy",
+                    // orientation: "top",
+                    todayHighlight: true,
+                });
+            }); 
+        })
+
+
         return (
             <React.Fragment>
                 <div class="mb-3 row">
@@ -80,7 +108,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal Sertifikat</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -155,7 +183,7 @@
                             <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                    <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                         name="date_awal" />
                                     <div class="input-group-text"><span class="fa fa-th"></span></div>
                                 </div>
@@ -165,7 +193,7 @@
                             <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                    <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                         name="date_akhir" />
                                     <div class="input-group-text"><span class="fa fa-th"></span></div>
                                 </div>
@@ -200,7 +228,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal Sertifikat</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -366,7 +394,7 @@
                             <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                    <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                         name="date_awal" />
                                     <div class="input-group-text"><span class="fa fa-th"></span></div>
                                 </div>
@@ -376,7 +404,7 @@
                             <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                    <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                         name="date_akhir" />
                                     <div class="input-group-text"><span class="fa fa-th"></span></div>
                                 </div>
@@ -470,7 +498,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -506,7 +534,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -582,7 +610,7 @@
                             <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                    <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                         name="date_awal" />
                                     <div class="input-group-text"><span class="fa fa-th"></span></div>
                                 </div>
@@ -592,7 +620,7 @@
                             <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                    <input type="text" class="form-control dates cannot_texting" id="date"
+                                    <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                         name="date_akhir" />
                                     <div class="input-group-text"><span class="fa fa-th"></span></div>
                                 </div>
@@ -687,7 +715,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -788,7 +816,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -889,7 +917,7 @@
                                     <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="text" class="form-control dates cannot_texting" id="date"
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
                                                 name="date" />
                                             <div class="input-group-text"><span class="fa fa-th"></span></div>
                                         </div>
@@ -907,13 +935,190 @@
                         </div>
                     </div>
                 ) : type === "Kendaraan" ? (
-                    {{ $vehicle }}
+                    <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Kendaraan" name="unit" labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <x-input label="Nomor Polisi" name="nopol" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Nomor BPKB" name="nobpkb" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Nomor Mesin" name="nomes" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Nomor Rangka" name="norangka" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Jenis Kendaraan" name="vehicle_type" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input label="Nomor STNK" name="nostnk" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal STNK</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_awal" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir STNK</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_akhir" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" multiple />
+                            </div>
+                        </div>
                 ) : type === "Hak Kekayaan Intelektual1" ? (
-                    {{ $hkihm }}
+                    <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input value="Hak Kekayaan Intelektual Hak Merek" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_awal" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_akhir" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-input type="file" label="Gambar Logo/Merek" name="file[logo]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" multiple />
+                            </div>
+                        </div>
                 ) : type === "Hak Kekayaan Intelektual2" ? (
-                    {{ $hkihc }}
+                    <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input value="Hak Kekayaan Intelektual Hak Cipta" name="unit" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_awal" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_akhir" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-input type="file" label="Isi Ciptaan" name="file[ciptaan]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" multiple />
+                            </div>
+                        </div>
                 ) : type === "Hak Kekayaan Intelektual3" ? (
-                    {{ $hkidi }}
+                    <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <x-input label="Nama Dokumen" name="title" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="Kode Dokumen" name="code" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input value="Corporate" name="type" labelClass="col-sm-2" fieldClass="col-sm-10"
+                                    hidden />
+                                <x-input value="Aset Perusahaan" name="category" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" hidden />
+                                <x-input value="Hak Kekayaan Intelektual Desain Industri" name="unit"
+                                    labelClass="col-sm-2" fieldClass="col-sm-10" hidden />
+                                <x-input label="Nomor Sertifikat" name="number" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label">Tentang</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control h-100 mt-0" name="about" id="floatingTextarea2" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Awal</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_awal" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="date" class="col-sm-2 col-form-label">Jangka Waktu Akhir</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control dates cannot_texting_asset" id="date"
+                                                name="date_akhir" />
+                                            <div class="input-group-text"><span class="fa fa-th"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-input type="file" label="Jenis Desain" name="file[jenis_design]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" />
+                                <x-input label="Note" name="note" labelClass="col-sm-2" fieldClass="col-sm-10" />
+                                <x-input label="File Upload" type="file" name="file[upload][]" labelClass="col-sm-2"
+                                    fieldClass="col-sm-10" multiple />
+                            </div>
+                        </div>
                 ) : "" }
             </React.Fragment>
         )

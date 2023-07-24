@@ -295,28 +295,38 @@
                             @endif
                         </div>
                         <div class="border rounded">
-                            <table class="table table-bordered" width="100%">
+                            <table class="table table-bordered">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th scope="col" width="5%">No</th>
-                                        <th scope="col" width="25%" class="col-3">Nama Dokumen / Perusahaan</th>
-                                        <th scope="col" width="20%">Nomor</th>
-                                        <th scope="col" width="45%">Tentang</th>
-                                        <th scope="col" width="5%" class="col-1">Aksi</i></th>
+                                        <th scope="col"
+                                            style="table-layout:fixed; width:40px; overflow:hidden; word-wrap:anywhere;">No
+                                        </th>
+                                        <th scope="col"
+                                            style="table-layout:fixed; width:150px; overflow:hidden; word-wrap:anywhere;"
+                                            class="col-3">Nama Dokumen / Perusahaan</th>
+                                        <th scope="col"
+                                            style="table-layout:fixed; width:100px; overflow:hidden; word-wrap:anywhere;">
+                                            Nomor</th>
+                                        <th scope="col"
+                                            style="table-layout:fixed; overflow:hidden; word-wrap:anywhere;">Tentang</th>
+                                        <th scope="col"
+                                            style="table-layout:fixed; width:10px; overflow:hidden; word-wrap:anywhere;"
+                                            class="col-1">Aksi</i></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if ($database->count() != 0)
                                         @foreach ($database as $row)
                                             <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-light' : '' }}">
-                                                <th scope="row">{{ $database->firstItem() + $loop->index }}</th>
-                                                <td>
+                                                <th style="word-wrap:anywhere;" scope="row">
+                                                    {{ $database->firstItem() + $loop->index }}</th>
+                                                <td style="word-wrap:anywhere;">
                                                     <a style="color: brown"
                                                         href="{{ route('legal.regulation.detail', [$row->id]) }}">{{ Str::limit($row->title, 40, '...') }}
                                                     </a>
                                                 </td>
                                                 {{-- <td>{{ Str::limit($row->title, 40, '...') }}</td> --}}
-                                                <td>
+                                                <td style="word-wrap:anywhere;">
                                                     @if (
                                                         $row->unit == 'Identitas Direksi' ||
                                                             $row->unit == 'Identitas Dewan Komisaris' ||
@@ -329,8 +339,8 @@
                                                     @endif
 
                                                 </td>
-                                                <td>{{ $row->about }}</td>
-                                                <td>
+                                                <td style="word-wrap:anywhere;"> {{ $row->about }}</td>
+                                                <td style="word-wrap:anywhere;">
                                                     <div class="dropdown">
                                                         <button class="btn btn-secondary dropdown-toggle" type="button"
                                                             id="dropdownMenuButton1" data-bs-toggle="dropdown"
