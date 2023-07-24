@@ -150,7 +150,7 @@
                         @if ($database->share_amount_value)
                             <tr>
                                 <th scope="row" class="text-end">Nilai Nominal Saham</th>
-                                <td>Rp. {{ number_format((int)$database->share_amount_value, 0, ',', '.') }}</td>
+                                <td>Rp. {{ $database->share_amount_value }}</td>
                             </tr>
                         @endif
                         @if ($database->authorized_person)
